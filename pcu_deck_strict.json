@@ -1,0 +1,1261 @@
+{
+  "id": "basicpcu",
+  "faction": "PCU",
+  "goons": [
+    {
+      "name": "Mutt",
+      "rank": "BG",
+      "duplicates": 3,
+      "faction": "PCU",
+      "deploy_cost": {
+        "wind": 4,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [
+        {
+          "type": "requires_card_in_play",
+          "card_name": "Krax",
+          "side": "self"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "MAUL",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 1 wind to target Goon",
+          "effects": [
+            {
+              "effect_type": "alter_wind",
+              "amount": 1,
+              "target": [
+                "any"
+              ],
+              "duration": "instant"
+            }
+          ]
+        },
+        {
+          "name": "MANS BEST FIEND",
+          "cost": {
+            "wind": 4,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "Some or all wind applied to Krax as damage from enemy Goon ability may be applied to Mutt instead. If Krax is destroyed, Mutt is destroyed.",
+          "effects": [
+            {
+              "effect_type": "redirect_damage",
+              "target": [
+                "card_name:Krax"
+              ],
+              "duration": "persistent"
+            },
+            {
+              "effect_type": "destroy_self_if_target_destroyed",
+              "target": [
+                "card_name:Krax"
+              ],
+              "duration": "persistent"
+            }
+          ]
+        }
+      ],
+      "notes": [],
+      "portrait_art": "mutt.jpg",
+      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mutt.jpg",
+      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/mutt.jpg"
+    },
+    {
+      "name": "Void Freak",
+      "rank": "BG",
+      "duplicates": 4,
+      "faction": "PCU",
+      "deploy_cost": {
+        "wind": 1,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": true,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": true,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "THRASHING VAULT",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": true,
+          "text": "Add 1 wind to target Goon. Must always use this ability on owners turn if able",
+          "effects": [
+            {
+              "effect_type": "alter_wind",
+              "amount": 1,
+              "target": [
+                "any"
+              ],
+              "duration": "instant"
+            }
+          ]
+        },
+        {
+          "name": "BLOODLUST",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "Must attack if able.",
+          "effects": [
+            {
+              "effect_type": "must_attack",
+              "target": [
+                "self"
+              ],
+              "duration": "persistent"
+            }
+          ]
+        }
+      ],
+      "notes": [],
+      "portrait_art": "freak.png",
+      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/freak.png",
+      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/freak.jpg"
+    },
+    {
+      "name": "Annihilist Overseer",
+      "rank": "BG",
+      "duplicates": 3,
+      "faction": "PCU",
+      "deploy_cost": {
+        "wind": 4,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "BLIND",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Target Goon may not use abilities or contribute wind on its next turn.",
+          "effects": [
+            {
+              "effect_type": "disable_abilities",
+              "target": [
+                "any"
+              ],
+              "duration": "next_turn"
+            },
+            {
+              "effect_type": "disable_contribution",
+              "target": [
+                "any"
+              ],
+              "duration": "next_turn"
+            }
+          ]
+        },
+        {
+          "name": "BEHEAD",
+          "cost": {
+            "wind": 3,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Destroy target Goon.",
+          "effects": [
+            {
+              "effect_type": "destroy",
+              "target": [
+                "any"
+              ],
+              "duration": "instant"
+            }
+          ]
+        }
+      ],
+      "notes": [],
+      "portrait_art": "nives.png",
+      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/nives.png",
+      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/nives.jpg"
+    },
+    {
+      "name": "K\u00e4sekobold",
+      "rank": "BG",
+      "duplicates": 4,
+      "faction": "PCU",
+      "deploy_cost": {
+        "wind": 2,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": true,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "ADD NAUSEAM",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 1 wind to target Goon",
+          "effects": [
+            {
+              "effect_type": "alter_wind",
+              "amount": 1,
+              "target": [
+                "any"
+              ],
+              "duration": "instant"
+            }
+          ]
+        },
+        {
+          "name": "REVOLT",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "Add 1 wind to any Goon who targets K\u00e4sekobold with ability",
+          "effects": [
+            {
+              "effect_type": "alter_wind",
+              "amount": 1,
+              "target": [
+                "goon_using_ability"
+              ],
+              "duration": "instant"
+            }
+          ]
+        }
+      ],
+      "portrait_art": "goblin.png",
+      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/goblin.png",
+      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/goblin.jpg"
+    },
+    {
+      "name": "Grim",
+      "rank": "SL",
+      "duplicates": 1,
+      "faction": "PCU",
+      "deploy_cost": {
+        "wind": 0,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": true,
+      "mechanical": false,
+      "resist": true,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "TIME CONTORTION",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Remove 1 wind from any target Goon.",
+          "effects": [
+            {
+              "effect_type": "alter_wind",
+              "amount": -1,
+              "target": [
+                "any"
+              ],
+              "duration": "instant"
+            }
+          ]
+        }
+      ],
+      "flavor_text": "I seek only to find amusement in your annihilation",
+      "portrait_art": "grim.png",
+      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/grim.png",
+      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/grim.jpg"
+    },
+    {
+      "name": "Helvis",
+      "rank": "T",
+      "duplicates": 1,
+      "faction": "PCU",
+      "deploy_cost": {
+        "wind": 12,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "ABYSSAL BELLOW",
+          "cost": {
+            "wind": 2,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Target player's Goons may not use abilities on their next turn.",
+          "effects": [
+            {
+              "effect_type": "disable_abilities",
+              "target": [
+                "all_opponent_playergoons"
+              ],
+              "duration": "next_turn"
+            }
+          ]
+        },
+        {
+          "name": "SEISMIC STOMP",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 2 wind to all enemy Goons",
+          "effects": [
+            {
+              "effect_type": "alter_wind",
+              "amount": 2,
+              "target": [
+                "all_opponent_playergoons"
+              ],
+              "duration": "instant"
+            }
+          ]
+        }
+      ],
+      "portrait_art": "helvis.png",
+      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/helvis.png",
+      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/helvis.jpg"
+    },
+    {
+      "name": "Blood Howler",
+      "rank": "BG",
+      "duplicates": 3,
+      "faction": "PCU",
+      "deploy_cost": {
+        "wind": 2,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "BALLISTIC BARRAGE",
+          "cost": {
+            "wind": "X",
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Distribute X wind among target Goons.",
+          "effects": [
+            {
+              "effect_type": "alter_wind",
+              "amount": "X",
+              "target": [
+                "x_goons"
+              ],
+              "duration": "instant"
+            }
+          ]
+        }
+      ],
+      "portrait_art": "howler.png",
+      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/howler.png",
+      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/howler.jpg"
+    },
+    {
+      "name": "Krax",
+      "rank": "SG",
+      "duplicates": 4,
+      "faction": "PCU",
+      "deploy_cost": {
+        "wind": 6,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": true,
+      "mechanical": false,
+      "resist": true,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "BASH IN SKULL",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 2 wind to target Goon",
+          "effects": [
+            {
+              "effect_type": "alter_wind",
+              "amount": 2,
+              "target": [
+                "any"
+              ],
+              "duration": "instant"
+            }
+          ]
+        },
+        {
+          "name": "CHAIN REACTION",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "If BASH IN SKULL destroys a Goon, Krax may add 2 wind to another target Goon. This may chain as long as it is able.",
+          "effects": [
+            {
+              "effect_type": "grant_followup_on_destroy",
+              "target": [
+                "self"
+              ],
+              "duration": "persistent"
+            },
+            {
+              "effect_type": "alter_wind",
+              "amount": 2,
+              "target": [
+                "any"
+              ],
+              "duration": "one_shot_trigger"
+            }
+          ]
+        }
+      ],
+      "portrait_art": "krax.png",
+      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/krax.png",
+      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/krax.jpg"
+    },
+    {
+      "name": "Vex",
+      "rank": "SG",
+      "duplicates": 3,
+      "faction": "PCU",
+      "deploy_cost": {
+        "wind": 4,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": true,
+      "mechanical": false,
+      "resist": true,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "PLINK",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 1 wind to target Goon",
+          "effects": [
+            {
+              "effect_type": "alter_wind",
+              "amount": 1,
+              "target": [
+                "any"
+              ],
+              "duration": "instant"
+            }
+          ]
+        },
+        {
+          "name": "SNIPE",
+          "cost": {
+            "wind": 2,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 2 wind to target Goon",
+          "effects": [
+            {
+              "effect_type": "alter_wind",
+              "amount": 2,
+              "target": [
+                "any"
+              ],
+              "duration": "instant"
+            }
+          ]
+        },
+        {
+          "name": "DOME",
+          "cost": {
+            "wind": 3,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Destroy target Goon.",
+          "effects": [
+            {
+              "effect_type": "destroy",
+              "target": [
+                "any"
+              ],
+              "duration": "instant"
+            }
+          ]
+        }
+      ],
+      "portrait_art": "vex.png",
+      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/vex.png",
+      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/vex.jpg"
+    },
+    {
+      "name": "Kriegsgheist",
+      "rank": "BG",
+      "duplicates": 2,
+      "faction": "PCU",
+      "deploy_cost": {
+        "wind": 0,
+        "gear": 3,
+        "meat": 3
+      },
+      "biological": false,
+      "mechanical": false,
+      "resist": true,
+      "no_unwind": true,
+      "deploy_requirements": [
+        {
+          "type": "requires_card_in_play",
+          "card_name": "Technomancer",
+          "side": "self"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "BLITZ",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": true,
+          "text": "Add 3 wind to target Goon. Must use this ability every turn if able.",
+          "effects": [
+            {
+              "effect_type": "alter_wind",
+              "amount": 3,
+              "target": [
+                "any"
+              ],
+              "duration": "instant"
+            }
+          ]
+        }
+      ],
+      "portrait_art": "kriegsgheist.png",
+      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/kriegsgheist.png",
+      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/kriegsgheist.jpg"
+    },
+    {
+      "name": "Meatjacker",
+      "rank": "BG",
+      "duplicates": 1,
+      "faction": "PCU",
+      "deploy_cost": {
+        "wind": 0,
+        "gear": 0,
+        "meat": 1
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": true,
+      "deploy_requirements": [
+        {
+          "type": "clone_abilities_from_deadpool",
+          "card_name": "any_goon",
+          "side": "any"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "SPASTIC ATTACK",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Do 1 damage to target Goon.",
+          "effects": [
+            {
+              "effect_type": "alter_wind",
+              "amount": 1,
+              "target": [
+                "any"
+              ],
+              "duration": "instant"
+            }
+          ]
+        },
+        {
+          "name": "CLONE ABILITIES",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": true,
+          "text": "When deployed, Jacker obtains abilities of Goon burned from Dead Pool to pay deploy cost. These abilities cost 1 additional wind to use.",
+          "effects": [
+            {
+              "effect_type": "clone_abilities",
+              "amount": 0,
+              "target": [
+                "self"
+              ],
+              "duration": "persistent"
+            }
+          ]
+        },
+        {
+          "name": "RETREAT",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "When Meatjacker is destroyed, return it to its owner's hand.",
+          "effects": [
+            {
+              "effect_type": "return_to_hand_on_destroy",
+              "target": [
+                "self"
+              ],
+              "duration": "persistent"
+            }
+          ]
+        }
+      ],
+      "portrait_art": "meatjacker.png",
+      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/meatjacker.png",
+      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/meatjacker.jpg"
+    },
+    {
+      "name": "Meat Vegetable",
+      "rank": "BG",
+      "duplicates": 4,
+      "faction": "PCU",
+      "deploy_cost": {
+        "wind": 0,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": true,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [],
+      "notes": [],
+      "flavor_text": "Carve us off a couple steaks and I\u2019ll grab the bottle of Zurion Noir I had them portal over last resupply. It should pair nicely.",
+      "portrait_art": "meatveg.png",
+      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/meatveg.png",
+      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/meatveg.jpg"
+    },
+    {
+      "name": "Restless Natives",
+      "rank": "BG",
+      "duplicates": 4,
+      "faction": "PCU",
+      "deploy_cost": {
+        "wind": 2,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": true,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": true,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "MOB",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 1 wind to 2 target Goons",
+          "effects": [
+            {
+              "effect_type": "alter_wind",
+              "amount": 1,
+              "target": [
+                "two_goons"
+              ],
+              "duration": "instant"
+            }
+          ]
+        },
+        {
+          "name": "STEADY DRUM",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Remove 1 wind from target allied Goon.",
+          "effects": [
+            {
+              "effect_type": "alter_wind",
+              "amount": -1,
+              "target": [
+                "self"
+              ],
+              "duration": "instant"
+            }
+          ]
+        }
+      ],
+      "portrait_art": "natives.png",
+      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/natives.png",
+      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/natives.jpg"
+    },
+    {
+      "name": "Nives",
+      "rank": "BG",
+      "duplicates": 2,
+      "faction": "PCU",
+      "deploy_cost": {
+        "wind": 4,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [
+        {
+          "type": "requires_card_in_play",
+          "card_name": "Vex",
+          "side": "self"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "SMILODON SABERS",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 2 wind to target Goon",
+          "effects": [
+            {
+              "effect_type": "alter_wind",
+              "amount": 2,
+              "target": [
+                "any"
+              ],
+              "duration": "instant"
+            }
+          ]
+        },
+        {
+          "name": "FAMILIAR ASSIST",
+          "cost": {
+            "wind": "X",
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Nives can contribute wind to pay for Vex's abilities.",
+          "effects": [
+            {
+              "effect_type": "enable_contribution",
+              "target": [
+                "card_name:Vex"
+              ],
+              "duration": "persistent"
+            },
+            {
+              "effect_type": "destroy_self_if_target_destroyed",
+              "target": [
+                "card_name:Vex"
+              ],
+              "duration": "persistent"
+            }
+          ]
+        }
+      ],
+      "notes": [],
+      "portrait_art": "nives.png",
+      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/nives.png",
+      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/nives.jpg"
+    },
+    {
+      "name": "Primordial Oozer",
+      "rank": "BG",
+      "duplicates": 3,
+      "faction": "PCU",
+      "deploy_cost": {
+        "wind": 1,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": true,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "DISCHARGE",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 1 wind to target Goon",
+          "effects": [
+            {
+              "effect_type": "alter_wind",
+              "amount": 1,
+              "target": [
+                "any"
+              ],
+              "duration": "instant"
+            }
+          ]
+        },
+        {
+          "name": "GOOP",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "Unfriendly Goon who targets Oozer with an ability does not unwind during its next unwind phase.",
+          "effects": [
+            {
+              "effect_type": "prevent_unwind",
+              "target": [
+                "goon_using_ability"
+              ],
+              "duration": "next_unwind"
+            }
+          ]
+        }
+      ],
+      "portrait_art": "oozer.png",
+      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/oozer.png",
+      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/oozer.jpg"
+    },
+    {
+      "name": "Psychodelic Toad",
+      "rank": "BG",
+      "duplicates": 2,
+      "faction": "PCU",
+      "deploy_cost": {
+        "wind": 2,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": true,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "DOSE",
+          "cost": {
+            "wind": 2,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Target Goon may not use abilities or contribute wind on its Player\u2019s next turn. Target may still unwind.",
+          "effects": [
+            {
+              "effect_type": "disable_abilities",
+              "target": [
+                "any"
+              ],
+              "duration": "next_turn"
+            },
+            {
+              "effect_type": "disable_contribution",
+              "target": [
+                "any"
+              ],
+              "duration": "next_turn"
+            }
+          ]
+        }
+      ],
+      "portrait_art": "toad.png",
+      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/toad.png",
+      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/toad.jpg"
+    },
+    {
+      "name": "Local Singularity",
+      "rank": "BG",
+      "duplicates": 2,
+      "faction": "PCU",
+      "deploy_cost": {
+        "wind": 2,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": true,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "DRAW FIRE",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "Player's Goons cannot be targeted by unfriendly abilities while Singularity is in play. Singularity must be destroyed first.",
+          "effects": [
+            {
+              "effect_type": "cannot_be_targeted",
+              "target": [
+                "ally_all_except:self"
+              ],
+              "duration": "persistent"
+            },
+            {
+              "effect_type": "must_be_destroyed_first",
+              "target": [
+                "opponent_all"
+              ],
+              "duration": "persistent"
+            }
+          ]
+        }
+      ],
+      "portrait_art": "singularity.png",
+      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/singularity.png",
+      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/singularity.jpg"
+    },
+    {
+      "name": "Technomancer",
+      "rank": "BG",
+      "duplicates": 3,
+      "faction": "PCU",
+      "deploy_cost": {
+        "wind": 4,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": true,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "RESURRECT",
+          "cost": {
+            "wind": 2,
+            "gear": 0,
+            "meat": 1
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Take control of a Biological Goon from Dead Pool. Treat the resurrected Goon as if it were deployed this turn.",
+          "effects": [
+            {
+              "effect_type": "resurrect_from_dead_pool",
+              "amount": 1,
+              "value": "meat",
+              "target": [
+                "dead_pool"
+              ],
+              "duration": "instant"
+            },
+            {
+              "effect_type": "no_unwind",
+              "target": [
+                "revived_by_self"
+              ],
+              "duration": "persistent"
+            },
+            {
+              "effect_type": "retire_on_destroy",
+              "target": [
+                "revived_by_self"
+              ],
+              "duration": "persistent"
+            }
+          ]
+        },
+        {
+          "name": "RECYCLE",
+          "cost": {
+            "wind": 2,
+            "gear": 1,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Take control of a Mechanical Goon from Dead Pool. Treat the recycled Goon as if it were deployed this turn.",
+          "effects": [
+            {
+              "effect_type": "resurrect_from_dead_pool",
+              "amount": 1,
+              "value": "gear",
+              "target": [
+                "dead_pool"
+              ],
+              "duration": "instant"
+            },
+            {
+              "effect_type": "no_unwind",
+              "target": [
+                "revived_by_self"
+              ],
+              "duration": "persistent"
+            },
+            {
+              "effect_type": "retire_on_destroy",
+              "target": [
+                "revived_by_self"
+              ],
+              "duration": "persistent"
+            }
+          ]
+        }
+      ],
+      "notes": [],
+      "portrait_art": "technomancer.png",
+      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/technomancer.png",
+      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/technomancer.jpg"
+    },
+    {
+      "name": "Shadow Shaman",
+      "rank": "BG",
+      "duplicates": 4,
+      "faction": "PCU",
+      "deploy_cost": {
+        "wind": 3,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": true,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "DARK MATTER DELUGE",
+          "cost": {
+            "wind": "X",
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 1 wind to X Goons",
+          "effects": [
+            {
+              "effect_type": "alter_wind",
+              "amount": 1,
+              "target": [
+                "x_goons"
+              ],
+              "duration": "instant"
+            },
+            {
+              "effect_type": "alter_wind",
+              "amount": 1,
+              "target": [
+                "any"
+              ],
+              "duration": "instant"
+            }
+          ]
+        },
+        {
+          "name": "SHADOW LANCE",
+          "cost": {
+            "wind": 2,
+            "gear": 1,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 2 wind to target Goon.",
+          "effects": [
+            {
+              "effect_type": "alter_wind",
+              "amount": 2,
+              "target": [
+                "any"
+              ],
+              "duration": "instant"
+            }
+          ]
+        }
+      ],
+      "notes": [],
+      "portrait_art": "technomancer.png",
+      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/technomancer.png",
+      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/technomancer.jpg"
+    },
+    {
+      "name": "Voidling",
+      "rank": "BG",
+      "duplicates": 4,
+      "faction": "PCU",
+      "deploy_cost": {
+        "wind": 3,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": true,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "SHOT SPOTTER",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "If target takes wind as damage this turn, they do not unwind during their next unwind phase.",
+          "effects": [
+            {
+              "effect_type": "prevent_unwind",
+              "target": [
+                "any"
+              ],
+              "duration": "next_unwind_if_damaged_this_turn"
+            }
+          ]
+        },
+        {
+          "name": "RALLY RINGER",
+          "cost": {
+            "wind": 4,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Move any card from deck to hand; reshuffle deck.",
+          "effects": [
+            {
+              "effect_type": "search_deck",
+              "amount": 1,
+              "target": [
+                "self"
+              ],
+              "duration": "instant"
+            }
+          ]
+        }
+      ],
+      "portrait_art": "voidling.png",
+      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/voidling.png",
+      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/voidling.jpg"
+    }
+  ]
+}
