@@ -77,49 +77,6 @@
       "portrait_art": "mutt.jpg",
       "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mutt.jpg",
       "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/mutt.jpg"
-    },{
-      "name": "Utility Droid",
-      "rank": "BG",
-      "duplicates": 3,
-      "faction": "PCU",
-      "deploy_cost": {
-        "wind": 3,
-        "gear": 0,
-        "meat": 0
-      },
-      "biological": false,
-      "mechanical": true,
-      "resist": false,
-      "no_unwind": false,
-      "deploy_requirements": [
-      ],
-      "abilities": [
-        {
-          "name": "Restore",
-          "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Remove 1 wind from target Goon",
-          "effects": [
-            {
-              "effect_type": "alter_wind",
-              "amount": 1,
-              "target": [
-                "ally_all_except:self"
-              ],
-              "duration": "instant"
-            }
-          ]
-        }
-      ],
-      "notes": [],
-      "portrait_art": "util.png",
-      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mutt.jpg",
-      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/mutt.jpg"
     },
     {
       "name": "Void Freak",
@@ -335,7 +292,7 @@
         {
           "name": "TIME CONTORTION",
           "cost": {
-            "wind": 0,
+            "wind": 1,
             "gear": 0,
             "meat": 0
           },
@@ -365,9 +322,9 @@
       "duplicates": 1,
       "faction": "PCU",
       "deploy_cost": {
-        "wind": 6,
+        "wind": 12,
         "gear": 0,
-        "meat": 3
+        "meat": 0
       },
       "biological": false,
       "mechanical": false,
@@ -378,7 +335,7 @@
         {
           "name": "ABYSSAL BELLOW",
           "cost": {
-            "wind": 1,
+            "wind": 2,
             "gear": 0,
             "meat": 0
           },
@@ -459,7 +416,7 @@
           ]
         }
       ],
-      "portrait_art": "howler.jpg",
+      "portrait_art": "howler.png",
       "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/howler.png",
       "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/howler.jpg"
     },
@@ -469,8 +426,8 @@
       "duplicates": 4,
       "faction": "PCU",
       "deploy_cost": {
-        "wind": 5,
-        "gear": 1,
+        "wind": 6,
+        "gear": 0,
         "meat": 0
       },
       "biological": true,
@@ -539,8 +496,8 @@
       "duplicates": 3,
       "faction": "PCU",
       "deploy_cost": {
-        "wind": 3,
-        "gear": 1,
+        "wind": 4,
+        "gear": 0,
         "meat": 0
       },
       "biological": true,
@@ -594,13 +551,13 @@
         {
           "name": "DOME",
           "cost": {
-            "wind": 2,
+            "wind": 3,
             "gear": 0,
             "meat": 0
           },
           "passive": false,
           "must_use": false,
-          "text": "Destroy target Basic Goon.",
+          "text": "Destroy target Goon.",
           "effects": [
             {
               "effect_type": "destroy",
@@ -641,7 +598,7 @@
         {
           "name": "BLITZ",
           "cost": {
-            "wind": 0,
+            "wind": 1,
             "gear": 0,
             "meat": 0
           },
@@ -678,10 +635,16 @@
       "mechanical": true,
       "resist": false,
       "no_unwind": true,
-      "deploy_requirements": [],
+      "deploy_requirements": [
+        {
+          "type": "clone_abilities_from_deadpool",
+          "card_name": "any_goon",
+          "side": "any"
+        }
+      ],
       "abilities": [
         {
-          "name": "HOST FLAIL",
+          "name": "SPASTIC ATTACK",
           "cost": {
             "wind": 1,
             "gear": 0,
@@ -723,7 +686,7 @@
           ]
         },
         {
-          "name": "TENACIOUS HOST",
+          "name": "RETREAT",
           "cost": {
             "wind": 0,
             "gear": 0,
@@ -1156,7 +1119,7 @@
         }
       ],
       "notes": [],
-      "portrait_art": "meatjacker.png",
+      "portrait_art": "technomancer.png",
       "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/technomancer.png",
       "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/technomancer.jpg"
     },

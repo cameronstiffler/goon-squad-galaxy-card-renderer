@@ -1,0 +1,1167 @@
+{
+  "id": "basicnarc",
+  "faction": "NARC",
+  "goons": [
+    {
+      "name": "Compliance Auditon",
+      "rank": "BG",
+      "duplicates": 4,
+      "faction": "NARC",
+      "deploy_cost": {
+        "wind": 1,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "LITIGIOUS GRIDLOCK",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Target goon does not unwind in its next unwind phase.",
+          "effects": [
+            {
+              "effect_type": "prevent_unwind",
+              "target": [
+                "any"
+              ],
+              "duration": "next_unwind"
+            }
+          ]
+        }
+      ],
+      "portrait_art": "auditon.png",
+      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/auditon.png",
+      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/mini/auditon.jpg"
+    },
+    {
+      "name": "Bruut Enforcer",
+      "rank": "SG",
+      "duplicates": 3,
+      "faction": "NARC",
+      "deploy_cost": {
+        "wind": 4,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": true,
+      "no_unwind": true,
+      "deploy_requirements": [
+        {
+          "type": "requires_rank_in_play",
+          "side": "self",
+          "count": 1,
+          "value": "SG"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "SLUG",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 1 wind to target Goon.",
+          "effects": [
+            {
+              "effect_type": "alter_wind",
+              "amount": 1,
+              "target": [
+                "any"
+              ],
+              "duration": "instant"
+            }
+          ]
+        },
+        {
+          "name": "RED WET SPOT",
+          "cost": {
+            "wind": 3,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Target Goon must be destroyed before any other Goons.",
+          "effects": [
+            {
+              "effect_type": "must_be_destroyed_first",
+              "target": [
+                "any"
+              ],
+              "duration": "until_end_of_turn"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Player may pay 1 wind to unwind Bruut Enforcer"
+      ],
+      "portrait_art": "bruut.png",
+      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/bruut.png",
+      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/mini/bruut.jpg"
+    },
+    {
+      "name": "Buzzkill",
+      "rank": "SG",
+      "duplicates": 3,
+      "faction": "NARC",
+      "deploy_cost": {
+        "wind": 5,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": true,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "SENTRY MODE",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Target Goon gains resist until beginning of player's next turn.",
+          "effects": [
+            {
+              "effect_type": "grant_resist",
+              "target": [
+                "any"
+              ],
+              "duration": "until_end_of_turn"
+            }
+          ]
+        },
+    {
+      "name": "BLAST",
+      "cost": {
+        "wind": 1,
+        "gear": 0,
+        "meat": 0
+      },
+      "passive": false,
+      "must_use": false,
+      "text": "Add 3 wind to target Goon.",
+      "effects": [
+        {
+          "effect_type": "alter_wind",
+          "amount": 3,
+          "target": [
+            "any"
+          ],
+          "duration": "instant"
+        }
+      ]
+    },
+        {
+          "name": "DEFENSIVE POSTURE",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Buzzkill and Killjoy both pay 1 wind; Player's Goons gain Resist until Player's next turn.",
+          "effects": [
+            {
+              "effect_type": "grant_resist",
+              "target": [
+                "ally_all"
+              ],
+              "duration": "until_end_of_turn"
+            }
+          ]
+        }
+      ],
+      "portrait_art": "buzzkill.png",
+      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/buzzkill.png",
+      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/mini/buzzkill.jpg"
+    },
+    {
+      "name": "Detainment Probe",
+      "rank": "BG",
+      "duplicates": 3,
+      "faction": "NARC",
+      "deploy_cost": {
+        "wind": 1,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "SHACKLE BEAM",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Target Goon may not unwind, act or contribute wind to deploy next turn.",
+          "effects": [
+            {
+              "effect_type": "prevent_unwind",
+              "target": [
+                "any"
+              ],
+              "duration": "next_unwind"
+            },
+            {
+              "effect_type": "disable_abilities",
+              "target": [
+                "any"
+              ],
+              "duration": "next_turn"
+            },
+            {
+              "effect_type": "disable_contribution",
+              "target": [
+                "any"
+              ],
+              "duration": "next_turn"
+            }
+          ]
+        }
+      ],
+      "portrait_art": "detainprobe.png",
+      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/detainprobe.png",
+      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/mini/detainprobe.jpg"
+    },
+    {
+      "name": "Marine Marauder",
+      "rank": "BG",
+      "duplicates": 3,
+      "faction": "NARC",
+      "deploy_cost": {
+        "wind": 3,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": true,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "PRECISION STRIKE",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 1 wind to target Goon.",
+          "effects": [
+            {
+              "effect_type": "alter_wind",
+              "amount": 1,
+              "target": [
+                "any"
+              ],
+              "duration": "instant"
+            }
+          ]
+        },
+        {
+          "name": "ORDINANCE ARRAY",
+          "cost": {
+            "wind": 3,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Distribute 3 wind among 3 target Goons.",
+          "effects": [
+            {
+              "effect_type": "alter_wind",
+              "amount": 1,
+              "target": [
+                "three_goons"
+              ],
+              "duration": "instant"
+            }
+          ]
+        }
+      ],
+      "portrait_art": "marauder.png",
+      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/marauder.png",
+      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/mini/marauder.jpg"
+    },
+    {
+      "name": "K-9.0",
+      "rank": "BG",
+      "duplicates": 4,
+      "faction": "NARC",
+      "deploy_cost": {
+        "wind": 3,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "SCAN FOR VULNERABILITY",
+          "cost": {
+            "wind": 2,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "A goon may use an ability twice on the scanned target this turn.",
+          "effects": [
+            {
+              "effect_type": "enable_double_use_against_target",
+              "target": [
+                "any"
+              ],
+              "duration": "until_end_of_turn"
+            }
+          ]
+        }
+      ],
+      "portrait_art": "k9.png",
+      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/k9.png",
+      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/mini/k9.jpg"
+    },
+    {
+      "name": "Killjoy",
+      "rank": "SG",
+      "duplicates": 3,
+      "faction": "NARC",
+      "deploy_cost": {
+        "wind": 4,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": true,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "SUBMISSION HOLD",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Target Goon does not unwind on player's next turn.",
+          "effects": [
+            {
+              "effect_type": "prevent_unwind",
+              "target": [
+                "any"
+              ],
+              "duration": "next_unwind"
+            }
+          ]
+        },
+        {
+          "name": "NEUTRALIZE",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 1 wind to target Goon.",
+          "effects": [
+            {
+              "effect_type": "alter_wind",
+              "amount": 1,
+              "target": [
+                "any"
+              ],
+              "duration": "instant"
+            }
+          ]
+        },
+        {
+          "name": "DEFENSIVE POSTURE",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Buzzkill and Killjoy both pay 1 wind; Player's Goons gain Resist until Player's next turn.",
+          "effects": [
+            {
+              "effect_type": "grant_resist",
+              "target": [
+                "ally_all"
+              ],
+              "duration": "until_end_of_turn"
+            }
+          ]
+        }
+      ],
+      "portrait_art": "killjoy.png",
+      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/killjoy.png",
+      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/mini/killjoy.jpg"
+    },
+    {
+      "name": "Lokar Simmons",
+      "rank": "SL",
+      "duplicates": 1,
+      "faction": "NARC",
+      "deploy_cost": {
+        "wind": 0,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": true,
+      "mechanical": false,
+      "resist": true,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+    {
+      "name": "RESOURCEFUL",
+      "cost": {
+        "wind": 1,
+        "gear": 0,
+        "meat": 0
+      },
+      "passive": false,
+      "must_use": false,
+      "text": "Draw a card",
+      "effects": [
+        {
+          "effect_type": "draw_cards",
+          "amount": 1,
+          "target": [
+            "self"
+          ],
+          "duration": "instant"
+        }
+      ]
+    }
+      ],
+      "portrait_art": "lokar.png",
+      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/lokar.png",
+      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/mini/lokar.jpg"
+    },
+    {
+      "name": "Dormex Lurker",
+      "rank": "BG",
+      "duplicates": 3,
+      "faction": "NARC",
+      "deploy_cost": {
+        "wind": 2,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": true,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "SELF DESTRUCT",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Destroy Lurker, add 3 wind to target Goon",
+          "effects": [
+            {
+              "effect_type": "destroy",
+              "target": [
+                "self"
+              ],
+              "duration": "instant"
+            },
+            {
+              "effect_type": "alter_wind",
+              "amount": 4,
+              "target": [
+                "any"
+              ],
+              "duration": "instant"
+            },
+            {
+              "effect_type": "grant_resist",
+              "target": [
+                "ally_all"
+              ],
+              "duration": "until_end_of_turn"
+            }
+          ]
+        },
+        {
+          "name": "REACTIVE MUNITIONS",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "Destroy Goon who destroys Lurker.",
+          "effects": [
+            {
+              "effect_type": "destroy_attacker_on_destroy",
+              "target": [
+                "self"
+              ],
+              "duration": "persistent"
+            }
+          ]
+        }
+      ],
+      "portrait_art": "lurker.png",
+      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/lurker.png",
+      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/mini/lurker.jpg"
+    },
+    {
+      "name": "MediFux-1NDS",
+      "rank": "BG",
+      "duplicates": 4,
+      "faction": "NARC",
+      "deploy_cost": {
+        "wind": 1,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "DORSAL CAVITY RINSE",
+          "cost": {
+            "wind": 1,
+            "gear": 1,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Remove 1 wind from target biological Goon.",
+          "effects": [
+            {
+              "effect_type": "alter_wind",
+              "amount": -1,
+              "target": [
+                "any_biological"
+              ],
+              "duration": "instant"
+            }
+          ]
+        },
+        {
+          "name": "BIO LUBE",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 1
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Remove 1 wind from target mechanical Goon.",
+          "effects": [
+            {
+              "effect_type": "alter_wind",
+              "amount": -1,
+              "target": [
+                "any_mechanical"
+              ],
+              "duration": "instant"
+            }
+          ]
+        }
+      ],
+      "portrait_art": "medi.png",
+      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/medi.png",
+      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/mini/medi.jpg"
+    },
+    {
+      "name": "Task Mistres",
+      "rank": "BG",
+      "duplicates": 4,
+      "faction": "NARC",
+      "deploy_cost": {
+        "wind": 2,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "BIDE TIME",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Mistrex gains Resist until beginning of Player's next turn.",
+          "effects": [
+            {
+              "effect_type": "grant_resist",
+              "target": [
+                "self"
+              ],
+              "duration": "until_end_of_turn"
+            }
+          ]
+        },
+        {
+          "name": "TAZING CRACK",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Target Goon does not unwind during its next unwind.",
+          "effects": [
+            {
+              "effect_type": "prevent_unwind",
+              "target": [
+                "any"
+              ],
+              "duration": "next_unwind"
+            }
+          ]
+        },
+        {
+          "name": "DOMINATE",
+          "cost": {
+            "wind": 2,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Use target Goon ability on a target of Player's choice. Target Goon pays wind as it would on its turn.",
+          "effects": [
+            {
+              "effect_type": "copy_and_cast_target_ability",
+              "target": [
+                "any"
+              ],
+              "duration": "instant"
+            }
+          ]
+        }
+      ],
+      "portrait_art": "mistrex.png",
+      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/mistrex.png",
+      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/mini/mistrex.jpg"
+    },
+    {
+      "name": "Narcstar",
+      "rank": "T",
+      "duplicates": 1,
+      "faction": "NARC",
+      "deploy_cost": {
+        "wind": 6,
+        "gear": 3,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "ORBITAL SMITE",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Destroy target Goon and burn target from game.",
+          "effects": [
+            {
+              "effect_type": "destroy",
+              "target": [
+                "any"
+              ],
+              "duration": "instant"
+            },
+            {
+              "effect_type": "retire_on_destroy",
+              "target": [
+                "any"
+              ],
+              "duration": "one_shot_trigger"
+            }
+          ]
+        },
+        {
+          "name": "MASS SHACKLE",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Target Player's Goons do not unwind on that Player's next turn.",
+          "effects": [
+            {
+              "effect_type": "prevent_unwind",
+              "target": [
+                "opponent_all"
+              ],
+              "duration": "next_unwind"
+            }
+          ]
+        }
+      ],
+      "portrait_art": "narcstar.png",
+      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/narcstar.png",
+      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/mini/narcstar.jpg"
+    },
+    {
+      "name": "Nob Lobber",
+      "rank": "BG",
+      "duplicates": 3,
+      "faction": "NARC",
+      "deploy_cost": {
+        "wind": 4,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "SCATTER LOAD",
+          "cost": {
+            "wind": 1,
+            "gear": 1,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 1 wind to 3 target Goons.",
+          "effects": [
+            {
+              "effect_type": "alter_wind",
+              "amount": 1,
+              "target": [
+                "three_goons"
+              ],
+              "duration": "instant"
+            }
+          ]
+        },
+        {
+          "name": "GOON BUSTER",
+          "cost": {
+            "wind": 3,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 1 wind to target Goon.",
+          "effects": [
+            {
+              "effect_type": "alter_wind",
+              "amount": 1,
+              "target": [
+                "any"
+              ],
+              "duration": "instant"
+            }
+          ]
+        }
+      ],
+      "portrait_art": "lobber.png",
+      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/lobber.png",
+      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/mini/lobber.jpg"
+    },
+    {
+      "name": "Sausage Droid",
+      "rank": "BG",
+      "duplicates": 4,
+      "faction": "NARC",
+      "deploy_cost": {
+        "wind": 1,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": true,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "PROCESS",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 1
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Burn 1 biological from Dead Pool to remove 1 wind from target Goon.",
+          "effects": [
+            {
+              "effect_type": "banish_from_dead_pool",
+              "amount": 1,
+              "value": "biological",
+              "target": [
+                "dead_pool"
+              ],
+              "duration": "instant"
+            },
+            {
+              "effect_type": "alter_wind",
+              "amount": -1,
+              "target": [
+                "any"
+              ],
+              "duration": "instant"
+            }
+          ]
+        },
+        {
+          "name": "BOOST",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 1
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 1 additional wind when contributing to deploy this turn.",
+          "effects": [
+            {
+              "effect_type": "banish_from_dead_pool",
+              "amount": 1,
+              "value": "biological",
+              "target": [
+                "dead_pool"
+              ],
+              "duration": "instant"
+            },
+            {
+              "effect_type": "alter_deploy_wind",
+              "amount": 1,
+              "target": [
+                "self"
+              ],
+              "duration": "instant"
+            }
+          ]
+        }
+      ],
+      "portrait_art": "sasdroid.png",
+      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/sasdroid.png",
+      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/mini/sasdroid.jpg"
+    },
+    {
+      "name": "Sentry Node",
+      "rank": "BG",
+      "duplicates": 3,
+      "faction": "NARC",
+      "deploy_cost": {
+        "wind": 4,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "AUTOBURST",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 1 wind to target Goon.",
+          "effects": [
+            {
+              "effect_type": "alter_wind",
+              "amount": 1,
+              "target": [
+                "any"
+              ],
+              "duration": "instant"
+            }
+          ]
+        },
+        {
+          "name": "LEAD LASER",
+          "cost": {
+            "wind": 2,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 2 wind to target Goon.",
+          "effects": [
+            {
+              "effect_type": "alter_wind",
+              "amount": 2,
+              "target": [
+                "any"
+              ],
+              "duration": "instant"
+            }
+          ]
+        }
+      ],
+      "portrait_art": "sentry.png",
+      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/sentry.png",
+      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/mini/sentry.jpg"
+    },
+    {
+      "name": "Shield Array Node",
+      "rank": "BG",
+      "duplicates": 3,
+      "faction": "NARC",
+      "deploy_cost": {
+        "wind": 2,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "FORTIFICATION NETWORK",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "While 2+ Shield Array Nodes are in play, Player's Goons may not be the target of negative effects.",
+          "effects": [
+            {
+              "effect_type": "conditional_cannot_be_targeted_by_negative_effects",
+              "value": "shield_array_nodes>=2",
+              "target": [
+                "ally_all"
+              ],
+              "duration": "persistent"
+            }
+          ]
+        },
+        {
+          "name": "SURGE BARRIER",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Banish 1 mechanical from Dead Pool to give allied Goons Resist until end of turn.",
+          "effects": [
+            {
+              "effect_type": "banish_from_dead_pool",
+              "amount": 1,
+              "value": "mechanical",
+              "target": [
+                "dead_pool"
+              ],
+              "duration": "instant"
+            },
+            {
+              "effect_type": "grant_resist",
+              "target": [
+                "ally_all"
+              ],
+              "duration": "until_end_of_turn"
+            }
+          ]
+        }
+      ],
+      "portrait_art": "array.png",
+      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/array.png",
+      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/mini/array.jpg"
+    },
+    {
+      "name": "Hover Shield",
+      "rank": "BG",
+      "duplicates": 4,
+      "faction": "NARC",
+      "deploy_cost": {
+        "wind": 2,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "COVER",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Target Goon may not be targeted by enemy Goon abilities until the beginning of player's next turn.",
+          "effects": [
+            {
+              "effect_type": "cannot_be_targeted",
+              "target": [
+                "any"
+              ],
+              "duration": "until_end_of_turn"
+            }
+          ]
+        }
+      ],
+      "portrait_art": "hovershield.png",
+      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/hovershield.png",
+      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/mini/shield.jpg"
+    },
+    {
+      "name": "Impact Simulant",
+      "rank": "BG",
+      "duplicates": 4,
+      "faction": "NARC",
+      "deploy_cost": {
+        "wind": 0,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [],
+      "notes": [],
+      "portrait_art": ""
+    },
+    {
+      "name": "Target Marker Probe",
+      "rank": "BG",
+      "duplicates": 3,
+      "faction": "NARC",
+      "deploy_cost": {
+        "wind": 1,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "MARK TARGET",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "When a Goon adds wind as damage to the MARKED target this turn, increase by 1. Nob Lobber and Marine Marauder may forego wind cost when targeting only the MARKED target.",
+          "effects": [
+            {
+              "effect_type": "mark_target",
+              "target": [
+                "any"
+              ],
+              "duration": "until_end_of_turn"
+            },
+            {
+              "effect_type": "increase_damage_taken",
+              "amount": 1,
+              "target": [
+                "marked"
+              ],
+              "duration": "until_end_of_turn"
+            },
+            {
+              "effect_type": "reduce_cost_for_cards_against_marked",
+              "value": "Nob Lobber,Marine Marauder",
+              "target": [
+                "marked"
+              ],
+              "duration": "until_end_of_turn"
+            }
+          ]
+        }
+      ],
+      "portrait_art": "target.png",
+      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/target.png",
+      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/mini/target.jpg"
+    }
+  ]
+}
