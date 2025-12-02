@@ -54,7 +54,7 @@
           },
           "passive": true,
           "must_use": false,
-          "text": "Some or all wind applied to Krax as damage from enemy Goon ability may be applied to Mutt instead. If Krax is destroyed, Mutt is destroyed.",
+          "text": "Some or all wind applied to Squad Goon as damage from enemy Goon ability may be applied to Mutt instead.",
           "effects": [
             {
               "effect_type": "redirect_damage",
@@ -146,7 +146,7 @@
           },
           "passive": false,
           "must_use": true,
-          "text": "Add 1 wind to target Goon. Must always use this ability on owners turn if able",
+          "text": "Add 1 wind to target Goon. Must use this ability if able",
           "effects": [
             {
               "effect_type": "alter_wind",
@@ -180,7 +180,7 @@
         }
       ],
       "notes": [],
-      "portrait_art": "freak.png",
+      "portrait_art": "freak.jpg",
       "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/freak.png",
       "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/freak.jpg"
     },
@@ -249,7 +249,7 @@
         }
       ],
       "notes": [],
-      "portrait_art": "nives.png",
+      "portrait_art": "overseer.jpg",
       "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/nives.png",
       "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/nives.jpg"
     },
@@ -312,7 +312,7 @@
           ]
         }
       ],
-      "portrait_art": "goblin.png",
+      "portrait_art": "goblin.jpg",
       "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/goblin.png",
       "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/goblin.jpg"
     },
@@ -355,7 +355,7 @@
         }
       ],
       "flavor_text": "I seek only to find amusement in your annihilation",
-      "portrait_art": "grim.png",
+      "portrait_art": "grim.jpg",
       "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/grim.png",
       "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/grim.jpg"
     },
@@ -459,7 +459,7 @@
           ]
         }
       ],
-      "portrait_art": "howler.jpg",
+      "portrait_art": "howler.png",
       "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/howler.png",
       "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/howler.jpg"
     },
@@ -469,7 +469,7 @@
       "duplicates": 4,
       "faction": "PCU",
       "deploy_cost": {
-        "wind": 5,
+        "wind": 4,
         "gear": 1,
         "meat": 0
       },
@@ -529,7 +529,7 @@
           ]
         }
       ],
-      "portrait_art": "krax.png",
+      "portrait_art": "krax.jpg",
       "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/krax.png",
       "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/krax.jpg"
     },
@@ -612,7 +612,7 @@
           ]
         }
       ],
-      "portrait_art": "vex.png",
+      "portrait_art": "vex.jpg",
       "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/vex.png",
       "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/vex.jpg"
     },
@@ -660,7 +660,7 @@
           ]
         }
       ],
-      "portrait_art": "kriegsgheist.png",
+      "portrait_art": "krieg.jpg",
       "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/kriegsgheist.png",
       "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/kriegsgheist.jpg"
     },
@@ -765,7 +765,7 @@
       "abilities": [],
       "notes": [],
       "flavor_text": "Carve us off a couple steaks and I\u2019ll grab the bottle of Zurion Noir I had them portal over last resupply. It should pair nicely.",
-      "portrait_art": "meatveg.png",
+      "portrait_art": "meatveg.jpg",
       "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/meatveg.png",
       "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/meatveg.jpg"
     },
@@ -828,7 +828,7 @@
           ]
         }
       ],
-      "portrait_art": "natives.png",
+      "portrait_art": "natives.jpg",
       "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/natives.png",
       "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/natives.jpg"
     },
@@ -1156,7 +1156,7 @@
         }
       ],
       "notes": [],
-      "portrait_art": "meatjacker.png",
+      "portrait_art": "technomancer.jpg",
       "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/technomancer.png",
       "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/technomancer.jpg"
     },
@@ -1228,7 +1228,7 @@
         }
       ],
       "notes": [],
-      "portrait_art": "technomancer.png",
+      "portrait_art": "shaman.jpg",
       "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/technomancer.png",
       "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/technomancer.jpg"
     },
@@ -1278,6 +1278,68 @@
           "passive": false,
           "must_use": false,
           "text": "Move any card from deck to hand; reshuffle deck.",
+          "effects": [
+            {
+              "effect_type": "search_deck",
+              "amount": 1,
+              "target": [
+                "self"
+              ],
+              "duration": "instant"
+            }
+          ]
+        }
+      ],
+      "portrait_art": "voidling.png",
+      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/voidling.png",
+      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/voidling.jpg"
+    },
+    {
+      "name": "Meat Warrior",
+      "rank": "BG",
+      "duplicates": 4,
+      "faction": "PCU",
+      "deploy_cost": {
+        "wind": 3,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": true,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "BLOODLUST",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "If target takes wind as damage this turn, they do not unwind during their next unwind phase.",
+          "effects": [
+            {
+              "effect_type": "prevent_unwind",
+              "target": [
+                "any"
+              ],
+              "duration": "next_unwind_if_damaged_this_turn"
+            }
+          ]
+        },
+        {
+          "name": "CANNIBALIZE",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 1
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 1 wind to target Goon.",
           "effects": [
             {
               "effect_type": "search_deck",
