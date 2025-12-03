@@ -3,6 +3,9 @@ import os
 import sys
 import textwrap
 from PIL import Image, ImageDraw, ImageFont
+import openai
+import requests
+import random
 import argparse
 
 # === CONFIGURATION ===
@@ -95,9 +98,9 @@ def get_assets(faction):
         assets['faction'] = get_main_icon('faction.png')
 
     # Rank icons are also now in the card_icons folder
-    assets['rank_sl'] = get_main_icon('rank_sl.png')
-    assets['rank_sg'] = get_main_icon('rank_sg.png')
-    assets['rank_t'] = get_main_icon('rank_t.png')
+    assets['rank_sl'] = get_main_icon('rank_sl.png') if os.path.exists(os.path.join(faction_icon_dir, 'rank_sl.png')) else None
+    assets['rank_sg'] = get_main_icon('rank_sg.png') if os.path.exists(os.path.join(faction_icon_dir, 'rank_sg.png')) else None
+    assets['rank_t'] = get_main_icon('rank_t.png') if os.path.exists(os.path.join(faction_icon_dir, 'rank_t.png')) else None
 
     # --- 2. ABILITY ICONS ---
     abil_sheet = Image.open(SOURCE_ABILITY_ICONS).convert("RGBA")
@@ -146,7 +149,54 @@ def create_placeholder_art(size=(650, 600), text="ART MISSING"):
     draw.text((size[0]/2, size[1]/2), text, font=font, anchor="mm", fill=(200, 200, 200))
     return img
 
-def generate_cards(json_file, art_dir, output_dir, faction):
+def generate_art_prompt(goon_name, prompt_data):
+    """Constructs a randomized, detailed prompt for DALL-E from a template."""
+    if not prompt_data:
+        print("     [!] WARNING: ai_art_prompt data not found in JSON. Skipping art generation.")
+        return None
+
+    template = prompt_data.get("template", "")
+    options = prompt_data.get("options", {})
+
+    prompt = template.format(
+        goon_name=goon_name,
+        armor=random.choice(options.get("armor", ["scrap"])),
+        head=random.choice(options.get("head", ["a helmet"])),
+        feet=random.choice(options.get("feet", ["boots"])),
+        background=random.choice(options.get("background", ["a plain environment"]))
+    )
+    return prompt
+
+def generate_and_save_art(prompt, save_path):
+    """Generates art using DALL-E and saves it to the specified path."""
+    print(f"     [+] Generating AI art for: {os.path.basename(save_path)}...")
+    print(f"     [+] Using Prompt: {prompt}")
+    try:
+        client = openai.OpenAI() # This line reads the key from the environment variable
+        response = client.images.generate(
+            model="dall-e-3",
+            prompt=prompt,
+            size="1024x1024",
+            quality="standard",
+            n=1,
+        )
+        image_url = response.data[0].url
+        
+        # Download and save the image
+        image_data = requests.get(image_url).content
+
+        # Ensure the directory exists before saving
+        os.makedirs(os.path.dirname(save_path), exist_ok=True)
+
+        with open(save_path, 'wb') as handler:
+            handler.write(image_data)
+        print(f"     [+] AI art saved to {save_path}")
+        return True
+    except Exception as e:
+        print(f"     [!] AI art generation failed: {e}")
+        return False
+
+def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=False):
     print("\n--- STEP 2: GENERATING CARDS ---")
     try:
         with open(json_file, 'r') as f:
@@ -159,20 +209,30 @@ def generate_cards(json_file, art_dir, output_dir, faction):
         sys.exit()
         
     assets = get_assets(faction)
+    ai_prompt_data = data.get("ai_art_prompt")
     if not os.path.exists(output_dir): os.makedirs(output_dir)
 
-    # --- FONTS ---
-    if faction == 'narc':
-        font_header = get_font(["Impact.ttf", "Impact.ttc", "Arial-Black.ttf"], 75)
-        font_cost = get_font(["Helvetica.ttf", "Helvetica.ttc", "Arial.ttf"], 72)
-    else: # pcu
-        font_header = get_font(["Georgia"], 75)
-        font_cost = get_font(["Chalkduster.ttf", "Chalkduster.ttc"], 72)
+    # --- FONTS (Loaded from JSON) ---
+    def get_font_from_json(key_family, key_size, default_family, default_size):
+        family = data.get(key_family, default_family)
+        size = data.get(key_size, default_size)
+        # Ensure family is a list for get_font function
+        if not isinstance(family, list):
+            family = [family]
+        return get_font(family, size)
 
-    font_body = get_font(["Futura.ttc", "Futura.ttf", "Avenir.ttc", "GillSans.ttc", "Georgia"], 22)
-    font_abil_num = get_font(["Futura.ttc", "Futura.ttf", "Avenir.ttc"], 24)
-    font_abil_num_bold = get_font(["Futura-Bold.ttf", "Avenir-Heavy.ttf"], 25, default_font=font_abil_num)
+    font_header = get_font_from_json("card_name_font_family", "card_name_font_size", "Georgia", 75)
+    font_cost = get_font_from_json("cost_font_family", "cost_font_size", "Chalkduster.ttf", 72)
+    font_body = get_font_from_json("body_font_family", "body_font_size", ["Futura.ttc", "Avenir.ttc"], 22)
+    font_abil_num = get_font_from_json("ability_num_font_family", "ability_num_font_size", ["Futura.ttc", "Avenir.ttc"], 24)
+    font_abil_num_bold = get_font_from_json("ability_num_bold_font_family", "ability_num_bold_font_size", ["Futura-Bold.ttf", "Avenir-Heavy.ttf"], 25)
 
+    # --- COLORS (Loaded from JSON) ---
+    color_name = data.get("card_name_font_color", "#c8baa6")
+    color_deploy_cost = data.get("deploy_cost_font_color", "white")
+    color_body = data.get("body_font_color", "#F5F5DC")
+    color_abil_cost = data.get("ability_cost_font_color", "black")
+    
     def draw_wrapped_text(draw_context, text, start_pos, font, fill, indent=0):
         """Helper to draw wrapped text with an optional icon and return the new y-position."""
         x, y = start_pos
@@ -204,6 +264,15 @@ def generate_cards(json_file, art_dir, output_dir, faction):
                     fallback_path = os.path.join(art_dir, fallback_filename)
                     if os.path.exists(fallback_path):
                         art_file = fallback_path
+            
+            # If art still doesn't exist and auto-gen is on, create it
+            if not os.path.exists(art_file) and auto_generate_art:
+                art_prompt = generate_art_prompt(name, ai_prompt_data)
+                if art_prompt:
+                    if not generate_and_save_art(art_prompt, art_file):
+                        art_file = None # Fallback to placeholder if generation fails
+                else: art_file = None
+
         art_crop = None
         if art_file and os.path.exists(art_file):
             try:
@@ -245,12 +314,11 @@ def generate_cards(json_file, art_dir, output_dir, faction):
 
         draw = ImageDraw.Draw(canvas)
         
-        draw.canvas = canvas # Attach canvas to draw object for helper function
         # 3. Name
         name_bbox = draw.textbbox((0, 0), name, font=font_header)
         name_width = name_bbox[2] - name_bbox[0]
         start_x = NAME_END_X - name_width
-        draw.text((start_x, NAME_Y), name, font=font_header, fill="#c8baa6")
+        draw.text((start_x, NAME_Y), name, font=font_header, fill=color_name)
 
         # 4. Left Side Stack
         current_y = COST_START_Y
@@ -259,7 +327,7 @@ def generate_cards(json_file, art_dir, output_dir, faction):
             icon = assets[icon_key]
             canvas.paste(icon, (COST_POS_X, y_pos), icon)
             # Use anchor="mm" for robust vertical and horizontal centering.
-            draw.text((COST_POS_X + 42.5, y_pos + 42.5 + text_y_offset), str(value), font=font_cost, fill="white", anchor="mm")
+            draw.text((COST_POS_X + 42.5, y_pos + 42.5 + text_y_offset), str(value), font=font_cost, fill=color_deploy_cost, anchor="mm")
 
         if card['deploy_cost'].get('wind', 0) > 0:
             draw_main_icon('cost_wind', card['deploy_cost']['wind'], current_y, text_y_offset=-5)
@@ -281,7 +349,7 @@ def generate_cards(json_file, art_dir, output_dir, faction):
             "T": "rank_t"
         }
         if rank in rank_map:
-            icon_key = rank_map[rank]
+            icon_key = rank_map.get(rank)
             icon = assets[icon_key]
             canvas.paste(icon, (COST_POS_X, current_y), icon)
             current_y += ICON_SPACING
@@ -335,13 +403,13 @@ def generate_cards(json_file, art_dir, output_dir, faction):
                     
                     bbox = draw.textbbox((0, 0), wind_val, font=font_abil_num_bold)
                     w_num, h_num = bbox[2] - bbox[0], bbox[3] - bbox[1]
-                    draw.text((x_cursor + 15 - w_num/2, text_y + 12 - h_num/2 - 2), wind_val, font=font_abil_num_bold, fill="black")
+                    draw.text((x_cursor + 15 - w_num/2, text_y + 12 - h_num/2 - 2), wind_val, font=font_abil_num_bold, fill=color_abil_cost)
                     x_cursor += 35 # Move cursor past the icon
                     indent = x_cursor - TEXT_BOX_START_X
 
                 # 2. Draw "+" if there's a second cost
                 if (isinstance(wind, int) and wind > 0) and (meat > 0 or gear > 0):
-                    draw.text((x_cursor, text_y), "+", font=font_body, fill="#F5F5DC")
+                    draw.text((x_cursor, text_y), "+", font=font_body, fill=color_body)
                     x_cursor += 20 # Move cursor past the "+"
                     indent = x_cursor - TEXT_BOX_START_X
 
@@ -351,7 +419,7 @@ def generate_cards(json_file, art_dir, output_dir, faction):
                     canvas.paste(meat_icon, (x_cursor, text_y), meat_icon)
                     bbox = draw.textbbox((0, 0), str(meat), font=font_abil_num_bold)
                     w_num, h_num = bbox[2] - bbox[0], bbox[3] - bbox[1]
-                    draw.text((x_cursor + 15 - w_num/2, text_y + 12 - h_num/2 - 2), str(meat), font=font_abil_num_bold, fill="black")
+                    draw.text((x_cursor + 15 - w_num/2, text_y + 12 - h_num/2 - 2), str(meat), font=font_abil_num_bold, fill=color_abil_cost)
                     x_cursor += 35
                     indent = x_cursor - TEXT_BOX_START_X
                 elif gear > 0:
@@ -359,7 +427,7 @@ def generate_cards(json_file, art_dir, output_dir, faction):
                     canvas.paste(gear_icon, (x_cursor, text_y), gear_icon)
                     bbox = draw.textbbox((0, 0), str(gear), font=font_abil_num_bold)
                     w_num, h_num = bbox[2] - bbox[0], bbox[3] - bbox[1]
-                    draw.text((x_cursor + 15 - w_num/2, text_y + 12 - h_num/2 - 2), str(gear), font=font_abil_num_bold, fill="black")
+                    draw.text((x_cursor + 15 - w_num/2, text_y + 12 - h_num/2 - 2), str(gear), font=font_abil_num_bold, fill=color_abil_cost)
                     x_cursor += 35
                     indent = x_cursor - TEXT_BOX_START_X
                 
@@ -372,7 +440,7 @@ def generate_cards(json_file, art_dir, output_dir, faction):
 
             
             full_text = f"{ability['name'].upper()}: {ability['text']}"
-            text_y = draw_wrapped_text(draw, full_text, (TEXT_BOX_START_X, text_y), font_body, "#F5F5DC", indent=indent)
+            text_y = draw_wrapped_text(draw, full_text, (TEXT_BOX_START_X, text_y), font_body, color_body, indent=indent)
 
         # --- 7. DEPLOY REQUIREMENTS ---
         if 'deploy_requirements' in card:
@@ -385,7 +453,7 @@ def generate_cards(json_file, art_dir, output_dir, faction):
                     y_offset = (font_height - icon_height) // 2
                     canvas.paste(icon_to_draw, (TEXT_BOX_START_X, text_y + y_offset), icon_to_draw)
                     req_text = f"{req['card_name']} must be in play to deploy."
-                    text_y = draw_wrapped_text(draw, req_text, (TEXT_BOX_START_X, text_y), font_body, "#F5F5DC", indent=40)
+                    text_y = draw_wrapped_text(draw, req_text, (TEXT_BOX_START_X, text_y), font_body, color_body, indent=40)
         
         filename = f"{output_dir}/{name.replace(' ', '_')}.png"
         canvas.save(filename)
@@ -396,7 +464,9 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate Goon Squad Galaxy card images from JSON data.")
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument('-pcu', action='store_true', help="Process the PCU deck.")
+    group.add_argument('-meat', action='store_true', help="Process the MEAT deck.")
     group.add_argument('-narc', action='store_true', help="Process the NARC deck.")
+    parser.add_argument('-auto', action='store_true', help="Automatically generate missing portrait art using DALL-E.")
     args = parser.parse_args()
 
     if args.pcu:
@@ -404,11 +474,21 @@ if __name__ == "__main__":
         art_directory = "art/pcu"
         faction_name = "pcu"
         output_directory = os.path.join(OUTPUT_DIR, "pcu")
-    else: # args.narc
+    elif args.narc:
         json_to_process = "narc_deck_strict.json"
         art_directory = "art/narc"
         faction_name = "narc"
         output_directory = os.path.join(OUTPUT_DIR, "narc")
+    elif args.meat:
+        json_to_process = "meat_deck_strict.json"
+        art_directory = "art/meat"
+        faction_name = "meat"
+        output_directory = os.path.join(OUTPUT_DIR, "meat")
 
-    generate_cards(json_file=json_to_process, art_dir=art_directory, 
-                   output_dir=output_directory, faction=faction_name)
+    generate_cards(
+        json_file=json_to_process, 
+        art_dir=art_directory, 
+        output_dir=output_directory, 
+        faction=faction_name,
+        auto_generate_art=args.auto
+    )

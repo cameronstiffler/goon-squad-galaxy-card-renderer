@@ -1,0 +1,123 @@
+{
+  "id": "basicmeat",
+  "faction": "MEAT",
+  "ai_art_prompt": {
+    "template": "Subject: A lone caveman based on the archetype: {goon_name}\n\nArt Style: 90s 2D video game art, reminiscent of retro side-scrolling beat-em-up boss artwork,bold inking, smooth surfaces, heavy shadows and gradients to show form volume.\n\nAnatomy: Hulking, brutish barbarian archetype with exaggerated muscular proportions, a thick neck, and a hunched posture. A stern, intimidating, pugnacious expression. (Vary jaw/teeth: sometimes protruding tusks, sometimes oversized square teeth).\n\nOutfit Instructions:\n1. Armor: is a patchwork of {armor}.\n2. Head: Give them a unique head feature like {head}.\n3. Feet: boots like {feet}.\n\nSetting: {background} environment\n\nFormat: 4k resolution. 590x555px dimensions.\n",
+    "options": {
+      "background": ["among the foliage of a dense jungle", "cragy mountain ledge with steep cliffs", "cave interior lit with fire", "overgrow ruins of stone with ancient writing and statues", "desert with rocks and shrubs", "rocky riverbank with rushing water", "volcanic landscape with lava flows and smoke", "forest clearing with tall trees and dappled sunlight"],
+      "armor": [
+        "turtle shells and spikes", "giant insect plating and leather", "heavy leather scales", "hides and turtle she",
+        "fur and bone", "bleached bones and skulls", "large scales and fur", "thick furs and hides","skeletal armor and leather", "reptile scales and bones"
+      ],
+      "head": [
+        "skull helmet", "dread locks", "horned helmet", "leather cowel",
+        "bone helmet", "skull cap", "long hair", "feathered headdress", "animal skull headpiece", "reptile skull helmet","tangled hair"
+      ],
+      "feet": [
+        "Feet: Heavy boots crafted directly from the heads of large beasts, retaining fur and facial features"
+      ]
+    }
+  },
+  "goons": [
+    {
+      "name": "Hole Digger",
+      "rank": "BG",
+      "duplicates": 4,
+      "faction": "MEAT",
+      "deploy_cost": {
+        "wind": 1,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": true,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "BONK",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 1 wind to target Goon."
+        },
+        {
+          "name": "CANNIBALIZE",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 1
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Destroy Meat Grunt to heal 2 wind to target friendly Goon."
+        }
+      ],
+      "portrait_art": "holedigger.jpg"
+    },
+    {
+      "name": "Bone Collector",
+      "rank": "BG",
+      "duplicates": 3,
+      "faction": "MEAT",
+      "deploy_cost": {
+        "wind": 2,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": true,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "BONE ARMOR",
+          "cost": { "wind": 0, "gear": 0, "meat": 0 },
+          "passive": true,
+          "must_use": false,
+          "text": "When another biological Goon is destroyed, Bone Collector gains Resist until its next unwind phase."
+        },
+        {
+          "name": "FEMUR CLUB",
+          "cost": { "wind": 1, "gear": 0, "meat": 0 },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 1 wind to target Goon."
+        }
+      ],
+      "portrait_art": "bonecollector.jpg"
+    },
+    {
+      "name": "Flesh Weaver",
+      "rank": "SG",
+      "duplicates": 2,
+      "faction": "MEAT",
+      "deploy_cost": {
+        "wind": 3,
+        "gear": 0,
+        "meat": 1
+      },
+      "biological": true,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "KNIT WOUNDS",
+          "cost": { "wind": 1, "gear": 0, "meat": 1 },
+          "passive": false,
+          "must_use": false,
+          "text": "Remove 2 wind from target friendly biological Goon."
+        }
+      ],
+      "portrait_art": "bone2.jpg"
+    }
+  ]
+}
