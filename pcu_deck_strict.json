@@ -6,15 +6,21 @@
   "cost_font_family": ["Chalkduster.ttf", "Chalkduster.ttc"],
   "cost_font_size": 72,
   "body_font_family": ["Futura.ttc", "Futura.ttf", "Avenir.ttc", "GillSans.ttc", "Georgia"],
-  "body_font_size": 22,
+  "body_font_size": 26,
   "ability_num_font_family": ["Futura.ttc", "Futura.ttf", "Avenir.ttc"],
-  "ability_num_font_size": 24,
+  "ability_num_font_size": 28,
   "ability_num_bold_font_family": ["Futura-Bold.ttf", "Avenir-Heavy.ttf"],
-  "ability_num_bold_font_size": 25,
+  "ability_num_bold_font_size": 30,
   "card_name_font_color": "#c8baa6",
   "deploy_cost_font_color": "white",
   "body_font_color": "#F5F5DC",
   "ability_cost_font_color": "black",
+  "flavor_text_font_family": [
+    "OpenSans-Italic.ttf",
+    "Helvetica-Oblique.ttf",
+    "Arial-Italic.ttf"
+  ],
+  "flavor_text_font_size": 24,
   "goons": [
     {
       "name": "Mutt",

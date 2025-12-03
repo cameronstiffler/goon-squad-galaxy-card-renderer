@@ -6,15 +6,21 @@
   "cost_font_family": ["Marinfordaf.ttf", "Helvetica.ttc", "Arial.ttf"],
   "cost_font_size": 55,
   "body_font_family": ["Futura.ttc", "Futura.ttf", "Avenir.ttc", "GillSans.ttc", "Georgia"],
-  "body_font_size": 22,
+  "body_font_size": 26,
   "ability_num_font_family": ["Futura.ttc", "Futura.ttf", "Avenir.ttc"],
-  "ability_num_font_size": 24,
+  "ability_num_font_size": 28,
   "ability_num_bold_font_family": ["Futura-Bold.ttf", "Avenir-Heavy.ttf"],
-  "ability_num_bold_font_size": 25,
+  "ability_num_bold_font_size": 30,
   "card_name_font_color": "#fbc151",
   "deploy_cost_font_color": "white",
   "body_font_color": "#F5F5DC",
   "ability_cost_font_color": "black",
+  "flavor_text_font_family": [
+    "OpenSans-Italic.ttf",
+    "Helvetica-Oblique.ttf",
+    "Arial-Italic.ttf"
+  ],
+  "flavor_text_font_size": 24,
   "goons": [
     {
       "name": "Compliance Auditon",
@@ -68,7 +74,7 @@
       "biological": false,
       "mechanical": true,
       "resist": true,
-      "no_unwind": true,
+      "no_unwind": false,
       "deploy_requirements": [
       ],
       "abilities": [
@@ -102,7 +108,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Destroy any Basic Goon.",
+          "text": "Destroy target Basic Goon.",
           "effects": [
             {
               "effect_type": "must_be_destroyed_first",
@@ -141,7 +147,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Target allied Goon gains resist until beginning of player's next turn.",
+          "text": "Target allied Goon may not be target of enemy abilities until beginning of player's next turn.",
           "effects": [
             {
               "effect_type": "grant_resist",
@@ -161,17 +167,18 @@
       },
       "passive": false,
       "must_use": false,
-      "text": "Add 2 wind to target Goon.",
-      "effects": [
-        {
-          "effect_type": "alter_wind",
-          "amount": 3,
-          "target": [
-            "any"
-          ],
-          "duration": "instant"
-        }
-      ]
+      "text": "Add 2 wind to target Goon."
+    },
+    {
+      "name": "NEUTRALIZE",
+      "cost": {
+        "wind": 2,
+        "gear": 0,
+        "meat": 0
+      },
+      "passive": false,
+      "must_use": false,
+      "text": "Add 3 wind to target Basic Goon."
     }
       ],
       "portrait_art": "buzzkill.jpg"
@@ -195,7 +202,7 @@
         {
           "name": "SHACKLE BEAM",
           "cost": {
-            "wind": 1,
+            "wind": 2,
             "gear": 0,
             "meat": 0
           },
@@ -307,24 +314,15 @@
       "deploy_requirements": [],
       "abilities": [
         {
-          "name": "SCAN FOR VULNERABILITY",
+          "name": "PATROL",
           "cost": {
-            "wind": 2,
+            "wind": 0,
             "gear": 0,
             "meat": 0
           },
-          "passive": false,
+          "passive": true,
           "must_use": false,
-          "text": "A goon may use an ability twice on the scanned target this turn.",
-          "effects": [
-            {
-              "effect_type": "enable_double_use_against_target",
-              "target": [
-                "any"
-              ],
-              "duration": "until_end_of_turn"
-            }
-          ]
+          "text": "When allied Goon is targeted by an enemy ability, destoy k-9.0 to prevent that ability from resolving."
         }
       ],
       "portrait_art": "k9.png"
@@ -346,7 +344,7 @@
       "deploy_requirements": [],
       "abilities": [
         {
-          "name": "SUBMISSION HOLD",
+          "name": "DETAIN",
           "cost": {
             "wind": 0,
             "gear": 0,
@@ -374,20 +372,10 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Add 2 wind to target Goon.",
-          "effects": [
-            {
-              "effect_type": "alter_wind",
-              "amount": 1,
-              "target": [
-                "any"
-              ],
-              "duration": "instant"
-            }
-          ]
+          "text": "Add 2 wind to target Goon."
         },
         {
-          "name": "NEUTRALIZE",
+          "name": "EXCESSIVE FORCE",
           "cost": {
             "wind": 2,
             "gear": 0,
@@ -395,17 +383,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Destroy target Basic Goon",
-          "effects": [
-            {
-              "effect_type": "alter_wind",
-              "amount": 1,
-              "target": [
-                "any"
-              ],
-              "duration": "instant"
-            }
-          ]
+          "text": "Destroy target Basic Goon"
         }
       ],
       "portrait_art": "killjoy.jpg"
@@ -430,7 +408,7 @@
       "name": "RESOURCEFUL",
       "cost": {
         "wind": 1,
-        "gear": 0,
+        "gear": 1,
         "meat": 0
       },
       "passive": false,
@@ -448,10 +426,11 @@
       ]
     }
       ],
+      "flavor_text": "Submission is the love child of demoralization and existential dread.",
       "portrait_art": "lokar.jpg"
     },
     {
-      "name": "Dormex Lurker",
+      "name": "Lurker",
       "rank": "BG",
       "duplicates": 3,
       "faction": "NARC",
@@ -549,17 +528,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Remove 1 wind from target biological Goon.",
-          "effects": [
-            {
-              "effect_type": "alter_wind",
-              "amount": -1,
-              "target": [
-                "any_biological"
-              ],
-              "duration": "instant"
-            }
-          ]
+          "text": "Remove 2 wind from target biological Goon."
         },
         {
           "name": "BIO LUBE",
@@ -570,23 +539,13 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Remove 1 wind from target mechanical Goon.",
-          "effects": [
-            {
-              "effect_type": "alter_wind",
-              "amount": -1,
-              "target": [
-                "any_mechanical"
-              ],
-              "duration": "instant"
-            }
-          ]
+          "text": "Remove 2 wind from target mechanical Goon."
         }
       ],
       "portrait_art": "medi.png"
     },
     {
-      "name": "Task Mistrex",
+      "name": "Tax Mistrex",
       "rank": "BG",
       "duplicates": 4,
       "faction": "NARC",
@@ -602,7 +561,7 @@
       "deploy_requirements": [],
       "abilities": [
         {
-          "name": "BIDE TIME",
+          "name": "ON STATION",
           "cost": {
             "wind": 0,
             "gear": 0,
@@ -610,19 +569,10 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Mistrex gains Resist until beginning of Player's next turn.",
-          "effects": [
-            {
-              "effect_type": "grant_resist",
-              "target": [
-                "self"
-              ],
-              "duration": "until_end_of_turn"
-            }
-          ]
+          "text": "Mistrex gains Resist until beginning of Player's next turn."
         },
         {
-          "name": "ZAP CRACK",
+          "name": "ARC LASH",
           "cost": {
             "wind": 1,
             "gear": 0,
@@ -630,16 +580,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Add 1 wind to target Goon.",
-          "effects": [
-            {
-              "effect_type": "prevent_unwind",
-              "target": [
-                "any"
-              ],
-              "duration": "next_unwind"
-            }
-          ]
+          "text": "Add 1 wind to target Goon."
         },
         {
           "name": "DOMINATE",
@@ -650,16 +591,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Force target Basic Goon to use ability on target. Target Dominated Goon pays wind as it would on its turn.",
-          "effects": [
-            {
-              "effect_type": "copy_and_cast_target_ability",
-              "target": [
-                "any"
-              ],
-              "duration": "instant"
-            }
-          ]
+          "text": "Force target Basic Goon to use own ability on target. Target Dominated Goon pays wind as it would on its turn."
         }
       ],
       "portrait_art": "mistrex.png"
@@ -689,26 +621,10 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Destroy target Goon and burn target from game.",
-          "effects": [
-            {
-              "effect_type": "destroy",
-              "target": [
-                "any"
-              ],
-              "duration": "instant"
-            },
-            {
-              "effect_type": "retire_on_destroy",
-              "target": [
-                "any"
-              ],
-              "duration": "one_shot_trigger"
-            }
-          ]
+          "text": "Destroy target Goon and burn from game."
         },
         {
-          "name": "MASS SHACKLE",
+          "name": "SHACKLE BEAM",
           "cost": {
             "wind": 1,
             "gear": 0,
@@ -716,16 +632,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Target Player's Goons do not unwind on Player's next turn.",
-          "effects": [
-            {
-              "effect_type": "prevent_unwind",
-              "target": [
-                "opponent_all"
-              ],
-              "duration": "next_unwind"
-            }
-          ]
+          "text": "Target Player's Goons do not unwind on Player's next turn."
         }
       ],
       "portrait_art": "narcstar.jpg"
@@ -755,17 +662,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Distribute 3 wind among target Goons.",
-          "effects": [
-            {
-              "effect_type": "alter_wind",
-              "amount": 1,
-              "target": [
-                "three_goons"
-              ],
-              "duration": "instant"
-            }
-          ]
+          "text": "Distribute 3 wind among target Goons."
         },
         {
           "name": "GOON BUSTER",
@@ -776,17 +673,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Add 2 wind to target Goon.",
-          "effects": [
-            {
-              "effect_type": "alter_wind",
-              "amount": 1,
-              "target": [
-                "any"
-              ],
-              "duration": "instant"
-            }
-          ]
+          "text": "Add 2 wind to target Goon."
         }
       ],
       "portrait_art": "lobber.png"
@@ -816,26 +703,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Contribute 1 to a Goon's deploy cost.",
-          "effects": [
-            {
-              "effect_type": "banish_from_dead_pool",
-              "amount": 1,
-              "value": "biological",
-              "target": [
-                "dead_pool"
-              ],
-              "duration": "instant"
-            },
-            {
-              "effect_type": "alter_deploy_wind",
-              "amount": 1,
-              "target": [
-                "self"
-              ],
-              "duration": "instant"
-            }
-          ]
+          "text": "Contribute 1 to a Goon's deploy cost."
         }
       ],
       "portrait_art": "sasdroid.png"
@@ -847,7 +715,7 @@
       "faction": "NARC",
       "deploy_cost": {
         "wind": 2,
-        "gear": 2,
+        "gear": 1,
         "meat": 0
       },
       "biological": false,
@@ -865,20 +733,10 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Add 1 wind to target Goon.",
-          "effects": [
-            {
-              "effect_type": "alter_wind",
-              "amount": 1,
-              "target": [
-                "any"
-              ],
-              "duration": "instant"
-            }
-          ]
+          "text": "Add 1 wind to target Basic Goon."
         },
         {
-          "name": "LEAD LASER",
+          "name": "FOCUS FIRE",
           "cost": {
             "wind": 2,
             "gear": 0,
@@ -886,17 +744,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Add 2 wind to target Goon.",
-          "effects": [
-            {
-              "effect_type": "alter_wind",
-              "amount": 2,
-              "target": [
-                "any"
-              ],
-              "duration": "instant"
-            }
-          ]
+          "text": "Add 2 wind to target Goon."
         },
         {
           "name": "MAG DUMP",
@@ -947,17 +795,7 @@
           },
           "passive": true,
           "must_use": false,
-          "text": "While 2 or more Pylons are in play, Player's Goons may not be the target of negative effects.",
-          "effects": [
-            {
-              "effect_type": "conditional_cannot_be_targeted_by_negative_effects",
-              "value": "shield_array_nodes>=2",
-              "target": [
-                "ally_all"
-              ],
-              "duration": "persistent"
-            }
-          ]
+          "text": "While 2 or more Pylons are in play, Player's Goons may not be the target of negative effects."
         }
       ],
       "portrait_art": "pylon.jpg"
@@ -987,7 +825,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Target Goon may not be targeted by enemy Goon abilities until the beginning of player's next turn.",
+          "text": "Target Goon may not be target of enemy Goon abilities until the beginning of Player's next turn.",
           "effects": [
             {
               "effect_type": "cannot_be_targeted",

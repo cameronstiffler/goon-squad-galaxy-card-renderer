@@ -15,22 +15,28 @@
         "GillSans.ttc",
         "Georgia"
     ],
-    "body_font_size": 22,
+    "body_font_size": 26,
     "ability_num_font_family": [
         "Futura.ttc",
         "Futura.ttf",
         "Avenir.ttc"
     ],
-    "ability_num_font_size": 24,
+    "ability_num_font_size": 28,
     "ability_num_bold_font_family": [
         "Futura-Bold.ttf",
         "Avenir-Heavy.ttf"
     ],
-    "ability_num_bold_font_size": 25,
+    "ability_num_bold_font_size": 30,
     "card_name_font_color": "#f6d4d5",
     "deploy_cost_font_color": "white",
     "body_font_color": "#F5F5DC",
     "ability_cost_font_color": "black",
+    "flavor_text_font_family": [
+        "OpenSans-Italic.ttf",
+        "Helvetica-Oblique.ttf",
+        "Arial-Italic.ttf"
+    ],
+    "flavor_text_font_size": 24,
     "ai_art_prompt": {
         "template": "Subject: A lone caveman based on the archetype: {goon_name}\n\nArt Style: 90s 2D video game art, reminiscent of retro side-scrolling beat-em-up boss artwork, smooth surfaces, shadows and gradients to show form volume.\n\nAnatomy: Hulking, brutish barbarian archetype with exaggerated muscular proportions, a thick neck, and a hunched posture. A stern, intimidating, pugnacious expression. (Vary jaw/teeth: sometimes protruding tusks, sometimes oversized square teeth).\n\nOutfit Instructions:\n1. Armor: is a patchwork of {armor}.\n2. Head: Give them a unique head feature like {head}.\n3. Feet: boots like {feet}.\n\nSetting: {background} environment\n\nFormat: 4k resolution. 590x555px dimensions.\n",
         "options": {
@@ -326,6 +332,36 @@
                 }
             ],
             "portrait_art": "doomsayer.jpg"
+        },
+        {
+            "name": "Master Baiter",
+            "rank": "BG",
+            "duplicates": 4,
+            "faction": "MEAT",
+            "deploy_cost": {
+                "wind": 0,
+                "gear": 0,
+                "meat": 0
+            },
+            "biological": true,
+            "mechanical": false,
+            "resist": false,
+            "no_unwind": false,
+            "deploy_requirements": [],
+            "abilities": [
+                {
+                    "name": "PUNCHABLE FACE",
+                    "cost": {
+                        "wind": 1,
+                        "gear": 0,
+                        "meat": 1
+                    },
+                    "passive": false,
+                    "must_use": false,
+                    "text": "All enemy Goons able to attack must target Master Baiter on their next turn."
+                }
+            ],
+            "portrait_art": "masterbaiteralt.jpg"
         }
     ]
 }

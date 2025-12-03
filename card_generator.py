@@ -23,7 +23,7 @@ NAME_Y = 25
 
 TEXT_BOX_START_X = 75
 TEXT_BOX_START_Y = 700
-TEXT_WIDTH_CHARS = 50
+TEXT_WIDTH_CHARS = 42
 
 def create_transparent_frame(faction):
     frame_path = os.path.join("elements", faction, "frame.png")
@@ -135,10 +135,22 @@ def get_assets(faction):
 def get_font(candidates, size, default_font=ImageFont.load_default()):
     """Tries to load a font from a list of candidates."""
     for font_name in candidates:
+        font_path = None
+        # First, check for a local file in the 'fonts' directory
+        local_path = os.path.join("fonts", font_name)
+        if os.path.exists(local_path):
+            font_path = local_path
+        else:
+            # If not local, try to find the font on the system
+            try:
+                font_path = ImageFont.find_font(font_name)
+            except Exception:
+                font_path = font_name # Fallback to trying the name directly
+        
         try:
-            return ImageFont.truetype(font_name, size)
+            return ImageFont.truetype(font_path, size)
         except IOError:
-            continue
+            continue # Try the next candidate
     return default_font
 
 def create_placeholder_art(size=(650, 600), text="ART MISSING"):
@@ -226,6 +238,7 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
     font_body = get_font_from_json("body_font_family", "body_font_size", ["Futura.ttc", "Avenir.ttc"], 22)
     font_abil_num = get_font_from_json("ability_num_font_family", "ability_num_font_size", ["Futura.ttc", "Avenir.ttc"], 24)
     font_abil_num_bold = get_font_from_json("ability_num_bold_font_family", "ability_num_bold_font_size", ["Futura-Bold.ttf", "Avenir-Heavy.ttf"], 25)
+    font_flavor = get_font_from_json("flavor_text_font_family", "flavor_text_font_size", ["Georgia-Italic.ttf", "TimesNewRoman-Italic.ttf"], 20)
 
     # --- COLORS (Loaded from JSON) ---
     color_name = data.get("card_name_font_color", "#c8baa6")
@@ -233,10 +246,10 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
     color_body = data.get("body_font_color", "#F5F5DC")
     color_abil_cost = data.get("ability_cost_font_color", "black")
     
-    def draw_wrapped_text(draw_context, text, start_pos, font, fill, indent=0):
+    def draw_wrapped_text(draw_context, text, start_pos, font, fill, indent=0, width=TEXT_WIDTH_CHARS):
         """Helper to draw wrapped text with an optional icon and return the new y-position."""
         x, y = start_pos
-        lines = textwrap.wrap(text, width=TEXT_WIDTH_CHARS)
+        lines = textwrap.wrap(text, width=width)
         line_height = font.getbbox("A")[3] + 5 # Get font height and add a small margin
         for i, line in enumerate(lines):
             line_indent = indent if i == 0 else 0
@@ -455,6 +468,11 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
                     req_text = f"{req['card_name']} must be in play to deploy."
                     text_y = draw_wrapped_text(draw, req_text, (TEXT_BOX_START_X, text_y), font_body, color_body, indent=40)
         
+        # --- 8. FLAVOR TEXT ---
+        if card.get("flavor_text"):
+            flavor_text = f'"{card["flavor_text"]}"'
+            text_y = draw_wrapped_text(draw, flavor_text, (TEXT_BOX_START_X, text_y), font_flavor, color_body, indent=0, width=int(TEXT_WIDTH_CHARS * 1.4))
+
         filename = f"{output_dir}/{name.replace(' ', '_')}.png"
         canvas.save(filename)
 
