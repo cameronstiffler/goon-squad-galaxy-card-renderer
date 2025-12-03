@@ -88,9 +88,7 @@
         }
       ],
       "notes": [],
-      "portrait_art": "mutt.jpg",
-      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mutt.jpg",
-      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/mutt.jpg"
+      "portrait_art": "mutt.jpg"
     },{
       "name": "Utility Droid",
       "rank": "BG",
@@ -131,9 +129,7 @@
         }
       ],
       "notes": [],
-      "portrait_art": "util.png",
-      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mutt.jpg",
-      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/mutt.jpg"
+      "portrait_art": "util.png"
     },
     {
       "name": "Void Freak",
@@ -194,9 +190,7 @@
         }
       ],
       "notes": [],
-      "portrait_art": "freak.jpg",
-      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/freak.png",
-      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/freak.jpg"
+      "portrait_art": "freak.jpg"
     },
     {
       "name": "Annihilist Overseer",
@@ -263,9 +257,7 @@
         }
       ],
       "notes": [],
-      "portrait_art": "overseer.jpg",
-      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/nives.png",
-      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/nives.jpg"
+      "portrait_art": "overseer.jpg"
     },
     {
       "name": "K\u00e4sekobold",
@@ -326,9 +318,7 @@
           ]
         }
       ],
-      "portrait_art": "goblin.jpg",
-      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/goblin.png",
-      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/goblin.jpg"
+      "portrait_art": "goblin.jpg"
     },
     {
       "name": "Grim",
@@ -369,9 +359,7 @@
         }
       ],
       "flavor_text": "I seek only to find amusement in your annihilation",
-      "portrait_art": "grim.jpg",
-      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/grim.png",
-      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/grim.jpg"
+      "portrait_art": "grim.jpg"
     },
     {
       "name": "Helvis",
@@ -431,9 +419,7 @@
           ]
         }
       ],
-      "portrait_art": "helvis.png",
-      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/helvis.png",
-      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/helvis.jpg"
+      "portrait_art": "helvis.png"
     },
     {
       "name": "Blood Howler",
@@ -473,9 +459,7 @@
           ]
         }
       ],
-      "portrait_art": "howler.png",
-      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/howler.png",
-      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/howler.jpg"
+      "portrait_art": "howler.png"
     },
     {
       "name": "Krax",
@@ -543,9 +527,7 @@
           ]
         }
       ],
-      "portrait_art": "krax.jpg",
-      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/krax.png",
-      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/krax.jpg"
+      "portrait_art": "krax.jpg"
     },
     {
       "name": "Vex",
@@ -626,9 +608,7 @@
           ]
         }
       ],
-      "portrait_art": "vex.jpg",
-      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/vex.png",
-      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/vex.jpg"
+      "portrait_art": "vex.jpg"
     },
     {
       "name": "Kriegsgheist",
@@ -674,9 +654,7 @@
           ]
         }
       ],
-      "portrait_art": "krieg.jpg",
-      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/kriegsgheist.png",
-      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/kriegsgheist.jpg"
+      "portrait_art": "krieg.jpg"
     },
     {
       "name": "Meatjacker",
@@ -757,9 +735,7 @@
           ]
         }
       ],
-      "portrait_art": "meatjacker.png",
-      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/meatjacker.png",
-      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/meatjacker.jpg"
+      "portrait_art": "meatjacker.png"
     },
     {
       "name": "Meat Vegetable",
@@ -779,9 +755,7 @@
       "abilities": [],
       "notes": [],
       "flavor_text": "Carve us off a couple steaks and I\u2019ll grab the bottle of Zurion Noir I had them portal over last resupply. It should pair nicely.",
-      "portrait_art": "meatveg.jpg",
-      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/meatveg.png",
-      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/meatveg.jpg"
+      "portrait_art": "meatveg.jpg"
     },
     {
       "name": "Restless Natives",
@@ -842,9 +816,7 @@
           ]
         }
       ],
-      "portrait_art": "natives.jpg",
-      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/natives.png",
-      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/natives.jpg"
+      "portrait_art": "natives.jpg"
     },
     {
       "name": "Nives",
@@ -852,9 +824,9 @@
       "duplicates": 2,
       "faction": "PCU",
       "deploy_cost": {
-        "wind": 4,
+        "wind": 2,
         "gear": 0,
-        "meat": 0
+        "meat": 1
       },
       "biological": false,
       "mechanical": true,
@@ -898,29 +870,11 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Nives can contribute wind to pay for Vex's abilities.",
-          "effects": [
-            {
-              "effect_type": "enable_contribution",
-              "target": [
-                "card_name:Vex"
-              ],
-              "duration": "persistent"
-            },
-            {
-              "effect_type": "destroy_self_if_target_destroyed",
-              "target": [
-                "card_name:Vex"
-              ],
-              "duration": "persistent"
-            }
-          ]
+          "text": "Nives can contribute wind to pay for Vex's abilities."
         }
       ],
       "notes": [],
-      "portrait_art": "nives.png",
-      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/nives.png",
-      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/nives.jpg"
+      "portrait_art": "nives.png"
     },
     {
       "name": "Primordial Oozer",
@@ -980,9 +934,7 @@
           ]
         }
       ],
-      "portrait_art": "oozer.png",
-      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/oozer.png",
-      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/oozer.jpg"
+      "portrait_art": "oozer.png"
     },
     {
       "name": "Psychodelic Toad",
@@ -1028,9 +980,7 @@
           ]
         }
       ],
-      "portrait_art": "toad.jpg",
-      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/toad.png",
-      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/toad.jpg"
+      "portrait_art": "toad.jpg"
     },
     {
       "name": "Local Singularity",
@@ -1076,9 +1026,7 @@
           ]
         }
       ],
-      "portrait_art": "singularity.png",
-      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/singularity.png",
-      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/singularity.jpg"
+      "portrait_art": "singularity.png"
     },
     {
       "name": "Technomancer",
@@ -1170,9 +1118,7 @@
         }
       ],
       "notes": [],
-      "portrait_art": "technomancer.jpg",
-      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/technomancer.png",
-      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/technomancer.jpg"
+      "portrait_art": "technomancer.jpg"
     },
     {
       "name": "Shadow Shaman",
@@ -1242,9 +1188,7 @@
         }
       ],
       "notes": [],
-      "portrait_art": "shaman.jpg",
-      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/technomancer.png",
-      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/technomancer.jpg"
+      "portrait_art": "shaman.jpg"
     },
     {
       "name": "Voidling",
@@ -1304,9 +1248,7 @@
           ]
         }
       ],
-      "portrait_art": "voidling.png",
-      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/voidling.png",
-      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/voidling.jpg"
+      "portrait_art": "voidling.png"
     },
     {
       "name": "Meat Warrior",
@@ -1366,9 +1308,7 @@
           ]
         }
       ],
-      "portrait_art": "voidling.png",
-      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/voidling.png",
-      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/pcu/mini/voidling.jpg"
+      "portrait_art": "voidling.png"
     }
   ]
 }

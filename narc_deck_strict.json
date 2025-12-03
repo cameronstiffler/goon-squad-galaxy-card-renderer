@@ -53,9 +53,7 @@
           ]
         }
       ],
-      "portrait_art": "auditon.png",
-      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/auditon.png",
-      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/mini/auditon.jpg"
+      "portrait_art": "auditon.jpg"
     },
     {
       "name": "Bruut Enforcer",
@@ -116,9 +114,7 @@
           ]
         }
       ],
-      "portrait_art": "bruut.png",
-      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/bruut.png",
-      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/mini/bruut.jpg"
+      "portrait_art": "bruut.png"
     },
     {
       "name": "Buzzkill",
@@ -128,7 +124,7 @@
       "deploy_cost": {
         "wind": 5,
         "gear": 0,
-        "meat": 0
+        "meat": 1
       },
       "biological": false,
       "mechanical": true,
@@ -178,9 +174,7 @@
       ]
     }
       ],
-      "portrait_art": "buzzkill.jpg",
-      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/buzzkill.png",
-      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/mini/buzzkill.jpg"
+      "portrait_art": "buzzkill.jpg"
     },
     {
       "name": "Detainment Probe",
@@ -233,9 +227,7 @@
           ]
         }
       ],
-      "portrait_art": "detainprobe.png",
-      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/detainprobe.png",
-      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/mini/detainprobe.jpg"
+      "portrait_art": "detainprobe.png"
     },
     {
       "name": "Marine Marauder",
@@ -244,8 +236,8 @@
       "faction": "NARC",
       "deploy_cost": {
         "wind": 3,
-        "gear": 1,
-        "meat": 0
+        "gear": 0,
+        "meat": 1
       },
       "biological": true,
       "mechanical": true,
@@ -296,9 +288,7 @@
           ]
         }
       ],
-      "portrait_art": "marauder.jpg",
-      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/marauder.png",
-      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/mini/marauder.jpg"
+      "portrait_art": "marauder.jpg"
     },
     {
       "name": "K-9.0",
@@ -306,7 +296,7 @@
       "duplicates": 4,
       "faction": "NARC",
       "deploy_cost": {
-        "wind": 3,
+        "wind": 1,
         "gear": 0,
         "meat": 0
       },
@@ -337,9 +327,7 @@
           ]
         }
       ],
-      "portrait_art": "k9.png",
-      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/k9.png",
-      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/mini/k9.jpg"
+      "portrait_art": "k9.png"
     },
     {
       "name": "Killjoy",
@@ -348,7 +336,7 @@
       "faction": "NARC",
       "deploy_cost": {
         "wind": 4,
-        "gear": 0,
+        "gear": 1,
         "meat": 0
       },
       "biological": false,
@@ -420,9 +408,7 @@
           ]
         }
       ],
-      "portrait_art": "killjoy.jpg",
-      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/killjoy.png",
-      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/mini/killjoy.jpg"
+      "portrait_art": "killjoy.jpg"
     },
     {
       "name": "Lokar Simmons",
@@ -462,9 +448,7 @@
       ]
     }
       ],
-      "portrait_art": "lokar.jpg",
-      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/lokar.png",
-      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/mini/lokar.jpg"
+      "portrait_art": "lokar.jpg"
     },
     {
       "name": "Dormex Lurker",
@@ -538,9 +522,7 @@
           ]
         }
       ],
-      "portrait_art": "lurker.png",
-      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/lurker.png",
-      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/mini/lurker.jpg"
+      "portrait_art": "lurker.png"
     },
     {
       "name": "MediFux-1NDS",
@@ -601,9 +583,7 @@
           ]
         }
       ],
-      "portrait_art": "medi.png",
-      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/medi.png",
-      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/mini/medi.jpg"
+      "portrait_art": "medi.png"
     },
     {
       "name": "Task Mistrex",
@@ -682,9 +662,7 @@
           ]
         }
       ],
-      "portrait_art": "mistrex.png",
-      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/mistrex.png",
-      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/mini/mistrex.jpg"
+      "portrait_art": "mistrex.png"
     },
     {
       "name": "Narcstar",
@@ -750,9 +728,7 @@
           ]
         }
       ],
-      "portrait_art": "narcstar.jpg",
-      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/narcstar.png",
-      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/mini/narcstar.jpg"
+      "portrait_art": "narcstar.jpg"
     },
     {
       "name": "Nob Lobber",
@@ -760,7 +736,7 @@
       "duplicates": 3,
       "faction": "NARC",
       "deploy_cost": {
-        "wind": 4,
+        "wind": 3,
         "gear": 1,
         "meat": 0
       },
@@ -813,9 +789,7 @@
           ]
         }
       ],
-      "portrait_art": "lobber.png",
-      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/lobber.png",
-      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/mini/lobber.jpg"
+      "portrait_art": "lobber.png"
     },
     {
       "name": "Sausage Droid",
@@ -864,9 +838,7 @@
           ]
         }
       ],
-      "portrait_art": "sasdroid.png",
-      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/sasdroid.png",
-      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/mini/sasdroid.jpg"
+      "portrait_art": "sasdroid.png"
     },
     {
       "name": "Sentry Node",
@@ -874,8 +846,8 @@
       "duplicates": 3,
       "faction": "NARC",
       "deploy_cost": {
-        "wind": 3,
-        "gear": 1,
+        "wind": 2,
+        "gear": 2,
         "meat": 0
       },
       "biological": false,
@@ -948,12 +920,10 @@
           ]
         }
       ],
-      "portrait_art": "sentry.jpg",
-      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/sentry.png",
-      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/mini/sentry.jpg"
+      "portrait_art": "sentry.jpg"
     },
     {
-      "name": "Shield Array Node",
+      "name": "Shield Pylon",
       "rank": "BG",
       "duplicates": 3,
       "faction": "NARC",
@@ -977,7 +947,7 @@
           },
           "passive": true,
           "must_use": false,
-          "text": "While 2+ Shield Array Nodes are in play, Player's Goons may not be the target of negative effects.",
+          "text": "While 2 or more Pylons are in play, Player's Goons may not be the target of negative effects.",
           "effects": [
             {
               "effect_type": "conditional_cannot_be_targeted_by_negative_effects",
@@ -990,9 +960,7 @@
           ]
         }
       ],
-      "portrait_art": "array.png",
-      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/array.png",
-      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/mini/array.jpg"
+      "portrait_art": "pylon.jpg"
     },
     {
       "name": "Hover Shield",
@@ -1000,7 +968,7 @@
       "duplicates": 4,
       "faction": "NARC",
       "deploy_cost": {
-        "wind": 2,
+        "wind": 1,
         "gear": 1,
         "meat": 0
       },
@@ -1031,9 +999,7 @@
           ]
         }
       ],
-      "portrait_art": "hovershield.png",
-      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/hovershield.png",
-      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/mini/shield.jpg"
+      "portrait_art": "hover.jpg"
     },
     {
       "name": "Impact Simulant",
@@ -1052,10 +1018,10 @@
       "deploy_requirements": [],
       "abilities": [],
       "notes": [],
-      "portrait_art": ""
+      "portrait_art": "simulant.jpg"
     },
     {
-      "name": "Target Marker Probe",
+      "name": "Target Marker",
       "rank": "BG",
       "duplicates": 3,
       "faction": "NARC",
@@ -1107,9 +1073,7 @@
           ]
         }
       ],
-      "portrait_art": "target.png",
-      "image_url_full": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/target.png",
-      "image_url_mini": "https://cameronstiffler.github.io/goonsquadgalaxy/card-images/narc/mini/target.jpg"
+      "portrait_art": "target.jpg"
     }
   ]
 }

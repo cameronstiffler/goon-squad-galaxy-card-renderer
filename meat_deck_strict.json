@@ -32,7 +32,7 @@
     "body_font_color": "#F5F5DC",
     "ability_cost_font_color": "black",
     "ai_art_prompt": {
-        "template": "Subject: A lone caveman based on the archetype: {goon_name}\n\nArt Style: 90s 2D video game art, reminiscent of retro side-scrolling beat-em-up boss artwork,bold inking, smooth surfaces, heavy shadows and gradients to show form volume.\n\nAnatomy: Hulking, brutish barbarian archetype with exaggerated muscular proportions, a thick neck, and a hunched posture. A stern, intimidating, pugnacious expression. (Vary jaw/teeth: sometimes protruding tusks, sometimes oversized square teeth).\n\nOutfit Instructions:\n1. Armor: is a patchwork of {armor}.\n2. Head: Give them a unique head feature like {head}.\n3. Feet: boots like {feet}.\n\nSetting: {background} environment\n\nFormat: 4k resolution. 590x555px dimensions.\n",
+        "template": "Subject: A lone caveman based on the archetype: {goon_name}\n\nArt Style: 90s 2D video game art, reminiscent of retro side-scrolling beat-em-up boss artwork, smooth surfaces, shadows and gradients to show form volume.\n\nAnatomy: Hulking, brutish barbarian archetype with exaggerated muscular proportions, a thick neck, and a hunched posture. A stern, intimidating, pugnacious expression. (Vary jaw/teeth: sometimes protruding tusks, sometimes oversized square teeth).\n\nOutfit Instructions:\n1. Armor: is a patchwork of {armor}.\n2. Head: Give them a unique head feature like {head}.\n3. Feet: boots like {feet}.\n\nSetting: {background} environment\n\nFormat: 4k resolution. 590x555px dimensions.\n",
         "options": {
             "background": [
                 "among the foliage of a dense jungle",
@@ -227,6 +227,105 @@
                 }
             ],
             "portrait_art": "gutguardian.jpg"
+        },
+        {
+            "name": "Grunk Beast",
+            "rank": "T",
+            "duplicates": 1,
+            "faction": "MEAT",
+            "deploy_cost": {
+                "wind": 5,
+                "gear": 0,
+                "meat": 2
+            },
+            "biological": true,
+            "mechanical": false,
+            "resist": true,
+            "no_unwind": false,
+            "deploy_requirements": [],
+            "abilities": [
+                {
+                    "name": "DEVOUR",
+                    "cost": { "wind": 2, "gear": 0, "meat": 1 },
+                    "passive": false,
+                    "must_use": false,
+                    "text": "Destroy target Basic Goon. Remove all wind from Grunk Beast."
+                },
+                {
+                    "name": "REGENERATE",
+                    "cost": { "wind": 0, "gear": 0, "meat": 0 },
+                    "passive": true,
+                    "must_use": false,
+                    "text": "At the start of your turn, remove 1 wind from Grunk Beast."
+                }
+            ],
+            "portrait_art": "grunkbeast.jpg"
+        },
+        {
+            "name": "Hole Grunk",
+            "rank": "BG",
+            "duplicates": 3,
+            "faction": "MEAT",
+            "deploy_cost": {
+                "wind": 2,
+                "gear": 0,
+                "meat": 0
+            },
+            "biological": true,
+            "mechanical": false,
+            "resist": false,
+            "no_unwind": false,
+            "deploy_requirements": [],
+            "abilities": [
+                {
+                    "name": "SINKHOLE",
+                    "cost": { "wind": 0, "gear": 0, "meat": 0 },
+                    "passive": true,
+                    "must_use": false,
+                    "text": "Hole Grunk cannot be targeted by abilities unless it has used an ability this turn."
+                },
+                {
+                    "name": "LUNGE",
+                    "cost": { "wind": 1, "gear": 0, "meat": 0 },
+                    "passive": false,
+                    "must_use": false,
+                    "text": "Add 2 wind to target Goon."
+                }
+            ],
+            "portrait_art": "holegrunk.jpg"
+        },
+        {
+            "name": "Doom Sayer",
+            "rank": "SG",
+            "duplicates": 2,
+            "faction": "MEAT",
+            "deploy_cost": {
+                "wind": 3,
+                "gear": 0,
+                "meat": 0
+            },
+            "biological": true,
+            "mechanical": false,
+            "resist": false,
+            "no_unwind": false,
+            "deploy_requirements": [],
+            "abilities": [
+                {
+                    "name": "PROPHECY OF PAIN",
+                    "cost": { "wind": 1, "gear": 0, "meat": 0 },
+                    "passive": false,
+                    "must_use": false,
+                    "text": "Target Goon takes 1 wind damage at the start of its next 3 turns."
+                },
+                {
+                    "name": "FINAL WORD",
+                    "cost": { "wind": 0, "gear": 0, "meat": 0 },
+                    "passive": true,
+                    "must_use": false,
+                    "text": "When Doom Sayer is destroyed, add 2 wind to all other Goons."
+                }
+            ],
+            "portrait_art": "doomsayer.jpg"
         }
     ]
 }
