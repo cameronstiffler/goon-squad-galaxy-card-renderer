@@ -7,9 +7,12 @@
   "cost_font_size": 72,
   "body_font_family": ["Futura.ttc", "Futura.ttf", "Avenir.ttc", "GillSans.ttc", "Georgia"],
   "body_font_size": 26,
-  "ability_num_font_family": ["Futura.ttc", "Futura.ttf", "Avenir.ttc"],
+  "ability_num_font_family": ["Impact.ttf", "Futura.ttf", "Avenir.ttc"],
   "ability_num_font_size": 28,
-  "ability_num_bold_font_family": ["Futura-Bold.ttf", "Avenir-Heavy.ttf"],
+  "ability_num_bold_font_family": [
+    "Staatliches-Regular",
+    "Avenir-Heavy.ttf"
+  ],
   "ability_num_bold_font_size": 30,
   "card_name_font_color": "#c8baa6",
   "deploy_cost_font_color": "white",
@@ -21,6 +24,9 @@
     "Arial-Italic.ttf"
   ],
   "flavor_text_font_size": 24,
+  "card_name_letter_spacing": 0,
+  "icon_stack_x_offset": 40,
+  "card_name_y_offset": 0,
   "goons": [
     {
       "name": "Mutt",
@@ -28,7 +34,7 @@
       "duplicates": 3,
       "faction": "PCU",
       "deploy_cost": {
-        "wind": 4,
+        "wind": 3,
         "gear": 0,
         "meat": 0
       },
@@ -36,13 +42,6 @@
       "mechanical": true,
       "resist": false,
       "no_unwind": false,
-      "deploy_requirements": [
-        {
-          "type": "requires_card_in_play",
-          "card_name": "Krax",
-          "side": "self"
-        }
-      ],
       "abilities": [
         {
           "name": "MAUL",
@@ -53,44 +52,18 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Add 1 wind to target Goon",
-          "effects": [
-            {
-              "effect_type": "alter_wind",
-              "amount": 1,
-              "target": [
-                "any"
-              ],
-              "duration": "instant"
-            }
-          ]
+          "text": "Add 1 wind to target Goon"
         },
         {
           "name": "MANS BEST FIEND",
           "cost": {
-            "wind": 4,
+            "wind": 0,
             "gear": 0,
             "meat": 0
           },
           "passive": true,
           "must_use": false,
-          "text": "Some or all wind applied to Squad Goon as damage from enemy Goon ability may be applied to Mutt instead.",
-          "effects": [
-            {
-              "effect_type": "redirect_damage",
-              "target": [
-                "card_name:Krax"
-              ],
-              "duration": "persistent"
-            },
-            {
-              "effect_type": "destroy_self_if_target_destroyed",
-              "target": [
-                "card_name:Krax"
-              ],
-              "duration": "persistent"
-            }
-          ]
+          "text": "Some or all wind applied to Squad Goon as damage from enemy Goon ability may be applied to Mutt instead."
         }
       ],
       "notes": [],
@@ -121,17 +94,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Remove 1 wind from target Goon",
-          "effects": [
-            {
-              "effect_type": "alter_wind",
-              "amount": 1,
-              "target": [
-                "ally_all_except:self"
-              ],
-              "duration": "instant"
-            }
-          ]
+          "text": "Remove 1 wind from target Goon"
         }
       ],
       "notes": [],
@@ -162,17 +125,7 @@
           },
           "passive": false,
           "must_use": true,
-          "text": "Add 1 wind to target Goon. Must use this ability if able",
-          "effects": [
-            {
-              "effect_type": "alter_wind",
-              "amount": 1,
-              "target": [
-                "any"
-              ],
-              "duration": "instant"
-            }
-          ]
+          "text": "Add 1 wind to target Goon. Must use this ability if able"
         },
         {
           "name": "BLOODLUST",
@@ -183,16 +136,7 @@
           },
           "passive": true,
           "must_use": false,
-          "text": "Must attack if able.",
-          "effects": [
-            {
-              "effect_type": "must_attack",
-              "target": [
-                "self"
-              ],
-              "duration": "persistent"
-            }
-          ]
+          "text": "Must attack if able."
         }
       ],
       "notes": [],
@@ -223,23 +167,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Target Goon may not use abilities or contribute wind on its next turn.",
-          "effects": [
-            {
-              "effect_type": "disable_abilities",
-              "target": [
-                "any"
-              ],
-              "duration": "next_turn"
-            },
-            {
-              "effect_type": "disable_contribution",
-              "target": [
-                "any"
-              ],
-              "duration": "next_turn"
-            }
-          ]
+          "text": "Target Goon may not use abilities or contribute wind on its next turn."
         },
         {
           "name": "BEHEAD",
@@ -250,16 +178,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Destroy target Goon.",
-          "effects": [
-            {
-              "effect_type": "destroy",
-              "target": [
-                "any"
-              ],
-              "duration": "instant"
-            }
-          ]
+          "text": "Destroy target Goon."
         }
       ],
       "notes": [],
@@ -290,17 +209,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Add 1 wind to target Goon",
-          "effects": [
-            {
-              "effect_type": "alter_wind",
-              "amount": 1,
-              "target": [
-                "any"
-              ],
-              "duration": "instant"
-            }
-          ]
+          "text": "Add 1 wind to target Goon"
         },
         {
           "name": "REVOLT",
@@ -311,17 +220,7 @@
           },
           "passive": true,
           "must_use": false,
-          "text": "Add 1 wind to any Goon who targets K\u00e4sekobold with ability",
-          "effects": [
-            {
-              "effect_type": "alter_wind",
-              "amount": 1,
-              "target": [
-                "goon_using_ability"
-              ],
-              "duration": "instant"
-            }
-          ]
+          "text": "Add 1 wind to any Goon who targets K\u00e4sekobold with ability"
         }
       ],
       "portrait_art": "goblin.jpg"
@@ -351,17 +250,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Remove 1 wind from any target Goon.",
-          "effects": [
-            {
-              "effect_type": "alter_wind",
-              "amount": -1,
-              "target": [
-                "any"
-              ],
-              "duration": "instant"
-            }
-          ]
+          "text": "Remove 1 wind from any target Goon."
         }
       ],
       "flavor_text": "I seek only to find amusement in your annihilation",
@@ -392,16 +281,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Target player's Goons may not use abilities on their next turn.",
-          "effects": [
-            {
-              "effect_type": "disable_abilities",
-              "target": [
-                "all_opponent_playergoons"
-              ],
-              "duration": "next_turn"
-            }
-          ]
+          "text": "Target player's Goons may not use abilities on their next turn."
         },
         {
           "name": "SEISMIC STOMP",
@@ -412,17 +292,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Add 2 wind to all enemy Goons",
-          "effects": [
-            {
-              "effect_type": "alter_wind",
-              "amount": 2,
-              "target": [
-                "all_opponent_playergoons"
-              ],
-              "duration": "instant"
-            }
-          ]
+          "text": "Add 2 wind to all enemy Goons"
         }
       ],
       "portrait_art": "helvis.png"
@@ -452,17 +322,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Distribute X wind among target Goons.",
-          "effects": [
-            {
-              "effect_type": "alter_wind",
-              "amount": "X",
-              "target": [
-                "x_goons"
-              ],
-              "duration": "instant"
-            }
-          ]
+          "text": "Distribute X wind among target Goons."
         }
       ],
       "portrait_art": "howler.png"
@@ -492,17 +352,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Add 2 wind to target Goon",
-          "effects": [
-            {
-              "effect_type": "alter_wind",
-              "amount": 2,
-              "target": [
-                "any"
-              ],
-              "duration": "instant"
-            }
-          ]
+          "text": "Add 2 wind to target Goon"
         },
         {
           "name": "CHAIN REACTION",
@@ -513,24 +363,7 @@
           },
           "passive": true,
           "must_use": false,
-          "text": "If BASH IN SKULL destroys a Goon, Krax may add 2 wind to another target Goon. This may chain as long as it is able.",
-          "effects": [
-            {
-              "effect_type": "grant_followup_on_destroy",
-              "target": [
-                "self"
-              ],
-              "duration": "persistent"
-            },
-            {
-              "effect_type": "alter_wind",
-              "amount": 2,
-              "target": [
-                "any"
-              ],
-              "duration": "one_shot_trigger"
-            }
-          ]
+          "text": "If BASH IN SKULL destroys a Goon, Krax may add 2 wind to another target Goon. This may chain as long as it is able."
         }
       ],
       "portrait_art": "krax.jpg"
@@ -560,17 +393,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Add 1 wind to target Goon",
-          "effects": [
-            {
-              "effect_type": "alter_wind",
-              "amount": 1,
-              "target": [
-                "any"
-              ],
-              "duration": "instant"
-            }
-          ]
+          "text": "Add 1 wind to target Goon"
         },
         {
           "name": "SNIPE",
@@ -581,17 +404,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Add 2 wind to target Goon",
-          "effects": [
-            {
-              "effect_type": "alter_wind",
-              "amount": 2,
-              "target": [
-                "any"
-              ],
-              "duration": "instant"
-            }
-          ]
+          "text": "Add 2 wind to target Goon"
         },
         {
           "name": "DOME",
@@ -602,16 +415,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Destroy target Basic Goon.",
-          "effects": [
-            {
-              "effect_type": "destroy",
-              "target": [
-                "any"
-              ],
-              "duration": "instant"
-            }
-          ]
+          "text": "Destroy target Basic Goon."
         }
       ],
       "portrait_art": "vex.jpg"
@@ -647,17 +451,7 @@
           },
           "passive": false,
           "must_use": true,
-          "text": "Add 3 wind to target Goon. Must use this ability every turn if able.",
-          "effects": [
-            {
-              "effect_type": "alter_wind",
-              "amount": 3,
-              "target": [
-                "any"
-              ],
-              "duration": "instant"
-            }
-          ]
+          "text": "Add 3 wind to target Goon. Must use this ability every turn if able."
         }
       ],
       "portrait_art": "krieg.jpg"
@@ -687,17 +481,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Do 1 damage to target Goon.",
-          "effects": [
-            {
-              "effect_type": "alter_wind",
-              "amount": 1,
-              "target": [
-                "any"
-              ],
-              "duration": "instant"
-            }
-          ]
+          "text": "Do 1 damage to target Goon."
         },
         {
           "name": "CLONE ABILITIES",
@@ -708,37 +492,14 @@
           },
           "passive": true,
           "must_use": true,
-          "text": "When deployed, Jacker obtains abilities of Goon burned from Dead Pool to pay deploy cost. These abilities cost 1 additional wind to use.",
-          "effects": [
-            {
-              "effect_type": "clone_abilities",
-              "amount": 0,
-              "target": [
-                "self"
-              ],
-              "duration": "persistent"
-            }
-          ]
+          "text": "When deployed, Jacker obtains abilities of Goon burned from Dead Pool to pay deploy cost. These abilities cost 1 additional wind to use."
         },
         {
           "name": "TENACIOUS HOST",
-          "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 0
-          },
+          "cost": { "wind": 0, "gear": 0, "meat": 0 },
           "passive": true,
           "must_use": false,
-          "text": "When Meatjacker is destroyed, return it to its owner's hand.",
-          "effects": [
-            {
-              "effect_type": "return_to_hand_on_destroy",
-              "target": [
-                "self"
-              ],
-              "duration": "persistent"
-            }
-          ]
+          "text": "When Meatjacker is destroyed, return it to its owner's hand."
         }
       ],
       "portrait_art": "meatjacker.png"
@@ -788,17 +549,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Add 1 wind to 2 target Goons",
-          "effects": [
-            {
-              "effect_type": "alter_wind",
-              "amount": 1,
-              "target": [
-                "two_goons"
-              ],
-              "duration": "instant"
-            }
-          ]
+          "text": "Add 1 wind to 2 target Goons"
         },
         {
           "name": "STEADY DRUM",
@@ -809,17 +560,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Remove 1 wind from target allied Goon.",
-          "effects": [
-            {
-              "effect_type": "alter_wind",
-              "amount": -1,
-              "target": [
-                "self"
-              ],
-              "duration": "instant"
-            }
-          ]
+          "text": "Remove 1 wind from target allied Goon."
         }
       ],
       "portrait_art": "natives.jpg"
@@ -855,17 +596,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Add 2 wind to target Goon",
-          "effects": [
-            {
-              "effect_type": "alter_wind",
-              "amount": 2,
-              "target": [
-                "any"
-              ],
-              "duration": "instant"
-            }
-          ]
+          "text": "Add 2 wind to target Goon"
         },
         {
           "name": "FAMILIAR ASSIST",
@@ -907,17 +638,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Add 1 wind to target Goon",
-          "effects": [
-            {
-              "effect_type": "alter_wind",
-              "amount": 1,
-              "target": [
-                "any"
-              ],
-              "duration": "instant"
-            }
-          ]
+          "text": "Add 1 wind to target Goon"
         },
         {
           "name": "GOOP",
@@ -928,16 +649,7 @@
           },
           "passive": true,
           "must_use": false,
-          "text": "Unfriendly Goon who targets Oozer with an ability does not unwind during its next unwind phase.",
-          "effects": [
-            {
-              "effect_type": "prevent_unwind",
-              "target": [
-                "goon_using_ability"
-              ],
-              "duration": "next_unwind"
-            }
-          ]
+          "text": "Unfriendly Goon who targets Oozer with an ability does not unwind during its next unwind phase."
         }
       ],
       "portrait_art": "oozer.png"
@@ -967,23 +679,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Target Goon may not use abilities or contribute wind on its Player\u2019s next turn. Target may still unwind.",
-          "effects": [
-            {
-              "effect_type": "disable_abilities",
-              "target": [
-                "any"
-              ],
-              "duration": "next_turn"
-            },
-            {
-              "effect_type": "disable_contribution",
-              "target": [
-                "any"
-              ],
-              "duration": "next_turn"
-            }
-          ]
+          "text": "Target Goon may not use abilities or contribute wind on its Player\u2019s next turn. Target may still unwind."
         }
       ],
       "portrait_art": "toad.jpg"
@@ -1013,23 +709,7 @@
           },
           "passive": true,
           "must_use": false,
-          "text": "Player's Goons cannot be targeted by unfriendly abilities while Singularity is in play. Singularity must be destroyed first.",
-          "effects": [
-            {
-              "effect_type": "cannot_be_targeted",
-              "target": [
-                "ally_all_except:self"
-              ],
-              "duration": "persistent"
-            },
-            {
-              "effect_type": "must_be_destroyed_first",
-              "target": [
-                "opponent_all"
-              ],
-              "duration": "persistent"
-            }
-          ]
+          "text": "Player's Goons cannot be targeted by unfriendly abilities while Singularity is in play. Singularity must be destroyed first."
         }
       ],
       "portrait_art": "singularity.png"
@@ -1059,32 +739,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Take control of a Biological Goon from Dead Pool. Treat the resurrected Goon as if it were deployed this turn.",
-          "effects": [
-            {
-              "effect_type": "resurrect_from_dead_pool",
-              "amount": 1,
-              "value": "meat",
-              "target": [
-                "dead_pool"
-              ],
-              "duration": "instant"
-            },
-            {
-              "effect_type": "no_unwind",
-              "target": [
-                "revived_by_self"
-              ],
-              "duration": "persistent"
-            },
-            {
-              "effect_type": "retire_on_destroy",
-              "target": [
-                "revived_by_self"
-              ],
-              "duration": "persistent"
-            }
-          ]
+          "text": "Take control of a Biological Goon from Dead Pool. Treat the resurrected Goon as if it were deployed this turn."
         },
         {
           "name": "RECYCLE",
@@ -1095,32 +750,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Take control of a Mechanical Goon from Dead Pool. Treat the recycled Goon as if it were deployed this turn.",
-          "effects": [
-            {
-              "effect_type": "resurrect_from_dead_pool",
-              "amount": 1,
-              "value": "gear",
-              "target": [
-                "dead_pool"
-              ],
-              "duration": "instant"
-            },
-            {
-              "effect_type": "no_unwind",
-              "target": [
-                "revived_by_self"
-              ],
-              "duration": "persistent"
-            },
-            {
-              "effect_type": "retire_on_destroy",
-              "target": [
-                "revived_by_self"
-              ],
-              "duration": "persistent"
-            }
-          ]
+          "text": "Take control of a Mechanical Goon from Dead Pool. Treat the recycled Goon as if it were deployed this turn."
         }
       ],
       "notes": [],
@@ -1151,25 +781,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Add 1 wind to X Goons",
-          "effects": [
-            {
-              "effect_type": "alter_wind",
-              "amount": 1,
-              "target": [
-                "x_goons"
-              ],
-              "duration": "instant"
-            },
-            {
-              "effect_type": "alter_wind",
-              "amount": 1,
-              "target": [
-                "any"
-              ],
-              "duration": "instant"
-            }
-          ]
+          "text": "Add 1 wind to X Goons"
         },
         {
           "name": "SHADOW LANCE",
@@ -1180,17 +792,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Add 2 wind to target Goon.",
-          "effects": [
-            {
-              "effect_type": "alter_wind",
-              "amount": 2,
-              "target": [
-                "any"
-              ],
-              "duration": "instant"
-            }
-          ]
+          "text": "Add 2 wind to target Goon."
         }
       ],
       "notes": [],
@@ -1221,16 +823,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "If target takes wind as damage this turn, they do not unwind during their next unwind phase.",
-          "effects": [
-            {
-              "effect_type": "prevent_unwind",
-              "target": [
-                "any"
-              ],
-              "duration": "next_unwind_if_damaged_this_turn"
-            }
-          ]
+          "text": "If target takes wind as damage this turn, they do not unwind during their next unwind phase."
         },
         {
           "name": "RALLY RINGER",
@@ -1241,17 +834,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Move any card from deck to hand; reshuffle deck.",
-          "effects": [
-            {
-              "effect_type": "search_deck",
-              "amount": 1,
-              "target": [
-                "self"
-              ],
-              "duration": "instant"
-            }
-          ]
+          "text": "Move any card from deck to hand; reshuffle deck."
         }
       ],
       "portrait_art": "voidling.png"
@@ -1281,16 +864,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "If target takes wind as damage this turn, they do not unwind during their next unwind phase.",
-          "effects": [
-            {
-              "effect_type": "prevent_unwind",
-              "target": [
-                "any"
-              ],
-              "duration": "next_unwind_if_damaged_this_turn"
-            }
-          ]
+          "text": "If target takes wind as damage this turn, they do not unwind during their next unwind phase."
         },
         {
           "name": "CANNIBALIZE",
@@ -1301,17 +875,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Add 1 wind to target Goon.",
-          "effects": [
-            {
-              "effect_type": "search_deck",
-              "amount": 1,
-              "target": [
-                "self"
-              ],
-              "duration": "instant"
-            }
-          ]
+          "text": "Add 1 wind to target Goon."
         }
       ],
       "portrait_art": "voidling.png"

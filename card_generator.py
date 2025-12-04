@@ -245,6 +245,9 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
     color_deploy_cost = data.get("deploy_cost_font_color", "white")
     color_body = data.get("body_font_color", "#F5F5DC")
     color_abil_cost = data.get("ability_cost_font_color", "black")
+    letter_spacing_name = data.get("card_name_letter_spacing", 0)
+    card_name_y_offset = data.get("card_name_y_offset", 0)
+    icon_stack_x = data.get("icon_stack_x_offset", COST_POS_X)
     
     def draw_wrapped_text(draw_context, text, start_pos, font, fill, indent=0, width=TEXT_WIDTH_CHARS):
         """Helper to draw wrapped text with an optional icon and return the new y-position."""
@@ -331,16 +334,16 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
         name_bbox = draw.textbbox((0, 0), name, font=font_header)
         name_width = name_bbox[2] - name_bbox[0]
         start_x = NAME_END_X - name_width
-        draw.text((start_x, NAME_Y), name, font=font_header, fill=color_name)
+        draw.text((start_x, NAME_Y + card_name_y_offset), name, font=font_header, fill=color_name, spacing=letter_spacing_name)
 
         # 4. Left Side Stack
         current_y = COST_START_Y
         
         def draw_main_icon(icon_key, value, y_pos, text_y_offset=0):
             icon = assets[icon_key]
-            canvas.paste(icon, (COST_POS_X, y_pos), icon)
+            canvas.paste(icon, (icon_stack_x, y_pos), icon)
             # Use anchor="mm" for robust vertical and horizontal centering.
-            draw.text((COST_POS_X + 42.5, y_pos + 42.5 + text_y_offset), str(value), font=font_cost, fill=color_deploy_cost, anchor="mm")
+            draw.text((icon_stack_x + 42.5, y_pos + 42.5 + text_y_offset), str(value), font=font_cost, fill=color_deploy_cost, anchor="mm")
 
         if card['deploy_cost'].get('wind', 0) > 0:
             draw_main_icon('cost_wind', card['deploy_cost']['wind'], current_y, text_y_offset=-5)
@@ -364,7 +367,7 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
         if rank in rank_map:
             icon_key = rank_map.get(rank)
             icon = assets[icon_key]
-            canvas.paste(icon, (COST_POS_X, current_y), icon)
+            canvas.paste(icon, (icon_stack_x, current_y), icon)
             current_y += ICON_SPACING
 
 
@@ -377,7 +380,7 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
 
         for t in traits:
             icon = assets[t]
-            canvas.paste(icon, (COST_POS_X, current_y), icon)
+            canvas.paste(icon, (icon_stack_x, current_y), icon)
             current_y += ICON_SPACING
 
         # --- 6. ABILITIES ---
@@ -412,7 +415,7 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
                 # 1. Draw Wind Cost (if it exists)
                 if (isinstance(wind, int) and wind > 0) or wind_val == "X" or is_zero_cost:
                     icon_to_draw = create_circle_icon(30, "#F5F5DC")
-                    canvas.paste(icon_to_draw, (x_cursor, text_y), icon_to_draw)
+                    canvas.paste(icon_to_draw, (x_cursor, text_y + 2), icon_to_draw)
                     
                     bbox = draw.textbbox((0, 0), wind_val, font=font_abil_num_bold)
                     w_num, h_num = bbox[2] - bbox[0], bbox[3] - bbox[1]
@@ -429,7 +432,7 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
                 # 3. Draw Meat or Gear cost
                 if meat > 0:
                     meat_icon = create_circle_icon(30, "#8B0000") # Dark Red
-                    canvas.paste(meat_icon, (x_cursor, text_y), meat_icon)
+                    canvas.paste(meat_icon, (x_cursor, text_y + 2), meat_icon)
                     bbox = draw.textbbox((0, 0), str(meat), font=font_abil_num_bold)
                     w_num, h_num = bbox[2] - bbox[0], bbox[3] - bbox[1]
                     draw.text((x_cursor + 15 - w_num/2, text_y + 12 - h_num/2 - 2), str(meat), font=font_abil_num_bold, fill=color_abil_cost)
@@ -437,7 +440,7 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
                     indent = x_cursor - TEXT_BOX_START_X
                 elif gear > 0:
                     gear_icon = create_circle_icon(30, "#808080") # Grey
-                    canvas.paste(gear_icon, (x_cursor, text_y), gear_icon)
+                    canvas.paste(gear_icon, (x_cursor, text_y + 2), gear_icon)
                     bbox = draw.textbbox((0, 0), str(gear), font=font_abil_num_bold)
                     w_num, h_num = bbox[2] - bbox[0], bbox[3] - bbox[1]
                     draw.text((x_cursor + 15 - w_num/2, text_y + 12 - h_num/2 - 2), str(gear), font=font_abil_num_bold, fill=color_abil_cost)

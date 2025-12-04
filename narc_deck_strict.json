@@ -2,14 +2,14 @@
   "id": "basicnarc",
   "faction": "NARC",
   "card_name_font_family": ["Leaderson.ttf", "Impact.ttf", "Arial-Black.ttf"],
-  "card_name_font_size": 95,
+  "card_name_font_size": 85,
   "cost_font_family": ["Marinfordaf.ttf", "Helvetica.ttc", "Arial.ttf"],
   "cost_font_size": 55,
   "body_font_family": ["Futura.ttc", "Futura.ttf", "Avenir.ttc", "GillSans.ttc", "Georgia"],
   "body_font_size": 26,
-  "ability_num_font_family": ["Futura.ttc", "Futura.ttf", "Avenir.ttc"],
-  "ability_num_font_size": 28,
-  "ability_num_bold_font_family": ["Futura-Bold.ttf", "Avenir-Heavy.ttf"],
+  "ability_num_font_family": ["Staatliches-Regular.ttf", "Futura.ttf", "Avenir.ttc"],
+  "ability_num_font_size": 25,
+  "ability_num_bold_font_family": ["Staatliches-Regular", "Avenir-Heavy.ttf"],
   "ability_num_bold_font_size": 30,
   "card_name_font_color": "#fbc151",
   "deploy_cost_font_color": "white",
@@ -21,6 +21,9 @@
     "Arial-Italic.ttf"
   ],
   "flavor_text_font_size": 24,
+  "card_name_letter_spacing": 5,
+  "icon_stack_x_offset": 25,
+  "card_name_y_offset": 0,
   "goons": [
     {
       "name": "Compliance Auditon",
@@ -47,16 +50,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Target goon does not unwind in its next unwind phase.",
-          "effects": [
-            {
-              "effect_type": "prevent_unwind",
-              "target": [
-                "any"
-              ],
-              "duration": "next_unwind"
-            }
-          ]
+          "text": "Target goon does not unwind in its next unwind phase."
         }
       ],
       "portrait_art": "auditon.jpg"
@@ -87,17 +81,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Add 2 wind to target Goon.",
-          "effects": [
-            {
-              "effect_type": "alter_wind",
-              "amount": 1,
-              "target": [
-                "any"
-              ],
-              "duration": "instant"
-            }
-          ]
+          "text": "Add 2 wind to target Goon."
         },
         {
           "name": "RED WET SPOT",
@@ -108,16 +92,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Destroy target Basic Goon.",
-          "effects": [
-            {
-              "effect_type": "must_be_destroyed_first",
-              "target": [
-                "any"
-              ],
-              "duration": "until_end_of_turn"
-            }
-          ]
+          "text": "Destroy target Basic Goon."
         }
       ],
       "portrait_art": "bruut.png"
@@ -130,7 +105,7 @@
       "deploy_cost": {
         "wind": 5,
         "gear": 0,
-        "meat": 1
+        "meat": 0
       },
       "biological": false,
       "mechanical": true,
@@ -147,16 +122,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Target allied Goon may not be target of enemy abilities until beginning of player's next turn.",
-          "effects": [
-            {
-              "effect_type": "grant_resist",
-              "target": [
-                "any"
-              ],
-              "duration": "until_end_of_turn"
-            }
-          ]
+          "text": "Target allied Goon may not be target of enemy abilities until beginning of player's next turn."
         },
     {
       "name": "PEW PEW",
@@ -208,30 +174,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Target Goon may not unwind, act or contribute wind to deploy next turn.",
-          "effects": [
-            {
-              "effect_type": "prevent_unwind",
-              "target": [
-                "any"
-              ],
-              "duration": "next_unwind"
-            },
-            {
-              "effect_type": "disable_abilities",
-              "target": [
-                "any"
-              ],
-              "duration": "next_turn"
-            },
-            {
-              "effect_type": "disable_contribution",
-              "target": [
-                "any"
-              ],
-              "duration": "next_turn"
-            }
-          ]
+          "text": "Target Goon may not unwind, act or contribute wind to deploy next turn."
         }
       ],
       "portrait_art": "detainprobe.png"
@@ -261,17 +204,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Add 2 wind to target Goon.",
-          "effects": [
-            {
-              "effect_type": "alter_wind",
-              "amount": 1,
-              "target": [
-                "any"
-              ],
-              "duration": "instant"
-            }
-          ]
+          "text": "Add 2 wind to target Goon."
         },
         {
           "name": "ORDINANCE ARRAY",
@@ -282,17 +215,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Distribute 3 wind among target Goons.",
-          "effects": [
-            {
-              "effect_type": "alter_wind",
-              "amount": 1,
-              "target": [
-                "three_goons"
-              ],
-              "duration": "instant"
-            }
-          ]
+          "text": "Distribute 3 wind among target Goons."
         }
       ],
       "portrait_art": "marauder.jpg"
@@ -322,7 +245,7 @@
           },
           "passive": true,
           "must_use": false,
-          "text": "When allied Goon is targeted by an enemy ability, destoy k-9.0 to prevent that ability from resolving."
+          "text": "When allied Goon is targeted by an enemy ability, destroy k-9.0 to prevent that ability from resolving."
         }
       ],
       "portrait_art": "k9.png"
@@ -334,7 +257,7 @@
       "faction": "NARC",
       "deploy_cost": {
         "wind": 4,
-        "gear": 1,
+        "gear": 0,
         "meat": 0
       },
       "biological": false,
@@ -413,17 +336,7 @@
       },
       "passive": false,
       "must_use": false,
-      "text": "Draw a card",
-      "effects": [
-        {
-          "effect_type": "draw_cards",
-          "amount": 1,
-          "target": [
-            "self"
-          ],
-          "duration": "instant"
-        }
-      ]
+      "text": "Draw a card"
     }
       ],
       "flavor_text": "Submission is the love child of demoralization and existential dread.",
@@ -446,7 +359,7 @@
       "deploy_requirements": [],
       "abilities": [
         {
-          "name": "SEEK AND DESTROY",
+          "name": "SEEK TARGET",
           "cost": {
             "wind": 2,
             "gear": 0,
@@ -454,31 +367,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Destroy Lurker, add 2 wind to target Goon",
-          "effects": [
-            {
-              "effect_type": "destroy",
-              "target": [
-                "self"
-              ],
-              "duration": "instant"
-            },
-            {
-              "effect_type": "alter_wind",
-              "amount": 4,
-              "target": [
-                "any"
-              ],
-              "duration": "instant"
-            },
-            {
-              "effect_type": "grant_resist",
-              "target": [
-                "ally_all"
-              ],
-              "duration": "until_end_of_turn"
-            }
-          ]
+          "text": "Destroy Lurker, add 2 wind to target Goon"
         },
         {
           "name": "REACTIVE MUNITIONS",
@@ -489,16 +378,7 @@
           },
           "passive": true,
           "must_use": false,
-          "text": "Destroy Goon who destroys Lurker.",
-          "effects": [
-            {
-              "effect_type": "destroy_attacker_on_destroy",
-              "target": [
-                "self"
-              ],
-              "duration": "persistent"
-            }
-          ]
+          "text": "Destroy Goon who destroys Lurker."
         }
       ],
       "portrait_art": "lurker.png"
@@ -755,17 +635,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Add 3 wind to target Goon.",
-          "effects": [
-            {
-              "effect_type": "alter_wind",
-              "amount": 2,
-              "target": [
-                "any"
-              ],
-              "duration": "instant"
-            }
-          ]
+          "text": "Add 3 wind to target Goon."
         }
       ],
       "portrait_art": "sentry.jpg"
@@ -825,16 +695,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Target Goon may not be target of enemy Goon abilities until the beginning of Player's next turn.",
-          "effects": [
-            {
-              "effect_type": "cannot_be_targeted",
-              "target": [
-                "any"
-              ],
-              "duration": "until_end_of_turn"
-            }
-          ]
+          "text": "Target Goon may not be target of enemy Goon abilities until the beginning of Player's next turn."
         }
       ],
       "portrait_art": "hover.jpg"
@@ -883,32 +744,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Targeting a marked Goon costs one less wind than normal, and marked Goons take 1 additional damage until the end of the turn.",
-          "effects": [
-            {
-              "effect_type": "mark_target",
-              "target": [
-                "any"
-              ],
-              "duration": "until_end_of_turn"
-            },
-            {
-              "effect_type": "increase_damage_taken",
-              "amount": 1,
-              "target": [
-                "marked"
-              ],
-              "duration": "until_end_of_turn"
-            },
-            {
-              "effect_type": "reduce_cost_for_cards_against_marked",
-              "value": "Nob Lobber,Marine Marauder",
-              "target": [
-                "marked"
-              ],
-              "duration": "until_end_of_turn"
-            }
-          ]
+          "text": "Targeting a marked Goon costs one less wind than normal."
         }
       ],
       "portrait_art": "target.jpg"

@@ -4,10 +4,10 @@
     "card_name_font_family": "Antreas-Regular.ttf",
     "card_name_font_size": 84,
     "cost_font_family": [
-        "Chalkduster.ttf",
-        "Chalkduster.ttc"
+        "Antreas-Regular.ttf",
+        "Antreas-Regular.ttc"
     ],
-    "cost_font_size": 72,
+    "cost_font_size": 77,
     "body_font_family": [
         "Futura.ttc",
         "Futura.ttf",
@@ -23,10 +23,10 @@
     ],
     "ability_num_font_size": 28,
     "ability_num_bold_font_family": [
-        "Futura-Bold.ttf",
+        "Staatliches-Regular",
         "Avenir-Heavy.ttf"
     ],
-    "ability_num_bold_font_size": 30,
+    "ability_num_bold_font_size": 28,
     "card_name_font_color": "#f6d4d5",
     "deploy_cost_font_color": "white",
     "body_font_color": "#F5F5DC",
@@ -37,6 +37,8 @@
         "Arial-Italic.ttf"
     ],
     "flavor_text_font_size": 24,
+    "icon_stack_x_offset": 25,
+    "card_name_y_offset": -14,
     "ai_art_prompt": {
         "template": "Subject: A lone caveman based on the archetype: {goon_name}\n\nArt Style: 90s 2D video game art, reminiscent of retro side-scrolling beat-em-up boss artwork, smooth surfaces, shadows and gradients to show form volume.\n\nAnatomy: Hulking, brutish barbarian archetype with exaggerated muscular proportions, a thick neck, and a hunched posture. A stern, intimidating, pugnacious expression. (Vary jaw/teeth: sometimes protruding tusks, sometimes oversized square teeth).\n\nOutfit Instructions:\n1. Armor: is a patchwork of {armor}.\n2. Head: Give them a unique head feature like {head}.\n3. Feet: boots like {feet}.\n\nSetting: {background} environment\n\nFormat: 4k resolution. 590x555px dimensions.\n",
         "options": {
@@ -152,7 +154,7 @@
                 {
                     "name": "EXPOSE WEAKNESS",
                     "cost": {
-                        "wind": 2,
+                        "wind": 0,
                         "gear": 0,
                         "meat": 0
                     },
@@ -191,15 +193,15 @@
                     "text": "When deployed, you may add 1 wind to any target Goon."
                 },
                 {
-                    "name": "GNAW",
+                    "name": "BEAT TO DEATH",
                     "cost": {
-                        "wind": 1,
+                        "wind": 2,
                         "gear": 0,
                         "meat": 0
                     },
                     "passive": false,
                     "must_use": false,
-                    "text": "Add 1 wind to target Goon."
+                    "text": "Add 2 wind to target Goon."
                 }
             ],
             "portrait_art": "marrowstalker.jpg"
@@ -279,23 +281,20 @@
             },
             "biological": true,
             "mechanical": false,
-            "resist": false,
+            "resist": true,
             "no_unwind": false,
             "deploy_requirements": [],
             "abilities": [
                 {
-                    "name": "SINKHOLE",
-                    "cost": { "wind": 0, "gear": 0, "meat": 0 },
+                    "name": "AMBUSH",
+                    "cost": {
+                        "wind": 0,
+                        "gear": 0,
+                        "meat": 0
+                    },
                     "passive": true,
                     "must_use": false,
-                    "text": "Hole Grunk cannot be targeted by abilities unless it has used an ability this turn."
-                },
-                {
-                    "name": "LUNGE",
-                    "cost": { "wind": 1, "gear": 0, "meat": 0 },
-                    "passive": false,
-                    "must_use": false,
-                    "text": "Add 2 wind to target Goon."
+                    "text": "Add 1 wind to enemy Goon after it targets allied Goon with an ability and effect resolves"
                 }
             ],
             "portrait_art": "holegrunk.jpg"
@@ -331,10 +330,11 @@
                     "text": "When Doom Sayer is destroyed, add 2 wind to all other Goons."
                 }
             ],
+            "flavor_text": "Yer gonna git got!",
             "portrait_art": "doomsayer.jpg"
         },
         {
-            "name": "Master Baiter",
+            "name": "Master Baitman",
             "rank": "BG",
             "duplicates": 4,
             "faction": "MEAT",
@@ -358,10 +358,51 @@
                     },
                     "passive": false,
                     "must_use": false,
-                    "text": "All enemy Goons able to attack must target Master Baiter on their next turn."
+                    "text": "All enemy Goons able to attack must target Baitman on their next turn."
                 }
             ],
             "portrait_art": "masterbaiteralt.jpg"
+        },
+        {
+            "name": "Luddite",
+            "rank": "BG",
+            "duplicates": 3,
+            "faction": "MEAT",
+            "deploy_cost": {
+                "wind": 3,
+                "gear": 0,
+                "meat": 1
+            },
+            "biological": true,
+            "mechanical": false,
+            "resist": false,
+            "no_unwind": false,
+            "deploy_requirements": [],
+            "abilities": [
+                {
+                    "name": "MAN SLAUGHTER",
+                    "cost": {
+                        "wind": 1,
+                        "gear": 0,
+                        "meat": 0
+                    },
+                    "passive": false,
+                    "must_use": false,
+                    "text": "Add 1 wind to target biological Goon."
+                },
+                {
+                    "name": "SMASH MACHINE",
+                    "cost": {
+                        "wind": 1,
+                        "gear": 0,
+                        "meat": 0
+                    },
+                    "passive": false,
+                    "must_use": false,
+                    "text": "Add 2 wind to target mechanical Goon."
+                }
+            ],
+            "portrait_art": "luddite.jpg"
         }
     ]
 }
