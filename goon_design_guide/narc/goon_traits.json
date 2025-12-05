@@ -1,0 +1,128 @@
+{
+    "template": "Subject: {type} {goon_name} with {weapon} in a {pose} pose. Follow art_style.json exactly for style; do not add new style notes.\nAnatomy: {anatomy}\nSkin: {skin}\nFacial Features:\n1. Eyes: {eyes}\n2. Mouth: {mouth}\n3. Teeth: {teeth}\nOutfit Instructions:\n1. Attire: he is wearing {armor}\n2. headgear: {head_wear}\n3. Accessories: {accessories}\n4. Boots: {boots}\nSetting: {setting} at {time_of_day}. Use the entire image for the setting. Perspective: {perspective angle}",
+    "options": {
+      "type":[
+        "futuristic cyborg",
+        "authoritarian robot",
+        "genetically engineered enforcer"
+      ],
+      "anatomy": [
+        "sleek and powerful cybernetic build",
+        "imposing and heavily augmented humanoid form",
+        "fully robotic chassis with an intimidating presence",
+        "lithe and agile synthetic body"
+      ],
+      "setting": [
+        "gleaming sterile corporate lobby with holographic ads",
+        "dense futuristic cityscape with flying vehicles and neon signs",
+        "oppressive industrial alleyway with steam and exposed conduits",
+        "high-tech detention block with energy barriers",
+        "vast data-processing center with rows of servers",
+        "stark white interrogation room with a single light source",
+        "rooftop overlooking a polluted megastructure"
+      ],
+      "time_of_day": [
+        "perpetual twilight of a smog-filled city",
+        "harsh glare of midday sun on chrome surfaces",
+        "at night, illuminated by neon signs",
+        "the sterile, constant light of an indoor facility"
+      ],
+      "perspective angle": [
+        "low angle perspective looking up, emphasizing authority",
+        "high angle perspective looking down, as if from a security camera",
+        "eye level perspective, confrontational",
+        "dutch angle suggesting unease and corruption"
+      ],
+      "armor": [
+        "polished chrome plating with corporate logos",
+        "matte black composite riot gear",
+        "glowing energy shielding projected from emitters",
+        "layers of ballistic fabric and ablative plates",
+        "exo-frame with exposed pistons and wiring",
+        "white and blue police-style armor"
+      ],
+      "weapon": [
+        "high-frequency energy blade",
+        "pulse rifle with an underslung stun grenade launcher",
+        "extendable shock baton",
+        "integrated arm cannon",
+        "deployable riot shield",
+        "pair of magnetic handcuff launchers",
+        "none"
+      ],
+      "skin":[
+        "pale human skin with visible cybernetic seams",
+        "synthetic skin with an uncanny valley feel",
+        "polished metallic surface",
+        "carbon-fiber composite plating"
+      ],
+      "accessories": [
+        "glowing optic sensors",
+        "external power cables",
+        "corporate identification badges",
+        "shoulder-mounted camera",
+        "data-jack ports on neck or wrist",
+        "breathing apparatus or gas mask",
+        "holographic wrist-mounted computer",
+        "none"
+      ],
+      "head_wear": [
+        "helmet with a full face visor displaying digital emotions",
+        "a single glowing red optic sensor",
+        "a blank digital screen for a face",
+        "exposed cranial wiring and processing units",
+        "riot helmet with a blast shield",
+        "officer cap with insignia",
+        "none"
+      ],
+      "eyes": [
+        "glowing LED optics",
+        "cold, cybernetic camera lenses",
+        "augmented human eyes with targeting reticles",
+        "hidden behind a dark visor"
+      ],
+      "mouth": [
+        "a grim, thin line",
+        "hidden behind a respirator or speaker grille",
+        "an artificial mouth with no expression",
+        "a human mouth with a sneer"
+      ],
+      "teeth": [
+        "perfectly synthetic and white",
+        "metallic implants",
+        "not visible"
+      ],
+      "pose": [
+        "standing at attention, guard-like",
+        "aggressively aiming a weapon",
+        "in a calm but intimidating patrol stance",
+        "brutally apprehending a target",
+        "accessing a holographic interface",
+        "scanning the area with detached efficiency"
+      ],
+      "boots": [
+        "heavy magnetic boots locked to the floor",
+        "sleek, aerodynamic boots with light thrusters",
+        "silent, padded boots for stealth operations",
+        "intimidating, clawed metal feet",
+        "standard issue combat boots"
+      ]
+    },
+    "option_trait_quantities": {
+      "type": 1,
+      "anatomy": 1,
+      "setting": 1,
+      "time_of_day": 1,
+      "perspective_angle": 1,
+      "armor": 1,
+      "weapon": 1,
+      "skin": 1,
+      "accessories": 2,
+      "head_wear": 1,
+      "boots": 1,
+      "eyes": 1,
+      "mouth": 1,
+      "teeth": 1,
+      "pose": 1
+    }
+}

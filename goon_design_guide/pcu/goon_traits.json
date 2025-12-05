@@ -1,0 +1,183 @@
+{
+    "template": "Subject: A {type} {goon_name} with {weapon} in a {pose} pose.\nIntegrate all of the following physical traits into the subject appearance\nAnatomy: {anatomy}\nSkin: {skin}\nFacial Features:\n1. Eyes: {eyes}\n2. Mouth: {mouth}\n3. Teeth: {teeth}\nOutfit Instructions:\n1. Attire: he is wearing {armor}\n2. headgear: {head_wear}\n3. Accessories: {accessories}\n4. Boots: {boots}\nSetting: {setting} at {time_of_day}. Use the entire image for the setting. Perspective: {perspective_angle}",
+    "options": {
+      "type":[
+        "humanoid",
+        "demon",
+        "alien",
+        "robot",
+        "cyborg"
+      ],
+      "anatomy": [
+        "humanoid",
+        "quadropedal",
+        "giant",
+        "slender and agile",
+        "multi-limbed",
+        "nonhumanoid",
+        "insectoid",
+        "serpentine",
+        "armored carapace",
+        "tentacled",
+        "humanoid",
+        "bestial and muscular",
+        "bulky and towering"
+      ],
+      "setting": [
+        "an alien jungle with glowing, pulsating flora",
+        "floating islands in a gaseous nebula",
+        "the interior of a dark, living machine",
+        "cave interior lit with eerie bioluminescent light",
+        "in the bio-luminescent twilight of an alien forest",
+        "in the green bio-luminescent black caves",
+        "standing at cave mouth",
+        "in the black stone lair built into subterranean cavern"
+      ],
+      "time_of_day": [
+        "in the perpetual glow of a nebula",
+        "nighttime",
+        "stormy and overcast",
+        "alien twilight",
+        "dusk",
+        "green bioluminescent glow",
+        "dawn"
+      ],
+      "perspective_angle": [
+        "disorienting dutch angle",
+        "low angle perspective looking up at the character",
+        "high angle perspective looking down at the character",
+        "eye level perspective",
+        "three quarter view perspective",
+        "side view perspective",
+        "front view perspective",
+        "seen from a low angle looking up at the character",
+        "seen from a high angle looking down at the character",
+        "seen from eye level",
+        "seen from a three quarter view",
+        "seen from the side",
+        "seen from the front"
+      ],
+      "armor": [
+        "bulky metal armor",
+        "personal energy shield",
+        "scaled skin that acts as natural armor",
+        "dark sleek, form-fitting suit of metallic alloy",
+        "sleek, tactical black armor",
+        "minimalist armor plating over vital areas",
+        "integrated body armor",
+        "advanced armor",
+        "stealth suit with adaptive camouflage",
+        "reinforced exoskeleton armor",
+        "lightweight combat armor",
+        "heavy-duty power armor"
+      ],
+      "weapon": [
+        "menacing appendage weapon",
+        "energy projectiles firing from its eyes or hands",
+        "high-tech ranged weapon",
+        "melee weapon",
+        "magic-based weapon",
+        "spell casting ability",
+        "high-tech melee weapon",
+        "high-tech rifle"
+      ],
+      "skin":[
+        "smooth, chitinous plates",
+        "a polished metallic surface",
+        "a chromatic color",
+        "stark pale white",
+        "pitch black",
+        "glossy black"
+      ],
+      "accessories": [
+        "glowing light from seams and joints",
+        "necklace",
+        "earrings",
+        "bracelet",
+        "arm band",
+        "tattoos",
+        "natural patterns",
+        "demonic warpaint"
+      ],
+      "head_wear": [
+        "visor",
+        "helmet",
+        "mask",
+        "headgear",
+        "goggles",
+        "none",
+        "none",
+        "none",
+        "cowel",
+        "hood"      ],
+      "eyes": [
+        "a single, large, eye",
+        "no eyes",
+        "glowing eyes",
+        "demonic eyes",
+        "barely visible eyes that blend into the face",
+        "surrounded by dark",
+        "unusually large",
+        "unusually small",
+        "humanoid",
+        "surrounded by shadow",
+        "alien"      ],
+      "mouth": [
+        "with out a mouth",
+        "frowning",
+        "snarling",
+        "grimacing",
+        "smirking",
+        "open in a roar",
+        "closed",
+        "smiling",
+        "with no visible mouth"
+      ],
+      "teeth": [
+        "not shown",
+        "humanoid",
+        "large canines",
+        "tusks",
+        "large",
+        "covered"
+      ],
+      "pose": [
+        "observing its environment",
+        "dynamic action",
+        "battle ready stance",
+        "crouched low to the ground, ready to pounce",
+        "moving with an unsettling, fluid grace",
+        "standing herocically",
+        "in a powerful, commanding stance",
+        "in a relaxed, casual pose"
+      ],
+      "boots": [
+        "hovers silently above the ground",
+        "its lower body has the shape of a mythical creatures lower half",
+        "its lower body has the shape of an animals lower half",
+        "its lower body has the shape tank treads",
+        "integrated, form-fitting boots",
+        "practal",
+        "integrated",
+        "natural",
+        "minimalist"
+      ]
+    },
+    "option_trait_quantities": {
+      "type": 1,
+      "anatomy": 1,
+      "setting": 1,
+      "time_of_day": 1,
+      "perspective_angle": 1,
+      "armor": 1,
+      "weapon": 1,
+      "skin": 1,
+      "accessories": 3,
+      "head_wear": 1,
+      "boots": 1,
+      "eyes": 1,
+      "mouth": 1,
+      "teeth": 1,
+      "pose": 1
+    }
+}

@@ -21,9 +21,12 @@
     "Arial-Italic.ttf"
   ],
   "flavor_text_font_size": 24,
-  "card_name_letter_spacing": 5,
+  "card_name_letter_spacing": 0,
   "icon_stack_x_offset": 25,
   "card_name_y_offset": 0,
+  "card_name_stroke_width": 4,
+  "card_name_stroke_color": "#561603",
+  "icon_stack_y_offset": 50,
   "goons": [
     {
       "name": "Compliance Auditon",

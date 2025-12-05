@@ -3,11 +3,24 @@
   "faction": "PCU",
   "card_name_font_family": "Georgia",
   "card_name_font_size": 75,
-  "cost_font_family": ["Chalkduster.ttf", "Chalkduster.ttc"],
+  "cost_font_family": [
+    "Chalkduster.ttf",
+    "Chalkduster.ttc"
+  ],
   "cost_font_size": 72,
-  "body_font_family": ["Futura.ttc", "Futura.ttf", "Avenir.ttc", "GillSans.ttc", "Georgia"],
+  "body_font_family": [
+    "Futura.ttc",
+    "Futura.ttf",
+    "Avenir.ttc",
+    "GillSans.ttc",
+    "Georgia"
+  ],
   "body_font_size": 26,
-  "ability_num_font_family": ["Impact.ttf", "Futura.ttf", "Avenir.ttc"],
+  "ability_num_font_family": [
+    "Impact.ttf",
+    "Futura.ttf",
+    "Avenir.ttc"
+  ],
   "ability_num_font_size": 28,
   "ability_num_bold_font_family": [
     "Staatliches-Regular",
@@ -27,6 +40,9 @@
   "card_name_letter_spacing": 0,
   "icon_stack_x_offset": 40,
   "card_name_y_offset": 0,
+  "card_name_stroke_width": 0,
+  "card_name_stroke_color": "black",
+  "icon_stack_y_offset": 50,
   "goons": [
     {
       "name": "Mutt",
@@ -42,6 +58,13 @@
       "mechanical": true,
       "resist": false,
       "no_unwind": false,
+      "deploy_requirements": [
+        {
+          "type": "requires_card_in_play",
+          "card_name": "Krax",
+          "side": "self"
+        }
+      ],
       "abilities": [
         {
           "name": "MAUL",
@@ -68,7 +91,8 @@
       ],
       "notes": [],
       "portrait_art": "mutt.jpg"
-    },{
+    },
+    {
       "name": "Utility Droid",
       "rank": "BG",
       "duplicates": 3,
@@ -82,8 +106,7 @@
       "mechanical": true,
       "resist": false,
       "no_unwind": false,
-      "deploy_requirements": [
-      ],
+      "deploy_requirements": [],
       "abilities": [
         {
           "name": "Restore",
@@ -496,7 +519,11 @@
         },
         {
           "name": "TENACIOUS HOST",
-          "cost": { "wind": 0, "gear": 0, "meat": 0 },
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
           "passive": true,
           "must_use": false,
           "text": "When Meatjacker is destroyed, return it to its owner's hand."
@@ -840,45 +867,208 @@
       "portrait_art": "voidling.png"
     },
     {
-      "name": "Meat Warrior",
-      "rank": "BG",
-      "duplicates": 4,
-      "faction": "PCU",
+      "name": "Void Operative",
+      "rank": "Elite",
       "deploy_cost": {
-        "wind": 3,
-        "gear": 0,
-        "meat": 0
+        "wind": 7,
+        "meat": 0,
+        "gear": 0
       },
-      "biological": true,
+      "abilities": [
+        {
+          "name": "Stress Dagger",
+          "description": "Inflicts immediate stress damage on a selected target, with additional overload if target has been locked by another ability this turn.",
+          "cost": {
+            "wind": 0,
+            "meat": 0,
+            "gear": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": ""
+        },
+        {
+          "name": "Shadow Slip",
+          "description": "Teleports to any dark nebula on the board. Gains temporary invisibility preventing direct attacks for one turn.",
+          "cost": {
+            "wind": 0,
+            "meat": 0,
+            "gear": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": ""
+        },
+        {
+          "name": "Void Implosion",
+          "description": "Sacrifices a portion of own health to create a localized micro blackhole that pulls in and damages all nearby enemies.",
+          "cost": {
+            "wind": 0,
+            "meat": 0,
+            "gear": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": ""
+        }
+      ],
+      "attributes": {
+        "health": 60,
+        "attack_damage": 20,
+        "movement_speed": "Fast",
+        "attack_range": "Medium"
+      },
+      "special_flags": [
+        "biological",
+        "resist"
+      ],
+      "flavor_text": "Forged in the heart of the darkest voidspace fringe, a mere whisper of death incarnate.",
+      "portrait_art": "void_assassin_elite.jpg",
+      "duplicates": 1,
+      "faction": "pcu",
+      "biological": false,
       "mechanical": false,
       "resist": false,
       "no_unwind": false,
-      "deploy_requirements": [],
+      "deploy_requirements": []
+    },
+    {
+      "name": "Dark Knight",
+      "rank": "Elite",
+      "deploy_cost": {
+        "wind": 5,
+        "meat": 0,
+        "gear": 0
+      },
       "abilities": [
         {
-          "name": "BLOODLUST",
-          "cost": {
-            "wind": 1,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "If target takes wind as damage this turn, they do not unwind during their next unwind phase."
-        },
-        {
-          "name": "CANNIBALIZE",
+          "name": "Void Strike",
+          "description": "Instantly targets an enemy, dealing heavy damage and applying a 'Fracture' debuff that reduces enemy defense by 10% for three turns.",
           "cost": {
             "wind": 0,
-            "gear": 0,
-            "meat": 1
+            "meat": 0,
+            "gear": 0
           },
           "passive": false,
           "must_use": false,
-          "text": "Add 1 wind to target Goon."
+          "text": ""
+        },
+        {
+          "name": "Eclipse Shield",
+          "description": "Absorbs the next two attacks directed at Dark Knight, converting 25% of the damage into health restoration.",
+          "cost": {
+            "wind": 0,
+            "meat": 0,
+            "gear": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": ""
+        },
+        {
+          "name": "Null Pull",
+          "description": "Forces all enemies to focus their next attack on Dark Knight, increasing his damage resistance by 20% for one turn.",
+          "cost": {
+            "wind": 0,
+            "meat": 0,
+            "gear": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": ""
         }
       ],
-      "portrait_art": "voidling.png"
+      "hp": 120,
+      "attack": 40,
+      "defense": 30,
+      "speed": 20,
+      "type": "mechanical",
+      "subtypes": [
+        "resist",
+        "no_unwind"
+      ],
+      "setting": "Voidspace Fringe",
+      "portrait_art": "dark_knight_pcu.jpg",
+      "duplicates": 1,
+      "faction": "pcu",
+      "biological": false,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": []
+    },
+    {
+      "name": "Abyssal Paladin",
+      "rank": "Elite",
+      "deploy_cost": {
+        "wind": 5,
+        "meat": 0,
+        "gear": 0
+      },
+      "faction": "PCU",
+      "abilities": [
+        {
+          "name": "Void Slash",
+          "description": "Deals massive damage to a single target and adds a shadow aura that reduces enemy defense for 2 turns.",
+          "cost": {
+            "wind": 0,
+            "meat": 0,
+            "gear": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": ""
+        },
+        {
+          "name": "Eclipse Guard",
+          "description": "Increases resistance to all damage for 1 turn and automatically retaliates against physical attacks.",
+          "cost": {
+            "wind": 0,
+            "meat": 0,
+            "gear": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": ""
+        }
+      ],
+      "stats": {
+        "health": 120,
+        "attack": 35,
+        "defense": 30,
+        "speed": 25
+      },
+      "portrait_art": "dark_knight_pcu.jpg",
+      "flavor_text": "Shrouded in the void's embrace, this knight wields fractured physics as a weapon, turning the battle's tide with each swing of his rune-etched blade.",
+      "setting": "Voidspace Fringe",
+      "visual_description": {
+        "primary_shape": "Heavy riveted armor with a large void-symbol engraved shield.",
+        "details": {
+          "organic": [
+            "bone spikes on the shoulders",
+            "slime drips from the joints"
+          ],
+          "mechanical": [
+            "glowing canisters on the back",
+            "visors on the helm"
+          ],
+          "occult": [
+            "runes glowing with void purple across the armor",
+            "shadow aura enveloping the figure"
+          ]
+        },
+        "color_scheme": [
+          "void purple",
+          "industrial orange",
+          "blood red"
+        ]
+      },
+      "duplicates": 1,
+      "biological": false,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": []
     }
   ]
 }

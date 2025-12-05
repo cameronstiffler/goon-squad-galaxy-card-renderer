@@ -1,0 +1,184 @@
+{
+    "template": "Subject: {type}{goon_name} with {weapon} in a {pose} pose. Follow art_style.json exactly for style; do not add new style notes.\nAnatomy: {anatomy}\nSkin: {skin}\nFacial Features:\n1. Eyes: {eyes}\n2. Mouth: {mouth}\n3. Teeth: {teeth}\nOutfit Instructions:\n1. Attire: he is wearing {armor}\n2. headgear: {head_wear}\n3. Accessories: {accessories}\n4. Boots: {boots}\nSetting: {setting} at {time_of_day}. Use the entire image for the setting. Perspective: {perspective angle}",
+    "options": {
+      "type":[
+        "primitive tribal human"
+      ],
+      "anatomy": [
+        "stocky muscular and hunched posture. Long arms and short legs. Large jaw and mouth."
+      ],
+      "setting": [
+        "among the dark foliage of a dense jungle",
+        "cragy mountain ledge with steep cliffs at night",
+        "cave interior lit with fire",
+        "isolated overgrow stone ruins",
+        "desert with rocks and shrubs",
+        "among huge boulders ",
+        "smokey and dark volcanic landscape",
+        "forest clearing with tall trees and little sunlight",
+        "rocky hillside in front of a cave entrance"
+      ],
+      "time_of_day": [
+        "dawn",
+        "daytime",
+        "dusk",
+        "nighttime"
+      ],
+      "perspective angle": [
+        "low angle perspective looking up at the character",
+        "high angle perspective looking down at the character",
+        "eye level perspective",
+        "three quarter view perspective",
+        "side view perspective",
+        "front view perspective",
+        "seen from a low angle looking up at the character",
+        "seen from a high angle looking down at the character",
+        "seen from eye level",
+        "seen from a three quarter view",
+        "seen from the side",
+        "seen from the front"
+      ],
+      "armor": [
+        "turtle shells and spike armor",
+        "giant insect plating and leather armor",
+        "heavy leather scales armor",
+        "hides and turtle shell armor",
+        "fur and bone armor",
+        "bleached bones and skulls armor",
+        "large scales and fur armor",
+        "thick furs and hides armor",
+        "armor and leather armor",
+        "reptile scales and bones armor",
+        "pants made of hide",
+        "belt of leather only",
+        "loincloth of animal hide",
+        "simple leather straps and fur",
+        "bone and tusk armor",
+        "spiked shell pauldrons",
+        "skull pauldrons"
+      ],
+      "weapon": [
+        "oversized wooden club with stone spikes",
+        "bone spear with stone tip",
+        "oversized stone axe with wooden handle",
+        "wooden spear with fire hardened tip",
+        "oversized wooden mallet with stone head",
+        "oversized wooden club with large stone head",
+        "oversized wooden staff with sharp stone tip",
+        "oversized bone club",
+        "small boulder",
+        "oversized meat cleaver",  
+        "none"
+      ],
+      "skin":[
+        "tanned skin",
+        "light brown skin",
+        "olive skin",
+        "dark skin",
+        "pale skin",
+        "white skin"
+      ],
+      "accessories": [
+        "bone necklace with large teeth",
+        "large bone earrings",
+        "bone bracelet",
+        "bone arm band",
+        "feather necklace",
+        "feather earrings",
+        "feather bracelet",
+        "scale arm bands",
+        "feather ring",
+        "teeth necklace",
+        "teeth earrings",
+        "teeth bracelet",
+        "leather arm bands",
+        "skull on belt",
+        "bone necklace with small skulls",
+        "feather necklace with small skulls",
+        "teeth necklace with small skulls",
+        "skull earrings",
+        "skull bracelet",
+        "skull arm band",
+        "hide belt pouch",
+        "hide wrist wraps",
+        "leather wrist wraps",
+        "hide bandolier",
+        "hide shoulder pad",
+        "war paint on face",
+        "tribal markings",
+        "tattoos",
+        "none"
+      ],
+      "head_wear": [
+        "helmet made from animal skull and hides",
+        "spiked helmet",
+        "horned helmet",
+        "horned animal skull helmet",
+        "single horn helmet",
+        "leather cowel",
+        "turtle shell helmet",
+        "leather hood",
+        "head band",
+        "fur hat",
+        "none"
+      ],
+      "eyes": [
+        "one eye is missing",
+        "barely open",
+        "wide open",
+        "looking to the side",
+        "not visible beneath brow",
+        "small",
+        "crossed"
+      ],
+      "mouth": [
+        "gaping open looking dumb",
+        "slightly open",
+        "closed with a blank expression",
+        "angry showing teeth",
+        "yelling with mouth wide open",
+        "hooting",
+        "frowning"
+      ],
+      "teeth": [
+        "large and crooked",
+        "large and missing several teeth",
+        "sharp and jagged",
+        "regular human teeth 4 times larger than normal",
+        "with tusks"
+      ],
+      "pose": [
+        "running into battle screaming with weapon raised",
+        "slouched idle observation stance with weapon dragging behind on ground",
+        "battle ready stance with weapon held in both hands",
+        "bending down altering something in the setting with weapon nearby",
+        "gesturing and talking with weapon nearby",
+        "attacking and swinging weapon with fierce expression",
+        "looks confused with poor posture and weapon held loosely"
+      ],
+      "boots": [
+        "primitive animal hide boots",
+        "primitive leather boots",
+        "full animal hide boots with animal face still attached at the toes",
+        "primitive bone reinforced boots",
+        "primitive thick hide boots"
+      ]
+    },
+    "option_trait_quantities": {
+      "type": 1,
+      "anatomy": 1,
+      "setting": 1,
+      "time_of_day": 1,
+      "perspective_angle": 1,
+      "armor": 1,
+      "weapon": 1,
+      "skin": 1,
+      "accessories": 2,
+      "head_wear": 1,
+      "boots": 1,
+      "eyes": 1,
+      "mouth": 1,
+      "teeth": 1,
+      "pose": 1
+    }
+}

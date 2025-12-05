@@ -1,7 +1,9 @@
 import json
 import os
 import sys
+import math
 import textwrap
+import re
 from PIL import Image, ImageDraw, ImageFont
 import openai
 import requests
@@ -135,22 +137,15 @@ def get_assets(faction):
 def get_font(candidates, size, default_font=ImageFont.load_default()):
     """Tries to load a font from a list of candidates."""
     for font_name in candidates:
-        font_path = None
-        # First, check for a local file in the 'fonts' directory
-        local_path = os.path.join("fonts", font_name)
-        if os.path.exists(local_path):
-            font_path = local_path
-        else:
-            # If not local, try to find the font on the system
-            try:
-                font_path = ImageFont.find_font(font_name)
-            except Exception:
-                font_path = font_name # Fallback to trying the name directly
-        
+        # First, try to load from a local 'fonts' directory
         try:
-            return ImageFont.truetype(font_path, size)
+            return ImageFont.truetype(os.path.join("fonts", font_name), size)
         except IOError:
-            continue # Try the next candidate
+            # If that fails, try loading from the system
+            try:
+                return ImageFont.truetype(font_name, size)
+            except IOError:
+                continue
     return default_font
 
 def create_placeholder_art(size=(650, 600), text="ART MISSING"):
@@ -161,23 +156,61 @@ def create_placeholder_art(size=(650, 600), text="ART MISSING"):
     draw.text((size[0]/2, size[1]/2), text, font=font, anchor="mm", fill=(200, 200, 200))
     return img
 
-def generate_art_prompt(goon_name, prompt_data):
-    """Constructs a randomized, detailed prompt for DALL-E from a template."""
+def load_art_style_prompt():
+    """Loads and formats the art style description from art_style.json."""
+    try:
+        with open('art_style.json', 'r') as f:
+            style_data = json.load(f)
+        return style_data.get("art_style_description", "A character illustration.")
+    except (FileNotFoundError, json.JSONDecodeError) as e:
+        print(f"   [!] WARNING: Could not load art_style.json. Using default prompt. Error: {e}")
+        return "90s video game concept art, semi-realistic sticker style, bold comic-book inking. The image must be in full color and feature only a single character."
+
+def load_art_prompt_data(faction):
+    """Loads the art prompt template and options from a faction-specific guide."""
+    guide_path = f"goon_design_guide/{faction}/goon_traits.json"
+    try:
+        with open(guide_path, 'r') as f:
+            return json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError) as e:
+        print(f"   [!] WARNING: Could not load or parse art prompt guide at '{guide_path}'. Art generation may be generic. Error: {e}")
+        return None
+
+def generate_art_prompt(goon_name, prompt_data, art_style_prompt):
+    """Constructs a randomized, detailed prompt for DALL-E using a base style and character template."""
     if not prompt_data:
         print("     [!] WARNING: ai_art_prompt data not found in JSON. Skipping art generation.")
         return None
 
     template = prompt_data.get("template", "")
     options = prompt_data.get("options", {})
+    quantities = prompt_data.get("option_trait_quantities", {})
 
-    prompt = template.format(
-        goon_name=goon_name,
-        armor=random.choice(options.get("armor", ["scrap"])),
-        head=random.choice(options.get("head", ["a helmet"])),
-        feet=random.choice(options.get("feet", ["boots"])),
-        background=random.choice(options.get("background", ["a plain environment"]))
-    )
-    return prompt
+    if isinstance(template, list):
+        template = "\n".join(template)
+    elif not isinstance(template, str):
+        template = str(template)
+
+    format_args = {'goon_name': goon_name}
+
+    placeholder_fields = {match for match in re.findall(r"{([^}]+)}", template)}
+    placeholder_fields.discard('goon_name')
+
+    for field in placeholder_fields:
+        if field in options and options[field]:
+            # Use the quantity specified in option_trait_quantities, default to 1
+            quantity = quantities.get(field, 1)
+            # Ensure we don't request more options than are available
+            quantity = min(quantity, len(options[field]))
+            selected_options = random.sample(options[field], quantity)
+            format_args[field] = ", ".join(selected_options)
+        else:
+            format_args[field] = f"default_{field}"
+
+    character_description = template.format(**format_args)
+
+    priority_note = "Use the above art style exactly. Do not introduce any new style cues; only apply the subject details below."
+    return f"{art_style_prompt}\n\n{priority_note}\n\nSubject: {character_description}"
 
 def generate_and_save_art(prompt, save_path):
     """Generates art using DALL-E and saves it to the specified path."""
@@ -208,7 +241,247 @@ def generate_and_save_art(prompt, save_path):
         print(f"     [!] AI art generation failed: {e}")
         return False
 
-def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=False):
+def create_grid_image(card_files, output_folder):
+    """Arranges all generated cards into a single grid image."""
+    if not card_files:
+        print("\n--- No cards to generate grid. ---")
+        return
+
+    print("\n--- STEP 3: GENERATING GRID IMAGE ---")
+
+    # Grid layout settings
+    COLS = 5
+    TARGET_GRID_WIDTH = 4500
+    
+    # Calculate dimensions
+    card_width = TARGET_GRID_WIDTH // COLS
+    # Maintain aspect ratio (original is 750x1050)
+    card_height = int(card_width * (1050 / 750))
+    
+    num_cards = len(card_files)
+    rows = math.ceil(num_cards / COLS)
+    
+    grid_width = COLS * card_width
+    grid_height = rows * card_height
+
+    # Create the grid canvas
+    grid_image = Image.new("RGB", (grid_width, grid_height), "black")
+
+    # Paste cards into the grid
+    for i, card_file in enumerate(card_files):
+        row = i // COLS
+        col = i % COLS
+        x_pos = col * card_width
+        y_pos = row * card_height
+        
+        card_img = Image.open(card_file).resize((card_width, card_height), Image.Resampling.LANCZOS)
+        grid_image.paste(card_img, (x_pos, y_pos))
+
+    grid_path = os.path.join(output_folder, "grid.jpg")
+    grid_image.save(grid_path, "JPEG", quality=95)
+    print(f"   [+] Grid image saved to: {grid_path}")
+    print(f"   [+] Dimensions: {grid_width}x{grid_height} pixels")
+    print(f"   [+] Layout: {rows} rows, {COLS} columns")
+    print(f"   [+] Total cards included: {num_cards}")
+
+def normalize_goon_data(goon, faction, fix=False):
+    """Ensures a goon's data is in a consistent, usable format."""
+    if fix:
+        goon.setdefault('name', 'Unnamed Goon')
+        goon.setdefault('rank', 'BG')
+        goon.setdefault('duplicates', 1)
+        goon.setdefault('faction', faction)
+        goon.setdefault('biological', False)
+        goon.setdefault('mechanical', False)
+        goon.setdefault('resist', False)
+        goon.setdefault('no_unwind', False)
+        goon.setdefault('deploy_requirements', [])
+        goon.setdefault('abilities', [])
+        goon.setdefault('portrait_art', "")
+        
+        for ability in goon.get('abilities', []):
+            ability.setdefault('name', 'Unnamed Ability')
+            ability.setdefault('cost', {'wind': 0, 'meat': 0, 'gear': 0})
+            ability.setdefault('passive', False)
+            ability.setdefault('must_use', False)
+            ability.setdefault('text', "")
+
+    def parse_cost_value(val):
+        """Coerce cost values into ints when possible while preserving 'X'."""
+        if isinstance(val, str):
+            stripped = val.strip()
+            if stripped.upper() == "X":
+                return "X"
+            match = re.search(r"-?\\d+", stripped)
+            return int(match.group(0)) if match else 0
+        if isinstance(val, (int, float)):
+            return int(val)
+        return 0
+
+    # Normalize ability cost structures so rendering logic can rely on dict access
+    for ability in goon.get('abilities', []):
+        cost = ability.get('cost', {})
+        if isinstance(cost, int) or isinstance(cost, str):
+            cost = {'wind': cost, 'meat': 0, 'gear': 0}
+        elif not isinstance(cost, dict):
+            cost = {'wind': 0, 'meat': 0, 'gear': 0}
+
+        cost.setdefault('wind', 0)
+        cost.setdefault('meat', 0)
+        cost.setdefault('gear', 0)
+        cost['wind'] = parse_cost_value(cost.get('wind', 0))
+        cost['meat'] = parse_cost_value(cost.get('meat', 0))
+        cost['gear'] = parse_cost_value(cost.get('gear', 0))
+        ability['cost'] = cost
+
+
+    # --- Normalize deploy_cost ---
+    deploy_cost = goon.get('deploy_cost', {})
+    if isinstance(deploy_cost, int) or isinstance(deploy_cost, str):
+        # If it's an int or string, assume it's a wind cost for legacy reasons.
+        deploy_cost = {'wind': deploy_cost, 'meat': 0, 'gear': 0}
+    
+    # Ensure all cost types are present.
+    deploy_cost.setdefault('wind', 0)
+    deploy_cost.setdefault('meat', 0)
+    deploy_cost.setdefault('gear', 0)
+    deploy_cost['wind'] = parse_cost_value(deploy_cost.get('wind', 0))
+    deploy_cost['meat'] = parse_cost_value(deploy_cost.get('meat', 0))
+    deploy_cost['gear'] = parse_cost_value(deploy_cost.get('gear', 0))
+    
+    goon['deploy_cost'] = deploy_cost
+    
+    return goon
+
+
+def validate_goon_schema(goon):
+    """Validate that a goon dictionary has the required shape."""
+    required_card_keys = [
+        "name",
+        "rank",
+        "duplicates",
+        "faction",
+        "deploy_cost",
+        "biological",
+        "mechanical",
+        "resist",
+        "no_unwind",
+        "deploy_requirements",
+        "abilities",
+        "portrait_art",
+    ]
+    required_ability_keys = ["name", "cost", "passive", "must_use", "text"]
+
+    errors = []
+    for key in required_card_keys:
+        if key not in goon:
+            errors.append(f"missing card field '{key}'")
+
+    # -- Validate deploy_cost structure --
+    deploy_cost = goon.get('deploy_cost', {})
+    if not isinstance(deploy_cost, dict):
+        errors.append("'deploy_cost' must be a dictionary.")
+    else:
+        for cost_type in ['wind', 'meat', 'gear']:
+            if cost_type not in deploy_cost:
+                errors.append(f"'deploy_cost' is missing '{cost_type}' key.")
+
+    abilities = goon.get("abilities", [])
+    if not isinstance(abilities, list):
+        errors.append("abilities should be a list")
+        return errors
+
+    for ability in abilities:
+        for key in required_ability_keys:
+            if key not in ability:
+                errors.append(f"ability '{ability.get('name', '?')}' missing field '{key}'")
+
+    return errors
+
+def generate_new_goon(faction, deck_json_path, goon_name=None):
+    """Uses AI to generate a new goon and add it to the deck JSON file."""
+    print(f"\n--- STEP 1: GENERATING NEW GOON FOR {faction.upper()} FACTION ---")
+    
+    # 1. Load the design guide
+    guide_path = f"goon_design_guide/{faction}/creation_guide.json"
+    try:
+        with open(guide_path, 'r') as f:
+            design_guide = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError) as e:
+        print(f"[!] ERROR: Could not load or parse the design guide at '{guide_path}'. Error: {e}")
+        sys.exit()
+
+    # 2. Construct the prompt for the AI
+    prompt = f"""
+You are a creative game designer for a card game called 'Goon Squad Galaxy'. Your task is to invent a new goon for the '{faction.upper()}' faction based on its official design guide.
+"""
+    if goon_name:
+        prompt += f"\nThe goon's name must be '{goon_name}'."
+
+    prompt += f"""
+**Design Guide:**
+```json
+{json.dumps(design_guide, indent=2)}
+```
+
+**Instructions:**
+1.  Internalize the design guide's high concept, tone, and visual style.
+2.  Create a single, unique goon that fits perfectly within this faction.
+3.  The output MUST be a single, valid JSON object representing the new goon. Do not include any explanatory text or markdown formatting around the JSON.
+4.  The JSON object must conform to the structure of existing goons in the deck, including fields like "name", "rank", "deploy_cost", "abilities", etc.
+5.  Give it a unique `portrait_art` filename ending in `.jpg`.
+"""
+
+    # 3. Call the AI to generate the goon JSON
+    print("   [+] Prompting AI to generate new goon...")
+    try:
+        client = openai.OpenAI()
+        response = client.chat.completions.create(
+            model="gpt-4-turbo",
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.8,
+        )
+        goon_json_string = response.choices[0].message.content
+
+        # --- NEW: Clean the AI response to extract only the JSON object ---
+        # Find the start and end of the JSON block
+        start_index = goon_json_string.find('{')
+        end_index = goon_json_string.rfind('}')
+        if start_index != -1 and end_index != -1:
+            clean_json_string = goon_json_string[start_index:end_index+1]
+            new_goon = json.loads(clean_json_string)
+        else: raise ValueError("No valid JSON object found in the AI response.")
+
+        print(f"   [+] AI generated goon: {new_goon.get('name', 'Unnamed Goon')}")
+
+        new_goon = normalize_goon_data(new_goon, faction, fix=True)
+
+        # Validate schema before writing
+        schema_errors = validate_goon_schema(new_goon)
+        if schema_errors:
+            print("[!] ERROR: Generated goon failed schema checks:")
+            for err in schema_errors:
+                print(f"      - {err}")
+            sys.exit()
+    except Exception as e:
+        print(f"[!] ERROR: Failed to generate or parse AI response. Error: {e}")
+        sys.exit()
+
+    # 4. Add the new goon to the deck file
+    try:
+        with open(deck_json_path, 'r+') as f:
+            deck_data = json.load(f)
+            deck_data['goons'].append(new_goon)
+            f.seek(0) # Rewind to the beginning of the file
+            json.dump(deck_data, f, indent=2)
+            f.truncate() # Remove any trailing data if the new file is shorter
+        print(f"   [+] Successfully added '{new_goon.get('name')}' to {deck_json_path}")
+        print("\n--- SUCCESS ---")
+    except Exception as e:
+        print(f"[!] ERROR: Failed to update the deck file '{deck_json_path}'. Error: {e}")
+        sys.exit()
+
+def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=False, create_grid=False, fix=False):
     print("\n--- STEP 2: GENERATING CARDS ---")
     try:
         with open(json_file, 'r') as f:
@@ -221,7 +494,8 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
         sys.exit()
         
     assets = get_assets(faction)
-    ai_prompt_data = data.get("ai_art_prompt")
+    ai_prompt_data = load_art_prompt_data(faction)
+    art_style_prompt = load_art_style_prompt() # Load the master art style once
     if not os.path.exists(output_dir): os.makedirs(output_dir)
 
     # --- FONTS (Loaded from JSON) ---
@@ -248,6 +522,9 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
     letter_spacing_name = data.get("card_name_letter_spacing", 0)
     card_name_y_offset = data.get("card_name_y_offset", 0)
     icon_stack_x = data.get("icon_stack_x_offset", COST_POS_X)
+    card_name_stroke_width = data.get("card_name_stroke_width", 0)
+    card_name_stroke_color = data.get("card_name_stroke_color", "black")
+    icon_stack_y_offset = data.get("icon_stack_y_offset", 0)
     
     def draw_wrapped_text(draw_context, text, start_pos, font, fill, indent=0, width=TEXT_WIDTH_CHARS):
         """Helper to draw wrapped text with an optional icon and return the new y-position."""
@@ -260,8 +537,18 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
             y += line_height
         return y + 20
 
+    generated_card_files = []
     for card in data['goons']:
-        name = card['name']
+        card = normalize_goon_data(card, faction, fix=fix)
+        name = card.get('name', 'Unnamed Goon') # Use .get for safety
+
+        # Validate the schema for each card before processing
+        schema_errors = validate_goon_schema(card)
+        if schema_errors:
+            print(f"   [!] ERROR: Card '{name}' failed schema validation. Skipping card.")
+            for err in schema_errors:
+                print(f"     - {err}")
+            continue
 
         print(f"   [+] Processing: {name}")
 
@@ -283,7 +570,7 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
             
             # If art still doesn't exist and auto-gen is on, create it
             if not os.path.exists(art_file) and auto_generate_art:
-                art_prompt = generate_art_prompt(name, ai_prompt_data)
+                art_prompt = generate_art_prompt(name, ai_prompt_data, art_style_prompt)
                 if art_prompt:
                     if not generate_and_save_art(art_prompt, art_file):
                         art_file = None # Fallback to placeholder if generation fails
@@ -334,10 +621,17 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
         name_bbox = draw.textbbox((0, 0), name, font=font_header)
         name_width = name_bbox[2] - name_bbox[0]
         start_x = NAME_END_X - name_width
-        draw.text((start_x, NAME_Y + card_name_y_offset), name, font=font_header, fill=color_name, spacing=letter_spacing_name)
+        draw.text(
+            (start_x, NAME_Y + card_name_y_offset), 
+            name, 
+            font=font_header, 
+            fill=color_name, 
+            spacing=letter_spacing_name,
+            stroke_width=card_name_stroke_width,
+            stroke_fill=card_name_stroke_color)
 
         # 4. Left Side Stack
-        current_y = COST_START_Y
+        current_y = COST_START_Y + icon_stack_y_offset
         
         def draw_main_icon(icon_key, value, y_pos, text_y_offset=0):
             icon = assets[icon_key]
@@ -345,16 +639,18 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
             # Use anchor="mm" for robust vertical and horizontal centering.
             draw.text((icon_stack_x + 42.5, y_pos + 42.5 + text_y_offset), str(value), font=font_cost, fill=color_deploy_cost, anchor="mm")
 
-        if card['deploy_cost'].get('wind', 0) > 0:
-            draw_main_icon('cost_wind', card['deploy_cost']['wind'], current_y, text_y_offset=-5)
+        deploy_cost = card.get('deploy_cost', {})
+
+        if deploy_cost.get('wind', 0) > 0:
+            draw_main_icon('cost_wind', deploy_cost['wind'], current_y, text_y_offset=-5)
             current_y += ICON_SPACING
 
-        if card['deploy_cost'].get('gear', 0) > 0:
-            draw_main_icon('cost_gear', card['deploy_cost']['gear'], current_y, text_y_offset=-5)
+        if deploy_cost.get('gear', 0) > 0:
+            draw_main_icon('cost_gear', deploy_cost['gear'], current_y, text_y_offset=-5)
             current_y += ICON_SPACING
 
-        if card['deploy_cost'].get('meat', 0) > 0:
-            draw_main_icon('cost_meat', card['deploy_cost']['meat'], current_y, text_y_offset=-5)
+        if deploy_cost.get('meat', 0) > 0:
+            draw_main_icon('cost_meat', deploy_cost['meat'], current_y, text_y_offset=-5)
             current_y += ICON_SPACING
 
         # --- 5. RANK ICON ---
@@ -478,8 +774,19 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
 
         filename = f"{output_dir}/{name.replace(' ', '_')}.png"
         canvas.save(filename)
+        generated_card_files.append(filename)
+    
+    if fix:
+        # Write the fixed data back to the JSON file
+        with open(json_file, 'w') as f:
+            json.dump(data, f, indent=2)
+        print(f"\n--- FIXED {json_file} ---")
+
 
     print(f"\n--- SUCCESS ---")
+
+    if create_grid:
+        create_grid_image(generated_card_files, output_dir)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate Goon Squad Galaxy card images from JSON data.")
@@ -488,6 +795,9 @@ if __name__ == "__main__":
     group.add_argument('-meat', action='store_true', help="Process the MEAT deck.")
     group.add_argument('-narc', action='store_true', help="Process the NARC deck.")
     parser.add_argument('-auto', action='store_true', help="Automatically generate missing portrait art using DALL-E.")
+    parser.add_argument('-grid', action='store_true', help="Generate a single grid image of all cards in the deck.")
+    parser.add_argument('-goon', nargs='?', const='__generate__', default=None, help="Generate a new goon definition. Optionally provide a name.")
+    parser.add_argument('-fix', action='store_true', help="Automatically fix missing fields in the JSON data.")
     args = parser.parse_args()
 
     if args.pcu:
@@ -506,10 +816,16 @@ if __name__ == "__main__":
         faction_name = "meat"
         output_directory = os.path.join(OUTPUT_DIR, "meat")
 
-    generate_cards(
-        json_file=json_to_process, 
-        art_dir=art_directory, 
-        output_dir=output_directory, 
-        faction=faction_name,
-        auto_generate_art=args.auto
-    )
+    if args.goon:
+        goon_name = args.goon if args.goon != '__generate__' else None
+        generate_new_goon(faction=faction_name, deck_json_path=json_to_process, goon_name=goon_name)
+    else:
+        generate_cards(
+            json_file=json_to_process, 
+            art_dir=art_directory, 
+            output_dir=output_directory, 
+            faction=faction_name,
+            auto_generate_art=args.auto,
+            create_grid=args.grid,
+            fix=args.fix
+        )

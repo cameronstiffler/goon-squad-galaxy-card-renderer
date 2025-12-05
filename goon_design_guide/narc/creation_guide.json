@@ -1,0 +1,197 @@
+{
+    "id": "narc_design_guide",
+    "faction_name": "NARC",
+    "high_concept": "Militarized compliance syndicate of drones, pylons, bureaucrats, and enforcers that weaponize law, logistics, and overwhelming fire control. Space cops gone corporate, obsessed with order, risk mitigation, and making examples.",
+    "setting_types": {
+        "description": "Environments, jurisdictions, and controlled zones where NARC forces operate or project power. Use these as backdrops for art, missions, and new unit concepts.",
+        "categories": [
+            {
+                "name": "Orbital Enforcement Grid",
+                "keywords": [
+                    "orbital_platforms",
+                    "weapons_satellites",
+                    "patrol_arrays",
+                    "drop_pods"
+                ],
+                "description": "A lattice of weapons platforms, surveillance nodes, and orbital strike relays. Home of assets like Narcstar, long-range probes, and targeting infrastructure."
+            },
+            {
+                "name": "Corporate Arcology Precincts",
+                "keywords": [
+                    "mega_towers",
+                    "security_lobbies",
+                    "checkpoint_corridors",
+                    "high_rise_barracks"
+                ],
+                "description": "Stacked corporate cities with internal laws, armored hallways, checkpoint choke points, and dedicated NARC precincts for internal ‘risk management’."
+            },
+            {
+                "name": "Detention & Processing Facilities",
+                "keywords": [
+                    "detainment_blocks",
+                    "interrogation_chambers",
+                    "compliance_halls",
+                    "processing_lines"
+                ],
+                "description": "Labyrinthine prisons and intake centers where Detainment Probes, Killjoys, and MediFux units work hand-in-hand to break, heal, and reclassify detainees."
+            },
+            {
+                "name": "Border Lockdown Zones",
+                "keywords": [
+                    "security_fences",
+                    "no_man’s_land",
+                    "checkpoints",
+                    "watchtowers"
+                ],
+                "description": "Heavily patrolled perimeters bristling with Sentry Nodes, Shield Pylons, and mobile artillery, built to delay, isolate, and neutralize incoming threats."
+            },
+            {
+                "name": "Compliance & Taxation Hubs",
+                "keywords": [
+                    "audit_centers",
+                    "paperwork_vaults",
+                    "levy_terminals",
+                    "review_cubicles"
+                ],
+                "description": "Administrative complexes where Compliance Auditons, Tax Mistrexes, and legal automatons convert bureaucracy into a form of battlefield control."
+            },
+            {
+                "name": "Urban Suppression Sectors",
+                "keywords": [
+                    "riot_zones",
+                    "barricaded_streets",
+                    "crowd_control_corridors",
+                    "deployable_barriers"
+                ],
+                "description": "Densely built city blocks repeatedly ‘pacified’ with drones, K-9.0 units, Hover Shields, and Nob Lobbers coordinated through Target Markers."
+            },
+            {
+                "name": "Logistics & Staging Yards",
+                "keywords": [
+                    "armored_convoys",
+                    "munitions_yards",
+                    "launch_depots",
+                    "hangars"
+                ],
+                "description": "Vehicle bays, ammo dumps, and launch platforms where Marine Marauders, Sausage Droids, and Impact Simulants cycle through drills and live exercises."
+            }
+        ]
+    },
+    "tone": {
+        "keywords": [
+            "authoritarian_satire",
+            "militarized_policing",
+            "corporate_security",
+            "90s_arcade_paramilitary",
+            "bureaucratic_dystopia"
+        ],
+        "description": "NARC units should feel like over-the-top space cops and corporate enforcers: aggressive, smug, and procedurally cruel. There’s dark humor in how seriously they take minor infractions, but they remain genuinely dangerous and over-armed."
+    },
+    "visual_style": {
+        "silhouette": {
+            "description": "Hard-edged, utilitarian shapes that read as security hardware, armored troopers, or defensive infrastructure at a glance.",
+            "rules": [
+                "Favor geometric, angular silhouettes: rectangles, towers, turrets, shields, and drones.",
+                "Make weaponry and protective elements (shields, armor plates, pylons) visually dominant.",
+                "Keep silhouettes clean and modular, as if mass-produced and standardized across jurisdictions."
+            ]
+        },
+        "motifs": {
+            "organic": [
+                "augmented_marines",
+                "cranial_implants",
+                "scarred_veterans",
+                "surgical_scars",
+                "tether_ports"
+            ],
+            "mechanical": [
+                "riot_shields",
+                "turrets_and_barrels",
+                "sensor_arrays",
+                "hover_emitters",
+                "locking_braces",
+                "restraint_fields",
+                "targeting_reticles"
+            ],
+            "bureaucratic": [
+                "badge_icons",
+                "compliance_seals",
+                "writs_and_forms_as_holograms",
+                "stamp_like_glyphs",
+                "warning_labels"
+            ],
+            "color_palette": {
+                "saturation": "mid_to_low",
+                "accent_colors": [
+                    "siren_red",
+                    "siren_blue",
+                    "hazard_yellow",
+                    "compliance_gold",
+                    "signal_orange"
+                ],
+                "rules": [
+                    "Base colors should lean toward gunmetal, navy, gray, and off-white.",
+                    "Use bright accents sparingly for lights, visors, warning stripes, and insignia.",
+                    "Visual language should suggest ‘official’ hardware: stripes, chevrons, serial markings."
+                ]
+            }
+        },
+        "categories": {
+            "enforcers": "Armored bipedal units like Bruut Enforcer or Marine Marauder, with heavy weapons and visible tactical gear.",
+            "drones": "Floating or skittering machines such as K-9.0, Detainment Probes, and Target Markers, designed for surveillance, tagging, or disabling.",
+            "infrastructure": "Static or semi-mobile defenses like Shield Pylons, Hover Shields, Sentry Nodes: hard shapes, emitters, and field projectors.",
+            "command": "Named leaders or specialists such as Lokar Simmons or Narcstar: cleaner silhouettes, more ornate badges, and distinct visual authority.",
+            "support_medical": "Clinical but sinister units like MediFux-1NDS that ‘heal’ and ‘treat’ in ways that feel more like maintenance than compassion."
+        }
+    },
+    "naming_conventions": {
+        "patterns": [
+            "enforcer_plus_attitude: 'Bruut Enforcer', 'Killjoy', 'Buzzkill'",
+            "legal_bureaucratic_pun: 'Compliance Auditon', 'Tax Mistrex'",
+            "hardware_with_personality: 'Detainment Probe', 'Shield Pylon', 'Sentry Node', 'Target Marker'",
+            "mascot_unit_or_dog_pun: 'K-9.0'",
+            "grandiose_asset: 'Narcstar', 'Impact Simulant', 'Marine Marauder'"
+        ],
+        "guidelines": [
+            "Names should evoke policing, compliance, taxation, or military jargon twisted into something slightly absurd.",
+            "Prefer short, punchy constructions (1–3 words) that sound like codenames or product SKUs.",
+            "It’s fine to be darkly humorous, but units should still feel like they could ruin your day in a firefight."
+        ],
+        "disallowed": [
+            "overtly_occult_or_demonic_names_better_suited_for_PCU",
+            "generic_fantasy_titles_like_'Knight'_or_'Wizard'",
+            "overt_real_world_police_force_names_or_current_political_references",
+            "overly_cute_or_childish_labels_that_break_the_authoritarian_tone"
+        ]
+    },
+    "mechanical_identity": {
+        "primary_resource_focus": "wind",
+        "secondary_resource_notes": "gear is often used to represent advanced hardware, munitions, and medical or targeting tech; meat appears sparsely for hybrid marines or biological costs.",
+        "common_actions": [
+            "add_targeted_wind_to_single_goon",
+            "distribute_wind_among_multiple_goons_as_suppressive_fire",
+            "prevent_unwind_for_specific_targets_or_entire_squads",
+            "prevent_actions_and_wind_contribution_for_next_turn",
+            "destroy_basic_goons_through_overwhelming_force",
+            "shield_allies_from_being_targeted_by_enemy_abilities",
+            "temporarily_grant_or_toggle_resist",
+            "reduce_targeting_costs_against_marked_goons",
+            "provide_card_draw_or_resource_advantage",
+            "deploy_sacrificial_bodies_or_decoys_as_impact_simulants"
+        ],
+        "subthemes": [
+            "suppression_and_detainment",
+            "precision_targeting_and_marking",
+            "area_lockdown_and_field_control",
+            "protective_infrastructure_and_shield_networks",
+            "corporate_medical_and_maintenance_support",
+            "command_and_control_through_leaders_and_orbital_assets"
+        ],
+        "special_flags_usage": {
+            "biological": "Used sparingly for human or near-human operatives such as officers and marines (e.g., Lokar Simmons, Marine Marauder). Often indicates vulnerability to certain effects but compatibility with ‘medical’ support.",
+            "mechanical": "Default for enforcement drones, pylons, targeting units, and armored constructs. Represents standard-issue NARC hardware and most rank-and-file goons.",
+            "resist": "Assigned to hardened enforcers, shielded constructs, and key leaders (Bruut Enforcer, Buzzkill, Killjoy). Evokes heavier armor, redundancy, or reinforced compliance protocols.",
+            "no_unwind": "Used on infrastructure-like units or fully committed assets (Lurker, Shield Pylon, Hover Shield) that are always ‘on duty’ and compensate with static, powerful defensive or retaliatory effects."
+        }
+    }
+}

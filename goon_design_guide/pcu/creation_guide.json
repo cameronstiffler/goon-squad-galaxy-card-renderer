@@ -1,0 +1,197 @@
+{
+    "id": "pcu_design_guide",
+    "faction_name": "PCU",
+    "high_concept": "Void-touched mercenaries, occult technicians, and misfit horrors who weaponize stress, overload, and broken physics. Half occult warband, half scrapyard death squad.",
+    "setting_types": {
+        "description": "A catalog of environments, dimensions, and zones where PCU goons naturally emerge or operate. Useful for flavor, art direction, and designing new units.",
+        "categories": [
+            {
+                "name": "Voidspace Fringe",
+                "keywords": [
+                    "cosmic_void",
+                    "fractured_physics",
+                    "dark_nebulas",
+                    "floating_ruins"
+                ],
+                "description": "Regions where reality folds wrong — gravity breaks, shadows behave strangely, and time dilation produces warped creatures and cultists."
+            },
+            {
+                "name": "Scrapworld Industries",
+                "keywords": [
+                    "industrial_ruins",
+                    "toxic_factories",
+                    "meatprocessing",
+                    "rusted_megacomplexes"
+                ],
+                "description": "Gigantic abandoned industrial zones where rogue machines, engineered beasts, and black-market technomancers flourish."
+            },
+            {
+                "name": "Cultist Enclaves",
+                "keywords": [
+                    "ritual_sites",
+                    "shrouded_towns",
+                    "occult_temples",
+                    "underground_lairs"
+                ],
+                "description": "Shadowy settlements where void-priests, demonologists, and possessed goons enact rituals or manufacture horrors."
+            },
+            {
+                "name": "Ooze Marshlands",
+                "keywords": [
+                    "toxic_swamps",
+                    "mutant_lagoons",
+                    "gas_vents",
+                    "glowing_slime"
+                ],
+                "description": "Swamps and wetlands saturated with mutagenic spores and extradimensional runoff, spawning oozes, freaks, and toxic wildlife."
+            },
+            {
+                "name": "The Meat Belt",
+                "keywords": [
+                    "fleshwalls",
+                    "biofactories",
+                    "organfarms",
+                    "sinew_towers"
+                ],
+                "description": "Gross biomechanical regions where living tissue is cultivated like metal ore — a perfect breeding ground for meat constructs and parasitic machines."
+            },
+            {
+                "name": "Temporal Break Zones",
+                "keywords": [
+                    "time_loops",
+                    "echo_fields",
+                    "chronofractures",
+                    "distortion_zones"
+                ],
+                "description": "Areas where time is cracked or nonlinear, home to Shamanic manipulators, Grim-like entities, and beings that punish or disable unwinding."
+            },
+            {
+                "name": "Singularity Events",
+                "keywords": [
+                    "micro_blackholes",
+                    "gravitic_anomalies",
+                    "space-folds"
+                ],
+                "description": "Locations where physics collapses into a single point of terror — birthing overpowering hazards like the Local Singularity."
+            },
+            {
+                "name": "Outer Frontier Settlements",
+                "keywords": [
+                    "dust_towns",
+                    "lawless_outposts",
+                    "scrap_markets"
+                ],
+                "description": "Rough frontier towns full of mutants, mercenaries, and half-legal machines — ideal recruitment zones for PCU goons."
+            }
+        ]
+    },
+    "tone": {
+        "keywords": [
+            "darkly_comic",
+            "90s_arcade",
+            "occult_sci_fi",
+            "trash_metal_album",
+            "cosmic_weird"
+        ],
+        "description": "Names and art should feel like B-movie villains and arcade beat-'em-up enemies: intense, a little goofy, but genuinely dangerous."
+    },
+    "visual_style": {
+        "silhouette": {
+            "description": "Bold, readable shapes designed for side-scrolling enemies or bosses.",
+            "rules": [
+                "One strong primary shape or weapon defines the unit.",
+                "Limbs, weapons, and heads should be clearly readable at small sizes.",
+                "Avoid excessive detail; prioritize bold, chunky forms."
+            ]
+        },
+        "motifs": {
+            "organic": [
+                "meat_plating",
+                "bone_spikes",
+                "slime_drips",
+                "extra_eyes",
+                "mutated_limbs",
+                "bulging_veins"
+            ],
+            "mechanical": [
+                "riveted_armor",
+                "hoses_and_tubing",
+                "glowing_canisters",
+                "visors",
+                "tripod_legs",
+                "industrial_tools"
+            ],
+            "occult": [
+                "horns",
+                "runes",
+                "void_symbols",
+                "shadow_auras",
+                "floating_debris"
+            ],
+            "color_palette": {
+                "saturation": "mid",
+                "accent_colors": [
+                    "void_purple",
+                    "sickly_green",
+                    "toxic_yellow",
+                    "blood_red",
+                    "industrial_orange"
+                ],
+                "rules": [
+                    "2-4 main colors per character.",
+                    "Avoid neon and rainbow effects.",
+                    "Allow bright accents on eyes, cores, runes."
+                ]
+            }
+        },
+        "categories": {
+            "bruisers": "Heavy melee enforcers, often mechanical or muscled mutants.",
+            "casters": "Ritualists or tech-warlocks, often with ranged abilities.",
+            "monsters": "Slimes, toads, oozes, or strange fauna.",
+            "constructs": "Spherical bots, tripods, mechanical bruisers.",
+            "phenomena": "Anomalies given form; abstract but coherent silhouettes."
+        }
+    },
+    "naming_conventions": {
+        "patterns": [
+            "metal_album_style: 'Blood Howler', 'Void Freak'",
+            "pun_or_twist: 'Psychodelic Toad', 'Meatjacker'",
+            "role_plus_flavor: 'Annihilist Overseer', 'Shadow Shaman'"
+        ],
+        "guidelines": [
+            "Names must be punchy and memorable.",
+            "Slightly silly is fine; outright cute is not.",
+            "Mix violence, void terminology, and industrial flavor."
+        ],
+        "disallowed": [
+            "pure_generic_fantasy",
+            "direct_real_world_references",
+            "whimsical_or_childlike_names"
+        ]
+    },
+    "mechanical_identity": {
+        "primary_resource_focus": "wind",
+        "common_actions": [
+            "add_wind",
+            "remove_wind",
+            "redistribute_wind",
+            "prevent_unwind",
+            "force_attack",
+            "force_ability_use",
+            "destroy_target"
+        ],
+        "subthemes": [
+            "death_recycling",
+            "void_warping",
+            "stress_damage",
+            "target_locking",
+            "negative_synergy_punishments"
+        ],
+        "special_flags_usage": {
+            "biological": "mutants, natives, freaks, toads, oozes, voidborn.",
+            "mechanical": "bots, constructs, armed chassis, grafted machines.",
+            "resist": "elite fighters or void-stable entities.",
+            "no_unwind": "hazards or zealots; always with drawbacks."
+        }
+    }
+}
