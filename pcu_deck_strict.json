@@ -267,13 +267,13 @@
         {
           "name": "TIME CONTORTION",
           "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 0
+            "wind": 1,
+            "gear": 1,
+            "meat": 1
           },
           "passive": false,
           "must_use": false,
-          "text": "Remove 1 wind from any target Goon."
+          "text": "Remove all wind from target Goon."
         }
       ],
       "flavor_text": "I seek only to find amusement in your annihilation",
@@ -298,7 +298,7 @@
         {
           "name": "ABYSSAL BELLOW",
           "cost": {
-            "wind": 1,
+            "wind": 2,
             "gear": 0,
             "meat": 0
           },
@@ -309,7 +309,7 @@
         {
           "name": "SEISMIC STOMP",
           "cost": {
-            "wind": 1,
+            "wind": 2,
             "gear": 0,
             "meat": 0
           },
@@ -868,7 +868,7 @@
     },
     {
       "name": "Void Operative",
-      "rank": "Elite",
+      "rank": "SG",
       "deploy_cost": {
         "wind": 7,
         "meat": 0,

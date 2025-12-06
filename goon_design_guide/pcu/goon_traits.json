@@ -1,11 +1,10 @@
 {   
    
-    "template": "Subject: One instance of subject with the following physical appearance. Subject is a {type} {goon_name} with {weapon} in a {pose} pose seen from a {perspective_angle} view in a {setting} setting during {time_of_day}.\n\nIntegrate all of the following traits into the subjects appearance\nAnatomy: {anatomy}\nSkin: {skin}\nFacial Features:\n1. Eyes: {eyes}\n2. Mouth: {mouth}\n3. Teeth: {teeth}\nOutfit Instructions:\n1. Attire: subject is wearing {armor}\n2. headgear: {head_wear}\n3. Accessories: {accessories}\n4. Boots: {boots}\n",
-    "options": {
-      "type":[
+"template": "Subject must have the following traits:\nClassification: {goon_class}\nAnatomy: {anatomy}\nSkin: {skin}\nFacial Features:\n1. Eyes: {eyes}\n2. Mouth: {mouth}\n3. Teeth: {teeth}\nOutfit Instructions:\n1. Attire: subject is wearing {armor}\n2. headgear: {head_wear}\n3. Accessories: {accessories}\n4. Boots: {boots}\n\nSubject Description: One instance of the subject. The subject is a {goon_class} wielding a {weapon} in a {pose} pose, seen from a {perspective_angle} view in a {setting} setting during {time_of_day}.\n\n",
+"options": {
+      "goon_class":[
         "humanoid",
         "demon",
-        "alien",
         "robot",
         "cyborg"
       ],
@@ -164,7 +163,7 @@
       ]
     },
     "option_trait_quantities": {
-      "type": 1,
+      "goon_class": 1,
       "anatomy": 1,
       "setting": 1,
       "time_of_day": 1,

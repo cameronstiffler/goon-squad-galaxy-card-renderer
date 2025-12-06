@@ -1,15 +1,36 @@
 {
   "id": "basicnarc",
   "faction": "NARC",
-  "card_name_font_family": ["Leaderson.ttf", "Impact.ttf", "Arial-Black.ttf"],
+  "card_name_font_family": [
+    "Leaderson.ttf",
+    "Impact.ttf",
+    "Arial-Black.ttf"
+  ],
   "card_name_font_size": 85,
-  "cost_font_family": ["Marinfordaf.ttf", "Helvetica.ttc", "Arial.ttf"],
+  "cost_font_family": [
+    "Marinfordaf.ttf",
+    "Helvetica.ttc",
+    "Arial.ttf"
+  ],
   "cost_font_size": 55,
-  "body_font_family": ["Futura.ttc", "Futura.ttf", "Avenir.ttc", "GillSans.ttc", "Georgia"],
+  "body_font_family": [
+    "Futura.ttc",
+    "Futura.ttf",
+    "Avenir.ttc",
+    "GillSans.ttc",
+    "Georgia"
+  ],
   "body_font_size": 26,
-  "ability_num_font_family": ["Staatliches-Regular.ttf", "Futura.ttf", "Avenir.ttc"],
+  "ability_num_font_family": [
+    "Staatliches-Regular.ttf",
+    "Futura.ttf",
+    "Avenir.ttc"
+  ],
   "ability_num_font_size": 25,
-  "ability_num_bold_font_family": ["Staatliches-Regular", "Avenir-Heavy.ttf"],
+  "ability_num_bold_font_family": [
+    "Staatliches-Regular",
+    "Avenir-Heavy.ttf"
+  ],
   "ability_num_bold_font_size": 30,
   "card_name_font_color": "#fbc151",
   "deploy_cost_font_color": "white",
@@ -72,8 +93,7 @@
       "mechanical": true,
       "resist": true,
       "no_unwind": false,
-      "deploy_requirements": [
-      ],
+      "deploy_requirements": [],
       "abilities": [
         {
           "name": "SLUG",
@@ -127,28 +147,28 @@
           "must_use": false,
           "text": "Target allied Goon may not be target of enemy abilities until beginning of player's next turn."
         },
-    {
-      "name": "PEW PEW",
-      "cost": {
-        "wind": 1,
-        "gear": 0,
-        "meat": 0
-      },
-      "passive": false,
-      "must_use": false,
-      "text": "Add 2 wind to target Goon."
-    },
-    {
-      "name": "NEUTRALIZE",
-      "cost": {
-        "wind": 2,
-        "gear": 0,
-        "meat": 0
-      },
-      "passive": false,
-      "must_use": false,
-      "text": "Add 3 wind to target Basic Goon."
-    }
+        {
+          "name": "PEW PEW",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 2 wind to target Goon."
+        },
+        {
+          "name": "NEUTRALIZE",
+          "cost": {
+            "wind": 2,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 3 wind to target Basic Goon."
+        }
       ],
       "portrait_art": "buzzkill.jpg"
     },
@@ -330,17 +350,17 @@
       "no_unwind": false,
       "deploy_requirements": [],
       "abilities": [
-    {
-      "name": "RESOURCEFUL",
-      "cost": {
-        "wind": 1,
-        "gear": 1,
-        "meat": 0
-      },
-      "passive": false,
-      "must_use": false,
-      "text": "Draw a card"
-    }
+        {
+          "name": "RESOURCEFUL",
+          "cost": {
+            "wind": 1,
+            "gear": 1,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Draw a card"
+        }
       ],
       "flavor_text": "Submission is the love child of demoralization and existential dread.",
       "portrait_art": "lokar.jpg"
@@ -482,7 +502,7 @@
     {
       "name": "Narcstar",
       "rank": "T",
-      "duplicates": 1,
+      "duplicates": 4,
       "faction": "NARC",
       "deploy_cost": {
         "wind": 6,
@@ -492,13 +512,13 @@
       "biological": false,
       "mechanical": false,
       "resist": false,
-      "no_unwind": false,
+      "no_unwind": true,
       "deploy_requirements": [],
       "abilities": [
         {
           "name": "ORBITAL SMITE",
           "cost": {
-            "wind": 2,
+            "wind": 1,
             "gear": 0,
             "meat": 0
           },
@@ -516,6 +536,17 @@
           "passive": false,
           "must_use": false,
           "text": "Target Player's Goons do not unwind on Player's next turn."
+        },
+        {
+          "name": "",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "While Narcstar is in play, at the beginnin of opponent'turn, opponent player must pick a gooon to destroy"
         }
       ],
       "portrait_art": "narcstar.jpg"
@@ -751,6 +782,88 @@
         }
       ],
       "portrait_art": "target.jpg"
+    },
+    {
+      "name": "Foe Blaster",
+      "rank": "Elite Enforcer",
+      "faction": "NARC",
+      "deploy_cost": {
+        "wind": 5,
+        "meat": 0,
+        "gear": 0
+      },
+      "abilities": [
+        {
+          "name": "Suppression Barrage",
+          "description": "Distributes wind among all enemy goons, reducing their actions and wind contribution for the next turn.",
+          "cost": {
+            "wind": 0,
+            "meat": 0,
+            "gear": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": ""
+        },
+        {
+          "name": "Orbital Lockdown",
+          "description": "Prevents any movement or ability activation in a selected area for two turns, symbolizing a tactical orbital strike enclosure.",
+          "cost": {
+            "wind": 0,
+            "meat": 0,
+            "gear": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": ""
+        },
+        {
+          "name": "Shielded Retaliation",
+          "description": "Automatically counterattacks when targeted, using shield technology to deflect and damage the aggressor.",
+          "cost": {
+            "wind": 0,
+            "meat": 0,
+            "gear": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": ""
+        }
+      ],
+      "type": "mechanical",
+      "subtype": "enforcer",
+      "attributes": {
+        "health": 8,
+        "damage": 4,
+        "armor": 3,
+        "speed": "Medium"
+      },
+      "artwork": {
+        "portrait_art": "foe_blaster_elite_enforcer.jpg",
+        "silhouette_style": "Angular, heavily armored with visible turrets and riot shields.",
+        "motifs": [
+          "riot_shields",
+          "turrets_and_barrels",
+          "targeting_reticles",
+          "compliance_seals"
+        ],
+        "color_scheme": {
+          "primary": "gunmetal",
+          "secondary": "navy",
+          "accents": [
+            "siren_red",
+            "hazard_yellow"
+          ]
+        }
+      },
+      "lore": "Born from the militarized policing doctrines of the NARC, Foe Blaster embodies the relentless pursuit of order through overwhelming force and tactical superiority. Equipped with advanced suppression and protective technologies, Foe Blaster is deployed to the most volatile sectors to reinstate control and compliance.",
+      "duplicates": 1,
+      "biological": false,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "portrait_art": ""
     }
   ]
 }

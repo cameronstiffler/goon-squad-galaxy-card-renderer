@@ -1,11 +1,11 @@
 {
-    "template": "Subject: {type}{goon_name} with {weapon} in a {pose} pose. Follow art_style.json exactly for style; do not add new style notes.\nAnatomy: {anatomy}\nSkin: {skin}\nFacial Features:\n1. Eyes: {eyes}\n2. Mouth: {mouth}\n3. Teeth: {teeth}\nOutfit Instructions:\n1. Attire: he is wearing {armor}\n2. headgear: {head_wear}\n3. Accessories: {accessories}\n4. Boots: {boots}\nSetting: {setting} at {time_of_day}. Use the entire image for the setting. Perspective: {perspective angle}",
-    "options": {
-      "type":[
-        "primitive tribal human"
+  "template": "Subject must have the following traits:\nClassification: {goon_class}\nAnatomy: {anatomy}\nSkin: {skin}\nFacial Features:\n1. Eyes: {eyes}\n2. Mouth: {mouth}\n3. Teeth: {teeth}\n4.Expression: Dimwitted\nOutfit Instructions:\n1. Attire: subject is wearing {armor}\n2. headgear: {head_wear}\n3. Accessories: {accessories}\n4. Boots: {boots}\n\nSubject Description: One instance of the subject. The subject is a {goon_class} wielding a {weapon} in a {pose} pose, seen from a {perspective_angle} view in a {setting} setting during {time_of_day}.\n\n",
+  "options": {
+      "goon_class":[
+        "human"
       ],
       "anatomy": [
-        "stocky muscular and hunched posture. Long arms and short legs. Large jaw and mouth."
+        "Stocky and muscular with a hunched posture. Long arms and short legs. A dimwitted human face"
       ],
       "setting": [
         "among the dark foliage of a dense jungle",
@@ -39,22 +39,20 @@
         "seen from the front"
       ],
       "armor": [
-        "turtle shells and spike armor",
-        "giant insect plating and leather armor",
-        "heavy leather scales armor",
-        "hides and turtle shell armor",
+        "plating from insect exoskeleton",
+        "large scales armor",
+        "hides and shell armor",
         "fur and bone armor",
         "bleached bones and skulls armor",
         "large scales and fur armor",
         "thick furs and hides armor",
-        "armor and leather armor",
-        "reptile scales and bones armor",
-        "pants made of hide",
+        "leather armor",
+        "large reptile scales and bones armor",
         "belt of leather only",
         "loincloth of animal hide",
         "simple leather straps and fur",
-        "bone and tusk armor",
-        "spiked shell pauldrons",
+        "bone armor",
+        "spiked pauldrons",
         "skull pauldrons"
       ],
       "weapon": [
@@ -67,47 +65,28 @@
         "oversized wooden staff with sharp stone tip",
         "oversized bone club",
         "small boulder",
-        "oversized meat cleaver",  
-        "none"
+        "oversized meat cleaver"
       ],
       "skin":[
-        "tanned skin",
-        "light brown skin",
-        "olive skin",
-        "dark skin",
-        "pale skin",
-        "white skin"
+        "light",
+        "caucasian"
       ],
       "accessories": [
-        "bone necklace with large teeth",
         "large bone earrings",
-        "bone bracelet",
-        "bone arm band",
-        "feather necklace",
-        "feather earrings",
-        "feather bracelet",
+        "bone arm bands",
         "scale arm bands",
-        "feather ring",
-        "teeth necklace",
-        "teeth earrings",
-        "teeth bracelet",
+        "tusk earrings",
         "leather arm bands",
-        "skull on belt",
         "bone necklace with small skulls",
-        "feather necklace with small skulls",
-        "teeth necklace with small skulls",
-        "skull earrings",
-        "skull bracelet",
         "skull arm band",
-        "hide belt pouch",
+        "scale belt buckle",
+        "bone nose piercing",
+        "leather belt pouch",
         "hide wrist wraps",
         "leather wrist wraps",
-        "hide bandolier",
         "hide shoulder pad",
-        "war paint on face",
-        "tribal markings",
-        "tattoos",
-        "none"
+        "hide cloak",
+        "leather necklace"
       ],
       "head_wear": [
         "helmet made from animal skull and hides",
@@ -119,53 +98,47 @@
         "turtle shell helmet",
         "leather hood",
         "head band",
-        "fur hat",
-        "none"
-      ],
+        "fur hat"    ],
       "eyes": [
         "one eye is missing",
         "barely open",
-        "wide open",
+        "look of amazement",
         "looking to the side",
         "not visible beneath brow",
         "small",
         "crossed"
       ],
       "mouth": [
-        "gaping open looking dumb",
+        "gaping and slack jawed",
         "slightly open",
         "closed with a blank expression",
-        "angry showing teeth",
         "yelling with mouth wide open",
-        "hooting",
-        "frowning"
-      ],
+        "relaxed and open"      ],
       "teeth": [
         "large and crooked",
         "large and missing several teeth",
         "sharp and jagged",
-        "regular human teeth 4 times larger than normal",
-        "with tusks"
+        "regular human teeth 4 times larger than normal"
       ],
       "pose": [
         "running into battle screaming with weapon raised",
-        "slouched idle observation stance with weapon dragging behind on ground",
-        "battle ready stance with weapon held in both hands",
-        "bending down altering something in the setting with weapon nearby",
-        "gesturing and talking with weapon nearby",
+        "confused idle observation stance with weapon dragging behind on ground",
+        "battle ready with weapon held in both hands",
+        "gesturing and talking",
         "attacking and swinging weapon with fierce expression",
-        "looks confused with poor posture and weapon held loosely"
+        "bewildered",
+        "eating"
       ],
       "boots": [
-        "primitive animal hide boots",
-        "primitive leather boots",
-        "full animal hide boots with animal face still attached at the toes",
-        "primitive bone reinforced boots",
-        "primitive thick hide boots"
+        "primitive animal hide",
+        "primitive leather",
+        "full animal hide with animal face still attached",
+        "primitive bone reinforced",
+        "primitive thick hide"
       ]
     },
     "option_trait_quantities": {
-      "type": 1,
+      "goon_class": 1,
       "anatomy": 1,
       "setting": 1,
       "time_of_day": 1,
@@ -173,7 +146,7 @@
       "armor": 1,
       "weapon": 1,
       "skin": 1,
-      "accessories": 2,
+      "accessories": 4,
       "head_wear": 1,
       "boots": 1,
       "eyes": 1,

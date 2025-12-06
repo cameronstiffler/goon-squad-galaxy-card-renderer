@@ -1,5 +1,5 @@
 {
-    "template": "Subject: {type} {goon_name} with {weapon} in a {pose} pose. Follow art_style.json exactly for style; do not add new style notes.\nAnatomy: {anatomy}\nSkin: {skin}\nFacial Features:\n1. Eyes: {eyes}\n2. Mouth: {mouth}\n3. Teeth: {teeth}\nOutfit Instructions:\n1. Attire: he is wearing {armor}\n2. headgear: {head_wear}\n3. Accessories: {accessories}\n4. Boots: {boots}\nSetting: {setting} at {time_of_day}. Use the entire image for the setting. Perspective: {perspective angle}",
+    "template": "Subject: {type} {goon_name} with {weapon} in a {pose} pose.\nAnatomy: {anatomy}\nSkin: {skin}\nFacial Features:\n1. Eyes: {eyes}\n2. Mouth: {mouth}\n3. Teeth: {teeth}\nOutfit Instructions:\n1. Attire: he is wearing {armor}\n2. headgear: {head_wear}\n3. Accessories: {accessories}\n4. Boots: {boots}\nSetting: {setting} at {time_of_day}. Use the entire image for the setting. Perspective: {perspective angle}",
     "options": {
       "type":[
         "primitive tribal human"
