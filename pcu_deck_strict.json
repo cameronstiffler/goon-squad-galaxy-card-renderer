@@ -933,142 +933,46 @@
       "deploy_requirements": []
     },
     {
-      "name": "Dark Knight",
-      "rank": "Elite",
-      "deploy_cost": {
-        "wind": 5,
-        "meat": 0,
-        "gear": 0
-      },
-      "abilities": [
-        {
-          "name": "Void Strike",
-          "description": "Instantly targets an enemy, dealing heavy damage and applying a 'Fracture' debuff that reduces enemy defense by 10% for three turns.",
-          "cost": {
-            "wind": 0,
-            "meat": 0,
-            "gear": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": ""
-        },
-        {
-          "name": "Eclipse Shield",
-          "description": "Absorbs the next two attacks directed at Dark Knight, converting 25% of the damage into health restoration.",
-          "cost": {
-            "wind": 0,
-            "meat": 0,
-            "gear": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": ""
-        },
-        {
-          "name": "Null Pull",
-          "description": "Forces all enemies to focus their next attack on Dark Knight, increasing his damage resistance by 20% for one turn.",
-          "cost": {
-            "wind": 0,
-            "meat": 0,
-            "gear": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": ""
-        }
-      ],
-      "hp": 120,
-      "attack": 40,
-      "defense": 30,
-      "speed": 20,
-      "type": "mechanical",
-      "subtypes": [
-        "resist",
-        "no_unwind"
-      ],
-      "setting": "Voidspace Fringe",
-      "portrait_art": "dark_knight_pcu.jpg",
-      "duplicates": 1,
-      "faction": "pcu",
-      "biological": false,
-      "mechanical": false,
-      "resist": false,
-      "no_unwind": false,
-      "deploy_requirements": []
-    },
-    {
-      "name": "Abyssal Paladin",
-      "rank": "Elite",
-      "deploy_cost": {
-        "wind": 5,
-        "meat": 0,
-        "gear": 0
-      },
+      "name": "Shade Shaman",
+      "rank": "BG",
+      "duplicates": 4,
       "faction": "PCU",
-      "abilities": [
-        {
-          "name": "Void Slash",
-          "description": "Deals massive damage to a single target and adds a shadow aura that reduces enemy defense for 2 turns.",
-          "cost": {
-            "wind": 0,
-            "meat": 0,
-            "gear": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": ""
-        },
-        {
-          "name": "Eclipse Guard",
-          "description": "Increases resistance to all damage for 1 turn and automatically retaliates against physical attacks.",
-          "cost": {
-            "wind": 0,
-            "meat": 0,
-            "gear": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": ""
-        }
-      ],
-      "stats": {
-        "health": 120,
-        "attack": 35,
-        "defense": 30,
-        "speed": 25
+      "deploy_cost": {
+        "wind": 3,
+        "gear": 0,
+        "meat": 0
       },
-      "portrait_art": "dark_knight_pcu.jpg",
-      "flavor_text": "Shrouded in the void's embrace, this knight wields fractured physics as a weapon, turning the battle's tide with each swing of his rune-etched blade.",
-      "setting": "Voidspace Fringe",
-      "visual_description": {
-        "primary_shape": "Heavy riveted armor with a large void-symbol engraved shield.",
-        "details": {
-          "organic": [
-            "bone spikes on the shoulders",
-            "slime drips from the joints"
-          ],
-          "mechanical": [
-            "glowing canisters on the back",
-            "visors on the helm"
-          ],
-          "occult": [
-            "runes glowing with void purple across the armor",
-            "shadow aura enveloping the figure"
-          ]
-        },
-        "color_scheme": [
-          "void purple",
-          "industrial orange",
-          "blood red"
-        ]
-      },
-      "duplicates": 1,
-      "biological": false,
-      "mechanical": false,
+      "biological": true,
+      "mechanical": true,
       "resist": false,
       "no_unwind": false,
-      "deploy_requirements": []
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "DARK MATTER DELUGE",
+          "cost": {
+            "wind": "X",
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 1 wind to X Goons"
+        },
+        {
+          "name": "SHADOW LANCE",
+          "cost": {
+            "wind": 2,
+            "gear": 1,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 2 wind to target Goon."
+        }
+      ],
+      "notes": [],
+      "portrait_art": "shadowshaman.jpg"
     }
   ]
 }

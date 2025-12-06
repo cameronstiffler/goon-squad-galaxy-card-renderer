@@ -1,5 +1,6 @@
-{
-    "template": "Subject: A {type} {goon_name} with {weapon} in a {pose} pose.\nIntegrate all of the following physical traits into the subject appearance\nAnatomy: {anatomy}\nSkin: {skin}\nFacial Features:\n1. Eyes: {eyes}\n2. Mouth: {mouth}\n3. Teeth: {teeth}\nOutfit Instructions:\n1. Attire: he is wearing {armor}\n2. headgear: {head_wear}\n3. Accessories: {accessories}\n4. Boots: {boots}\nSetting: {setting} at {time_of_day}. Use the entire image for the setting. Perspective: {perspective_angle}",
+{   
+   
+    "template": "Subject: One instance of subject with the following physical appearance. Subject is a {type} {goon_name} with {weapon} in a {pose} pose seen from a {perspective_angle} view in a {setting} setting during {time_of_day}.\n\nIntegrate all of the following traits into the subjects appearance\nAnatomy: {anatomy}\nSkin: {skin}\nFacial Features:\n1. Eyes: {eyes}\n2. Mouth: {mouth}\n3. Teeth: {teeth}\nOutfit Instructions:\n1. Attire: subject is wearing {armor}\n2. headgear: {head_wear}\n3. Accessories: {accessories}\n4. Boots: {boots}\n",
     "options": {
       "type":[
         "humanoid",
@@ -25,7 +26,6 @@
       ],
       "setting": [
         "an alien jungle with glowing, pulsating flora",
-        "floating islands in a gaseous nebula",
         "the interior of a dark, living machine",
         "cave interior lit with eerie bioluminescent light",
         "in the bio-luminescent twilight of an alien forest",
@@ -50,12 +50,12 @@
         "three quarter view perspective",
         "side view perspective",
         "front view perspective",
-        "seen from a low angle looking up at the character",
-        "seen from a high angle looking down at the character",
-        "seen from eye level",
-        "seen from a three quarter view",
-        "seen from the side",
-        "seen from the front"
+        "low angle looking up at the character",
+        "high angle looking down at the character",
+        "eye level",
+        "three quarter",
+        "side",
+        "front"
       ],
       "armor": [
         "bulky metal armor",
@@ -87,7 +87,8 @@
         "a chromatic color",
         "stark pale white",
         "pitch black",
-        "glossy black"
+        "glossy black",
+        "animal pattern"
       ],
       "accessories": [
         "glowing light from seams and joints",
@@ -96,7 +97,6 @@
         "bracelet",
         "arm band",
         "tattoos",
-        "natural patterns",
         "demonic warpaint"
       ],
       "head_wear": [
@@ -144,12 +144,12 @@
       "pose": [
         "observing its environment",
         "dynamic action",
-        "battle ready stance",
+        "battle ready",
         "crouched low to the ground, ready to pounce",
         "moving with an unsettling, fluid grace",
-        "standing herocically",
-        "in a powerful, commanding stance",
-        "in a relaxed, casual pose"
+        "heroic",
+        "powerful, commanding",
+        "relaxed, casual"
       ],
       "boots": [
         "hovers silently above the ground",
