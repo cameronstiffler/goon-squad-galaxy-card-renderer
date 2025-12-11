@@ -34,6 +34,10 @@ def load_env(env_path=".env"):
 
 load_env()
 
+# Track key presence for fallbacks
+HAS_OPENAI_KEY = bool(os.getenv("OPENAI_API_KEY"))
+HAS_GEMINI_KEY = bool(os.getenv("GEMINI_API_KEY"))
+
 # --- PROVIDER SELECTION ---
 def detect_provider():
     """Determine which API provider to use based on available credentials or explicit override."""
@@ -332,7 +336,13 @@ def generate_and_save_art(prompt, save_path):
     print(f"     [+] Generating AI art for: {os.path.basename(save_path)}...")
     print(f"     [+] Using Prompt: {prompt}")
     if USING_GEMINI:
-        return generate_and_save_art_gemini(prompt, save_path)
+        success = generate_and_save_art_gemini(prompt, save_path)
+        if success:
+            return True
+        if HAS_OPENAI_KEY:
+            print("     [!] Gemini art generation failed; falling back to OpenAI.")
+            return generate_and_save_art_openai(prompt, save_path)
+        return False
     return generate_and_save_art_openai(prompt, save_path)
 
 def generate_and_save_art_openai(prompt, save_path):
