@@ -9,6 +9,7 @@ import openai
 import requests
 import random
 import argparse
+import base64
 
 # --- ENV LOADING ---
 def load_env(env_path=".env"):
@@ -32,12 +33,43 @@ def load_env(env_path=".env"):
 
 load_env()
 
+# --- PROVIDER SELECTION ---
+def detect_provider():
+    """Determine which API provider to use based on available credentials or explicit override."""
+    explicit = os.getenv("MODEL_PROVIDER", "").lower()
+    if explicit in {"openai", "gemini"}:
+        return explicit
+    if os.getenv("OPENAI_API_KEY"):
+        return "openai"
+    if os.getenv("GEMINI_API_KEY"):
+        return "gemini"
+    return "openai"  # default to OpenAI; will fail loudly if no key is present
+
+MODEL_PROVIDER = detect_provider()
+USING_OPENAI = MODEL_PROVIDER == "openai"
+USING_GEMINI = MODEL_PROVIDER == "gemini"
+
+# Optional Gemini client setup (only used if GEMINI_API_KEY is present/selected)
+genai = None
+ImageGenerationModel = None
+if os.getenv("GEMINI_API_KEY"):
+    try:
+        import google.generativeai as genai  # type: ignore
+        from google.generativeai import ImageGenerationModel  # type: ignore
+        genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+    except ImportError:
+        print("[!] WARNING: google-generativeai not installed; Gemini provider will not work until it's available.")
+    except Exception as e:
+        print(f"[!] WARNING: Failed to initialize Gemini client: {e}")
+
 # === CONFIGURATION ===
 SOURCE_ICONS = "all.png"          # Master Icon Sheet (Left side traits)
 SOURCE_ABILITY_ICONS = "ability icons.png" # Ability Text Icons
 OUTPUT_DIR = "finished_cards"
 GOON_JSON_MODEL = os.getenv("GOON_JSON_MODEL", "gpt-4-turbo")
 ART_MODEL = os.getenv("ART_MODEL", "dall-e-3")
+GEMINI_JSON_MODEL = os.getenv("GEMINI_JSON_MODEL", "gemini-1.5-pro")
+GEMINI_ART_MODEL = os.getenv("GEMINI_ART_MODEL", "imagen-3.0-generate-001")
 
 # --- COORDINATES ---
 COST_POS_X = 40           
@@ -290,9 +322,15 @@ def generate_art_prompt(goon, prompt_data, art_style_prompt):
     return f"{art_style_prompt}\n\n{priority_note}\n\nSubject: {character_description}"
 
 def generate_and_save_art(prompt, save_path):
-    """Generates art using DALL-E and saves it to the specified path."""
+    """Generates art using the selected provider and saves it to the specified path."""
     print(f"     [+] Generating AI art for: {os.path.basename(save_path)}...")
     print(f"     [+] Using Prompt: {prompt}")
+    if USING_GEMINI:
+        return generate_and_save_art_gemini(prompt, save_path)
+    return generate_and_save_art_openai(prompt, save_path)
+
+def generate_and_save_art_openai(prompt, save_path):
+    """Generates art using OpenAI's image endpoint."""
     try:
         client = openai.OpenAI() # This line reads the key from the environment variable
         response = client.images.generate(
@@ -316,6 +354,64 @@ def generate_and_save_art(prompt, save_path):
         return True
     except Exception as e:
         print(f"     [!] AI art generation failed: {e}")
+        return False
+
+def _extract_gemini_inline_image(response):
+    """Attempt to pull inline image bytes out of a Gemini response."""
+    try:
+        if not response or not getattr(response, "candidates", None):
+            return None
+        for candidate in response.candidates:
+            parts = getattr(candidate, "content", None)
+            parts = getattr(parts, "parts", []) if parts else []
+            for part in parts:
+                inline = getattr(part, "inline_data", None)
+                if inline and getattr(inline, "data", None):
+                    return base64.b64decode(inline.data)
+    except Exception:
+        return None
+    return None
+
+def generate_and_save_art_gemini(prompt, save_path):
+    """Generates art using Gemini (requires google-generativeai)."""
+    if not genai:
+        print("     [!] Gemini provider selected but google-generativeai is not installed.")
+        return False
+    try:
+        os.makedirs(os.path.dirname(save_path), exist_ok=True)
+
+        image_bytes = None
+
+        # Prefer the ImageGenerationModel API when available.
+        if ImageGenerationModel:
+            model = ImageGenerationModel.from_pretrained(GEMINI_ART_MODEL)
+            response = model.generate_images(prompt=prompt)
+            images = getattr(response, "images", None) or getattr(response, "generated_images", None)
+            if images:
+                first_image = images[0]
+                image_bytes = getattr(first_image, "image", None) or first_image
+        # Fallback to a generic GenerativeModel that might return inline image data.
+        if image_bytes is None:
+            model = genai.GenerativeModel(GEMINI_ART_MODEL)
+            response = model.generate_content(prompt)
+            inline_bytes = _extract_gemini_inline_image(response)
+            if inline_bytes:
+                image_bytes = inline_bytes
+
+        if not image_bytes:
+            print("     [!] Gemini art generation did not return an image payload.")
+            return False
+
+        # Some SDKs return a base64-encoded string; ensure we persist raw bytes.
+        if isinstance(image_bytes, str):
+            image_bytes = base64.b64decode(image_bytes)
+
+        with open(save_path, 'wb') as handler:
+            handler.write(image_bytes)
+        print(f"     [+] AI art saved to {save_path}")
+        return True
+    except Exception as e:
+        print(f"     [!] Gemini art generation failed: {e}")
         return False
 
 def create_grid_image(card_files, output_folder):
@@ -475,6 +571,27 @@ def validate_goon_schema(goon):
 
     return errors
 
+def generate_goon_text_openai(prompt):
+    client = openai.OpenAI()
+    response = client.chat.completions.create(
+        model=GOON_JSON_MODEL,
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0.8,
+    )
+    return response.choices[0].message.content
+
+def generate_goon_text_gemini(prompt):
+    if not genai:
+        raise RuntimeError("Gemini provider selected but google-generativeai is not installed.")
+    model = genai.GenerativeModel(GEMINI_JSON_MODEL)
+    response = model.generate_content(prompt, generation_config={"temperature": 0.8})
+    return response.text
+
+def generate_goon_text(prompt):
+    if USING_GEMINI:
+        return generate_goon_text_gemini(prompt)
+    return generate_goon_text_openai(prompt)
+
 def generate_new_goon(faction, deck_json_path, goon_name=None):
     """Uses AI to generate a new goon and add it to the deck JSON file."""
     print(f"\n--- STEP 1: GENERATING NEW GOON FOR {faction.upper()} FACTION ---")
@@ -512,13 +629,7 @@ You are a creative game designer for a card game called 'Goon Squad Galaxy'. You
     # 3. Call the AI to generate the goon JSON
     print("   [+] Prompting AI to generate new goon...")
     try:
-        client = openai.OpenAI()
-        response = client.chat.completions.create(
-            model=GOON_JSON_MODEL,
-            messages=[{"role": "user", "content": prompt}],
-            temperature=0.8,
-        )
-        goon_json_string = response.choices[0].message.content
+        goon_json_string = generate_goon_text(prompt)
 
         # --- NEW: Clean the AI response to extract only the JSON object ---
         # Find the start and end of the JSON block
