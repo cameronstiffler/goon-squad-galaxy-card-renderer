@@ -382,6 +382,23 @@ def _extract_gemini_inline_image(response):
         return None
     return None
 
+def summarize_gemini_response(response):
+    """Return a short string describing Gemini response parts for debugging."""
+    summaries = []
+    for idx, candidate in enumerate(getattr(response, "candidates", [])):
+        reason = getattr(candidate, "finish_reason", None) or "-"
+        part_types = []
+        content = getattr(candidate, "content", None)
+        for part in getattr(content, "parts", []) if content else []:
+            if getattr(part, "inline_data", None):
+                part_types.append("inline_data")
+            elif getattr(part, "text", None):
+                part_types.append("text")
+            else:
+                part_types.append(type(part).__name__)
+        summaries.append(f"cand{idx}: reason={reason}, parts={','.join(part_types) or 'none'}")
+    return "; ".join(summaries) if summaries else "no candidates"
+
 def _coerce_image_payload_to_bytes(payload):
     """Normalize various Gemini image payload shapes into raw bytes."""
     if payload is None:
@@ -415,28 +432,32 @@ def generate_and_save_art_gemini(prompt, save_path):
         os.makedirs(os.path.dirname(save_path), exist_ok=True)
 
         image_bytes = None
+        response_summary = None
+        model_name = ensure_model_path(GEMINI_ART_MODEL)
 
         # Prefer the ImageGenerationModel API when available (text-to-image).
-        if ImageGenerationModel:
-            model = ImageGenerationModel.from_pretrained(ensure_model_path(GEMINI_ART_MODEL))
+        if ImageGenerationModel and model_name.startswith("models/imagen"):
+            model = ImageGenerationModel.from_pretrained(model_name)
             response = model.generate_images(prompt=prompt)
+            response_summary = summarize_gemini_response(response)
             images = getattr(response, "images", None) or getattr(response, "generated_images", None)
             if images:
                 first_image = images[0]
                 image_bytes = _coerce_image_payload_to_bytes(first_image)
         # Fallback to a generic GenerativeModel that returns inline image data.
         if image_bytes is None:
-            model = genai.GenerativeModel(ensure_model_path(GEMINI_ART_MODEL))
-            response = model.generate_content(
-                prompt,
-                generation_config={"response_mime_type": "image/png", "temperature": 0.9},
-            )
+            model = genai.GenerativeModel(model_name)
+            response = model.generate_content(prompt, generation_config={"temperature": 0.9})
+            response_summary = summarize_gemini_response(response)
             inline_bytes = _extract_gemini_inline_image(response)
             if inline_bytes:
                 image_bytes = inline_bytes
 
         if not image_bytes:
-            print("     [!] Gemini art generation did not return an image payload.")
+            if response_summary:
+                print(f"     [!] Gemini art generation did not return an image payload. Response: {response_summary}")
+            else:
+                print("     [!] Gemini art generation did not return an image payload.")
             return False
 
         # Some SDKs return a base64-encoded string; normalize to bytes first.
@@ -451,7 +472,10 @@ def generate_and_save_art_gemini(prompt, save_path):
         try:
             Image.open(io.BytesIO(image_bytes)).verify()
         except Exception as e:
-            print(f"     [!] Gemini returned data that is not a valid image: {e}")
+            if response_summary:
+                print(f"     [!] Gemini returned data that is not a valid image: {e}. Response: {response_summary}")
+            else:
+                print(f"     [!] Gemini returned data that is not a valid image: {e}")
             return False
 
         with open(save_path, 'wb') as handler:
