@@ -423,6 +423,19 @@ def _coerce_image_payload_to_bytes(payload):
                 return coerced
     return None
 
+def _extract_data_uri_image(text_value):
+    """Extract base64 image bytes from a data URI inside text."""
+    if not isinstance(text_value, str):
+        return None
+    match = re.search(r"data:image/(png|jpeg);base64,([A-Za-z0-9+/=]+)", text_value)
+    if not match:
+        return None
+    b64_data = match.group(2)
+    try:
+        return base64.b64decode(b64_data)
+    except Exception:
+        return None
+
 def generate_and_save_art_gemini(prompt, save_path):
     """Generates art using Gemini (requires google-generativeai)."""
     if not genai:
@@ -452,6 +465,23 @@ def generate_and_save_art_gemini(prompt, save_path):
             inline_bytes = _extract_gemini_inline_image(response)
             if inline_bytes:
                 image_bytes = inline_bytes
+            if image_bytes is None:
+                generated_images = getattr(response, "generated_images", None) or getattr(response, "images", None)
+                if generated_images:
+                    image_bytes = _coerce_image_payload_to_bytes(generated_images[0])
+            if image_bytes is None:
+                # Check if any candidate text contains a data URI we can decode.
+                for candidate in getattr(response, "candidates", []):
+                    content = getattr(candidate, "content", None)
+                    for part in getattr(content, "parts", []) if content else []:
+                        text_val = getattr(part, "text", None)
+                        if text_val:
+                            maybe_bytes = _extract_data_uri_image(text_val)
+                            if maybe_bytes:
+                                image_bytes = maybe_bytes
+                                break
+                    if image_bytes:
+                        break
 
         if not image_bytes:
             if response_summary:
