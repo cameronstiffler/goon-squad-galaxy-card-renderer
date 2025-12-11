@@ -10,10 +10,34 @@ import requests
 import random
 import argparse
 
+# --- ENV LOADING ---
+def load_env(env_path=".env"):
+    """Lightweight .env loader so the script can run without shell-exported vars."""
+    if not os.path.exists(env_path):
+        return
+    try:
+        with open(env_path, 'r') as env_file:
+            for line in env_file:
+                stripped = line.strip()
+                if not stripped or stripped.startswith("#") or "=" not in stripped:
+                    continue
+                key, val = stripped.split("=", 1)
+                key = key.strip()
+                val = val.strip().strip('"').strip("'")
+                # Do not override values that are already set in the environment.
+                if key and key not in os.environ:
+                    os.environ[key] = val
+    except Exception as e:
+        print(f"[!] WARNING: Failed to load .env file: {e}")
+
+load_env()
+
 # === CONFIGURATION ===
 SOURCE_ICONS = "all.png"          # Master Icon Sheet (Left side traits)
 SOURCE_ABILITY_ICONS = "ability icons.png" # Ability Text Icons
 OUTPUT_DIR = "finished_cards"
+GOON_JSON_MODEL = os.getenv("GOON_JSON_MODEL", "gpt-4-turbo")
+ART_MODEL = os.getenv("ART_MODEL", "dall-e-3")
 
 # --- COORDINATES ---
 COST_POS_X = 40           
@@ -176,8 +200,8 @@ def load_art_prompt_data(faction):
         print(f"   [!] WARNING: Could not load or parse art prompt guide at '{guide_path}'. Art generation may be generic. Error: {e}")
         return None
 
-def generate_art_prompt(goon_name, prompt_data, art_style_prompt):
-    """Constructs a randomized, detailed prompt for DALL-E using a base style and character template."""
+def generate_art_prompt(goon, prompt_data, art_style_prompt):
+    """Constructs a detailed prompt for DALL-E using a base style, character template, and goon-specific overrides."""
     if not prompt_data:
         print("     [!] WARNING: ai_art_prompt data not found in JSON. Skipping art generation.")
         return None
@@ -186,10 +210,56 @@ def generate_art_prompt(goon_name, prompt_data, art_style_prompt):
     options = prompt_data.get("options", {})
     quantities = prompt_data.get("option_trait_quantities", {})
 
+    goon_name = goon.get('name', 'Unnamed Goon') if isinstance(goon, dict) else str(goon)
+    description_traits = goon.get('description', {}) if isinstance(goon, dict) else {}
+
     if isinstance(template, list):
         template = "\n".join(template)
     elif not isinstance(template, str):
         template = str(template)
+
+    description_aliases = {
+        # Map template placeholders to possible description keys
+        'armor': ['attire'],
+        'head_wear': ['headgear', 'head gear', 'headwear'],
+        'accessories': ['accessory'],
+        'weapon': ['weaponry'],
+    }
+    option_aliases = {
+        # Handle small naming mismatches between template placeholders and options keys
+        'perspective_angle': 'perspective angle'
+    }
+
+    def normalize_description_value(value):
+        """Convert description values into a clean string for prompt insertion."""
+        if isinstance(value, list):
+            cleaned = [str(item).strip() for item in value if str(item).strip()]
+            return ", ".join(cleaned) if cleaned else "none"
+        if isinstance(value, str):
+            stripped = value.strip()
+            return stripped if stripped else "none"
+        if value is None:
+            return None
+        return str(value)
+
+    def get_description_value(field):
+        """Try to pull a field value from the goon's description (with aliases)."""
+        if not isinstance(description_traits, dict):
+            return None
+        keys_to_check = [field] + description_aliases.get(field, [])
+        for key in keys_to_check:
+            if key in description_traits:
+                return normalize_description_value(description_traits[key])
+        return None
+
+    def get_option_values(field):
+        """Fetch the option list for a placeholder, accounting for alias keys."""
+        if field in options and options[field]:
+            return options[field]
+        alt_key = option_aliases.get(field)
+        if alt_key and alt_key in options and options[alt_key]:
+            return options[alt_key]
+        return None
 
     format_args = {'goon_name': goon_name}
 
@@ -197,15 +267,22 @@ def generate_art_prompt(goon_name, prompt_data, art_style_prompt):
     placeholder_fields.discard('goon_name')
 
     for field in placeholder_fields:
-        if field in options and options[field]:
+        description_value = get_description_value(field)
+        if description_value not in (None, ""):
+            format_args[field] = description_value
+            continue
+
+        option_values = get_option_values(field)
+        if option_values:
             # Use the quantity specified in option_trait_quantities, default to 1
-            quantity = quantities.get(field, 1)
+            quantity = max(1, quantities.get(field, 1))
             # Ensure we don't request more options than are available
-            quantity = min(quantity, len(options[field]))
-            selected_options = random.sample(options[field], quantity)
-            format_args[field] = ", ".join(selected_options)
-        else:
-            format_args[field] = f"default_{field}"
+            quantity = min(quantity, len(option_values))
+            if quantity > 0:
+                selected_options = random.sample(option_values, quantity)
+                format_args[field] = ", ".join(selected_options)
+                continue
+        format_args[field] = f"default_{field}"
 
     character_description = template.format(**format_args)
 
@@ -219,7 +296,7 @@ def generate_and_save_art(prompt, save_path):
     try:
         client = openai.OpenAI() # This line reads the key from the environment variable
         response = client.images.generate(
-            model="dall-e-3",
+            model=ART_MODEL,
             prompt=prompt,
             size="1024x1024",
             quality="standard",
@@ -250,8 +327,8 @@ def create_grid_image(card_files, output_folder):
     print("\n--- STEP 3: GENERATING GRID IMAGE ---")
 
     # Grid layout settings
-    COLS = 5
-    TARGET_GRID_WIDTH = 4500
+    COLS = 10
+    TARGET_GRID_WIDTH = 9000
     
     # Calculate dimensions
     card_width = TARGET_GRID_WIDTH // COLS
@@ -437,7 +514,7 @@ You are a creative game designer for a card game called 'Goon Squad Galaxy'. You
     try:
         client = openai.OpenAI()
         response = client.chat.completions.create(
-            model="gpt-4-turbo",
+            model=GOON_JSON_MODEL,
             messages=[{"role": "user", "content": prompt}],
             temperature=0.8,
         )
@@ -481,7 +558,7 @@ You are a creative game designer for a card game called 'Goon Squad Galaxy'. You
         print(f"[!] ERROR: Failed to update the deck file '{deck_json_path}'. Error: {e}")
         sys.exit()
 
-def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=False, create_grid=False, fix=False):
+def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=False, create_grid=False, use_duplicates=False, fix=False, regen_art=False):
     print("\n--- STEP 2: GENERATING CARDS ---")
     try:
         with open(json_file, 'r') as f:
@@ -538,8 +615,23 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
         return y + 20
 
     generated_card_files = []
-    for card in data['goons']:
-        card = normalize_goon_data(card, faction, fix=fix)
+    
+    # --- Prepare the list of cards to be rendered ---
+    goons_to_render = []
+    if create_grid and use_duplicates:
+        print("   [+] '-dup' flag is active. Generating list based on 'duplicates' count.")
+        for goon in data['goons']:
+            # Default to 1 if 'duplicates' is missing or invalid
+            num_copies = goon.get('duplicates', 1)
+            if not isinstance(num_copies, int) or num_copies < 0:
+                num_copies = 1
+            goons_to_render.extend([goon] * num_copies)
+    else:
+        # Default behavior: render one of each unique goon
+        goons_to_render = data['goons']
+
+    for i, card_data in enumerate(goons_to_render):
+        card = normalize_goon_data(card_data.copy(), faction, fix=fix) # Use a copy to avoid mutation issues
         name = card.get('name', 'Unnamed Goon') # Use .get for safety
 
         # Validate the schema for each card before processing
@@ -550,7 +642,15 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
                 print(f"     - {err}")
             continue
 
-        print(f"   [+] Processing: {name}")
+        # Add a suffix for duplicate card filenames to avoid overwriting
+        filename_suffix = ""
+        if create_grid and use_duplicates:
+            # Find which copy this is
+            count = goons_to_render[:i+1].count(card_data)
+            if count > 1:
+                filename_suffix = f"_{count}"
+
+        print(f"   [+] Processing: {name}{filename_suffix}")
 
         canvas = Image.new("RGBA", (750, 1050), (0, 0, 0, 255))
         
@@ -560,7 +660,7 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
         if art_filename:
             art_file = os.path.join(art_dir, art_filename)
 
-            # If the primary art file doesn't exist, try swapping the extension
+            # If the primary art file doesn't exist, try swapping the extension for backward compatibility.
             if not os.path.exists(art_file):
                 if art_filename.lower().endswith('.png'):
                     fallback_filename = os.path.splitext(art_filename)[0] + '.jpg'
@@ -568,13 +668,17 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
                     if os.path.exists(fallback_path):
                         art_file = fallback_path
             
-            # If art still doesn't exist and auto-gen is on, create it
-            if not os.path.exists(art_file) and auto_generate_art:
-                art_prompt = generate_art_prompt(name, ai_prompt_data, art_style_prompt)
+            art_missing = not (art_file and os.path.exists(art_file))
+            should_generate_art = auto_generate_art and art_file and (regen_art or art_missing)
+
+            # If art is missing or regeneration is requested, create new art.
+            if should_generate_art:
+                art_prompt = generate_art_prompt(card, ai_prompt_data, art_style_prompt)
                 if art_prompt:
                     if not generate_and_save_art(art_prompt, art_file):
                         art_file = None # Fallback to placeholder if generation fails
-                else: art_file = None
+                else:
+                    art_file = None
 
         art_crop = None
         if art_file and os.path.exists(art_file):
@@ -772,7 +876,7 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
             flavor_text = f'"{card["flavor_text"]}"'
             text_y = draw_wrapped_text(draw, flavor_text, (TEXT_BOX_START_X, text_y), font_flavor, color_body, indent=0, width=int(TEXT_WIDTH_CHARS * 1.4))
 
-        filename = f"{output_dir}/{name.replace(' ', '_')}.png"
+        filename = f"{output_dir}/{name.replace(' ', '_')}{filename_suffix}.png"
         canvas.save(filename)
         generated_card_files.append(filename)
     
@@ -796,8 +900,10 @@ if __name__ == "__main__":
     group.add_argument('-narc', action='store_true', help="Process the NARC deck.")
     parser.add_argument('-auto', action='store_true', help="Automatically generate missing portrait art using DALL-E.")
     parser.add_argument('-grid', action='store_true', help="Generate a single grid image of all cards in the deck.")
+    parser.add_argument('-dup', action='store_true', help="When using -grid, render multiple copies based on the 'duplicates' value.")
     parser.add_argument('-goon', nargs='?', const='__generate__', default=None, help="Generate a new goon definition. Optionally provide a name.")
     parser.add_argument('-fix', action='store_true', help="Automatically fix missing fields in the JSON data.")
+    parser.add_argument('-regen-art', dest='regen_art', action='store_true', help="Regenerate portrait art even if an existing file is present.")
     args = parser.parse_args()
 
     if args.pcu:
@@ -827,5 +933,7 @@ if __name__ == "__main__":
             faction=faction_name,
             auto_generate_art=args.auto,
             create_grid=args.grid,
-            fix=args.fix
+            use_duplicates=args.dup,
+            fix=args.fix,
+            regen_art=args.regen_art
         )
