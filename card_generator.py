@@ -10,6 +10,7 @@ import requests
 import random
 import argparse
 import base64
+import io
 
 # --- ENV LOADING ---
 def load_env(env_path=".env"):
@@ -48,6 +49,11 @@ def detect_provider():
 MODEL_PROVIDER = detect_provider()
 USING_OPENAI = MODEL_PROVIDER == "openai"
 USING_GEMINI = MODEL_PROVIDER == "gemini"
+
+# --- MODEL PATH HELPERS ---
+def ensure_model_path(model_name: str) -> str:
+    """Ensure Gemini model names include the 'models/' prefix."""
+    return model_name if model_name.startswith("models/") else f"models/{model_name}"
 
 # Optional Gemini client setup (only used if GEMINI_API_KEY is present/selected)
 genai = None
@@ -372,6 +378,30 @@ def _extract_gemini_inline_image(response):
         return None
     return None
 
+def _coerce_image_payload_to_bytes(payload):
+    """Normalize various Gemini image payload shapes into raw bytes."""
+    if payload is None:
+        return None
+    if isinstance(payload, bytes):
+        return payload
+    if isinstance(payload, str):
+        try:
+            return base64.b64decode(payload)
+        except Exception:
+            return None
+    if isinstance(payload, Image.Image):
+        buffer = io.BytesIO()
+        payload.save(buffer, format="PNG")
+        return buffer.getvalue()
+    # Common attribute names on Gemini image objects
+    for attr in ("image", "image_bytes", "_image_bytes", "bytes", "data"):
+        val = getattr(payload, attr, None)
+        if val:
+            coerced = _coerce_image_payload_to_bytes(val)
+            if coerced:
+                return coerced
+    return None
+
 def generate_and_save_art_gemini(prompt, save_path):
     """Generates art using Gemini (requires google-generativeai)."""
     if not genai:
@@ -384,15 +414,15 @@ def generate_and_save_art_gemini(prompt, save_path):
 
         # Prefer the ImageGenerationModel API when available.
         if ImageGenerationModel:
-            model = ImageGenerationModel.from_pretrained(GEMINI_ART_MODEL)
+            model = ImageGenerationModel.from_pretrained(ensure_model_path(GEMINI_ART_MODEL))
             response = model.generate_images(prompt=prompt)
             images = getattr(response, "images", None) or getattr(response, "generated_images", None)
             if images:
                 first_image = images[0]
-                image_bytes = getattr(first_image, "image", None) or first_image
+                image_bytes = _coerce_image_payload_to_bytes(first_image)
         # Fallback to a generic GenerativeModel that might return inline image data.
         if image_bytes is None:
-            model = genai.GenerativeModel(GEMINI_ART_MODEL)
+            model = genai.GenerativeModel(ensure_model_path(GEMINI_ART_MODEL))
             response = model.generate_content(prompt)
             inline_bytes = _extract_gemini_inline_image(response)
             if inline_bytes:
@@ -402,9 +432,20 @@ def generate_and_save_art_gemini(prompt, save_path):
             print("     [!] Gemini art generation did not return an image payload.")
             return False
 
-        # Some SDKs return a base64-encoded string; ensure we persist raw bytes.
+        # Some SDKs return a base64-encoded string; normalize to bytes first.
         if isinstance(image_bytes, str):
-            image_bytes = base64.b64decode(image_bytes)
+            try:
+                image_bytes = base64.b64decode(image_bytes)
+            except Exception as e:
+                print(f"     [!] Gemini returned a string payload that could not be base64-decoded: {e}")
+                return False
+
+        # Validate that bytes represent an image before writing to disk.
+        try:
+            Image.open(io.BytesIO(image_bytes)).verify()
+        except Exception as e:
+            print(f"     [!] Gemini returned data that is not a valid image: {e}")
+            return False
 
         with open(save_path, 'wb') as handler:
             handler.write(image_bytes)
@@ -583,7 +624,7 @@ def generate_goon_text_openai(prompt):
 def generate_goon_text_gemini(prompt):
     if not genai:
         raise RuntimeError("Gemini provider selected but google-generativeai is not installed.")
-    model = genai.GenerativeModel(GEMINI_JSON_MODEL)
+    model = genai.GenerativeModel(ensure_model_path(GEMINI_JSON_MODEL))
     response = model.generate_content(prompt, generation_config={"temperature": 0.8})
     return response.text
 
