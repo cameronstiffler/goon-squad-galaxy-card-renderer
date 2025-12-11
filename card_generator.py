@@ -336,13 +336,7 @@ def generate_and_save_art(prompt, save_path):
     print(f"     [+] Generating AI art for: {os.path.basename(save_path)}...")
     print(f"     [+] Using Prompt: {prompt}")
     if USING_GEMINI:
-        success = generate_and_save_art_gemini(prompt, save_path)
-        if success:
-            return True
-        if HAS_OPENAI_KEY:
-            print("     [!] Gemini art generation failed; falling back to OpenAI.")
-            return generate_and_save_art_openai(prompt, save_path)
-        return False
+        return generate_and_save_art_gemini(prompt, save_path)
     return generate_and_save_art_openai(prompt, save_path)
 
 def generate_and_save_art_openai(prompt, save_path):
@@ -422,7 +416,7 @@ def generate_and_save_art_gemini(prompt, save_path):
 
         image_bytes = None
 
-        # Prefer the ImageGenerationModel API when available.
+        # Prefer the ImageGenerationModel API when available (text-to-image).
         if ImageGenerationModel:
             model = ImageGenerationModel.from_pretrained(ensure_model_path(GEMINI_ART_MODEL))
             response = model.generate_images(prompt=prompt)
@@ -430,10 +424,13 @@ def generate_and_save_art_gemini(prompt, save_path):
             if images:
                 first_image = images[0]
                 image_bytes = _coerce_image_payload_to_bytes(first_image)
-        # Fallback to a generic GenerativeModel that might return inline image data.
+        # Fallback to a generic GenerativeModel that returns inline image data.
         if image_bytes is None:
             model = genai.GenerativeModel(ensure_model_path(GEMINI_ART_MODEL))
-            response = model.generate_content(prompt)
+            response = model.generate_content(
+                prompt,
+                generation_config={"response_mime_type": "image/png", "temperature": 0.9},
+            )
             inline_bytes = _extract_gemini_inline_image(response)
             if inline_bytes:
                 image_bytes = inline_bytes
