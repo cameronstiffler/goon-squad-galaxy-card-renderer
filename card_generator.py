@@ -710,7 +710,7 @@ You are a creative game designer for a card game called 'Goon Squad Galaxy'. You
         print(f"[!] ERROR: Failed to update the deck file '{deck_json_path}'. Error: {e}")
         sys.exit()
 
-def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=False, create_grid=False, use_duplicates=False, fix=False, regen_art=False):
+def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=False, create_grid=False, use_duplicates=False, fix=False):
     print("\n--- STEP 2: GENERATING CARDS ---")
     try:
         with open(json_file, 'r') as f:
@@ -821,7 +821,7 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
                         art_file = fallback_path
             
             art_missing = not (art_file and os.path.exists(art_file))
-            should_generate_art = auto_generate_art and art_file and (regen_art or art_missing)
+            should_generate_art = auto_generate_art and art_file and art_missing
 
             # If art is missing or regeneration is requested, create new art.
             if should_generate_art:
@@ -1055,7 +1055,6 @@ if __name__ == "__main__":
     parser.add_argument('-dup', action='store_true', help="When using -grid, render multiple copies based on the 'duplicates' value.")
     parser.add_argument('-goon', nargs='?', const='__generate__', default=None, help="Generate a new goon definition. Optionally provide a name.")
     parser.add_argument('-fix', action='store_true', help="Automatically fix missing fields in the JSON data.")
-    parser.add_argument('-regen-art', dest='regen_art', action='store_true', help="Regenerate portrait art even if an existing file is present.")
     args = parser.parse_args()
 
     if args.pcu:
@@ -1086,6 +1085,5 @@ if __name__ == "__main__":
             auto_generate_art=args.auto,
             create_grid=args.grid,
             use_duplicates=args.dup,
-            fix=args.fix,
-            regen_art=args.regen_art
+            fix=args.fix
         )
