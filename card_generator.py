@@ -242,6 +242,19 @@ def load_art_prompt_data(faction):
         print(f"   [!] WARNING: Could not load or parse art prompt guide at '{guide_path}'. Art generation may be generic. Error: {e}")
         return None
 
+def load_style_image(faction):
+    """Load an optional style reference image to send to Gemini."""
+    base = f"goon_design_guide/{faction}/style_example"
+    for ext, mime in ((".png", "image/png"), (".jpg", "image/jpeg"), (".jpeg", "image/jpeg")):
+        path = base + ext
+        if os.path.exists(path):
+            try:
+                with open(path, "rb") as f:
+                    return mime, f.read()
+            except Exception as e:
+                print(f"   [!] WARNING: Failed to read style image '{path}': {e}")
+    return None
+
 def generate_art_prompt(goon, prompt_data, art_style_prompt):
     """Constructs a detailed prompt for DALL-E using a base style, character template, and goon-specific overrides."""
     if not prompt_data:
@@ -331,12 +344,12 @@ def generate_art_prompt(goon, prompt_data, art_style_prompt):
     priority_note = "Use the above art style exactly. Do not introduce any new style cues; only apply the subject details below."
     return f"{art_style_prompt}\n\n{priority_note}\n\nSubject: {character_description}"
 
-def generate_and_save_art(prompt, save_path):
+def generate_and_save_art(prompt, save_path, style_image=None):
     """Generates art using the selected provider and saves it to the specified path."""
     print(f"     [+] Generating AI art for: {os.path.basename(save_path)}...")
     print(f"     [+] Using Prompt: {prompt}")
     if USING_GEMINI:
-        return generate_and_save_art_gemini(prompt, save_path)
+        return generate_and_save_art_gemini(prompt, save_path, style_image=style_image)
     return generate_and_save_art_openai(prompt, save_path)
 
 def generate_and_save_art_openai(prompt, save_path):
@@ -377,7 +390,13 @@ def _extract_gemini_inline_image(response):
             for part in parts:
                 inline = getattr(part, "inline_data", None)
                 if inline and getattr(inline, "data", None):
-                    return base64.b64decode(inline.data)
+                    data = inline.data
+                    if isinstance(data, bytes):
+                        return data
+                    try:
+                        return base64.b64decode(data)
+                    except Exception:
+                        return None
     except Exception:
         return None
     return None
@@ -436,7 +455,7 @@ def _extract_data_uri_image(text_value):
     except Exception:
         return None
 
-def generate_and_save_art_gemini(prompt, save_path):
+def generate_and_save_art_gemini(prompt, save_path, style_image=None):
     """Generates art using Gemini (requires google-generativeai)."""
     if not genai:
         print("     [!] Gemini provider selected but google-generativeai is not installed.")
@@ -448,19 +467,53 @@ def generate_and_save_art_gemini(prompt, save_path):
         response_summary = None
         model_name = ensure_model_path(GEMINI_ART_MODEL)
 
-        # Prefer the ImageGenerationModel API when available (text-to-image).
+        # Prepare optional style image part
+        style_part = None
+        if style_image:
+            mime_type, data_bytes = style_image
+            style_part = {"mime_type": mime_type, "data": data_bytes}
+
+        # 1) Try ImageGenerationModel for imagen-style models.
         if ImageGenerationModel and model_name.startswith("models/imagen"):
-            model = ImageGenerationModel.from_pretrained(model_name)
-            response = model.generate_images(prompt=prompt)
-            response_summary = summarize_gemini_response(response)
-            images = getattr(response, "images", None) or getattr(response, "generated_images", None)
-            if images:
-                first_image = images[0]
-                image_bytes = _coerce_image_payload_to_bytes(first_image)
-        # Fallback to a generic GenerativeModel that returns inline image data.
+            try:
+                model = ImageGenerationModel.from_pretrained(model_name)
+                response = model.generate_images(prompt=prompt, image=style_part["data"] if style_part else None)
+                response_summary = summarize_gemini_response(response)
+                images = getattr(response, "images", None) or getattr(response, "generated_images", None)
+                if images:
+                    first_image = images[0]
+                    image_bytes = _coerce_image_payload_to_bytes(first_image)
+            except Exception as e:
+                print(f"     [!] Gemini ImageGenerationModel call failed: {e}")
+
+        # 2) Try GenerativeModel.generate_images if available (e.g., gemini-3-pro-image-preview).
         if image_bytes is None:
             model = genai.GenerativeModel(model_name)
-            response = model.generate_content(prompt, generation_config={"temperature": 0.9})
+            if hasattr(model, "generate_images"):
+                try:
+                    if style_part:
+                        response = model.generate_images(
+                            prompt=prompt,
+                            images=[style_part],
+                        )
+                    else:
+                        response = model.generate_images(prompt=prompt)
+                    response_summary = summarize_gemini_response(response)
+                    images = getattr(response, "generated_images", None) or getattr(response, "images", None)
+                    if images:
+                        image_bytes = _coerce_image_payload_to_bytes(images[0])
+                except Exception as e:
+                    print(f"     [!] Gemini generate_images failed: {e}")
+
+        # 3) Fallback to generate_content and look for inline data/data URIs.
+        if image_bytes is None:
+            parts = []
+            if style_part:
+                parts.append(style_part)
+                parts.append({"text": "Style reference image; match line quality, palette, and rendering style."})
+            parts.append({"text": prompt})
+
+            response = model.generate_content(parts, generation_config={"temperature": 0.9})
             response_summary = summarize_gemini_response(response)
             inline_bytes = _extract_gemini_inline_image(response)
             if inline_bytes:
@@ -498,14 +551,22 @@ def generate_and_save_art_gemini(prompt, save_path):
                 print(f"     [!] Gemini returned a string payload that could not be base64-decoded: {e}")
                 return False
 
-        # Validate that bytes represent an image before writing to disk.
+        # Validate and, if it fails, write a raw debug file for inspection.
         try:
             Image.open(io.BytesIO(image_bytes)).verify()
         except Exception as e:
+            head = image_bytes[:32]
+            print(f"     [!] Gemini returned data that is not a valid image: {e}")
+            print(f"         Bytes len={len(image_bytes)}, head={head!r}")
             if response_summary:
-                print(f"     [!] Gemini returned data that is not a valid image: {e}. Response: {response_summary}")
-            else:
-                print(f"     [!] Gemini returned data that is not a valid image: {e}")
+                print(f"         Response: {response_summary}")
+            debug_path = save_path + ".raw"
+            try:
+                with open(debug_path, "wb") as dbg:
+                    dbg.write(image_bytes)
+                print(f"         Raw payload saved to {debug_path} for inspection.")
+            except Exception as write_err:
+                print(f"         Failed to save raw payload: {write_err}")
             return False
 
         with open(save_path, 'wb') as handler:
@@ -786,6 +847,7 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
     assets = get_assets(faction)
     ai_prompt_data = load_art_prompt_data(faction)
     art_style_prompt = load_art_style_prompt() # Load the master art style once
+    style_image = load_style_image(faction)
     if not os.path.exists(output_dir): os.makedirs(output_dir)
 
     # --- FONTS (Loaded from JSON) ---
@@ -888,7 +950,7 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
             if should_generate_art:
                 art_prompt = generate_art_prompt(card, ai_prompt_data, art_style_prompt)
                 if art_prompt:
-                    if not generate_and_save_art(art_prompt, art_file):
+                    if not generate_and_save_art(art_prompt, art_file, style_image=style_image):
                         art_file = None # Fallback to placeholder if generation fails
                 else:
                     art_file = None
@@ -1111,7 +1173,8 @@ if __name__ == "__main__":
     group.add_argument('-pcu', action='store_true', help="Process the PCU deck.")
     group.add_argument('-meat', action='store_true', help="Process the MEAT deck.")
     group.add_argument('-narc', action='store_true', help="Process the NARC deck.")
-    parser.add_argument('-auto', action='store_true', help="Automatically generate missing portrait art using DALL-E.")
+    parser.add_argument('-auto', action='store_true', help="Automatically generate missing portrait art.")
+    parser.add_argument('-deck', action='store_true', help="Render all cards in the selected deck.")
     parser.add_argument('-grid', action='store_true', help="Generate a single grid image of all cards in the deck.")
     parser.add_argument('-dup', action='store_true', help="When using -grid, render multiple copies based on the 'duplicates' value.")
     parser.add_argument('-goon', nargs='?', const='__generate__', default=None, help="Generate a new goon definition. Optionally provide a name.")
@@ -1134,10 +1197,12 @@ if __name__ == "__main__":
         faction_name = "meat"
         output_directory = os.path.join(OUTPUT_DIR, "meat")
 
+    render_deck = args.deck or args.auto
+
     if args.goon:
         goon_name = args.goon if args.goon != '__generate__' else None
         generate_new_goon(faction=faction_name, deck_json_path=json_to_process, goon_name=goon_name)
-    else:
+    elif render_deck:
         generate_cards(
             json_file=json_to_process, 
             art_dir=art_directory, 
@@ -1148,3 +1213,5 @@ if __name__ == "__main__":
             use_duplicates=args.dup,
             fix=args.fix
         )
+    else:
+        print("[!] Deck rendering skipped. Pass '-deck' or '-auto' to render the selected deck.")
