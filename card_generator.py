@@ -65,8 +65,8 @@ ImageGenerationModel = None
 if os.getenv("GEMINI_API_KEY"):
     try:
         import google.generativeai as genai  # type: ignore
-        from google.generativeai import ImageGenerationModel  # type: ignore
         genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+        ImageGenerationModel = getattr(genai, "ImageGenerationModel", None)
     except ImportError:
         print("[!] WARNING: google-generativeai not installed; Gemini provider will not work until it's available.")
     except Exception as e:
@@ -279,10 +279,12 @@ def generate_art_prompt(goon, prompt_data, art_style_prompt):
         'head_wear': ['headgear', 'head gear', 'headwear'],
         'accessories': ['accessory'],
         'weapon': ['weaponry'],
+        'facehair': ['face hair', 'facial hair', 'facial_hair', 'beard', 'beards'],
     }
     option_aliases = {
         # Handle small naming mismatches between template placeholders and options keys
-        'perspective_angle': 'perspective angle'
+        'perspective_angle': 'perspective angle',
+        'facehair': 'face hair',
     }
 
     def normalize_description_value(value):
@@ -832,7 +834,7 @@ You are a creative game designer for a card game called 'Goon Squad Galaxy'. You
         print(f"[!] ERROR: Failed to update the deck file '{deck_json_path}'. Error: {e}")
         sys.exit()
 
-def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=False, create_grid=False, use_duplicates=False, fix=False):
+def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=False, auto_extra_variations=0, create_grid=False, use_duplicates=False, fix=False):
     print("\n--- STEP 2: GENERATING CARDS ---")
     try:
         with open(json_file, 'r') as f:
@@ -950,7 +952,15 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
             if should_generate_art:
                 art_prompt = generate_art_prompt(card, ai_prompt_data, art_style_prompt)
                 if art_prompt:
-                    if not generate_and_save_art(art_prompt, art_file, style_image=style_image):
+                    # First generate the primary portrait
+                    success = generate_and_save_art(art_prompt, art_file, style_image=style_image)
+                    # Generate additional variations if requested (base name + _1, _2, etc.)
+                    if success and auto_extra_variations > 0:
+                        root, ext = os.path.splitext(art_file)
+                        for i in range(1, auto_extra_variations + 1):
+                            alt_path = f"{root}_{i}{ext}"
+                            generate_and_save_art(art_prompt, alt_path, style_image=style_image)
+                    if not success:
                         art_file = None # Fallback to placeholder if generation fails
                 else:
                     art_file = None
@@ -1173,7 +1183,7 @@ if __name__ == "__main__":
     group.add_argument('-pcu', action='store_true', help="Process the PCU deck.")
     group.add_argument('-meat', action='store_true', help="Process the MEAT deck.")
     group.add_argument('-narc', action='store_true', help="Process the NARC deck.")
-    parser.add_argument('-auto', action='store_true', help="Automatically generate missing portrait art.")
+    parser.add_argument('-auto', nargs='?', const=0, type=int, help="Automatically generate missing portrait art. Optionally provide a number to generate that many additional variations (_1, _2, ...).")
     parser.add_argument('-deck', action='store_true', help="Render all cards in the selected deck.")
     parser.add_argument('-grid', action='store_true', help="Generate a single grid image of all cards in the deck.")
     parser.add_argument('-dup', action='store_true', help="When using -grid, render multiple copies based on the 'duplicates' value.")
@@ -1197,7 +1207,9 @@ if __name__ == "__main__":
         faction_name = "meat"
         output_directory = os.path.join(OUTPUT_DIR, "meat")
 
-    render_deck = args.deck or args.auto
+    auto_requested = args.auto is not None
+    auto_extra_variations = max(0, args.auto) if auto_requested else 0
+    render_deck = args.deck or auto_requested
 
     if args.goon:
         goon_name = args.goon if args.goon != '__generate__' else None
@@ -1208,7 +1220,8 @@ if __name__ == "__main__":
             art_dir=art_directory, 
             output_dir=output_directory, 
             faction=faction_name,
-            auto_generate_art=args.auto,
+            auto_generate_art=auto_requested,
+            auto_extra_variations=auto_extra_variations,
             create_grid=args.grid,
             use_duplicates=args.dup,
             fix=args.fix

@@ -58,13 +58,7 @@
       "mechanical": true,
       "resist": false,
       "no_unwind": false,
-      "deploy_requirements": [
-        {
-          "type": "requires_card_in_play",
-          "card_name": "Krax",
-          "side": "self"
-        }
-      ],
+      "deploy_requirements": [],
       "abilities": [
         {
           "name": "MAUL",
@@ -86,7 +80,7 @@
           },
           "passive": true,
           "must_use": false,
-          "text": "Some or all wind applied to Squad Goon as damage from enemy Goon ability may be applied to Mutt instead."
+          "text": "Some or all wind applied to Squad Goon as damage from enemy Goon ability may be applied to Mutt instead. Add 1 wind to enemy Goon who caused damage."
         }
       ],
       "notes": [],
@@ -98,7 +92,7 @@
       "duplicates": 3,
       "faction": "PCU",
       "deploy_cost": {
-        "wind": 3,
+        "wind": 2,
         "gear": 0,
         "meat": 0
       },
@@ -140,7 +134,7 @@
       "deploy_requirements": [],
       "abilities": [
         {
-          "name": "THRASHING VAULT",
+          "name": "BLOODLUST",
           "cost": {
             "wind": 1,
             "gear": 0,
@@ -149,17 +143,6 @@
           "passive": false,
           "must_use": true,
           "text": "Add 1 wind to target Goon. Must use this ability if able"
-        },
-        {
-          "name": "BLOODLUST",
-          "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": true,
-          "must_use": false,
-          "text": "Must attack if able."
         }
       ],
       "notes": [],
@@ -168,7 +151,7 @@
     {
       "name": "Annihilist Overseer",
       "rank": "BG",
-      "duplicates": 3,
+      "duplicates": 1,
       "faction": "PCU",
       "deploy_cost": {
         "wind": 4,
@@ -195,13 +178,13 @@
         {
           "name": "BEHEAD",
           "cost": {
-            "wind": 3,
+            "wind": 2,
             "gear": 0,
             "meat": 0
           },
           "passive": false,
           "must_use": false,
-          "text": "Destroy target Goon."
+          "text": "Destroy target Basic Goon."
         }
       ],
       "notes": [],
@@ -210,7 +193,7 @@
     {
       "name": "K\u00e4sekobold",
       "rank": "BG",
-      "duplicates": 4,
+      "duplicates": 1,
       "faction": "PCU",
       "deploy_cost": {
         "wind": 2,
@@ -267,13 +250,24 @@
         {
           "name": "TIME CONTORTION",
           "cost": {
-            "wind": 1,
-            "gear": 1,
-            "meat": 1
+            "wind": "X",
+            "gear": 0,
+            "meat": 0
           },
           "passive": false,
           "must_use": false,
-          "text": "Remove all wind from target Goon."
+          "text": "Remove X wind from target Goon"
+        },
+        {
+          "name": "URGENT PORTAL",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "Add 1 wind to Grim to return allied Goon being targeted by enemy ability to hand. Enemy ability does not resolve, cost is still paid and counts towards single ability use per turn."
         }
       ],
       "flavor_text": "I seek only to find amusement in your annihilation",
@@ -282,40 +276,51 @@
     {
       "name": "Helvis",
       "rank": "T",
-      "duplicates": 1,
+      "duplicates": 4,
       "faction": "PCU",
       "deploy_cost": {
-        "wind": 6,
+        "wind": 5,
         "gear": 0,
-        "meat": 3
+        "meat": 2
       },
       "biological": false,
       "mechanical": false,
       "resist": false,
-      "no_unwind": false,
+      "no_unwind": true,
       "deploy_requirements": [],
       "abilities": [
         {
-          "name": "ABYSSAL BELLOW",
-          "cost": {
-            "wind": 2,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Target player's Goons may not use abilities on their next turn."
-        },
-        {
           "name": "SEISMIC STOMP",
           "cost": {
-            "wind": 2,
+            "wind": 1,
             "gear": 0,
             "meat": 0
           },
           "passive": false,
           "must_use": false,
-          "text": "Add 2 wind to all enemy Goons"
+          "text": "Add 2 wind to all enemy Goons. Protection for Squad Leader still applies"
+        },
+        {
+          "name": "INVULNERABLE",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "May not be targeted by abilities"
+        },
+        {
+          "name": "AUTONOMY",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "Does not protect Squad Leader from being targeted."
         }
       ],
       "portrait_art": "helvis.png"
@@ -323,7 +328,7 @@
     {
       "name": "Blood Howler",
       "rank": "BG",
-      "duplicates": 3,
+      "duplicates": 4,
       "faction": "PCU",
       "deploy_cost": {
         "wind": 2,
@@ -356,7 +361,7 @@
       "duplicates": 4,
       "faction": "PCU",
       "deploy_cost": {
-        "wind": 4,
+        "wind": 3,
         "gear": 1,
         "meat": 0
       },
@@ -387,6 +392,17 @@
           "passive": true,
           "must_use": false,
           "text": "If BASH IN SKULL destroys a Goon, Krax may add 2 wind to another target Goon. This may chain as long as it is able."
+        },
+        {
+          "name": "PERSISTENT",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "When destroyed return Krax to owner's hand instead of Dead Pool."
         }
       ],
       "portrait_art": "krax.jpg"
@@ -394,7 +410,7 @@
     {
       "name": "Vex",
       "rank": "SG",
-      "duplicates": 3,
+      "duplicates": 4,
       "faction": "PCU",
       "deploy_cost": {
         "wind": 3,
@@ -421,7 +437,7 @@
         {
           "name": "SNIPE",
           "cost": {
-            "wind": 2,
+            "wind": 1,
             "gear": 0,
             "meat": 0
           },
@@ -439,31 +455,36 @@
           "passive": false,
           "must_use": false,
           "text": "Destroy target Basic Goon."
+        },
+        {
+          "name": "PERSISTENT",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "When destroyed return Vex to owner's hand instead of Dead Pool."
         }
       ],
       "portrait_art": "vex.jpg"
     },
     {
-      "name": "Kriegsgheist",
+      "name": "Necrotech Revenant",
       "rank": "BG",
       "duplicates": 2,
       "faction": "PCU",
       "deploy_cost": {
         "wind": 0,
-        "gear": 3,
-        "meat": 3
+        "gear": 1,
+        "meat": 1
       },
       "biological": false,
       "mechanical": false,
       "resist": true,
       "no_unwind": true,
-      "deploy_requirements": [
-        {
-          "type": "requires_card_in_play",
-          "card_name": "Technomancer",
-          "side": "self"
-        }
-      ],
+      "deploy_requirements": [],
       "abilities": [
         {
           "name": "BLITZ",
@@ -474,7 +495,7 @@
           },
           "passive": false,
           "must_use": true,
-          "text": "Add 3 wind to target Goon. Must use this ability every turn if able."
+          "text": "Destroy Revenant to destroy target Goon."
         }
       ],
       "portrait_art": "krieg.jpg"
@@ -485,7 +506,7 @@
       "duplicates": 1,
       "faction": "PCU",
       "deploy_cost": {
-        "wind": 0,
+        "wind": 1,
         "gear": 0,
         "meat": 1
       },
@@ -496,7 +517,7 @@
       "deploy_requirements": [],
       "abilities": [
         {
-          "name": "HOST FLAIL",
+          "name": "HOST SPASM",
           "cost": {
             "wind": 1,
             "gear": 0,
@@ -515,10 +536,10 @@
           },
           "passive": true,
           "must_use": true,
-          "text": "When deployed, Jacker obtains abilities of Goon burned from Dead Pool to pay deploy cost. These abilities cost 1 additional wind to use."
+          "text": "When deployed, Jacker obtains abilities of biological Goon burned to pay deploy cost."
         },
         {
-          "name": "TENACIOUS HOST",
+          "name": "TENACIOUS RETURN",
           "cost": {
             "wind": 0,
             "gear": 0,
@@ -557,7 +578,7 @@
       "duplicates": 4,
       "faction": "PCU",
       "deploy_cost": {
-        "wind": 2,
+        "wind": 1,
         "gear": 0,
         "meat": 0
       },
@@ -576,18 +597,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Add 1 wind to 2 target Goons"
-        },
-        {
-          "name": "STEADY DRUM",
-          "cost": {
-            "wind": 1,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Remove 1 wind from target allied Goon."
+          "text": "Add 2 wind to target Basic Goon"
         }
       ],
       "portrait_art": "natives.jpg"
@@ -598,7 +608,7 @@
       "duplicates": 2,
       "faction": "PCU",
       "deploy_cost": {
-        "wind": 2,
+        "wind": 1,
         "gear": 0,
         "meat": 1
       },
@@ -606,13 +616,7 @@
       "mechanical": true,
       "resist": false,
       "no_unwind": false,
-      "deploy_requirements": [
-        {
-          "type": "requires_card_in_play",
-          "card_name": "Vex",
-          "side": "self"
-        }
-      ],
+      "deploy_requirements": [],
       "abilities": [
         {
           "name": "SMILODON SABERS",
@@ -623,7 +627,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Add 2 wind to target Goon"
+          "text": "Add 1 wind to target Goon"
         },
         {
           "name": "FAMILIAR ASSIST",
@@ -632,9 +636,9 @@
             "gear": 0,
             "meat": 0
           },
-          "passive": false,
+          "passive": true,
           "must_use": false,
-          "text": "Nives can contribute wind to pay for Vex's abilities."
+          "text": "Nives can contribute wind to pay for Squad Goon abilities."
         }
       ],
       "notes": [],
@@ -643,7 +647,7 @@
     {
       "name": "Primordial Oozer",
       "rank": "BG",
-      "duplicates": 3,
+      "duplicates": 4,
       "faction": "PCU",
       "deploy_cost": {
         "wind": 1,
@@ -665,7 +669,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Add 1 wind to target Goon"
+          "text": "Add 1 wind to target Basic Goon"
         },
         {
           "name": "GOOP",
@@ -676,7 +680,7 @@
           },
           "passive": true,
           "must_use": false,
-          "text": "Unfriendly Goon who targets Oozer with an ability does not unwind during its next unwind phase."
+          "text": "Add 1 wind to Enemy Goon who targets Oozer with ability after effect resolves."
         }
       ],
       "portrait_art": "oozer.png"
@@ -687,7 +691,7 @@
       "duplicates": 2,
       "faction": "PCU",
       "deploy_cost": {
-        "wind": 2,
+        "wind": 1,
         "gear": 0,
         "meat": 0
       },
@@ -700,13 +704,13 @@
         {
           "name": "DOSE",
           "cost": {
-            "wind": 2,
+            "wind": 0,
             "gear": 0,
             "meat": 0
           },
-          "passive": false,
+          "passive": true,
           "must_use": false,
-          "text": "Target Goon may not use abilities or contribute wind on its Player\u2019s next turn. Target may still unwind."
+          "text": "Destroy Toad to prevent enemy ability targeting allied Basic Goon from resolving."
         }
       ],
       "portrait_art": "toad.jpg"
@@ -714,10 +718,10 @@
     {
       "name": "Local Singularity",
       "rank": "BG",
-      "duplicates": 2,
+      "duplicates": 4,
       "faction": "PCU",
       "deploy_cost": {
-        "wind": 2,
+        "wind": 1,
         "gear": 0,
         "meat": 0
       },
@@ -728,7 +732,18 @@
       "deploy_requirements": [],
       "abilities": [
         {
-          "name": "DRAW FIRE",
+          "name": "ENTROPIC DECAY",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": true,
+          "text": "No effect. Must use this ability if able."
+        },
+        {
+          "name": "GRAVITATIONAL PULL",
           "cost": {
             "wind": 0,
             "gear": 0,
@@ -744,12 +759,12 @@
     {
       "name": "Technomancer",
       "rank": "BG",
-      "duplicates": 3,
+      "duplicates": 2,
       "faction": "PCU",
       "deploy_cost": {
-        "wind": 4,
-        "gear": 0,
-        "meat": 0
+        "wind": 1,
+        "gear": 1,
+        "meat": 1
       },
       "biological": true,
       "mechanical": true,
@@ -760,24 +775,35 @@
         {
           "name": "RESURRECT",
           "cost": {
-            "wind": 2,
+            "wind": 0,
             "gear": 0,
             "meat": 1
           },
           "passive": false,
           "must_use": false,
-          "text": "Take control of a Biological Goon from Dead Pool. Treat the resurrected Goon as if it were deployed this turn."
+          "text": "Take control of a Biological Goon from Dead Pool. The ressurected Goon may act this turn. Burn ressurected Goon at end of turn"
         },
         {
           "name": "RECYCLE",
           "cost": {
-            "wind": 2,
+            "wind": 0,
             "gear": 1,
             "meat": 0
           },
           "passive": false,
           "must_use": false,
-          "text": "Take control of a Mechanical Goon from Dead Pool. Treat the recycled Goon as if it were deployed this turn."
+          "text": "Take control of a Mechanical Goon from Dead Pool. The recycled Goon enters play with no wind and may act this turn. Burn recycled Goon at end of turn"
+        },
+        {
+          "name": "PSYCHIC HACK",
+          "cost": {
+            "wind": 2,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Take control of a opponent's Mechanical Goon until end of turn"
         }
       ],
       "notes": [],
@@ -786,10 +812,10 @@
     {
       "name": "Shadow Shaman",
       "rank": "BG",
-      "duplicates": 4,
+      "duplicates": 1,
       "faction": "PCU",
       "deploy_cost": {
-        "wind": 3,
+        "wind": 2,
         "gear": 0,
         "meat": 0
       },
@@ -813,7 +839,7 @@
         {
           "name": "SHADOW LANCE",
           "cost": {
-            "wind": 2,
+            "wind": 1,
             "gear": 1,
             "meat": 0
           },
@@ -826,12 +852,12 @@
       "portrait_art": "shaman.jpg"
     },
     {
-      "name": "Voidling",
+      "name": "Voidwing",
       "rank": "BG",
       "duplicates": 4,
       "faction": "PCU",
       "deploy_cost": {
-        "wind": 3,
+        "wind": 2,
         "gear": 0,
         "meat": 0
       },
@@ -842,15 +868,15 @@
       "deploy_requirements": [],
       "abilities": [
         {
-          "name": "SHOT SPOTTER",
+          "name": "ADVANCE NOTICE",
           "cost": {
-            "wind": 1,
+            "wind": 0,
             "gear": 0,
             "meat": 0
           },
-          "passive": false,
+          "passive": true,
           "must_use": false,
-          "text": "If target takes wind as damage this turn, they do not unwind during their next unwind phase."
+          "text": "Destroy Voidwing to return Goon to hand when being targeted by enemy ability. Enemy ability does not resolve. Cost is still paid and counts towards single ability use per turn"
         },
         {
           "name": "RALLY RINGER",
@@ -865,114 +891,6 @@
         }
       ],
       "portrait_art": "voidling.png"
-    },
-    {
-      "name": "Void Operative",
-      "rank": "SG",
-      "deploy_cost": {
-        "wind": 7,
-        "meat": 0,
-        "gear": 0
-      },
-      "abilities": [
-        {
-          "name": "Stress Dagger",
-          "description": "Inflicts immediate stress damage on a selected target, with additional overload if target has been locked by another ability this turn.",
-          "cost": {
-            "wind": 0,
-            "meat": 0,
-            "gear": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": ""
-        },
-        {
-          "name": "Shadow Slip",
-          "description": "Teleports to any dark nebula on the board. Gains temporary invisibility preventing direct attacks for one turn.",
-          "cost": {
-            "wind": 0,
-            "meat": 0,
-            "gear": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": ""
-        },
-        {
-          "name": "Void Implosion",
-          "description": "Sacrifices a portion of own health to create a localized micro blackhole that pulls in and damages all nearby enemies.",
-          "cost": {
-            "wind": 0,
-            "meat": 0,
-            "gear": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": ""
-        }
-      ],
-      "attributes": {
-        "health": 60,
-        "attack_damage": 20,
-        "movement_speed": "Fast",
-        "attack_range": "Medium"
-      },
-      "special_flags": [
-        "biological",
-        "resist"
-      ],
-      "flavor_text": "Forged in the heart of the darkest voidspace fringe, a mere whisper of death incarnate.",
-      "portrait_art": "void_assassin_elite.jpg",
-      "duplicates": 1,
-      "faction": "pcu",
-      "biological": false,
-      "mechanical": false,
-      "resist": false,
-      "no_unwind": false,
-      "deploy_requirements": []
-    },
-    {
-      "name": "Shade Shaman",
-      "rank": "BG",
-      "duplicates": 4,
-      "faction": "PCU",
-      "deploy_cost": {
-        "wind": 3,
-        "gear": 0,
-        "meat": 0
-      },
-      "biological": true,
-      "mechanical": true,
-      "resist": false,
-      "no_unwind": false,
-      "deploy_requirements": [],
-      "abilities": [
-        {
-          "name": "DARK MATTER DELUGE",
-          "cost": {
-            "wind": "X",
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Add 1 wind to X Goons"
-        },
-        {
-          "name": "SHADOW LANCE",
-          "cost": {
-            "wind": 2,
-            "gear": 1,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Add 2 wind to target Goon."
-        }
-      ],
-      "notes": [],
-      "portrait_art": "shadowshaman.jpg"
     }
   ]
 }

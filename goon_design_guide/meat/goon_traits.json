@@ -1,14 +1,14 @@
 {
-  "template": "Subject must have the following traits:\nClassification: {goon_class}\nAnatomy: {anatomy}\nSkin: {skin}\nFacial Features:\n1. Eyes: {eyes}\n2. Mouth: {mouth}\n3. Teeth: {teeth}\n4.Expression: Dimwitted\nOutfit Instructions:\n1. Attire: subject is wearing {armor}\n2. headgear: {head_wear}\n3. Accessories: {accessories}\n4. Boots: {boots}\n\nSubject Description: One instance of the subject. The subject is a {goon_class} wielding a {weapon} in a {pose} pose, seen from a {perspective_angle} view in a {setting} setting during {time_of_day}.\n\n",
+  "template": "Subject must have the following traits:\nClassification: {goon_class}\nAnatomy: {anatomy}\nSkin: {skin}\nFacial Features:\n1. Eyes: {eyes}\n2. Mouth: {mouth}\n3. Teeth: {teeth}\n4.Facial Hair : {facehair}\n5.Expression: Dimwitted\n\nOutfit Instructions:\n1. Attire: subject is wearing {armor}\n2. headgear: {head_wear}\n3. Accessories: {accessories}\n4. Boots: {boots}\n\nSubject Description: One instance of the subject. The subject is a {goon_class} wielding a {weapon} in a {pose} pose, seen from a {perspective_angle} view in a {setting} during {time_of_day}.\n\n",
   "options": {
       "goon_class":[
         "human"
       ],
       "anatomy": [
-        "Stocky and muscular with a hunched posture. Long arms and short legs. A dimwitted human face"
+        "Stocky and muscular with a hunched posture. Long arms and short legs. A dimwitted human face. long, unkempt hair and a scruffy beard. Upper lip is hairless."
       ],
       "setting": [
-        "among the dark foliage of a dense jungle",
+        "among the dark foliage of a dense jungle", 
         "cragy mountain ledge with steep cliffs at night",
         "cave interior lit with fire",
         "isolated overgrow stone ruins",
@@ -24,7 +24,7 @@
         "dusk",
         "nighttime"
       ],
-      "perspective angle": [
+      "perspective_angle": [
         "low angle perspective looking up at the character",
         "high angle perspective looking down at the character",
         "eye level perspective",
@@ -39,33 +39,34 @@
         "seen from the front"
       ],
       "armor": [
-        "plating from insect exoskeleton",
-        "large scales armor",
-        "hides and shell armor",
-        "fur and bone armor",
-        "bleached bones and skulls armor",
+        "plating from insect exoskeleton armor",
+        "large patchwork reptile scales armor",
+        "hides and reptile skin armor",
+        "fur and wood armor",
+        "bleached bones and beast skulls armor",
         "large scales and fur armor",
         "thick furs and hides armor",
         "leather armor",
         "large reptile scales and bones armor",
         "belt of leather only",
         "loincloth of animal hide",
-        "simple leather straps and fur",
+        "simple leather straps",
         "bone armor",
         "spiked pauldrons",
-        "skull pauldrons"
+        "animal skull pauldrons"
       ],
       "weapon": [
         "oversized wooden club with stone spikes",
-        "bone spear with stone tip",
+        "bone spear with horn tip",
         "oversized stone axe with wooden handle",
         "wooden spear with fire hardened tip",
         "oversized wooden mallet with stone head",
         "oversized wooden club with large stone head",
-        "oversized wooden staff with sharp stone tip",
+        "oversized wooden spear with sharp stone tip",
         "oversized bone club",
         "small boulder",
-        "oversized meat cleaver"
+        "dead animal",
+        "oversized primitive meat cleaver"
       ],
       "skin":[
         "light",
@@ -77,35 +78,39 @@
         "scale arm bands",
         "tusk earrings",
         "leather arm bands",
-        "bone necklace with small skulls",
-        "skull arm band",
+        "bone necklace with small creature skulls",
+        "leather gauntlet",
         "scale belt buckle",
-        "bone nose piercing",
+        "tribal nose piercing",
         "leather belt pouch",
         "hide wrist wraps",
-        "leather wrist wraps",
+        "reptile wrist wraps",
         "hide shoulder pad",
-        "hide cloak",
-        "leather necklace"
+        "tattered hide cloak",
+        "leather necklace",
+        "war paint"
       ],
       "head_wear": [
         "helmet made from animal skull and hides",
-        "spiked helmet",
-        "horned helmet",
+        "spiked wood helmet",
+        "horned hard leather helmet",
         "horned animal skull helmet",
         "single horn helmet",
         "leather cowel",
         "turtle shell helmet",
         "leather hood",
         "head band",
-        "fur hat"    ],
+        "hair in top knot",
+        "bare headed",
+        "animal skin cap with tail still attached"
+      ],
       "eyes": [
-        "one eye is missing",
+        "one eye is missing and healed over",
         "barely open",
         "look of amazement",
         "looking to the side",
-        "not visible beneath brow",
-        "small",
+        "very small",
+        "looking downwards",
         "crossed"
       ],
       "mouth": [
@@ -118,22 +123,41 @@
         "large and crooked",
         "large and missing several teeth",
         "sharp and jagged",
-        "regular human teeth 4 times larger than normal"
+        "regular human teeth 4 times larger than normal",
+        "big and unevenly spaced",
+        "bottom tusks protruding upwards",
+        "huge canines",
+        "extremely large top teeth and pronounced overbite",
+        "extremely large bottom teeth and pronounced underbite"
+      ],
+      "facehair": [
+        "sideburns",
+        "beard and bare upper lip",
+        "goatee",
+        "5 o'clock shadow",
+        "long braided goatee",
+        "beard braided on both sides and a bare upper lip",
+        "long beard",
+        "braided long beard ",
+        "full beard"
       ],
       "pose": [
-        "running into battle screaming with weapon raised",
+        "screaming with weapon raised",
         "confused idle observation stance with weapon dragging behind on ground",
         "battle ready with weapon held in both hands",
         "gesturing and talking",
         "attacking and swinging weapon with fierce expression",
         "bewildered",
-        "eating"
+        "eating",
+        "bored"
       ],
       "boots": [
         "primitive animal hide",
         "primitive leather",
         "full animal hide with animal face still attached",
-        "primitive bone reinforced",
+        "full reptile hide with reptile face still attached",
+        "full fish hide with fish face still attached",
+        "primitive wraps",
         "primitive thick hide"
       ]
     },
@@ -149,6 +173,7 @@
       "accessories": 4,
       "head_wear": 1,
       "boots": 1,
+      "facehair": 1,
       "eyes": 1,
       "mouth": 1,
       "teeth": 1,

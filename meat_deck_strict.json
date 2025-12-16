@@ -29,7 +29,7 @@
   "ability_num_bold_font_size": 28,
   "card_name_font_color": "#f6d4d5",
   "deploy_cost_font_color": "white",
-  "body_font_color": "#F5F5DC",
+  "body_font_color": "#f6d4d5",
   "ability_cost_font_color": "black",
   "flavor_text_font_family": [
     "OpenSans-Italic.ttf",
@@ -86,12 +86,48 @@
       "portrait_art": "warrior.png"
     },
     {
-      "name": "Carrion Brute",
-      "rank": "SG",
-      "duplicates": 2,
+      "name": "Meat Head",
+      "rank": "SL",
+      "duplicates": 1,
       "faction": "MEAT",
       "deploy_cost": {
-        "wind": 4,
+        "wind": 0,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": true,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "ONE FOR THE TEAM",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Destroy an allied Goon to destroy target enemy Goon of same rank."
+        }
+      ],
+      "portrait_art": "carrionbrute.jpg"
+    },
+    {
+      "name": "Beast Rider",
+      "rank": "BG",
+      "duplicates": 2,
+      "faction": "MEAT",
+      "description": {
+        "accessories": [
+          "a large lethargic creature with riding saddle strapped to its back"
+        ],
+        "pose": "riding the creature trying to make it move faster"
+      },
+      "deploy_cost": {
+        "wind": 0,
         "gear": 0,
         "meat": 1
       },
@@ -101,30 +137,32 @@
       "no_unwind": false,
       "deploy_requirements": [],
       "abilities": [
-        {
-          "name": "OVERWHELM",
-          "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": true,
-          "must_use": false,
-          "text": "This goon's attacks deal +1 wind for each other friendly MEAT goon in play."
-        },
-        {
-          "name": "PULVERIZE",
-          "cost": {
-            "wind": 2,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Add 3 wind to target Goon."
-        }
       ],
-      "portrait_art": "carrionbrute.jpg"
+      "portrait_art": "beastrider.jpg"
+    },
+    {
+      "name": "Cooter Calvaryman",
+      "rank": "BG",
+      "duplicates": 2,
+      "faction": "MEAT",
+      "description": {
+        "accessories": [
+          "a large turtle with riding saddle strapped to its back"
+        ],
+        "pose": "riding the turtle and trying to make it move faster"
+      },
+      "deploy_cost": {
+        "wind": 0,
+        "gear": 0,
+        "meat": 1
+      },
+      "biological": true,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [],
+      "portrait_art": "cooterman.jpg"
     },
     {
       "name": "Sinew Sniper",
@@ -142,40 +180,87 @@
       "no_unwind": false,
       "deploy_requirements": [],
       "abilities": [
-        {
-          "name": "BONE SHARD",
-          "cost": {
-            "wind": 1,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Add 2 wind to target Goon."
-        },
-        {
-          "name": "EXPOSE WEAKNESS",
-          "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Target Goon loses Resist until the end of the turn."
-        }
       ],
       "portrait_art": "sinewsniper.jpg"
     },
     {
-      "name": "Marrow Sucker",
+      "name": "Joustman",
+      "description": {
+        "attire": "leather gauntlets",
+        "accessories": [
+          "a wooden shield, reins and saddle strapped to the back of a large flightless bird"
+        ],
+        "weapon": "stone point tipped lance",
+        "setting": "field of tall grass with trees and boulders in the background",
+        "pose": "Riding on the back of a running large flightless bird with lance pointed forward"
+      },
       "rank": "BG",
       "duplicates": 3,
       "faction": "MEAT",
       "deploy_cost": {
         "wind": 2,
         "gear": 0,
-        "meat": 0
+        "meat": 1
+      },
+      "biological": true,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+      ],
+      "portrait_art": "joustman.jpg"
+    },
+    {
+      "name": "Slitherer",
+      "description": {
+        "attire": "leather gauntlets",
+        "accessories": [
+          "reins and saddle strapped to the back of a large snake"
+        ],
+        "weapon": "bow and stone tippped arrows",
+        "setting": "rocky terrain with sparse vegetation",
+        "pose": "Riding on the back of a giant snake behind the snakes head."
+      },
+      "rank": "BG",
+      "duplicates": 3,
+      "faction": "MEAT",
+      "deploy_cost": {
+        "wind": 2,
+        "gear": 0,
+        "meat": 1
+      },
+      "biological": true,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [],
+      "portrait_art": "slither.jpg"
+    },
+    {
+      "name": "Gary",
+      "description": {
+        "attire": "leather board shorts only",
+        "accessories": [
+          "surfboard"
+        ],
+        "weapon": "nothing",
+        "setting": "stone-age beach with ocean in the background. Giant tentacles of a sea monster are creeping towards him from the water behind him",
+        "mouth": "large toothy grimace. Clean shaven face",
+        "teeth": "gigantically large teeth, twice as long as wide teeth are clinched together",
+        "head_wear": "messy very light medium length blond hair and clean shaven face",
+        "eyes": "small and round",
+        "pose": "looking unhinged giving the surfer 'hang loose' hand sign",
+        "boots": "bare feet"
+      },
+      "rank": "BG",
+      "duplicates": 3,
+      "faction": "MEAT",
+      "deploy_cost": {
+        "wind": 2,
+        "gear": 0,
+        "meat": 1
       },
       "biological": true,
       "mechanical": false,
@@ -184,32 +269,21 @@
       "deploy_requirements": [],
       "abilities": [
         {
-          "name": "AMBUSH",
+          "name": "PLACE HOLDER",
           "cost": {
             "wind": 0,
             "gear": 0,
-            "meat": 0
+            "meat": 1
           },
           "passive": true,
           "must_use": false,
-          "text": "When deployed, you may add 1 wind to any target Goon."
-        },
-        {
-          "name": "BEAT TO DEATH",
-          "cost": {
-            "wind": 2,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Add 2 wind to target Goon."
+          "text": "Remove 1 wind from all biological allied GoonsAll allied Goons "
         }
       ],
-      "portrait_art": "marrowstalker.jpg"
+      "portrait_art": "gary.jpg"
     },
     {
-      "name": "Gut Guardian",
+      "name": "Qintar the Barbarian",
       "rank": "SG",
       "duplicates": 2,
       "faction": "MEAT",
@@ -225,7 +299,7 @@
       "deploy_requirements": [],
       "abilities": [
         {
-          "name": "MEAT SHIELD",
+          "name": "BEAT TO DEATH",
           "cost": {
             "wind": 1,
             "gear": 0,
@@ -236,7 +310,43 @@
           "text": "Redirect the next ability targeting another friendly MEAT goon to Gut Guardian."
         }
       ],
-      "portrait_art": "gutguardian.jpg"
+      "portrait_art": "qintar.jpg"
+    },
+    {
+      "name": "Leatherman",
+      "description": {
+        "attire": "leather apron and leather gloves",
+        "weapon": "wooden mallet",
+        "pose": "hammering leather strips into makeshift armor",
+        "setting": "stone-age workshop with various leatherworking tools and materials scattered around"
+      },
+      "rank": "BG",
+      "duplicates": 2,
+      "faction": "MEAT",
+      "deploy_cost": {
+        "wind": 3,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": true,
+      "mechanical": false,
+      "resist": true,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "BEAT TO DEATH",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Redirect the next ability targeting another friendly MEAT goon to Gut Guardian."
+        }
+      ],
+      "portrait_art": "leathermanntar.jpg"
     },
     {
       "name": "Grunk Beast",
@@ -424,7 +534,7 @@
     },
     {
       "name": "Meat Chief",
-      "rank": "SL",
+      "rank": "SG",
       "duplicates": 1,
       "faction": "MEAT",
       "deploy_cost": {
