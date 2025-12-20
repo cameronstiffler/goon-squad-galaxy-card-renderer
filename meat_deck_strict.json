@@ -86,9 +86,61 @@
       "portrait_art": "warrior.png"
     },
     {
+      "name": "Kuru Cannibal",
+      "rank": "BG",
+      "duplicates": 4,
+      "faction": "PCU",
+      "deploy_cost": {
+        "wind": 3,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": true,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "BONK",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 1 wind to target Goon"
+        },
+        {
+          "name": "CANNIBALIZE",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": "X"
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add X wind to target Goon ignoring resist."
+        },
+        {
+          "name": "BLOOD DRUNK",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "When Cannabal destroys a Goon, destroy Cannabal to destory target enemy Goon."
+        }
+      ],
+      "portrait_art": "warrior.png"
+    },
+    {
       "name": "Meat Head",
-      "rank": "SL",
-      "duplicates": 1,
+      "rank": "BG",
+      "duplicates": 4,
       "faction": "MEAT",
       "deploy_cost": {
         "wind": 0,
@@ -118,7 +170,7 @@
     {
       "name": "Beast Rider",
       "rank": "BG",
-      "duplicates": 2,
+      "duplicates": 4,
       "faction": "MEAT",
       "description": {
         "accessories": [
@@ -127,32 +179,73 @@
         "pose": "riding the creature trying to make it move faster"
       },
       "deploy_cost": {
-        "wind": 0,
+        "wind": 1,
         "gear": 0,
         "meat": 1
       },
       "biological": true,
       "mechanical": false,
-      "resist": false,
+      "resist": true,
       "no_unwind": false,
       "deploy_requirements": [],
       "abilities": [
+        {
+          "name": "GET IN WAY",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "Some or all wind targeted to allied Goon from enemy ability may be added to Beast Rider instead."
+        }
       ],
       "portrait_art": "beastrider.jpg"
     },
     {
-      "name": "Cooter Calvaryman",
+      "name": "Armored Cavalry",
       "rank": "BG",
-      "duplicates": 2,
+      "duplicates": 4,
       "faction": "MEAT",
       "description": {
         "accessories": [
-          "a large turtle with riding saddle strapped to its back"
+          "a large turtle with riding saddle strapped to its back and a large shield for blocking attacks"
         ],
-        "pose": "riding the turtle and trying to make it move faster"
+        "pose": "carrying a large shield while riding the turtle"
       },
       "deploy_cost": {
-        "wind": 0,
+        "wind": 1,
+        "gear": 0,
+        "meat": 1
+      },
+      "biological": true,
+      "mechanical": false,
+      "resist": true,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "YOU FIGHT ME",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "Some or all wind targeted to allied Goon from enemy ability may be added to Goon instead."
+        }
+      ],
+      "portrait_art": "armoredcalvary.jpg"
+    },
+    {
+      "name": "Sinew Sniper",
+      "rank": "BG",
+      "duplicates": 4,
+      "faction": "MEAT",
+      "deploy_cost": {
+        "wind": 1,
         "gear": 0,
         "meat": 1
       },
@@ -161,25 +254,18 @@
       "resist": false,
       "no_unwind": false,
       "deploy_requirements": [],
-      "abilities": [],
-      "portrait_art": "cooterman.jpg"
-    },
-    {
-      "name": "Sinew Sniper",
-      "rank": "BG",
-      "duplicates": 3,
-      "faction": "MEAT",
-      "deploy_cost": {
-        "wind": 3,
-        "gear": 0,
-        "meat": 0
-      },
-      "biological": true,
-      "mechanical": false,
-      "resist": false,
-      "no_unwind": false,
-      "deploy_requirements": [],
       "abilities": [
+        {
+          "name": "SCREW NEIGHBOR",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "Goon may redirect an enemy Goon ability targeting it to effect allied Goon instead of itself."
+        }
       ],
       "portrait_art": "sinewsniper.jpg"
     },
@@ -195,7 +281,57 @@
         "pose": "Riding on the back of a running large flightless bird with lance pointed forward"
       },
       "rank": "BG",
-      "duplicates": 3,
+      "duplicates": 4,
+      "faction": "MEAT",
+      "deploy_cost": {
+        "wind": 1,
+        "gear": 0,
+        "meat": 1
+      },
+      "biological": true,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+        "name": "SKEWER",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+        "passive": false,
+        "must_use": false,
+        "text": "Add 2 wind to target Goon."
+      },
+      {
+        "name": "HIT AND RUN",
+        "cost": {
+          "wind": 0,
+          "gear": 0,
+          "meat": 0
+        },
+        "passive": true,
+        "must_use": false,
+        "text": "When Goon destroys an opponent's Goon, opponent's Goons may not target Joustman until the end of your next turn."
+      }
+      ],
+      "portrait_art": "joustman.jpg"
+    },
+    {
+      "name": "Back Slider",
+      "description": {
+        "attire": "leather gauntlets",
+        "accessories": [
+          "reins and saddle strapped to the back of a large snake"
+        ],
+        "weapon": "bow and stone tippped arrows",
+        "setting": "rocky terrain with sparse vegetation",
+        "pose": "Riding on the back of a giant snake behind the snakes head."
+      },
+      "rank": "BG",
+      "duplicates": 4,
       "faction": "MEAT",
       "deploy_cost": {
         "wind": 2,
@@ -208,38 +344,33 @@
       "no_unwind": false,
       "deploy_requirements": [],
       "abilities": [
+        {
+          "name": "VOLLEY",
+          "cost": {
+            "wind": "X",
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 1 wind to X target Goons."
+        },
+        {
+          "name": "TACTICAL RETREAT",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "Goon may apply wind from an enemy Goon ability targeting it to allied Goon instead of itself."
+        }
       ],
-      "portrait_art": "joustman.jpg"
-    },
-    {
-      "name": "Slitherer",
-      "description": {
-        "attire": "leather gauntlets",
-        "accessories": [
-          "reins and saddle strapped to the back of a large snake"
-        ],
-        "weapon": "bow and stone tippped arrows",
-        "setting": "rocky terrain with sparse vegetation",
-        "pose": "Riding on the back of a giant snake behind the snakes head."
-      },
-      "rank": "BG",
-      "duplicates": 3,
-      "faction": "MEAT",
-      "deploy_cost": {
-        "wind": 2,
-        "gear": 0,
-        "meat": 1
-      },
-      "biological": true,
-      "mechanical": false,
-      "resist": false,
-      "no_unwind": false,
-      "deploy_requirements": [],
-      "abilities": [],
       "portrait_art": "slither.jpg"
     },
     {
-      "name": "Gary",
+      "name": "Gahree",
       "description": {
         "attire": "leather board shorts only",
         "accessories": [
@@ -255,12 +386,12 @@
         "boots": "bare feet"
       },
       "rank": "BG",
-      "duplicates": 3,
+      "duplicates": 4,
       "faction": "MEAT",
       "deploy_cost": {
         "wind": 2,
         "gear": 0,
-        "meat": 1
+        "meat": 0
       },
       "biological": true,
       "mechanical": false,
@@ -269,15 +400,26 @@
       "deploy_requirements": [],
       "abilities": [
         {
-          "name": "PLACE HOLDER",
+          "name": "DERANGED BEHAVIOR",
+          "cost": {
+            "wind": 2,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Return target Goon to owner's hand."
+        },
+        {
+          "name": "BEAT TO DEATH",
           "cost": {
             "wind": 0,
             "gear": 0,
-            "meat": 1
+            "meat": 0
           },
-          "passive": true,
+          "passive": false,
           "must_use": false,
-          "text": "Remove 1 wind from all biological allied GoonsAll allied Goons "
+          "text": "Destroy target enemy Basic Goon and return Gahree to your hand."
         }
       ],
       "portrait_art": "gary.jpg"
@@ -285,7 +427,7 @@
     {
       "name": "Qintar the Barbarian",
       "rank": "SG",
-      "duplicates": 2,
+      "duplicates": 4,
       "faction": "MEAT",
       "deploy_cost": {
         "wind": 3,
@@ -301,41 +443,69 @@
         {
           "name": "BEAT TO DEATH",
           "cost": {
-            "wind": 1,
+            "wind": 2,
             "gear": 0,
             "meat": 0
           },
           "passive": false,
           "must_use": false,
-          "text": "Redirect the next ability targeting another friendly MEAT goon to Gut Guardian."
+          "text": "Destroy target enemy Basic Goon."
+        },
+        {
+          "name": "ADVANCED TACTICS",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "While Goon is in play, allied Basic Goons' attacks ignore resist."
+        },
+        ,
+        {
+          "name": "PERSISTENT",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "When destroyed return to owner's hand instead of Dead Pool."
         }
       ],
       "portrait_art": "qintar.jpg"
     },
     {
-      "name": "Leatherman",
+      "name": "Leather Face",
       "description": {
-        "attire": "leather apron and leather gloves",
-        "weapon": "wooden mallet",
-        "pose": "hammering leather strips into makeshift armor",
-        "setting": "stone-age workshop with various leatherworking tools and materials scattered around"
+        "attire": "leather mask only",
+        "weapon": "bare hands",
+        "pose": "distant in background",
+        "setting": "among a pile of bloody severed human limbs and torsos",
+        "mouth": "obscured by the leather mask",
+        "teeth": "obscured by the leather mask",
+        "head_wear": "a crude leather mask with eye and mouth holes cut out",
+        "eyes": "obscured by the leather mask",
+        "time_of_day": "nighttime"
       },
       "rank": "BG",
-      "duplicates": 2,
+      "duplicates": 4,
       "faction": "MEAT",
       "deploy_cost": {
-        "wind": 3,
+        "wind": 2,
         "gear": 0,
         "meat": 0
       },
       "biological": true,
       "mechanical": false,
-      "resist": true,
+      "resist": false,
       "no_unwind": false,
       "deploy_requirements": [],
       "abilities": [
         {
-          "name": "BEAT TO DEATH",
+          "name": "KA-BONK",
           "cost": {
             "wind": 1,
             "gear": 0,
@@ -343,15 +513,37 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Redirect the next ability targeting another friendly MEAT goon to Gut Guardian."
+          "text": "Add 2 wind to target Goon."
+        },
+        {
+          "name": "CULL THE HERD",
+          "cost": {
+            "wind": 2,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Destroy target Basic Biological Goon."
+        },
+        {
+          "name": "FUCK THE DEAD",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 1
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Remove all wind from this Goon."
         }
       ],
-      "portrait_art": "leathermanntar.jpg"
+      "portrait_art": "leatherface_alt.jpg"
     },
     {
       "name": "Grunk Beast",
       "rank": "T",
-      "duplicates": 1,
+      "duplicates": 4,
       "faction": "MEAT",
       "deploy_cost": {
         "wind": 5,
@@ -365,26 +557,15 @@
       "deploy_requirements": [],
       "abilities": [
         {
-          "name": "DEVOUR",
+          "name": "RAMPAGE",
           "cost": {
-            "wind": 2,
-            "gear": 0,
-            "meat": 1
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Destroy target Basic Goon. Remove all wind from Grunk Beast."
-        },
-        {
-          "name": "REGENERATE",
-          "cost": {
-            "wind": 0,
+            "wind": 1,
             "gear": 0,
             "meat": 0
           },
-          "passive": true,
+          "passive": false,
           "must_use": false,
-          "text": "At the start of your turn, remove 1 wind from Grunk Beast."
+          "text": "Add 1 wind to enemy player's Goons Remove 1 wind from all allied Basic Goons."
         }
       ],
       "portrait_art": "grunkbeast.jpg"
@@ -392,10 +573,10 @@
     {
       "name": "Hole Grunk",
       "rank": "BG",
-      "duplicates": 3,
+      "duplicates": 4,
       "faction": "MEAT",
       "deploy_cost": {
-        "wind": 2,
+        "wind": 1,
         "gear": 0,
         "meat": 0
       },
@@ -414,29 +595,29 @@
           },
           "passive": true,
           "must_use": false,
-          "text": "Add 1 wind to enemy Goon after it targets allied Goon with an ability and effect resolves"
+          "text": "Add 1 wind to enemy Goon after it targets allied Basic Goon with an ability and effect resolves"
         }
       ],
       "portrait_art": "holegrunk.jpg"
     },
     {
-      "name": "Doom Sayer",
+      "name": "Doomsayer",
       "rank": "SG",
-      "duplicates": 2,
+      "duplicates": 4,
       "faction": "MEAT",
       "deploy_cost": {
         "wind": 3,
         "gear": 0,
-        "meat": 0
+        "meat": 1
       },
       "biological": true,
       "mechanical": false,
-      "resist": false,
+      "resist": true,
       "no_unwind": false,
       "deploy_requirements": [],
       "abilities": [
         {
-          "name": "PROPHECY OF PAIN",
+          "name": "ONE FOR THE TEAM",
           "cost": {
             "wind": 1,
             "gear": 0,
@@ -444,10 +625,21 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Target Goon takes 1 wind damage at the start of its next 3 turns."
+          "text": "Destroy target allied Goon to destroy target enemy Basic Goon."
         },
         {
-          "name": "FINAL WORD",
+          "name": "THROW THE BONES",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 1
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Target player must distribute 3 wind among their Goons."
+        },
+        {
+          "name": "PERSISTENT",
           "cost": {
             "wind": 0,
             "gear": 0,
@@ -455,7 +647,7 @@
           },
           "passive": true,
           "must_use": false,
-          "text": "When Doom Sayer is destroyed, add 2 wind to all other Goons."
+          "text": "When destroyed return to owner's hand instead of Dead Pool."
         }
       ],
       "flavor_text": "Yer gonna git got!",
@@ -469,7 +661,7 @@
       "deploy_cost": {
         "wind": 0,
         "gear": 0,
-        "meat": 0
+        "meat": 1
       },
       "biological": true,
       "mechanical": false,
@@ -478,26 +670,31 @@
       "deploy_requirements": [],
       "abilities": [
         {
-          "name": "PUNCHABLE FACE",
+          "name": "IRRESISTIBLE ODOR",
           "cost": {
-            "wind": 1,
+            "wind": 0,
             "gear": 0,
-            "meat": 1
+            "meat": 0
           },
-          "passive": false,
+          "passive": true,
           "must_use": false,
-          "text": "All enemy Goons able to attack must target Baitman on their next turn."
+          "text": "All enemy Goons able to target and add wind to an enemy Goon with an ability must target Master Baitman on their turn if able."
         }
       ],
       "portrait_art": "masterbaiteralt.jpg"
     },
     {
       "name": "Luddite",
+      "description": {
+        "weapon": "oversized war hammer made from wood and a massive stone head",
+        "setting": "war torn stone-age cratered battlefield under cloudy smokey sky with destroyed robots strewn about",
+        "pose": "bashing a robot to pieces with a powerful downward swing hit with the oversized war hammer"
+      },
       "rank": "BG",
-      "duplicates": 3,
+      "duplicates": 4,
       "faction": "MEAT",
       "deploy_cost": {
-        "wind": 3,
+        "wind": 2,
         "gear": 0,
         "meat": 1
       },
@@ -508,7 +705,7 @@
       "deploy_requirements": [],
       "abilities": [
         {
-          "name": "MAN SLAUGHTER",
+          "name": "BONK",
           "cost": {
             "wind": 1,
             "gear": 0,
@@ -516,7 +713,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Add 1 wind to target biological Goon."
+          "text": "Add 1 wind to target Goon."
         },
         {
           "name": "SMASH MACHINE",
@@ -527,14 +724,25 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Add 2 wind to target mechanical Goon."
+          "text": "Destroy target basic mechanical Goon."
+        },
+        {
+          "name": "TECH SABOTAGE",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "Add 1 wind to enemy mechanical Goon that added wind to an allied Goon after ability effect resolves."
         }
       ],
       "portrait_art": "luddite.jpg"
     },
     {
-      "name": "Meat Chief",
-      "rank": "SG",
+      "name": "Meat Warlord",
+      "rank": "SL",
       "duplicates": 1,
       "faction": "MEAT",
       "deploy_cost": {
@@ -549,49 +757,39 @@
       "deploy_requirements": [],
       "abilities": [
         {
-          "name": "WAR CRY",
+          "name": "MORE FOR THE GRINDER",
           "cost": {
-            "wind": 2,
+            "wind": 0,
             "gear": 0,
             "meat": 0
           },
-          "passive": false,
+          "passive": true,
           "must_use": false,
-          "text": "All friendly MEAT goons deal +1 wind damage until the start of your next turn."
+          "text": "When allied Goon destroys an opponent's Goon, draw a card."
         }
       ],
       "flavor_text": "He's the reason we have a Human Resources department.",
       "portrait_art": "meatchief.jpg"
     },
     {
-      "id": "skullcrusher_brute",
-      "name": "Skullcrusher Brute",
-      "rank": "T",
+      "id": "grunter",
+      "name": "Grunter",
+      "rank": "BG",
       "faction": "MEAT",
       "deploy_cost": {
-        "wind": 8,
+        "wind": 0,
         "gear": 0,
-        "meat": 0
+        "meat": 1
       },
+      "duplicates": 4,
       "biological": true,
       "mechanical": false,
-      "resist": true,
+      "resist": false,
       "no_unwind": false,
       "deploy_requirements": [],
       "abilities": [
         {
-          "name": "Bone Shatter Slam",
-          "cost": {
-            "wind": 3,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Deals massive damage to a single target and adjacent units, causing bleed effect for 3 turns."
-        },
-        {
-          "name": "Rage Regeneration",
+          "name": "MEAT SHIELD",
           "cost": {
             "wind": 0,
             "gear": 0,
@@ -599,192 +797,34 @@
           },
           "passive": true,
           "must_use": false,
-          "text": "When taking damage, restores health equivalent to 50% of the damage received."
+          "text": "Destroy this Goon to prevent an ability effect from resolving on a friendly Goon."
         },
         {
-          "name": "Monstrous Roar",
+          "name": "BONK",
           "cost": {
-            "wind": 2,
+            "wind": 1,
             "gear": 0,
             "meat": 0
           },
           "passive": false,
           "must_use": false,
-          "text": "Rallies all nearby allies, increasing their attack power for 2 turns."
+          "text": "Add 1 wind to target Goon"
         }
       ],
       "portrait_art": "skullcrusher_brute_elite.jpg",
-      "flavor_text": "Born from the rib cage of a colossal beast, the Skullcrusher Brute wields a jawbone club that echoes with the screams of its prey.",
-      "duplicates": 1
+      "flavor_text": ""
     },
     {
-      "id": "skullcrusher_sentry",
-      "name": "Skullcrusher Sentry",
-      "rank": "T",
+      "id": "Pit Master",
+      "name": "Grunter",
+      "rank": "BG",
       "faction": "MEAT",
       "deploy_cost": {
-        "wind": 3,
-        "gear": 0,
-        "meat": 8
-      },
-      "biological": true,
-      "mechanical": false,
-      "resist": true,
-      "no_unwind": false,
-      "deploy_requirements": [],
-      "abilities": [
-        {
-          "name": "Bone Reaver",
-          "cost": {
-            "wind": 2,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Deals double damage to enemies with less than 50% health, cleaving through adjacent units."
-        },
-        {
-          "name": "Marrow Heal",
-          "cost": {
-            "wind": 1,
-            "gear": 0,
-            "meat": 1
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Consumes a lesser unit to restore 50% of maximum health and gain a temporary armor boost."
-        },
-        {
-          "name": "Feral Roar",
-          "cost": {
-            "wind": 2,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Enrages nearby allies, increasing their attack speed and damage for the next turn."
-        }
-      ],
-      "portrait_art": "skullcrusher_sentry_champion.jpg",
-      "flavor_text": "Born from the rib cage of the ancient Titan Beast, this fearsome warrior embodies the merciless spirit of the hunt and the glory of victory.",
-      "duplicates": 1
-    },
-    {
-      "name": "Skullcrusher Behemoth",
-      "rank": "T",
-      "faction": "MEAT",
-      "deploy_cost": {
-        "wind": 3,
-        "gear": 0,
-        "meat": 8
-      },
-      "biological": true,
-      "mechanical": false,
-      "resist": true,
-      "no_unwind": false,
-      "deploy_requirements": [],
-      "portrait_art": "skullcrusher_behemoth.jpg",
-      "abilities": [
-        {
-          "name": "Bonequake Slam",
-          "cost": {
-            "wind": 2,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Deals massive damage to multiple enemies in a single strike and causes them to bleed, losing additional health over the next two turns."
-        },
-        {
-          "name": "Regenerative Feast",
-          "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 1
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Consumes a fallen enemy to restore health and gain a temporary armor boost from their bones."
-        },
-        {
-          "name": "Terrifying Roar",
-          "cost": {
-            "wind": 1,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Emits a fearsome roar that lowers enemy attack power and can cause them to flee in panic."
-        }
-      ],
-      "flavor_text": "Forged from the ribcages of colossal beasts, his very steps cause the ground to tremble.",
-      "duplicates": 1
-    },
-    {
-      "name": "Scale Herald of the Crater Isles",
-      "rank": "T",
-      "faction": "MEAT",
-      "deploy_cost": {
-        "meat": 8,
-        "wind": 3,
-        "gear": 0
-      },
-      "biological": true,
-      "mechanical": false,
-      "resist": false,
-      "no_unwind": false,
-      "deploy_requirements": [],
-      "abilities": [
-        {
-          "name": "Primal Roar",
-          "cost": {
-            "wind": 2,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Unleashes a terrifying roar, adding large wind and causing all enemies to lose focus, reducing their attack for 2 turns."
-        },
-        {
-          "name": "Serpentine Armor",
-          "cost": {
-            "wind": 1,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Uses alien-like shell armor to deflect attacks, granting a resist flag that reduces incoming damage by 50% for 3 turns."
-        },
-        {
-          "name": "Venomous Counter",
-          "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": true,
-          "must_use": false,
-          "text": "When attacked, retaliates with a venomous strike that applies a continuous wind effect, sapping enemy strength over time."
-        }
-      ],
-      "portrait_art": "scale_herald_of_crater_isles.jpg",
-      "duplicates": 1
-    },
-    {
-      "name": "Gronk Mash",
-      "rank": "T",
-      "faction": "MEAT",
-      "deploy_cost": {
-        "wind": 7,
+        "wind": 1,
         "gear": 0,
         "meat": 0
       },
+      "duplicates": 4,
       "biological": true,
       "mechanical": false,
       "resist": false,
@@ -792,942 +832,78 @@
       "deploy_requirements": [],
       "abilities": [
         {
-          "name": "Mammoth Slam",
+          "name": "BRING THE Q",
           "cost": {
-            "wind": 3,
+            "wind": 1,
             "gear": 0,
-            "meat": 2
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Deals heavy damage to multiple enemies in front of Gronk Mash, applying a bleed effect that damages over time."
-        },
-        {
-          "name": "Bone Regrowth",
-          "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 5
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Consumes meat resources to regenerate health over several turns."
-        },
-        {
-          "name": "Unyielding Fury",
-          "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 0
+            "meat": 1
           },
           "passive": true,
           "must_use": false,
-          "text": "When health drops below 30%, automatically enrages, boosting damage output and resistance but unable to heal until the battle ends."
+          "text": "Remove all wind from allied Basic Goons."
         }
       ],
-      "portrait_art": "gronk_mash_brute.jpg",
-      "duplicates": 1
+      "portrait_art": "skullcrusher_brute_elite.jpg",
+      "flavor_text": ""
     },
     {
-      "id": "thrumjaw_reaver",
-      "name": "Thrumjaw Reaver",
-      "rank": "SG",
-      "faction": "MEAT WARRIOR",
-      "deploy_cost": {
-        "meat": 8,
-        "wind": 3,
-        "gear": 0
+      "id": "woodtosser",
+      "name": "Junk Tosser",
+      "description": {
+        "weapon": "his hands are empty",
+        "setting": "an open clearing with a 20 foot tall catapult made of tree timbers and lashed together with rope as the focus of the scene. The catapult arm has swung up and launched wrecked robot it was loaded with into the air towards an unseen target offscreen",
+        "pose": "He is further into the background than the catapult and much smaller than the catapult. He faces the direction the catapult is shotting and mans the catapult by pulling on a large rope attached to the catapult arm to swing it upward and launch the robot into the air. He is in the background so his size is diminished by the perspective"
       },
-      "abilities": [
-        {
-          "name": "Bone Shake",
-          "description": "Deals massive damage to multiple enemies in front, applying a 'stun' effect due to the terrifying ground tremors.",
-          "cost": {
-            "meat": 2,
-            "wind": 1,
-            "gear": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": ""
-        },
-        {
-          "name": "Ritual Carnage",
-          "description": "Sacrifice a friendly unit to gain 'Meat Shield' status, which absorbs incoming damage and heals Thrumjaw Reaver.",
-          "cost": {
-            "meat": 0,
-            "wind": 2,
-            "gear": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": ""
-        },
-        {
-          "name": "Predator's Fury",
-          "description": "When below 50% health, automatically enrage, gaining increased damage and resistance to all control effects.",
-          "cost": {
-            "automatic": true,
-            "wind": 0,
-            "meat": 0,
-            "gear": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": ""
-        }
-      ],
-      "portrait_art": "thrumjaw_reaver_elite.jpg",
-      "stats": {
-        "health": 120,
-        "attack_damage": 18,
-        "speed": 3,
-        "armor": 5
-      },
-      "mechanical_identity_tags": [
-        "biological",
-        "resist",
-        "no_unwind"
-      ],
-      "lore": "Forged at the heart of the Carnivore Jungles, Thrumjaw Reaver wears armor made of the densest rib cages and wields the jawbone of a fallen megafauna. His war cry shakes the very ground, terrorizing foes before the slaughter begins.",
-      "duplicates": 1,
-      "biological": true,
-      "mechanical": false,
-      "resist": false,
-      "no_unwind": false,
-      "deploy_requirements": []
-    },
-    {
-      "id": "tuskbreaker_berserker",
-      "name": "Tuskbreaker Berserker",
-      "rank": "SG",
-      "faction": "MEAT WARRIOR",
-      "deploy_cost": {
-        "wind": 6,
-        "meat": 0,
-        "gear": 0
-      },
-      "abilities": [
-        {
-          "name": "Mammoth Slam",
-          "description": "Deals massive damage to two adjacent enemies; additional bleed effect over three turns.",
-          "cost": {
-            "wind": 0,
-            "meat": 0,
-            "gear": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": ""
-        },
-        {
-          "name": "Regeneration Feast",
-          "description": "Consume a fallen enemy to recover full health and gain a temporary strength boost.",
-          "cost": {
-            "wind": 0,
-            "meat": 0,
-            "gear": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": ""
-        },
-        {
-          "name": "Primal Roar",
-          "description": "Boosts morale of all allies, increasing their attack speed and resistance for two turns.",
-          "cost": {
-            "wind": 0,
-            "meat": 0,
-            "gear": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": ""
-        }
-      ],
-      "stats": {
-        "health": 220,
-        "attack": 45,
-        "defense": 35,
-        "speed": 20
-      },
-      "mechanical_identity": {
-        "biological": true,
-        "mechanical": false,
-        "resist": true,
-        "no_unwind": false
-      },
-      "portrait_art": "tuskbreaker_berserker.jpg",
-      "duplicates": 1,
-      "biological": true,
-      "mechanical": false,
-      "resist": false,
-      "no_unwind": false,
-      "deploy_requirements": []
-    },
-    {
-      "name": "Skullcrusher Brute",
-      "rank": "SG",
-      "deploy_cost": {
-        "wind": 6,
-        "meat": 0,
-        "gear": 0
-      },
-      "abilities": [
-        {
-          "name": "Bone Shatter Strike",
-          "description": "Deals massive damage to a single target and stuns them for the next turn.",
-          "cost": {
-            "wind": 0,
-            "meat": 0,
-            "gear": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": ""
-        },
-        {
-          "name": "Monstrous Regeneration",
-          "description": "Consumes 2 units of meat to restore full health.",
-          "cost": {
-            "wind": 0,
-            "meat": 0,
-            "gear": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": ""
-        },
-        {
-          "name": "Titan Roar",
-          "description": "Enrages nearby allies, increasing their damage output for 3 turns.",
-          "cost": {
-            "wind": 0,
-            "meat": 0,
-            "gear": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": ""
-        }
-      ],
-      "flavor_text": "Forged in the fiery pits of the Crater Isles, this colossal warrior wears the skulls of fallen megabeasts as trophies, each telling tales of brutal conquests.",
-      "faction": "MEAT WARRIOR",
-      "portrait_art": "skullcrusher_brute.jpg",
-      "mechanics": {
-        "type": "biological",
-        "tags": [
-          "heavy_armor",
-          "stun",
-          "heal"
-        ],
-        "special_flags": [
-          "resist"
-        ]
-      },
-      "duplicates": 1,
-      "biological": true,
-      "mechanical": false,
-      "resist": false,
-      "no_unwind": false,
-      "deploy_requirements": []
-    },
-    {
-      "id": "tuskbreaker_berserker",
-      "name": "Tuskbreaker Berserker",
-      "rank": "SG",
-      "deploy_cost": {
-        "wind": 8,
-        "meat": 0,
-        "gear": 0
-      },
-      "health": 12,
-      "attack_damage": 5,
-      "abilities": [
-        {
-          "name": "Bonecrush Slam",
-          "description": "Deals double damage to an enemy unit and applies a 'stunned' status, reducing their next turn's actions by half.",
-          "cost": {
-            "wind": 3,
-            "meat": 1,
-            "gear": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": ""
-        },
-        {
-          "name": "Prey's Endurance",
-          "description": "Consumes up to 3 meat to heal equal amount of health and gain temporary resistance against next attack.",
-          "cost": {
-            "wind": 1,
-            "meat": 0,
-            "gear": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": ""
-        },
-        {
-          "name": "Monstrous Roar",
-          "description": "All enemies lose 1 wind point and Tuskbreaker Berserker gains 1 wind point for each enemy affected.",
-          "cost": {
-            "wind": 2,
-            "meat": 0,
-            "gear": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": ""
-        }
-      ],
-      "portrait_art": "tuskbreaker_berserker.jpg",
-      "faction": "MEAT WARRIOR",
-      "description": "Adorned with the shattered tusks and ribcage armor of the colossal beast he single-handedly brought down, the Tuskbreaker Berserker channels the savage spirit of his prey, wielding a massive fang axe that resonates with primal ferocity.",
-      "duplicates": 1,
-      "biological": true,
-      "mechanical": false,
-      "resist": false,
-      "no_unwind": false,
-      "deploy_requirements": []
-    },
-    {
-      "id": "skullcrusher_savage",
-      "name": "Enraged Foe Boner",
-      "rank": "SG",
-      "deploy_cost": {
-        "wind": 7,
-        "meat": 0,
-        "gear": 0
-      },
-      "abilities": [
-        {
-          "name": "Monstrous Maul",
-          "description": "Deals massive damage to a single target and adds a bleed effect, causing additional damage over three turns.",
-          "cost": {
-            "wind": 0,
-            "meat": 0,
-            "gear": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": ""
-        },
-        {
-          "name": "Bone Reinforcement",
-          "description": "Consumes 5 meat to regenerate health and increase defense for two turns.",
-          "cost": {
-            "wind": 0,
-            "meat": 0,
-            "gear": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": ""
-        },
-        {
-          "name": "Rampage",
-          "description": "When health drops below 30%, gains a frenzy buff that adds extra wind for every attack landed.",
-          "cost": {
-            "wind": 0,
-            "meat": 0,
-            "gear": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": ""
-        }
-      ],
-      "health": 120,
-      "attack": 18,
-      "defense": 15,
-      "speed": 6,
-      "mechanical_identity": {
-        "primary_resource": "meat",
-        "secondary_resource": "wind",
-        "special_flags": [
-          "biological",
-          "resist"
-        ]
-      },
-      "portrait_art": "skullcrusher_savage_champion.jpg",
-      "duplicates": 1,
-      "faction": "meat",
-      "biological": true,
-      "mechanical": false,
-      "resist": false,
-      "no_unwind": false,
-      "deploy_requirements": []
-    },
-    {
-      "id": "meat_bone_smasher",
-      "name": "Bone Smasher",
-      "rank": "SG",
-      "faction": "MEAT WARRIOR",
-      "deploy_cost": {
-        "meat": 5,
-        "wind": 2,
-        "gear": 0
-      },
-      "abilities": [
-        {
-          "name": "Skull Crush",
-          "description": "Deal massive damage to a single target, additional wind damage if target is stunned.",
-          "cost": {
-            "meat": 2,
-            "wind": 0,
-            "gear": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": ""
-        },
-        {
-          "name": "Bone Reinforcement",
-          "description": "Increase defense by consuming meat. Gains additional armor for each enemy defeated this turn.",
-          "cost": {
-            "meat": 3,
-            "wind": 0,
-            "gear": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": ""
-        },
-        {
-          "name": "Beast Roar",
-          "description": "Enrage nearby allies, increasing their attack speed and wind generation for a short duration.",
-          "cost": {
-            "wind": 3,
-            "meat": 0,
-            "gear": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": ""
-        }
-      ],
-      "stats": {
-        "health": 120,
-        "attack": 30,
-        "defense": 20,
-        "speed": 15
-      },
-      "portrait_art": "bone_smasher_w.jpg",
-      "flavor_text": "Wielding a massive jawbone club studded with sharp fangs, the Bone Smasher embodies the terrifying might of the Meat Warriors. Every strike reverberates with the echoes of past conquests.",
-      "duplicates": 1,
-      "biological": true,
-      "mechanical": false,
-      "resist": false,
-      "no_unwind": false,
-      "deploy_requirements": []
-    },
-    {
-      "name": "Meat Beater",
       "rank": "BG",
-      "deploy_cost": {
-        "wind": 6,
-        "meat": 0,
-        "gear": 0
-      },
-      "abilities": [
-        {
-          "name": "Bone Hammer Smash",
-          "type": "Attack",
-          "description": "Meat Beater uses his gargantuan bone-club to perform a powerful ground smash, dealing damage to multiple enemies in front of him and causing them to bleed over time.",
-          "cost": {
-            "wind": 0,
-            "meat": 0,
-            "gear": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": ""
-        },
-        {
-          "name": "Berserk Frenzy",
-          "type": "Buff",
-          "description": "When Meat Beater's health drops below 50%, he enters a berserk state, increasing his attack damage and speed for a short duration but causing him to receive more damage.",
-          "cost": {
-            "wind": 0,
-            "meat": 0,
-            "gear": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": ""
-        },
-        {
-          "name": "Feast of Victory",
-          "type": "Heal",
-          "description": "After defeating an enemy, Meat Beater can consume part of the fallen foe to regain health and gain a temporary strength boost.",
-          "cost": {
-            "wind": 0,
-            "meat": 0,
-            "gear": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": ""
-        }
-      ],
-      "mechanical_attributes": {
-        "primary_resource": "meat",
-        "secondary_resource": "wind",
-        "special_flags": [
-          "biological",
-          "resist"
-        ]
-      },
-      "visual_style": {
-        "silhouette": "Massive, stocky frame with asymmetrical bone armor, including a giant rib cage breastplate and a mismatched tusk shoulder guard.",
-        "motifs": {
-          "organic": [
-            "tusk_shields",
-            "scale_greaves",
-            "bone_helms"
-          ],
-          "hybrid": [
-            "bone_reinforced_meat_clubs"
-          ]
-        },
-        "color_palette": {
-          "base_colors": [
-            "bone_white",
-            "charred_brown",
-            "blood_red"
-          ],
-          "accent_colors": [
-            "swamp_green",
-            "beast_scale_teal"
-          ]
-        }
-      },
-      "portrait_art": "meat_beater_brute.jpg",
-      "duplicates": 1,
-      "faction": "meat",
-      "biological": true,
-      "mechanical": false,
-      "resist": false,
-      "no_unwind": false,
-      "deploy_requirements": []
-    },
-    {
-      "name": "Snag Tugsman",
-      "rank": "BG",
-      "faction": "MEAT WARRIOR",
-      "deploy_cost": {
-        "wind": 5,
-        "meat": 0,
-        "gear": 0
-      },
-      "abilities": [
-        {
-          "name": "Bonecrusher Slam",
-          "description": "Deals heavy damage to two adjacent enemies and causes a bleed effect for 3 turns.",
-          "cost": {
-            "wind": 0,
-            "meat": 0,
-            "gear": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": ""
-        },
-        {
-          "name": "Primal Regenerate",
-          "description": "Consumes 2 units of meat to restore 50% of total health.",
-          "cost": {
-            "wind": 0,
-            "meat": 0,
-            "gear": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": ""
-        },
-        {
-          "name": "Trophy Roar",
-          "description": "Enrages all friendly units, increasing their attack power for 1 turn.",
-          "cost": {
-            "wind": 0,
-            "meat": 0,
-            "gear": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": ""
-        }
-      ],
-      "health": 150,
-      "attack": 30,
-      "defense": 20,
-      "speed": 10,
-      "portrait_art": "snag_tugsman_brute.jpg",
-      "biography": "Snag Tugsman, once a renowned beast tamer from the Crater Isles, now wields the jaws and claws of the fiercest creatures as weapons and armor. Known for his brutal combat style and the ability to regenerate rapidly by consuming the flesh of fallen enemies, Tugsman strikes terror in the hearts of his foes while leading his squad into the frenzy of battle.",
-      "duplicates": 1,
-      "biological": true,
-      "mechanical": false,
-      "resist": false,
-      "no_unwind": false,
-      "deploy_requirements": []
-    },
-    {
-      "name": "Master Bait Man",
-      "rank": "SG",
-      "deploy_cost": {
-        "meat": 5,
-        "wind": 2,
-        "gear": 0
-      },
-      "abilities": [
-        {
-          "name": "Monstrous Lure",
-          "description": "Attracts a targeted beast from the opponent's field to engage directly, negating its next planned action.",
-          "cost": {
-            "meat": 3,
-            "wind": 0,
-            "gear": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": ""
-        },
-        {
-          "name": "Corpse Grinder",
-          "description": "Consumes a defeated enemy unit on the field to gain a temporary boost in attack strength and heal.",
-          "cost": {
-            "meat": 1,
-            "wind": 0,
-            "gear": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": ""
-        }
-      ],
-      "portrait_art": "master_bait_man.jpg",
-      "description": "Master Bait Man, a cunning trapper among the Meat Warriors, utilizes bones and furs to craft deceptive lures that mimic living prey, drawing monstrous beasts into lethal traps. His armor, adorned with the jaws and claws of his most impressive catches, serves both as protection and as a testament to his prowess in the hunt.",
-      "special_flags": [
-        "biological",
-        "no_unwind"
-      ],
-      "faction": "MEAT",
-      "duplicates": 1,
-      "biological": true,
-      "mechanical": false,
-      "resist": false,
-      "no_unwind": false,
-      "deploy_requirements": []
-    },
-    {
-      "name": "Enraged Bone Jackman",
-      "rank": "SG",
       "faction": "MEAT",
       "deploy_cost": {
-        "meat": 8,
-        "wind": 3,
-        "gear": 0
-      },
-      "abilities": [
-        {
-          "name": "Skullcrusher Swing",
-          "description": "Deals massive damage to two adjacent enemies, applying a bleed effect that consumes additional meat to increase damage over time.",
-          "cost": {
-            "wind": 2,
-            "meat": 0,
-            "gear": 0
-          },
-          "effect": "multi_target_cleave_attack",
-          "passive": false,
-          "must_use": false,
-          "text": ""
-        },
-        {
-          "name": "Beast Fury Regeneration",
-          "description": "When taking damage, regenerate a portion of health by consuming meat from the store.",
-          "trigger": "when_damaged",
-          "effect": "heal",
-          "cost": {
-            "meat": 5,
-            "wind": 0,
-            "gear": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": ""
-        },
-        {
-          "name": "Monstrous Overthrow",
-          "description": "Sacrifice a lesser unit to gain a massive temporary boost in strength and apply a fear effect to all enemies.",
-          "cost": {
-            "meat": 3,
-            "unit_sacrifice": 1,
-            "wind": 0,
-            "gear": 0
-          },
-          "effect": "stat_boost",
-          "passive": false,
-          "must_use": false,
-          "text": ""
-        }
-      ],
-      "health": 120,
-      "attack": 35,
-      "defense": 20,
-      "special_flags": [
-        "biological",
-        "resist"
-      ],
-      "portrait_art": "enraged_bone_jackman_champion.jpg",
-      "duplicates": 1,
-      "biological": true,
-      "mechanical": false,
-      "resist": false,
-      "no_unwind": false,
-      "deploy_requirements": []
-    },
-    {
-      "name": "Frenzied Meat Tugsman",
-      "rank": "BG",
-      "deploy_cost": {
-        "meat": 3,
         "wind": 2,
-        "gear": 0
+        "gear": 0,
+        "meat": 0
       },
-      "abilities": [
-        {
-          "name": "Rampage Tug",
-          "description": "Pulls an enemy unit close, then deals massive damage with a chance to stun.",
-          "cost": {
-            "meat": 1,
-            "wind": 1,
-            "gear": 0
-          },
-          "effect_type": "physical_attack",
-          "passive": false,
-          "must_use": false,
-          "text": ""
-        },
-        {
-          "name": "Flesh Feast",
-          "description": "Consumes a defeated enemy unit to restore health and gain a temporary strength boost.",
-          "cost": {
-            "meat": 0,
-            "wind": 0,
-            "gear": 0
-          },
-          "effect_type": "heal_buff",
-          "passive": false,
-          "must_use": false,
-          "text": ""
-        }
-      ],
-      "flavor_text": "Harnessing the primal fury of the bone fields, the Frenzied Meat Tugsman thrives on the thrill of close-quarters combat and the glory of the hunt.",
-      "portrait_art": "frenzied_meat_tugsman_brute.jpg",
-      "faction": "MEAT WARRIOR",
-      "visual_description": {
-        "silhouette": "Massive, with one oversized arm carrying a giant bone-reinforced club, and mismatched armor laden with trophies from various behemoths.",
-        "motif": [
-          "rib cage breastplate",
-          "tusk shield",
-          "hide capelike backpiece",
-          "bone helm",
-          "claw gauntlets"
-        ],
-        "color_scheme": [
-          "blood red accents",
-          "bone white",
-          "charred brown"
-        ]
-      },
-      "personality_traits": [
-        "bloodthirsty",
-        "intimidating",
-        "glory-seeking"
-      ],
-      "battle_cry": "Meat and glory!",
-      "duplicates": 1,
+      "duplicates": 4,
       "biological": true,
-      "mechanical": false,
+      "mechanical": true,
       "resist": false,
-      "no_unwind": false,
-      "deploy_requirements": []
-    },
-    {
-      "name": "Gut Hoarder",
-      "rank": "BG",
-      "faction": "MEAT WARRIOR",
-      "deploy_cost": {
-        "wind": 7,
-        "meat": 0,
-        "gear": 0
-      },
-      "abilities": [
-        {
-          "name": "Feast of Famine",
-          "description": "Consume meat from the battlefield to recover HP and increase attack damage for the next turn.",
-          "cost": {
-            "wind": 0,
-            "meat": 0,
-            "gear": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": ""
-        },
-        {
-          "name": "Bone Barricade",
-          "description": "Uses collected monster bones to create a defensive barrier that reduces incoming damage.",
-          "cost": {
-            "wind": 0,
-            "meat": 0,
-            "gear": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": ""
-        },
-        {
-          "name": "Marrow Smash",
-          "description": "A devastating blow dealt with a giant bone club, causing high damage and stun to one enemy.",
-          "cost": {
-            "wind": 0,
-            "meat": 0,
-            "gear": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": ""
-        }
-      ],
-      "lore": "Born from the beast-heavy jungles and raised among the bone mounds of ancient predators, Gut Horder has developed an insatiable hunger for both battle and the monstrous prey he consumes. His body, etched with scars and adorned with beastly trophies, is a living testament to countless brutal hunts.",
-      "duplicates": 1,
-      "biological": true,
-      "mechanical": false,
-      "resist": false,
-      "no_unwind": false,
+      "no_unwind": true,
       "deploy_requirements": [],
-      "portrait_art": "hoarder.jpg"
-    },
-    {
-      "name": "Fighter",
-      "rank": "BG",
-      "faction": "MEAT",
-      "deploy_cost": {
-        "meat": 3,
-        "wind": 2,
-        "gear": 0
-      },
       "abilities": [
         {
-          "name": "Bonecrush Swing",
-          "description": "Deals massive damage to a single target and applies a 'bleed' effect, causing additional wind damage over time.",
+          "name": "BOULDER HURL",
           "cost": {
             "wind": 1,
-            "meat": 0,
-            "gear": 0
+            "gear": 0,
+            "meat": 0
           },
           "passive": false,
           "must_use": false,
-          "text": ""
+          "text": "Add 2 wind to target Goon."
         },
         {
-          "name": "Primal Feast",
-          "description": "Consumes a downed enemy unit to regain health and gain a stat boost for the remainder of the game.",
+          "name": "JUNK LAUNCH",
           "cost": {
-            "meat": 1,
             "wind": 0,
-            "gear": 0
-          },
-          "trigger": "on kill",
-          "passive": false,
-          "must_use": false,
-          "text": ""
-        }
-      ],
-      "health": 10,
-      "attack": 7,
-      "defense": 5,
-      "portrait_art": "fighter_bg_meat.jpg",
-      "flavor_text": "Raised in the wilds, honed by the hunt, Fighter embodies the raw, untamed power of nature's fury.",
-      "duplicates": 1,
-      "biological": false,
-      "mechanical": false,
-      "resist": false,
-      "no_unwind": false,
-      "deploy_requirements": []
-    },
-    {
-      "name": "Meat Fighter",
-      "rank": "BG",
-      "deploy_cost": {
-        "meat": 3,
-        "wind": 1,
-        "gear": 0
-      },
-      "abilities": [
-        {
-          "name": "Carnivorous Slam",
-          "description": "Deals damage to two adjacent enemies and applies a bleed effect, draining their wind over two turns.",
-          "cost": {
-            "wind": 2,
-            "meat": 0,
-            "gear": 0
-          },
-          "effect": {
-            "damage": 4,
-            "bleed": {
-              "wind_loss": 1,
-              "duration": 2
-            }
+            "gear": 1,
+            "meat": 0
           },
           "passive": false,
           "must_use": false,
-          "text": ""
+          "text": "Add 2 wind to target Goon"
         },
         {
-          "name": "Bone Regrowth",
-          "description": "Consumes 2 meat to restore health and enhance physical resistance for one turn.",
+          "name": "CORPSE VOLLEY",
           "cost": {
-            "meat": 2,
             "wind": 0,
-            "gear": 0
-          },
-          "effect": {
-            "health_restored": 3,
-            "resist": {
-              "physical": true,
-              "duration": 1
-            }
+            "gear": 0,
+            "meat": 1
           },
           "passive": false,
           "must_use": false,
-          "text": ""
+          "text": "Add 2 wind to target Goon"
         }
       ],
-      "portrait_art": "fighter_merrrat_bg.jpg",
-      "description": "Fighter embodies the primal ferocity of the MEAT faction. Clad in rib cage breastplates and shell pauldrons, wielding a massive fang axe, he is a terrifying sight on the battlefield. His long hair and dreadlocks, festooned with bone piercings and trophy skulls, flutter as he charges into the fray.",
-      "flags": {
-        "biological": true,
-        "mechanical": false,
-        "rank": "BG",
-        "resist": "special",
-        "no_unwind": true
-      },
-      "statistics": {
-        "health": 10,
-        "strength": 5,
-        "agility": 3,
-        "intelligence": 1
-      },
-      "duplicates": 1,
-      "faction": "meat",
-      "biological": false,
-      "mechanical": false,
-      "resist": false,
-      "no_unwind": false,
-      "deploy_requirements": []
+      "portrait_art": "woodtosser_alt.jpg",
+      "flavor_text": ""
     }
   ]
 }

@@ -89,10 +89,10 @@
     {
       "name": "Utility Droid",
       "rank": "BG",
-      "duplicates": 3,
+      "duplicates": 2,
       "faction": "PCU",
       "deploy_cost": {
-        "wind": 2,
+        "wind": 1,
         "gear": 0,
         "meat": 0
       },
@@ -103,7 +103,7 @@
       "deploy_requirements": [],
       "abilities": [
         {
-          "name": "Restore",
+          "name": "RESTORE",
           "cost": {
             "wind": 0,
             "gear": 0,
@@ -111,7 +111,18 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Remove 1 wind from target Goon"
+          "text": "Remove 1 wind from target allied Mechanical Goon"
+        },
+        {
+          "name": "HOT FIX",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "Destroy Utility Droid to remove 1 wind from target allied Mechanical Goon being targeted before effects resolve"
         }
       ],
       "notes": [],
@@ -191,7 +202,7 @@
       "portrait_art": "overseer.jpg"
     },
     {
-      "name": "K\u00e4sekobold",
+      "name": "Cheese Goblin",
       "rank": "BG",
       "duplicates": 1,
       "faction": "PCU",
@@ -567,7 +578,19 @@
       "resist": false,
       "no_unwind": false,
       "deploy_requirements": [],
-      "abilities": [],
+      "abilities": [
+        {
+          "name": "SACRIFICE",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Destroy to contribute up to 2 wind for allied Goon deploy cost."
+        }
+      ],
       "notes": [],
       "flavor_text": "Carve us off a couple steaks and I\u2019ll grab the bottle of Zurion Noir I had them portal over last resupply. It should pair nicely.",
       "portrait_art": "meatveg.jpg"
@@ -608,9 +631,9 @@
       "duplicates": 2,
       "faction": "PCU",
       "deploy_cost": {
-        "wind": 1,
+        "wind": 2,
         "gear": 0,
-        "meat": 1
+        "meat": 0
       },
       "biological": false,
       "mechanical": true,
@@ -797,13 +820,13 @@
         {
           "name": "PSYCHIC HACK",
           "cost": {
-            "wind": 2,
-            "gear": 0,
+            "wind": 1,
+            "gear": 1,
             "meat": 0
           },
           "passive": false,
           "must_use": false,
-          "text": "Take control of a opponent's Mechanical Goon until end of turn"
+          "text": "Take control of a opponent's Mechanical BasicGoon until end of turn"
         }
       ],
       "notes": [],
@@ -820,7 +843,7 @@
         "meat": 0
       },
       "biological": true,
-      "mechanical": true,
+      "mechanical": false,
       "resist": false,
       "no_unwind": false,
       "deploy_requirements": [],
@@ -828,19 +851,19 @@
         {
           "name": "DARK MATTER DELUGE",
           "cost": {
-            "wind": "X",
+            "wind": 0,
             "gear": 0,
             "meat": 0
           },
           "passive": false,
           "must_use": false,
-          "text": "Add 1 wind to X Goons"
+          "text": "Destroy to add 1 wind to all enemy Basic Goons"
         },
         {
           "name": "SHADOW LANCE",
           "cost": {
-            "wind": 1,
-            "gear": 1,
+            "wind": 2,
+            "gear": 0,
             "meat": 0
           },
           "passive": false,

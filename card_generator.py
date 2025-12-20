@@ -11,6 +11,14 @@ import random
 import argparse
 import base64
 import io
+try:
+    from google import genai  # type: ignore
+    from google.genai import types  # type: ignore
+    HAS_GOOGLE_GENAI = True
+except ImportError:
+    genai = None  # type: ignore
+    types = None  # type: ignore
+    HAS_GOOGLE_GENAI = False
 
 # --- ENV LOADING ---
 def load_env(env_path=".env"):
@@ -37,22 +45,28 @@ load_env()
 # Track key presence for fallbacks
 HAS_OPENAI_KEY = bool(os.getenv("OPENAI_API_KEY"))
 HAS_GEMINI_KEY = bool(os.getenv("GEMINI_API_KEY"))
+VERTEX_PROJECT_ID = os.getenv("VERTEX_PROJECT_ID") or os.getenv("GOOGLE_CLOUD_PROJECT")
+VERTEX_LOCATION = os.getenv("VERTEX_LOCATION", os.getenv("GOOGLE_CLOUD_LOCATION", "global"))
+HAS_VERTEX_CONFIG = bool(VERTEX_PROJECT_ID)
 
 # --- PROVIDER SELECTION ---
 def detect_provider():
     """Determine which API provider to use based on available credentials or explicit override."""
     explicit = os.getenv("MODEL_PROVIDER", "").lower()
-    if explicit in {"openai", "gemini"}:
+    if explicit in {"openai", "gemini", "vertex"}:
         return explicit
-    if os.getenv("OPENAI_API_KEY"):
+    if HAS_OPENAI_KEY:
         return "openai"
-    if os.getenv("GEMINI_API_KEY"):
+    if HAS_GEMINI_KEY:
         return "gemini"
+    if HAS_VERTEX_CONFIG:
+        return "vertex"
     return "openai"  # default to OpenAI; will fail loudly if no key is present
 
 MODEL_PROVIDER = detect_provider()
 USING_OPENAI = MODEL_PROVIDER == "openai"
 USING_GEMINI = MODEL_PROVIDER == "gemini"
+USING_VERTEX = MODEL_PROVIDER == "vertex"
 
 # --- MODEL PATH HELPERS ---
 def ensure_model_path(model_name: str) -> str:
@@ -60,13 +74,13 @@ def ensure_model_path(model_name: str) -> str:
     return model_name if model_name.startswith("models/") else f"models/{model_name}"
 
 # Optional Gemini client setup (only used if GEMINI_API_KEY is present/selected)
-genai = None
+google_genai = None
 ImageGenerationModel = None
 if os.getenv("GEMINI_API_KEY"):
     try:
-        import google.generativeai as genai  # type: ignore
-        genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-        ImageGenerationModel = getattr(genai, "ImageGenerationModel", None)
+        import google.generativeai as google_genai  # type: ignore
+        google_genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+        ImageGenerationModel = getattr(google_genai, "ImageGenerationModel", None)
     except ImportError:
         print("[!] WARNING: google-generativeai not installed; Gemini provider will not work until it's available.")
     except Exception as e:
@@ -80,6 +94,45 @@ GOON_JSON_MODEL = os.getenv("GOON_JSON_MODEL", "gpt-4-turbo")
 ART_MODEL = os.getenv("ART_MODEL", "dall-e-3")
 GEMINI_JSON_MODEL = os.getenv("GEMINI_JSON_MODEL", "gemini-1.5-pro")
 GEMINI_ART_MODEL = os.getenv("GEMINI_ART_MODEL", "imagen-3.0-generate-001")
+VERTEX_JSON_MODEL = os.getenv("VERTEX_JSON_MODEL", "gemini-1.5-pro")
+VERTEX_ART_MODEL = os.getenv("VERTEX_ART_MODEL", "gemini-3-pro-image-preview")
+
+# --- GOOGLE GENAI HELPERS (Vertex/public Gemini via unified client) ---
+_VERTEX_CLIENT = None
+
+def _normalize_google_model_id(model: str, use_vertex: bool) -> str:
+    """Vertex expects bare IDs; public Gemini expects models/<id>."""
+    if use_vertex:
+        return model[7:] if model.startswith("models/") else model
+    return model if model.startswith("models/") else f"models/{model}"
+
+def _ensure_vertex_credentials() -> str:
+    """Set GOOGLE_APPLICATION_CREDENTIALS if missing, defaulting to ./vertex.json."""
+    creds = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")
+    if not creds:
+        creds = os.path.abspath("vertex.json")
+        os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = creds
+    if not os.path.isfile(creds):
+        raise FileNotFoundError(f"GOOGLE_APPLICATION_CREDENTIALS points to '{creds}', which does not exist.")
+    return creds
+
+def _get_vertex_genai_client():
+    """Create or return a cached Google GenAI client configured for Vertex."""
+    global _VERTEX_CLIENT
+    if _VERTEX_CLIENT:
+        return _VERTEX_CLIENT
+    if not HAS_GOOGLE_GENAI:
+        raise RuntimeError("google-genai is not installed; Vertex provider is unavailable.")
+    project_id = VERTEX_PROJECT_ID
+    if not project_id:
+        raise RuntimeError("VERTEX_PROJECT_ID (or GOOGLE_CLOUD_PROJECT) is not configured.")
+    location = VERTEX_LOCATION or "global"
+    os.environ.setdefault("GOOGLE_GENAI_USE_VERTEXAI", "true")
+    os.environ.setdefault("GOOGLE_CLOUD_PROJECT", project_id)
+    os.environ.setdefault("GOOGLE_CLOUD_LOCATION", location)
+    _ensure_vertex_credentials()
+    _VERTEX_CLIENT = genai.Client(vertexai=True, project=project_id, location=location)
+    return _VERTEX_CLIENT
 
 # --- COORDINATES ---
 COST_POS_X = 40           
@@ -350,6 +403,8 @@ def generate_and_save_art(prompt, save_path, style_image=None):
     """Generates art using the selected provider and saves it to the specified path."""
     print(f"     [+] Generating AI art for: {os.path.basename(save_path)}...")
     print(f"     [+] Using Prompt: {prompt}")
+    if USING_VERTEX:
+        return generate_and_save_art_vertex(prompt, save_path, style_image=style_image)
     if USING_GEMINI:
         return generate_and_save_art_gemini(prompt, save_path, style_image=style_image)
     return generate_and_save_art_openai(prompt, save_path)
@@ -384,6 +439,18 @@ def generate_and_save_art_openai(prompt, save_path):
 def _extract_gemini_inline_image(response):
     """Attempt to pull inline image bytes out of a Gemini response."""
     try:
+        parts = getattr(response, "parts", None)
+        if parts:
+            for part in parts:
+                inline = getattr(part, "inline_data", None)
+                if inline and getattr(inline, "data", None):
+                    data = inline.data
+                    if isinstance(data, bytes):
+                        return data
+                    try:
+                        return base64.b64decode(data)
+                    except Exception:
+                        return None
         if not response or not getattr(response, "candidates", None):
             return None
         for candidate in response.candidates:
@@ -459,7 +526,7 @@ def _extract_data_uri_image(text_value):
 
 def generate_and_save_art_gemini(prompt, save_path, style_image=None):
     """Generates art using Gemini (requires google-generativeai)."""
-    if not genai:
+    if not google_genai:
         print("     [!] Gemini provider selected but google-generativeai is not installed.")
         return False
     try:
@@ -490,7 +557,7 @@ def generate_and_save_art_gemini(prompt, save_path, style_image=None):
 
         # 2) Try GenerativeModel.generate_images if available (e.g., gemini-3-pro-image-preview).
         if image_bytes is None:
-            model = genai.GenerativeModel(model_name)
+            model = google_genai.GenerativeModel(model_name)
             if hasattr(model, "generate_images"):
                 try:
                     if style_part:
@@ -577,6 +644,62 @@ def generate_and_save_art_gemini(prompt, save_path, style_image=None):
         return True
     except Exception as e:
         print(f"     [!] Gemini art generation failed: {e}")
+        return False
+
+def generate_and_save_art_vertex(prompt, save_path, style_image=None):
+    """Generates art using Vertex AI via the unified google-genai client."""
+    if not HAS_GOOGLE_GENAI:
+        print("     [!] Vertex provider selected but google-genai is not installed.")
+        return False
+    if not VERTEX_PROJECT_ID:
+        print("     [!] Vertex provider selected but VERTEX_PROJECT_ID/GOOGLE_CLOUD_PROJECT is not set.")
+        return False
+    try:
+        os.makedirs(os.path.dirname(save_path), exist_ok=True)
+        client = _get_vertex_genai_client()
+        model_id = _normalize_google_model_id(VERTEX_ART_MODEL, use_vertex=True)
+
+        parts = []
+        if style_image:
+            mime_type, data_bytes = style_image
+            data_bytes = _coerce_image_payload_to_bytes(data_bytes)
+            if data_bytes:
+                encoded = base64.b64encode(data_bytes).decode("ascii")
+                parts.append({"inline_data": {"mime_type": mime_type, "data": encoded}})
+                parts.append({"text": "Style reference image; match line quality, palette, and rendering style."})
+            else:
+                print("     [-] Style image could not be encoded; continuing without it.")
+        parts.append({"text": prompt})
+
+        response = client.models.generate_content(
+            model=model_id,
+            contents=parts,
+            config=types.GenerateContentConfig(
+                temperature=0.9,
+                response_modalities=["TEXT", "IMAGE"],
+            ),
+        )
+
+        image_bytes = _extract_gemini_inline_image(response)
+        if not image_bytes:
+            generated_images = getattr(response, "generated_images", None) or getattr(response, "images", None)
+            if generated_images:
+                image_bytes = _coerce_image_payload_to_bytes(generated_images[0])
+        if not image_bytes:
+            debug_summary = summarize_gemini_response(response)
+            print(f"     [!] Vertex art generation did not return an image payload. Response: {debug_summary}")
+            return False
+
+        if isinstance(image_bytes, str):
+            image_bytes = base64.b64decode(image_bytes)
+
+        Image.open(io.BytesIO(image_bytes)).verify()
+        with open(save_path, "wb") as handler:
+            handler.write(image_bytes)
+        print(f"     [+] AI art saved to {save_path}")
+        return True
+    except Exception as e:
+        print(f"     [!] Vertex AI art generation failed: {e}")
         return False
 
 def create_grid_image(card_files, output_folder):
@@ -746,13 +869,29 @@ def generate_goon_text_openai(prompt):
     return response.choices[0].message.content
 
 def generate_goon_text_gemini(prompt):
-    if not genai:
+    if not google_genai:
         raise RuntimeError("Gemini provider selected but google-generativeai is not installed.")
-    model = genai.GenerativeModel(ensure_model_path(GEMINI_JSON_MODEL))
+    model = google_genai.GenerativeModel(ensure_model_path(GEMINI_JSON_MODEL))
     response = model.generate_content(prompt, generation_config={"temperature": 0.8})
     return response.text
 
+def generate_goon_text_vertex(prompt):
+    if not HAS_GOOGLE_GENAI:
+        raise RuntimeError("Vertex provider selected but google-genai is not installed.")
+    if not VERTEX_PROJECT_ID:
+        raise RuntimeError("Vertex provider selected but VERTEX_PROJECT_ID/GOOGLE_CLOUD_PROJECT is not configured.")
+    client = _get_vertex_genai_client()
+    model_id = _normalize_google_model_id(VERTEX_JSON_MODEL, use_vertex=True)
+    response = client.models.generate_content(
+        model=model_id,
+        contents=[{"text": prompt}],
+        config=types.GenerateContentConfig(temperature=0.8, response_modalities=["TEXT"]),
+    )
+    return response.text
+
 def generate_goon_text(prompt):
+    if USING_VERTEX:
+        return generate_goon_text_vertex(prompt)
     if USING_GEMINI:
         return generate_goon_text_gemini(prompt)
     return generate_goon_text_openai(prompt)
@@ -1021,24 +1160,38 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
 
         # 4. Left Side Stack
         current_y = COST_START_Y + icon_stack_y_offset
+
+        def is_cost_nonzero(val):
+            if isinstance(val, str):
+                return val.strip().upper() == "X"
+            return isinstance(val, (int, float)) and val > 0
+
+        def cost_label(val):
+            if isinstance(val, str):
+                cleaned = val.strip()
+                return cleaned.upper() if cleaned else "0"
+            try:
+                return str(int(val))
+            except Exception:
+                return "0"
         
         def draw_main_icon(icon_key, value, y_pos, text_y_offset=0):
             icon = assets[icon_key]
             canvas.paste(icon, (icon_stack_x, y_pos), icon)
             # Use anchor="mm" for robust vertical and horizontal centering.
-            draw.text((icon_stack_x + 42.5, y_pos + 42.5 + text_y_offset), str(value), font=font_cost, fill=color_deploy_cost, anchor="mm")
+            draw.text((icon_stack_x + 42.5, y_pos + 42.5 + text_y_offset), cost_label(value), font=font_cost, fill=color_deploy_cost, anchor="mm")
 
         deploy_cost = card.get('deploy_cost', {})
 
-        if deploy_cost.get('wind', 0) > 0:
+        if is_cost_nonzero(deploy_cost.get('wind', 0)):
             draw_main_icon('cost_wind', deploy_cost['wind'], current_y, text_y_offset=-5)
             current_y += ICON_SPACING
 
-        if deploy_cost.get('gear', 0) > 0:
+        if is_cost_nonzero(deploy_cost.get('gear', 0)):
             draw_main_icon('cost_gear', deploy_cost['gear'], current_y, text_y_offset=-5)
             current_y += ICON_SPACING
 
-        if deploy_cost.get('meat', 0) > 0:
+        if is_cost_nonzero(deploy_cost.get('meat', 0)):
             draw_main_icon('cost_meat', deploy_cost['meat'], current_y, text_y_offset=-5)
             current_y += ICON_SPACING
 
@@ -1088,55 +1241,47 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
                 wind = cost.get('wind', 0)
                 meat = cost.get('meat', 0)
                 gear = cost.get('gear', 0)
-                wind_val = str(wind)
-                
-                # If all costs are 0, show '0' in a wind circle.
-                is_zero_cost = wind == 0 and meat == 0 and gear == 0 and wind_val != "X"
+                wind_val = cost_label(wind)
+                meat_val = cost_label(meat)
+                gear_val = cost_label(gear)
 
-                # --- NEW: Handle Combined Costs ---
+                wind_cost_present = is_cost_nonzero(wind)
+                meat_cost_present = is_cost_nonzero(meat)
+                gear_cost_present = is_cost_nonzero(gear)
+
+                # If all costs are 0, show '0' in a wind circle.
+                is_zero_cost = not (wind_cost_present or meat_cost_present or gear_cost_present)
+
+                # Build the cost parts to render left-to-right.
+                cost_parts = []
+                if wind_cost_present or is_zero_cost:
+                    cost_parts.append(("wind", wind_val if wind_cost_present else "0"))
+                if meat_cost_present:
+                    cost_parts.append(("meat", meat_val))
+                if gear_cost_present:
+                    cost_parts.append(("gear", gear_val))
+
                 x_cursor = TEXT_BOX_START_X
                 indent = 0
-                
-                # 1. Draw Wind Cost (if it exists)
-                if (isinstance(wind, int) and wind > 0) or wind_val == "X" or is_zero_cost:
-                    icon_to_draw = create_circle_icon(30, "#F5F5DC")
+                for idx, (kind, label) in enumerate(cost_parts):
+                    if idx > 0:
+                        draw.text((x_cursor, text_y), "+", font=font_body, fill=color_body)
+                        x_cursor += 20
+
+                    if kind == "wind":
+                        icon_to_draw = create_circle_icon(30, "#F5F5DC")
+                    elif kind == "meat":
+                        icon_to_draw = create_circle_icon(30, "#8B0000") # Dark Red
+                    else:
+                        icon_to_draw = create_circle_icon(30, "#808080") # Grey
+
                     canvas.paste(icon_to_draw, (x_cursor, text_y + 2), icon_to_draw)
-                    
-                    bbox = draw.textbbox((0, 0), wind_val, font=font_abil_num_bold)
+                    bbox = draw.textbbox((0, 0), label, font=font_abil_num_bold)
                     w_num, h_num = bbox[2] - bbox[0], bbox[3] - bbox[1]
-                    draw.text((x_cursor + 15 - w_num/2, text_y + 12 - h_num/2 - 2), wind_val, font=font_abil_num_bold, fill=color_abil_cost)
-                    x_cursor += 35 # Move cursor past the icon
-                    indent = x_cursor - TEXT_BOX_START_X
-
-                # 2. Draw "+" if there's a second cost
-                if (isinstance(wind, int) and wind > 0) and (meat > 0 or gear > 0):
-                    draw.text((x_cursor, text_y), "+", font=font_body, fill=color_body)
-                    x_cursor += 20 # Move cursor past the "+"
-                    indent = x_cursor - TEXT_BOX_START_X
-
-                # 3. Draw Meat or Gear cost
-                if meat > 0:
-                    meat_icon = create_circle_icon(30, "#8B0000") # Dark Red
-                    canvas.paste(meat_icon, (x_cursor, text_y + 2), meat_icon)
-                    bbox = draw.textbbox((0, 0), str(meat), font=font_abil_num_bold)
-                    w_num, h_num = bbox[2] - bbox[0], bbox[3] - bbox[1]
-                    draw.text((x_cursor + 15 - w_num/2, text_y + 12 - h_num/2 - 2), str(meat), font=font_abil_num_bold, fill=color_abil_cost)
+                    draw.text((x_cursor + 15 - w_num/2, text_y + 12 - h_num/2 - 2), label, font=font_abil_num_bold, fill=color_abil_cost)
                     x_cursor += 35
-                    indent = x_cursor - TEXT_BOX_START_X
-                elif gear > 0:
-                    gear_icon = create_circle_icon(30, "#808080") # Grey
-                    canvas.paste(gear_icon, (x_cursor, text_y + 2), gear_icon)
-                    bbox = draw.textbbox((0, 0), str(gear), font=font_abil_num_bold)
-                    w_num, h_num = bbox[2] - bbox[0], bbox[3] - bbox[1]
-                    draw.text((x_cursor + 15 - w_num/2, text_y + 12 - h_num/2 - 2), str(gear), font=font_abil_num_bold, fill=color_abil_cost)
-                    x_cursor += 35
-                    indent = x_cursor - TEXT_BOX_START_X
-                
-                # Fallback for single meat/gear cost (if wind is 0)
-                elif not indent and (meat > 0 or gear > 0):
-                    # This case is now handled by the logic above, but we can keep it as a safeguard
-                    # if the combined cost logic were to be removed. For now, it's redundant.
-                    pass
+
+                indent = x_cursor - TEXT_BOX_START_X
 
 
             

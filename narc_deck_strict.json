@@ -75,6 +75,17 @@
           "passive": false,
           "must_use": false,
           "text": "Target goon does not unwind in its next unwind phase."
+        },
+        {
+          "name": "DISENFRANCHISE",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Destroy Goon to return target enemy Basic Goon to owner's hand."
         }
       ],
       "portrait_art": "auditon.jpg"
@@ -137,17 +148,6 @@
       "deploy_requirements": [],
       "abilities": [
         {
-          "name": "SENTRY MODE",
-          "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Target allied Goon may not be target of enemy abilities until beginning of player's next turn."
-        },
-        {
           "name": "PEW PEW",
           "cost": {
             "wind": 1,
@@ -179,6 +179,17 @@
           "passive": true,
           "must_use": false,
           "text": "When Buzzkill destoys an enemy Goon, remove all wind from allied Squad Leader"
+        },
+        {
+          "name": "PERSISTENT",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "When destroyed return to owner's hand instead of Dead Pool."
         }
       ],
       "portrait_art": "buzzkill.jpg"
@@ -285,7 +296,7 @@
       "portrait_art": "k9.png"
     },
     {
-      "name": "Killjoy",
+      "name": "killjoy",
       "rank": "SG",
       "duplicates": 4,
       "faction": "NARC",
@@ -300,26 +311,6 @@
       "no_unwind": false,
       "deploy_requirements": [],
       "abilities": [
-        {
-          "name": "DETAIN",
-          "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Target Goon does not unwind on player's next turn.",
-          "effects": [
-            {
-              "effect_type": "prevent_unwind",
-              "target": [
-                "any"
-              ],
-              "duration": "next_unwind"
-            }
-          ]
-        },
         {
           "name": "PUNISH",
           "cost": {
@@ -352,6 +343,17 @@
           "passive": true,
           "must_use": false,
           "text": "When Killjoy destoys an enemy Goon, remove all wind from allied Squad Leader"
+        },
+        {
+          "name": "PERSISTENT",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "When destroyed return to owner's hand instead of Dead Pool."
         }
       ],
       "portrait_art": "killjoy.jpg"
@@ -447,24 +449,13 @@
         {
           "name": "DORSAL CAVITY RINSE",
           "cost": {
-            "wind": 0,
-            "gear": 1,
+            "wind": 2,
+            "gear": 0,
             "meat": 0
           },
           "passive": false,
           "must_use": false,
-          "text": "Remove all wind from target biological Goon."
-        },
-        {
-          "name": "BIO LUBE",
-          "cost": {
-            "wind": 1,
-            "gear": 0,
-            "meat": 1
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Remove all wind from target mechanical Goon."
+          "text": "Remove all wind from target allied Goon."
         }
       ],
       "portrait_art": "medi.png"
@@ -488,13 +479,13 @@
         {
           "name": "JOY OF INSPIRATION",
           "cost": {
-            "wind": 0,
+            "wind": 1,
             "gear": 0,
-            "meat": 1
+            "meat": 0
           },
           "passive": false,
           "must_use": false,
-          "text": "Remove all wind from target basic biological Goon."
+          "text": "Remove all wind from target Basic Goon."
         },
         {
           "name": "ARC LASH",
@@ -557,7 +548,7 @@
           },
           "passive": true,
           "must_use": false,
-          "text": "Does not protect Squad Leader from being targeted by abilities. Squad Leader may not use abilities or contribute wind to deploy while Narcstar is in play."
+          "text": "Does not protect Squad Leader from being targeted by abilities"
         }
       ],
       "portrait_art": "narcstar.jpg"
@@ -662,7 +653,8 @@
         }
       ],
       "portrait_art": "gun.jpg"
-    },{
+    },
+    {
       "name": "Auto Turret",
       "rank": "BG",
       "duplicates": 0,
@@ -750,7 +742,7 @@
       "duplicates": 4,
       "faction": "NARC",
       "deploy_cost": {
-        "wind": 1,
+        "wind": 0,
         "gear": 1,
         "meat": 0
       },
@@ -790,7 +782,6 @@
       "no_unwind": false,
       "deploy_requirements": [],
       "abilities": [],
-      "notes": [],
       "flavor_text": "Don't worry. We'll salvage you in the cleanup sweep. Just don't take a hit in the processor.",
       "portrait_art": "simulant.jpg"
     },
@@ -819,10 +810,42 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Target enemy Goon with MARK TARGET. Until end of turn, allied Goons targeting marked Goon with an ability pay one less wind than normal to do so."
+          "text": "Target enemy Goon with MARK TARGET. Until end of turn, allied Goons targeting marked Goon with an ability pay 1 less wind to do so."
         }
       ],
-      "portrait_art": "detainprobe.png"
+      "flavor_text": "",
+      "portrait_art": "target.jpg"
+    },
+    {
+      "name": "Orbital Transport",
+      "rank": "BG",
+      "duplicates": 4,
+      "faction": "NARC",
+      "deploy_cost": {
+        "wind": 0,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": true,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "HOT EXTRACTION",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "Destroy Goon to move target allied Goon back to your hand. This effect resolves before any other ability effect resolves."
+        }
+      ],
+      "flavor_text": "",
+      "portrait_art": "shuttle.jpg"
     }
   ]
 }
