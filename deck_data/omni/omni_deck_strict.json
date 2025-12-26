@@ -1,0 +1,405 @@
+{
+  "id": "basicnarc",
+  "faction": "OMNI",
+  "card_name_font_family": [
+    "Leaderson.ttf",
+    "Impact.ttf",
+    "Arial-Black.ttf"
+  ],
+  "card_name_font_size": 85,
+  "cost_font_family": [
+    "Marinfordaf.ttf",
+    "Helvetica.ttc",
+    "Arial.ttf"
+  ],
+  "cost_font_size": 55,
+  "body_font_family": [
+    "Futura.ttc",
+    "Futura.ttf",
+    "Avenir.ttc",
+    "GillSans.ttc",
+    "Georgia"
+  ],
+  "body_font_size": 26,
+  "ability_num_font_family": [
+    "Staatliches-Regular.ttf",
+    "Futura.ttf",
+    "Avenir.ttc"
+  ],
+  "ability_num_font_size": 25,
+  "ability_num_bold_font_family": [
+    "Staatliches-Regular",
+    "Avenir-Heavy.ttf"
+  ],
+  "ability_num_bold_font_size": 30,
+  "card_name_font_color": "#0ce465",
+  "deploy_cost_font_color": "white",
+  "body_font_color": "#98f873",
+  "ability_cost_font_color": "black",
+  "flavor_text_font_family": [
+    "OpenSans-Italic.ttf",
+    "Helvetica-Oblique.ttf",
+    "Arial-Italic.ttf"
+  ],
+  "flavor_text_font_size": 24,
+  "card_name_letter_spacing": 0,
+  "icon_stack_x_offset": 25,
+  "card_name_y_offset": 0,
+  "card_name_stroke_width": 4,
+  "card_name_stroke_color": "#000000",
+  "icon_stack_y_offset": 50,
+  "goons": [
+    {
+      "name": "THE MECHANIC",
+      "rank": "T",
+      "duplicates": 1,
+      "faction": "OMNI",
+      "deploy_cost": {
+        "wind": 0,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "WRONG GUY - RIGHT WRENCH",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "Burn this Goon for 2 wind, 1 Mechanical resource, or 1 Biological resource to contribute to a Goons deploy cost or ability cost."
+        },
+        {
+          "name": "HERE YOU GO",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "Burn this Goon to move any card from deck to hand; reshuffle deck."
+        },
+        {
+          "name": "INVULNERABLE",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "May not be the target of abilities"
+        },
+        {
+          "name": "ROGUE",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "Does not protect Squad Leader from being targeted."
+        }
+      ],
+      "portrait_art": "mechanic_grim.jpg"
+    },
+    {
+      "name": "test1",
+      "rank": "BG",
+      "duplicates": 1,
+      "faction": "OMNI",
+      "deploy_cost": {
+        "wind": 0,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+      ],
+      "portrait_art": "test1.jpg"
+    },{
+      "name": "test2",
+      "rank": "BG",
+      "duplicates": 1,
+      "faction": "OMNI",
+      "deploy_cost": {
+        "wind": 0,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+      ],
+      "portrait_art": "test2.jpg"
+    },{
+      "name": "test3",
+      "rank": "BG",
+      "duplicates": 1,
+      "faction": "OMNI",
+      "deploy_cost": {
+        "wind": 0,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+      ],
+      "portrait_art": "test3.jpg"
+    },{
+      "name": "test4",
+      "rank": "BG",
+      "duplicates": 1,
+      "faction": "OMNI",
+      "deploy_cost": {
+        "wind": 0,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+      ],
+      "portrait_art": "test4.jpg"
+    },
+    {
+      "name": "test5",
+      "rank": "BG",
+      "duplicates": 1,
+      "faction": "OMNI",
+      "deploy_cost": {
+        "wind": 0,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [],
+      "portrait_art": "test5.jpg"
+    },
+    {
+      "name": "test6",
+      "rank": "BG",
+      "duplicates": 1,
+      "faction": "OMNI",
+      "deploy_cost": {
+        "wind": 0,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [],
+      "portrait_art": "test6.jpg"
+    },
+    {
+      "name": "DRIFT SENTINEL",
+      "rank": "BG",
+      "duplicates": 1,
+      "faction": "OMNI",
+      "deploy_cost": {
+        "wind": 1,
+        "gear": 1,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "KINETIC BARRIER",
+          "cost": {
+            "wind": 0,
+            "gear": 1,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Prevent 2 damage to a friendly Goon this turn."
+        }
+      ],
+      "portrait_art": "drift_sentinel.jpg"
+    },
+    {
+      "name": "SCRAPLINE MEDIC",
+      "rank": "BG",
+      "duplicates": 1,
+      "faction": "OMNI",
+      "deploy_cost": {
+        "wind": 0,
+        "gear": 0,
+        "meat": 1
+      },
+      "biological": true,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "PATCHWORK STIM",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 1
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Restore 2 health to a friendly biological Goon."
+        }
+      ],
+      "portrait_art": "scrapline_medic.jpg"
+    },
+    {
+      "name": "NEBULA OPS",
+      "rank": "T",
+      "duplicates": 1,
+      "faction": "OMNI",
+      "deploy_cost": {
+        "wind": 2,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": false,
+      "resist": true,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "PHASE STEP",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "May move to any position ignoring blockers this turn."
+        }
+      ],
+      "portrait_art": "nebula_ops.jpg"
+    },
+    {
+      "name": "LOOMING WARFORGE",
+      "rank": "BG",
+      "duplicates": 1,
+      "faction": "OMNI",
+      "deploy_cost": {
+        "wind": 0,
+        "gear": 2,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "OVERLOAD HAMMER",
+          "cost": {
+            "wind": 0,
+            "gear": 1,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Deal 2 damage to a target Goon; this Goon takes 1 self-damage."
+        }
+      ],
+      "portrait_art": "looming_warforge.jpg"
+    },
+    {
+      "name": "ECHO PROSPECTOR",
+      "rank": "BG",
+      "duplicates": 1,
+      "faction": "OMNI",
+      "deploy_cost": {
+        "wind": 1,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "DATA SCOUR",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Draw 1 card; if it is OMNI, you may reveal it to keep an extra card."
+        }
+      ],
+      "portrait_art": "echo_prospector.jpg"
+    },
+    {
+      "name": "VOID COURIER",
+      "rank": "BG",
+      "duplicates": 1,
+      "faction": "OMNI",
+      "deploy_cost": {
+        "wind": 1,
+        "gear": 1,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "SMUGGLE ROUTE",
+          "cost": {
+            "wind": 0,
+            "gear": 1,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Search your deck for an OMNI card and place it on top; reshuffle the rest."
+        }
+      ],
+      "portrait_art": "void_courier.jpg"
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+    "id": "meat_design_guide",
+    "faction_name": "MEAT",
+    "high_concept": "Brutish, primitive human cavemen .Their culture revolves around the hunt, consumption, and transformation of monstrous prey into food,armor and weapons",
+    "MEAT_warrior_appearance": {
+        "silhouette": {
+            "description": "Broad, stocky, imposing silhouette with hulking posture, heavy bone armor, giant weapon, and trophy elements, full hide and fur boots",
+            "rules": [
+                "Weapons should be crude but massive: bone clubs, fang axes, shell hammers.",
+                "Posture is often hunched or forward-leaning, emphasizing predatory aggression."
+            ]
+        },
+        "motifs": {
+            "organic": [
+                "rib_cage_breastplates",
+                "scale_shields",
+                "scale_greaves",
+                "hide_capelike_backpieces",
+                "fang_necklaces",
+                "bone_helms",
+                "leather_gauntlets",
+                "frayed_leather_straps",
+                "animal_fur_cloaks",
+                "shell_pauldrons",
+                "spike_decorations",
+                "claw_adornments",
+                "horned_helmets",
+                "trophy_skulls",
+                "meat_sinew_bindings",
+                "animal_hide_boots",
+                "feathered_accents"
+            ],
+            "body_features": [
+                "oversized_teeth",
+                "sloped_foreheads",
+                "protruding_brows",
+                "long_hair_and_dreadlocks",
+                "beards",
+                "bone_piercings",
+                "furred_boots"
+            ]
+        }
+    },
+    "mechanical_identity": {
+        "primary_resource_focus": "meat",
+        "secondary_resource_notes": "Wind represents exertion, fatigue, or frenzy; gear rarely appears except as crude enhancements derived from beasts.",
+        "common_actions": [
+            "add_large_wind_through_brutal_melee",
+            "consume_meat_to_buff_or_heal",
+            "sacrifice_units_to_gain_meat_or_stat_boosts",
+            "rebuild_or_regrow_units_using_meat",
+            "enrage_effects_triggered_by_wounds",
+            "multi_target_cleave_attacks",
+            "apply_bleed_or_continuous_wind_effects",
+            "summon_beast_constructs_from_dead_pool_materials"
+        ],
+        "subthemes": [
+            "blood_frenzy",
+            "cannabalism_and_meat_consumption",
+            "primal_rage_states",
+            "dimwitted_brutes"
+        ],
+        "ranks": [
+            "BG",
+            "SG",
+            "T",
+            "SL"
+        ],
+        "special_flags_usage": {
+            "biological": "Nearly universal—these are living brutes, cavemen, beast-men",
+            "mechanical": "never",
+            "rank": "almost always BG, rarely SG or T and never SL",
+            "resist": "Assigned to special",
+            "no_unwind": "Represents unstoppable raging fighters, mindless constructs, or bound beast spirits that never calm down until destroyed."
+        }
+    }
+}

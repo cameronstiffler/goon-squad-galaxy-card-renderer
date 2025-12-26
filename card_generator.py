@@ -97,6 +97,30 @@ GEMINI_ART_MODEL = os.getenv("GEMINI_ART_MODEL", "imagen-3.0-generate-001")
 VERTEX_JSON_MODEL = os.getenv("VERTEX_JSON_MODEL", "gemini-1.5-pro")
 VERTEX_ART_MODEL = os.getenv("VERTEX_ART_MODEL", "gemini-3-pro-image-preview")
 
+# Deck-specific locations for JSON inputs, art, and outputs
+DECK_CONFIG = {
+    "pcu": {
+        "json": os.path.join("deck_data", "pcu", "pcu_deck_strict.json"),
+        "art": os.path.join("art", "pcu"),
+        "output": os.path.join(OUTPUT_DIR, "pcu"),
+    },
+    "narc": {
+        "json": os.path.join("deck_data", "narc", "narc_deck_strict.json"),
+        "art": os.path.join("art", "narc"),
+        "output": os.path.join(OUTPUT_DIR, "narc"),
+    },
+    "meat": {
+        "json": os.path.join("deck_data", "meat", "meat_deck_strict.json"),
+        "art": os.path.join("art", "meat"),
+        "output": os.path.join(OUTPUT_DIR, "meat"),
+    },
+    "omni": {
+        "json": os.path.join("deck_data", "omni", "omni_deck_strict.json"),
+        "art": os.path.join("art", "omni"),
+        "output": os.path.join(OUTPUT_DIR, "omni"),
+    },
+}
+
 # --- GOOGLE GENAI HELPERS (Vertex/public Gemini via unified client) ---
 _VERTEX_CLIENT = None
 
@@ -275,15 +299,25 @@ def create_placeholder_art(size=(650, 600), text="ART MISSING"):
     draw.text((size[0]/2, size[1]/2), text, font=font, anchor="mm", fill=(200, 200, 200))
     return img
 
-def load_art_style_prompt():
-    """Loads and formats the art style description from art_style.json."""
-    try:
-        with open('art_style.json', 'r') as f:
-            style_data = json.load(f)
-        return style_data.get("art_style_description", "A character illustration.")
-    except (FileNotFoundError, json.JSONDecodeError) as e:
-        print(f"   [!] WARNING: Could not load art_style.json. Using default prompt. Error: {e}")
-        return "90s video game concept art, semi-realistic sticker style, bold comic-book inking. The image must be in full color and feature only a single character."
+def load_art_style_prompt(faction):
+    """Load the faction-specific art style prompt, with a fallback to the legacy root file."""
+    style_paths = [
+        os.path.join("goon_design_guide", faction, "art_style.json"),
+        "art_style.json",
+    ]
+    last_error = None
+    for path in style_paths:
+        try:
+            with open(path, 'r') as f:
+                style_data = json.load(f)
+            return style_data.get("art_style_description", "A character illustration.")
+        except (FileNotFoundError, json.JSONDecodeError) as e:
+            last_error = (path, e)
+
+    if last_error:
+        path, err = last_error
+        print(f"   [!] WARNING: Could not load art style file '{path}'. Using default prompt. Error: {err}")
+    return "90s video game concept art, semi-realistic sticker style, bold comic-book inking. The image must be in full color and feature only a single character."
 
 def load_art_prompt_data(faction):
     """Loads the art prompt template and options from a faction-specific guide."""
@@ -398,6 +432,53 @@ def generate_art_prompt(goon, prompt_data, art_style_prompt):
 
     priority_note = "Use the above art style exactly. Do not introduce any new style cues; only apply the subject details below."
     return f"{art_style_prompt}\n\n{priority_note}\n\nSubject: {character_description}"
+
+def _next_numbered_art_index(art_dir, prefix):
+    """Find the next available numeric suffix for generated art files."""
+    pattern = re.compile(rf"^{re.escape(prefix)}[_-]?(\d+)\.(?:jpe?g|png)$", re.IGNORECASE)
+    max_idx = 0
+    try:
+        for fname in os.listdir(art_dir):
+            match = pattern.match(fname)
+            if match:
+                max_idx = max(max_idx, int(match.group(1)))
+    except FileNotFoundError:
+        return 1
+    return max_idx + 1
+
+def generate_art_only_batch(faction, art_dir, count):
+    """Generate standalone art portraits using the faction's trait/style guides."""
+    print(f"\n--- ART-ONLY GENERATION ({faction.upper()}) ---")
+    if count <= 0:
+        print("   [!] No art generated because count was not positive.")
+        return 0
+
+    prompt_data = load_art_prompt_data(faction)
+    if not prompt_data:
+        print("   [!] Art prompt data missing; cannot generate art.")
+        sys.exit(1)
+
+    art_style_prompt = load_art_style_prompt(faction)
+    style_image = load_style_image(faction)
+    os.makedirs(art_dir, exist_ok=True)
+
+    prefix = f"{faction}_art"
+    start_idx = _next_numbered_art_index(art_dir, prefix)
+    generated = 0
+
+    for offset in range(count):
+        idx = start_idx + offset
+        goon_stub = {"name": f"{faction.upper()}_ART_{idx:03d}", "description": {}}
+        prompt = generate_art_prompt(goon_stub, prompt_data, art_style_prompt)
+        if not prompt:
+            print("   [!] Skipping entry due to missing prompt.")
+            continue
+        filename = os.path.join(art_dir, f"{prefix}_{idx:03d}.jpg")
+        if generate_and_save_art(prompt, filename, style_image=style_image):
+            generated += 1
+
+    print(f"   [+] Generated {generated}/{count} portraits to {art_dir}")
+    return generated
 
 def generate_and_save_art(prompt, save_path, style_image=None):
     """Generates art using the selected provider and saves it to the specified path."""
@@ -987,7 +1068,7 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
         
     assets = get_assets(faction)
     ai_prompt_data = load_art_prompt_data(faction)
-    art_style_prompt = load_art_style_prompt() # Load the master art style once
+    art_style_prompt = load_art_style_prompt(faction) # Load the master art style once
     style_image = load_style_image(faction)
     if not os.path.exists(output_dir): os.makedirs(output_dir)
 
@@ -1328,8 +1409,10 @@ if __name__ == "__main__":
     group.add_argument('-pcu', action='store_true', help="Process the PCU deck.")
     group.add_argument('-meat', action='store_true', help="Process the MEAT deck.")
     group.add_argument('-narc', action='store_true', help="Process the NARC deck.")
+    group.add_argument('-omni', action='store_true', help="Process the OMNI deck.")
     parser.add_argument('-auto', nargs='?', const=0, type=int, help="Automatically generate missing portrait art. Optionally provide a number to generate that many additional variations (_1, _2, ...).")
     parser.add_argument('-deck', action='store_true', help="Render all cards in the selected deck.")
+    parser.add_argument('-art', type=int, metavar='N', help="Generate N standalone art portraits using the selected faction's goon_traits/art_style; ignores deck rendering.")
     parser.add_argument('-grid', action='store_true', help="Generate a single grid image of all cards in the deck.")
     parser.add_argument('-dup', action='store_true', help="When using -grid, render multiple copies based on the 'duplicates' value.")
     parser.add_argument('-goon', nargs='?', const='__generate__', default=None, help="Generate a new goon definition. Optionally provide a name.")
@@ -1337,20 +1420,30 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.pcu:
-        json_to_process = "pcu_deck_strict.json"
-        art_directory = "art/pcu"
-        faction_name = "pcu"
-        output_directory = os.path.join(OUTPUT_DIR, "pcu")
+        deck_key = "pcu"
     elif args.narc:
-        json_to_process = "narc_deck_strict.json"
-        art_directory = "art/narc"
-        faction_name = "narc"
-        output_directory = os.path.join(OUTPUT_DIR, "narc")
+        deck_key = "narc"
     elif args.meat:
-        json_to_process = "meat_deck_strict.json"
-        art_directory = "art/meat"
-        faction_name = "meat"
-        output_directory = os.path.join(OUTPUT_DIR, "meat")
+        deck_key = "meat"
+    elif args.omni:
+        deck_key = "omni"
+    else:
+        raise ValueError("No deck selected; argparse should enforce one deck flag.")
+
+    art_only_count = args.art
+    if art_only_count is not None:
+        generate_art_only_batch(
+            faction=deck_key,
+            art_dir=DECK_CONFIG[deck_key]["art"],
+            count=art_only_count
+        )
+        sys.exit(0)
+
+    deck_paths = DECK_CONFIG[deck_key]
+    json_to_process = deck_paths["json"]
+    art_directory = deck_paths["art"]
+    output_directory = deck_paths["output"]
+    faction_name = deck_key
 
     auto_requested = args.auto is not None
     auto_extra_variations = max(0, args.auto) if auto_requested else 0
