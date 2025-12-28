@@ -320,7 +320,7 @@
       "description": {
         "attire": "leather gauntlets",
         "accessories": [
-          "reins and saddle strapped to the back of a large snake"
+          "reins and saddle strapped to the back of a giant snake with a skin pattern. The snake mount has a body diameter of about 4 feet at its thickest point"
         ],
         "weapon": "bow and stone tipped arrows",
         "setting": "rocky terrain with sparse vegetation",
@@ -374,7 +374,7 @@
           "text": "Add 1 wind to X target Goons."
         }
       ],
-      "portrait_art": "slither.jpg"
+      "portrait_art": "slither3.jpg"
     },
     {
       "name": "Gahree",
@@ -428,7 +428,7 @@
       "deploy_cost": {
         "wind": 3,
         "gear": 0,
-        "meat": 0
+        "meat": 1
       },
       "biological": true,
       "mechanical": false,
@@ -574,17 +574,6 @@
           "text": "Opponent must distribute X*X wind among their Goons."
         },
         {
-          "name": "DEVOUR",
-          "cost": {
-            "wind": 1,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Destroy target Basic Goon"
-        },
-        {
           "name": "INVULNERABLE",
           "cost": {
             "wind": 0,
@@ -604,7 +593,7 @@
           },
           "passive": true,
           "must_use": false,
-          "text": "Does not protect Squad Leader from being targeted by abilities"
+          "text": "Does not protect Squad Leader from being targeted by abilities. Unable to contribute wind to deploy cost of allied Goons."
         }
       ],
       "portrait_art": "grunkbeast.jpg"
@@ -634,7 +623,7 @@
           },
           "passive": true,
           "must_use": false,
-          "text": "Add 1 wind to enemy Goon after it damages an allied Goon."
+          "text": "After effect enemy ability effect resolves on one of your Goons, add 1 wind to that enemy Goon."
         }
       ],
       "portrait_art": "holegrunk.jpg"
@@ -827,9 +816,9 @@
       "rank": "BG",
       "faction": "MEAT",
       "deploy_cost": {
-        "wind": 0,
+        "wind": 1,
         "gear": 0,
-        "meat": 1
+        "meat": 0
       },
       "duplicates": 4,
       "biological": true,
@@ -964,6 +953,86 @@
         }
       ],
       "portrait_art": "woodtosser_alt.jpg",
+      "flavor_text": ""
+    },
+    {
+      "id": "megafauna",
+      "name": "Mega Fauna",
+      "description": {
+        "goon_class": [
+          "wild mega fauna"
+        ],
+        "anatomy": [
+          "Large wild animal big enough for a humanoid to ride on its back."
+        ],
+         "armor": [
+          "thick hide"
+        ],
+        "weapon": "large tusks protruding from mouth",
+        "setting": "Lush jungle",
+        "pose": "At home among the flora",
+        "attire": "none",
+        "boots": "natural part of anatomy",
+        "facehair": "if appropriate, natural part of anatomy",
+        "skin": "thick hide",
+        "accessories": [
+          "thick hide and large tusks"
+        ],
+        "time_of_day": "daytime",
+        "mouth": "closed mouth with tusks protruding",
+        "teeth": "large tusks",
+        "head_wear": "natural part of anatomy",
+        "eyes": "small and round"
+      },
+      "rank": "BG",
+      "faction": "MEAT",
+      "deploy_cost": {
+        "wind": 0,
+        "gear": 0,
+        "meat": 0
+      },
+      "duplicates": 4,
+      "biological": true,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": true,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "IT IS MEAT",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Destroy Goon to remove all wind from allied Basic Goon"
+        },
+        {
+          "name": "MOUNT",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "All of your basic Goons have ability: Pay 0 wind to take unmounted Fauna as a mount until Goon or Fauna are destroyed. While mounted, Fauna's rider may pass an effect from an enemy Goon ability targeting the rider to Fauna."
+        },
+        {
+          "name": "ROGUE",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "Does not protect Squad Leader from being targeted by abilities. Unable to contribute wind to deploy cost of allied Goons."
+        }
+      ],
+      "portrait_art": "mega.jpg",
       "flavor_text": ""
     }
   ]

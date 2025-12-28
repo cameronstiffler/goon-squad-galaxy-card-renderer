@@ -119,6 +119,11 @@ DECK_CONFIG = {
         "art": os.path.join("art", "omni"),
         "output": os.path.join(OUTPUT_DIR, "omni"),
     },
+    "necro": {
+        "json": os.path.join("deck_data", "necro", "necro_deck_strict.json"),
+        "art": os.path.join("art", "necro"),
+        "output": os.path.join(OUTPUT_DIR, "necro"),
+    },
 }
 
 # --- GOOGLE GENAI HELPERS (Vertex/public Gemini via unified client) ---
@@ -1410,6 +1415,7 @@ if __name__ == "__main__":
     group.add_argument('-meat', action='store_true', help="Process the MEAT deck.")
     group.add_argument('-narc', action='store_true', help="Process the NARC deck.")
     group.add_argument('-omni', action='store_true', help="Process the OMNI deck.")
+    group.add_argument('-necro', action='store_true', help="Process the NECRO deck.")
     parser.add_argument('-auto', nargs='?', const=0, type=int, help="Automatically generate missing portrait art. Optionally provide a number to generate that many additional variations (_1, _2, ...).")
     parser.add_argument('-deck', action='store_true', help="Render all cards in the selected deck.")
     parser.add_argument('-art', type=int, metavar='N', help="Generate N standalone art portraits using the selected faction's goon_traits/art_style; ignores deck rendering.")
@@ -1427,6 +1433,8 @@ if __name__ == "__main__":
         deck_key = "meat"
     elif args.omni:
         deck_key = "omni"
+    elif args.necro:
+        deck_key = "necro"
     else:
         raise ValueError("No deck selected; argparse should enforce one deck flag.")
 

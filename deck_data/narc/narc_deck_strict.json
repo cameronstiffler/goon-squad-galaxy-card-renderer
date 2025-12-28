@@ -603,7 +603,7 @@
       "portrait_art": "sasdroid.png"
     },
     {
-      "name": "Sentry Node 2.0",
+      "name": "Sentry Gun",
       "rank": "BG",
       "duplicates": 4,
       "faction": "NARC",
@@ -615,7 +615,7 @@
       "biological": false,
       "mechanical": true,
       "resist": false,
-      "no_unwind": false,
+      "no_unwind": true,
       "deploy_requirements": [],
       "abilities": [
         {
@@ -630,10 +630,10 @@
           "text": "When an enemy Goon targets one of your Goons, add 1 wind to enemy Goon before its ability effects resolve."
         }
       ],
-      "portrait_art": "gun.jpg"
+      "portrait_art": "sentry.jpg"
     },
     {
-      "name": "Auto Turret",
+      "name": "Fwd Patrol Gun",
       "rank": "BG",
       "duplicates": 0,
       "faction": "NARC",
@@ -651,7 +651,7 @@
         {
           "name": "AUTOBURST",
           "cost": {
-            "wind": 0,
+            "wind": 1,
             "gear": 0,
             "meat": 0
           },
@@ -682,7 +682,7 @@
           "text": "Destroy Node to destroy target Basic Goon."
         }
       ],
-      "portrait_art": "sentry.jpg"
+      "portrait_art": "patrolgun.png"
     },
     {
       "name": "Shield Pylon",

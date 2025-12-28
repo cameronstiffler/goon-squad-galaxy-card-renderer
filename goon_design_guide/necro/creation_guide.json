@@ -1,0 +1,65 @@
+{
+  "id": "necro_design_guide",
+  "faction_name": "NECRO",
+  "high_concept": "Undead technomancers who fuse bone, shadow, and arcane machinery. They command revenants, harvest soul-energy, and weaponize decay with precise control.",
+  "appearance": {
+    "silhouette": {
+      "description": "Tall or looming shapes with draped robes, jutting bone armor, and angular tech protrusions. Often asymmetrical due to grafts or floating components.",
+      "rules": [
+        "Integrate hard tech geometry with organic decay; cables can substitute for sinew.",
+        "Glows and runes should feel purposeful, like circuitry powering rituals."
+      ]
+    },
+    "motifs": {
+      "materials": [
+        "bone_plating",
+        "rusted_metal_spines",
+        "arcane_runic_panels",
+        "soul_containment_crystals",
+        "chain_bindings",
+        "ritual_cloth_layers",
+        "floating_sigil_rings"
+      ],
+      "body_features": [
+        "glowing_eyes_or_empty_sockets",
+        "exposed_ribs_with_cables",
+        "etched_bone_masks",
+        "hovering_limbs_or_bits",
+        "etheric_mist_trail"
+      ]
+    }
+  },
+  "mechanical_identity": {
+    "primary_resource_focus": "gear",
+    "secondary_resource_notes": "Wind represents siphoned soul-force; meat appears when using living sacrifices or regrowth effects.",
+    "common_actions": [
+      "raise_or_recur_goons_from_discard",
+      "debuff_enemy_attack_or_wind",
+      "convert_wind_into_gear_or_temporary_shields",
+      "mark_targets_then_trigger_damage_or_drain",
+      "apply_damage_over_time_or_decay",
+      "summon_tokens_orhusks_that_feed_other_effects",
+      "swap_positions_while_phased",
+      "prevent_enemy_unwind_or_healing"
+    ],
+    "subthemes": [
+      "soul_drain_and_conversion",
+      "ritual_markers_that_detonate_or_disable",
+      "bone_and_steel_constructs",
+      "fog_or_mist_mobility",
+      "sacrifice_for_value"
+    ],
+    "ranks": [
+      "BG",
+      "SG",
+      "T",
+      "SL"
+    ],
+    "special_flags_usage": {
+      "biological": "Rare—mostly for freshly raised ghouls or living cultists.",
+      "mechanical": "Common for lich-tech constructs and armored husks.",
+      "resist": "Reserved for shielded phylactery units or armored constructs.",
+      "no_unwind": "Used on relentless undead that never tire or on bound spirits."
+    }
+  }
+}

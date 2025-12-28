@@ -1,0 +1,177 @@
+{
+  "template": "Subject must have the following traits:\nClassification: {goon_class}\nIf goon_class includes humanoid use the following physical description\n\n*Begin Physical Description*\nAnatomy: {anatomy}\nChassis Surface: {skin}\nFacial Features:\n1. Optics: {eyes}\n2. Mouth: {mouth}\n3. Mandible/Jaw: {teeth}\n4. Cranial Detail: {facehair}\n5. Expression: rictus grin or cold aggression\n\nOutfit Instructions:\n1. Plating: subject is equipped with {armor}.\n2. Headgear: {head_wear}\n3. Attachments: {accessories}\n4. Locomotion: {boots}\n*End Physical Description*\n\nSubject Description: One instance of the subject. The subject is a {goon_class} wielding a {weapon} in a {pose} pose, seen from a {perspective_angle} view in a {setting} during {time_of_day}.\n\n",
+  "options": {
+    "goon_class": [
+      "heavy-weapons cyborg lich",
+      "reanimated siege-breaker droid",
+      "skeletal tank-hybrid abomination",
+      "tactical undead shock-trooper",
+      "giant floating skull-drone assault platform",
+      "multi-armed ballistic revenant",
+      "diesel-punk necromancer construct",
+      "flesh-grafted artillery bot"
+    ],
+    "anatomy": [
+      "bulky hydraulic torso with exposed ribcage wiring",
+      "massive chassis with four weapon-mounted manipulator arms",
+      "humanoid frame reinforced with external pistons and cabling",
+      "skull on mechanical body",
+      "giant skull with integrated weapon systems",
+      "floating spinal column attached to jet engines",
+      "hunchbacked armor shell with integrated weapon mounts on oversized pauldrons"
+    ],
+    "setting": [
+      "burning industrial wasteland under a smoky sky",
+      "cratered battlefield with jagged metal debris",
+      "dark sci-fi corridor lit by red emergency strobes",
+      "ruined cityscape with crumbling concrete structures",
+      "volcanic hellscape with ash clouds",
+      "rusty maintenance bay with dangling chains",
+      "muddy trench line filled with spent shell casings",
+      "graveyard of derelict war machines"
+    ],
+    "time_of_day": [
+      "apocalyptic dawn",
+      "harsh daylight",
+      "gloomy twilight",
+      "pitch black illuminated by muzzle flashes"
+    ],
+    "perspective_angle": [
+      "extreme low angle looking up at the towering machine",
+      "high angle tactical view",
+      "dynamic action angle",
+      "wide shot capturing the scale",
+      "close-up on the skull face"
+    ],
+    "armor": [
+      "thick ablative plates with hazard stripes",
+      "scavenged military tank armor painted olive drab",
+      "rusted steel plates bolted directly to bone",
+      "clean chrome casing with vents",
+      "reactive armor blocks mixed with rib bones",
+      "heavy power-armor pauldrons with skull insignias"
+    ],
+    "head_wear": [
+      "exposed skull with metal reinforcement studs",
+      "Thin blade or spikes running along the top of the skull fromq front to back",
+      "hood of hexagon mail and cables",
+      "bare polished cranium",
+      "horn or horns"
+    ],
+    "weapon": [
+      "integrated minigun",
+      "mounted missile pod",
+      "single missile mounted",
+      "dual heavy machine guns",
+      "integrated high-caliber cannon",
+      "chainsaw bayonet",
+      "integrated blade",
+      "integrated flamethrower with external fuel tanks",
+      "integrated oversized machine gun",
+      "extendable heavy blade",
+      "extendable robotic arm with circular saw attachment",
+      "necromancy",
+      "lightning emitter",
+      "dark energy projector",
+      "undead summoning",
+      "soul-draining beam",
+      "attached blades or spikes"
+    ],
+    "skin": [
+      "matte grey weathered metal",
+      "rotten",
+      "oily black steel with rust patches",
+      "rotting flesh stretched over iron endoskeleton",
+      "scorched metal with battle damage",
+      "metal plates"
+    ],
+    "accessories": [
+      "smoke exhaust pipes venting steam",
+      "trophy skulls hanging from chains",
+      "glowing power cells embedded in the chest",
+      "tactical pouches and grenades",
+      "searchlights mounted on armor",
+      "pronged carapace",
+      "spiked shoulder pads",
+      "mounted warning lights and sirens",
+      "cables and tubes running along limbs",
+      "exposted bone integrated into chassis",
+      "hydraulic pistons visible on joints"
+    ],
+    "eyes": [
+      "hollow sockets with burning red sensor dots",
+      "glowing optical lenses",
+      "searchlight beams projecting from sockets",
+      "flickering yellow LED arrays",
+      "non-functional empty eye sockets",
+      "no eyes visible",
+      "eyes are absent entirely"
+    ],
+    "mouth": [
+      "fixed metal rictus grin",
+      "articulated jaw with hydraulic pistons",
+      "clamped shutx",
+      "jaw open 90 degrees",
+      "fangs",
+      "clenched",
+      "no mouth visible",
+      "covered by a respirator mask",
+      "lacking lower jaw entirely",
+      "absent lower jaw"
+    ],
+    "teeth": [
+      "large fangs",
+      "rows of serrated shark-like metal teeth",
+      "jagged broken bone shards",
+      "oversized canines",
+      "interlocking steel plates forming a crushing maw",
+      "not shown"
+    ],
+    "facehair": [
+      "no facial hair",
+      "wire bundles resembling dreadlocks",
+      "cables framing the face"
+    ],
+    "pose": [
+      "advancing while firing weapons",
+      "crushing objets into debris",
+      "scanning the horizon with sensors",
+      "firing massive weaponry",
+      "screaming a silent digital war cry",
+      "braced for recoil",
+      "racing into battle"
+    ],
+    "boots": [
+      "heavy industrial tank treads",
+      "massive piston-driven walker feet",
+      "grav-thrusters",
+      "clawed mechanical talons",
+      "reverse kneeed hydraulic legs",
+      "stabilizing hover pads",
+      "powerful digitigrade legs",
+      "symetric quadrupedal legs",
+      "symetric hexapodal legs",
+      "symetric octopodal legs",
+      "elongated mechanical snake-like lower body",
+      "wings for powered flight"
+    ]
+  },
+  "option_trait_quantities": {
+    "goon_class": 1,
+    "anatomy": 1,
+    "setting": 1,
+    "time_of_day": 1,
+    "perspective_angle": 1,
+    "armor": 1,
+    "weapon": 3,
+    "skin": 1,
+    "accessories": 2,
+    "head_wear": 1,
+    "boots": 1,
+    "facehair": 1,
+    "eyes": 1,
+    "mouth": 1,
+    "teeth": 1,
+    "pose": 1
+  }
+}
