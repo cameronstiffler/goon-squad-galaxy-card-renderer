@@ -88,7 +88,9 @@
           "text": "Draw a card and force opponent to Burn a card from their hand."
         }
       ],
-      "portrait_art": "auditon.jpg"
+      "portrait_art": [
+        "auditon.jpg"
+      ]
     },
     {
       "name": "Bruut Enforcer",
@@ -129,7 +131,9 @@
           "text": "Destroy target Basic Goon."
         }
       ],
-      "portrait_art": "bruut.png"
+      "portrait_art": [
+        "bruut.png"
+      ]
     },
     {
       "name": "Buzzkill",
@@ -181,7 +185,9 @@
           "text": "When Buzzkill destoys an enemy Goon, remove all wind from Squad Leader"
         }
       ],
-      "portrait_art": "buzzkill.jpg"
+      "portrait_art": [
+        "buzzkill.jpg"
+      ]
     },
     {
       "name": "Detainment Probe",
@@ -211,7 +217,9 @@
           "text": "Target Goon may not unwind, act or contribute wind to deploy next turn."
         }
       ],
-      "portrait_art": "detainprobe.png"
+      "portrait_art": [
+        "detainprobe.png"
+      ]
     },
     {
       "name": "Marine Marauder",
@@ -252,7 +260,9 @@
           "text": "Distribute 3 wind among target Goons."
         }
       ],
-      "portrait_art": "marauder.jpg"
+      "portrait_art": [
+        "marauder.jpg"
+      ]
     },
     {
       "name": "K-9.0",
@@ -282,7 +292,9 @@
           "text": "When allied Goon is targeted by an enemy ability, destroy k-9.0 to prevent that ability from resolving."
         }
       ],
-      "portrait_art": "k9.png"
+      "portrait_art": [
+        "k9.png"
+      ]
     },
     {
       "name": "killjoy",
@@ -334,7 +346,9 @@
           "text": "When Killjoy destoys an enemy Goon, remove all wind from Squad Leader"
         }
       ],
-      "portrait_art": "killjoy.jpg"
+      "portrait_art": [
+        "killjoy.jpg"
+      ]
     },
     {
       "name": "Lokar Simmons",
@@ -365,7 +379,9 @@
         }
       ],
       "flavor_text": "Submission is the love child of demoralization and existential dread.",
-      "portrait_art": "lokar.jpg"
+      "portrait_art": [
+        "lokar.jpg"
+      ]
     },
     {
       "name": "Lurker",
@@ -406,7 +422,9 @@
           "text": "Destroy Goon who destroys Lurker."
         }
       ],
-      "portrait_art": "lurker.png"
+      "portrait_art": [
+        "lurker.png"
+      ]
     },
     {
       "name": "MediFux-1NDS",
@@ -436,7 +454,9 @@
           "text": "Remove all wind from target allied Goon."
         }
       ],
-      "portrait_art": "medi.png"
+      "portrait_art": [
+        "medi.png"
+      ]
     },
     {
       "name": "Taze Mistrex",
@@ -477,7 +497,9 @@
           "text": "Add 2 wind to target Goon."
         }
       ],
-      "portrait_art": "mistrex.png"
+      "portrait_art": [
+        "mistrex.png"
+      ]
     },
     {
       "name": "Narcstar",
@@ -529,7 +551,9 @@
           "text": "Does not protect Squad Leader from being targeted by abilities"
         }
       ],
-      "portrait_art": "narcstar.jpg"
+      "portrait_art": [
+        "narcstar.jpg"
+      ]
     },
     {
       "name": "Nob Lobber",
@@ -570,7 +594,9 @@
           "text": "Add 2 wind to target Goon."
         }
       ],
-      "portrait_art": "lobber.png"
+      "portrait_art": [
+        "lobber.png"
+      ]
     },
     {
       "name": "Protein Processor",
@@ -600,7 +626,9 @@
           "text": "Remove all wind from target Goon."
         }
       ],
-      "portrait_art": "sasdroid.png"
+      "portrait_art": [
+        "sasdroid.png"
+      ]
     },
     {
       "name": "Sentry Gun",
@@ -630,7 +658,9 @@
           "text": "When an enemy Goon targets one of your Goons, add 1 wind to enemy Goon before its ability effects resolve."
         }
       ],
-      "portrait_art": "sentry.jpg"
+      "portrait_art": [
+        "sentry.jpg"
+      ]
     },
     {
       "name": "Fwd Patrol Gun",
@@ -682,7 +712,9 @@
           "text": "Destroy Node to destroy target Basic Goon."
         }
       ],
-      "portrait_art": "patrolgun.png"
+      "portrait_art": [
+        "patrolgun.png"
+      ]
     },
     {
       "name": "Shield Pylon",
@@ -712,7 +744,9 @@
           "text": "While 2 or more Pylons are in play, Player's Goons may not be targeted by opponents Goons."
         }
       ],
-      "portrait_art": "pylon.jpg"
+      "portrait_art": [
+        "pylon.jpg"
+      ]
     },
     {
       "name": "Hover Shield",
@@ -739,10 +773,12 @@
           },
           "passive": true,
           "must_use": false,
-          "text": "Select allied Goon to target with COVER when deployed. Target Goon may not be target of enemy Goon abilities while Hover Shield is in play. Hover Shield may not select a new target to COVER."
+          "text": "Select allied Goon to target with COVER when deployed. Target Goon may not be target of enemy Goon abilities while Hover Shield is in play. Hover Shield may not select a new target to COVER while its original target is in play."
         }
       ],
-      "portrait_art": "hover.jpg"
+      "portrait_art": [
+        "hover.jpg"
+      ]
     },
     {
       "name": "Impact Simulant",
@@ -761,7 +797,9 @@
       "deploy_requirements": [],
       "abilities": [],
       "flavor_text": "Don't worry. We'll collect whats left of you in the salvage sweep. Just don't take a hit in the processor.",
-      "portrait_art": "simulant.jpg"
+      "portrait_art": [
+        "simulant.jpg"
+      ]
     },
     {
       "name": "Target Marker",
@@ -792,7 +830,9 @@
         }
       ],
       "flavor_text": "",
-      "portrait_art": "target.jpg"
+      "portrait_art": [
+        "target.jpg"
+      ]
     },
     {
       "name": "Orbital Transport",
@@ -823,7 +863,9 @@
         }
       ],
       "flavor_text": "",
-      "portrait_art": "shuttle.jpg"
+      "portrait_art": [
+        "shuttle.jpg"
+      ]
     }
   ]
 }

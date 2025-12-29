@@ -110,7 +110,9 @@
           "text": "Does not protect Squad Leader from being targeted."
         }
       ],
-      "portrait_art": "mechanic_grim.jpg"
+      "portrait_art": [
+        "mechanic_grim.jpg"
+      ]
     },
     {
       "name": "test1",
@@ -127,10 +129,12 @@
       "resist": false,
       "no_unwind": false,
       "deploy_requirements": [],
-      "abilities": [
-      ],
-      "portrait_art": "test1.jpg"
-    },{
+      "abilities": [],
+      "portrait_art": [
+        "test1.jpg"
+      ]
+    },
+    {
       "name": "test2",
       "rank": "BG",
       "duplicates": 1,
@@ -145,10 +149,12 @@
       "resist": false,
       "no_unwind": false,
       "deploy_requirements": [],
-      "abilities": [
-      ],
-      "portrait_art": "test2.jpg"
-    },{
+      "abilities": [],
+      "portrait_art": [
+        "test2.jpg"
+      ]
+    },
+    {
       "name": "test3",
       "rank": "BG",
       "duplicates": 1,
@@ -163,10 +169,12 @@
       "resist": false,
       "no_unwind": false,
       "deploy_requirements": [],
-      "abilities": [
-      ],
-      "portrait_art": "test3.jpg"
-    },{
+      "abilities": [],
+      "portrait_art": [
+        "test3.jpg"
+      ]
+    },
+    {
       "name": "test4",
       "rank": "BG",
       "duplicates": 1,
@@ -181,9 +189,10 @@
       "resist": false,
       "no_unwind": false,
       "deploy_requirements": [],
-      "abilities": [
-      ],
-      "portrait_art": "test4.jpg"
+      "abilities": [],
+      "portrait_art": [
+        "test4.jpg"
+      ]
     },
     {
       "name": "NARC MEAT",
@@ -201,7 +210,9 @@
       "no_unwind": false,
       "deploy_requirements": [],
       "abilities": [],
-      "portrait_art": "test5.jpg"
+      "portrait_art": [
+        "test5.jpg"
+      ]
     },
     {
       "name": "test6",
@@ -219,7 +230,9 @@
       "no_unwind": false,
       "deploy_requirements": [],
       "abilities": [],
-      "portrait_art": "test6.jpg"
+      "portrait_art": [
+        "test6.jpg"
+      ]
     },
     {
       "name": "DRIFT SENTINEL",
@@ -249,7 +262,9 @@
           "text": "Prevent 2 damage to a friendly Goon this turn."
         }
       ],
-      "portrait_art": "drift_sentinel.jpg"
+      "portrait_art": [
+        "drift_sentinel.jpg"
+      ]
     },
     {
       "name": "SCRAPLINE MEDIC",
@@ -279,7 +294,9 @@
           "text": "Restore 2 health to a friendly biological Goon."
         }
       ],
-      "portrait_art": "scrapline_medic.jpg"
+      "portrait_art": [
+        "scrapline_medic.jpg"
+      ]
     },
     {
       "name": "NEBULA OPS",
@@ -309,7 +326,9 @@
           "text": "May move to any position ignoring blockers this turn."
         }
       ],
-      "portrait_art": "nebula_ops.jpg"
+      "portrait_art": [
+        "nebula_ops.jpg"
+      ]
     },
     {
       "name": "LOOMING WARFORGE",
@@ -339,7 +358,9 @@
           "text": "Deal 2 damage to a target Goon; this Goon takes 1 self-damage."
         }
       ],
-      "portrait_art": "looming_warforge.jpg"
+      "portrait_art": [
+        "looming_warforge.jpg"
+      ]
     },
     {
       "name": "ECHO PROSPECTOR",
@@ -369,7 +390,9 @@
           "text": "Draw 1 card; if it is OMNI, you may reveal it to keep an extra card."
         }
       ],
-      "portrait_art": "echo_prospector.jpg"
+      "portrait_art": [
+        "echo_prospector.jpg"
+      ]
     },
     {
       "name": "VOID COURIER",
@@ -399,7 +422,9 @@
           "text": "Search your deck for an OMNI card and place it on top; reshuffle the rest."
         }
       ],
-      "portrait_art": "void_courier.jpg"
+      "portrait_art": [
+        "void_courier.jpg"
+      ]
     }
   ]
 }

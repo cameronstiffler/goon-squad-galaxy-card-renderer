@@ -84,7 +84,9 @@
         }
       ],
       "notes": [],
-      "portrait_art": "mutt.jpg"
+      "portrait_art": [
+        "mutt.jpg"
+      ]
     },
     {
       "name": "Utility Droid",
@@ -126,7 +128,9 @@
         }
       ],
       "notes": [],
-      "portrait_art": "util.png"
+      "portrait_art": [
+        "util.png"
+      ]
     },
     {
       "name": "Void Freak",
@@ -157,7 +161,9 @@
         }
       ],
       "notes": [],
-      "portrait_art": "freak.jpg"
+      "portrait_art": [
+        "freak.jpg"
+      ]
     },
     {
       "name": "Annihilist Overseer",
@@ -199,7 +205,9 @@
         }
       ],
       "notes": [],
-      "portrait_art": "overseer.jpg"
+      "portrait_art": [
+        "overseer.jpg"
+      ]
     },
     {
       "name": "Cheese Goblin",
@@ -240,7 +248,9 @@
           "text": "Add 1 wind to any Goon who targets Goblin with ability before ability effect resolves."
         }
       ],
-      "portrait_art": "goblin.jpg"
+      "portrait_art": [
+        "goblin.jpg"
+      ]
     },
     {
       "name": "Grim",
@@ -282,7 +292,9 @@
         }
       ],
       "flavor_text": "I seek only to find amusement in your annihilation",
-      "portrait_art": "grim.jpg"
+      "portrait_art": [
+        "grim.jpg"
+      ]
     },
     {
       "name": "Helvis",
@@ -334,7 +346,9 @@
           "text": "Does not protect Squad Leader from being targeted."
         }
       ],
-      "portrait_art": "helvis.png"
+      "portrait_art": [
+        "helvis.png"
+      ]
     },
     {
       "name": "Blood Howler",
@@ -364,7 +378,9 @@
           "text": "Distribute X wind among target Goons."
         }
       ],
-      "portrait_art": "howler.png"
+      "portrait_art": [
+        "howler.png"
+      ]
     },
     {
       "name": "Krax",
@@ -405,7 +421,9 @@
           "text": "If BASH IN SKULL destroys a Goon, Add 1 wind to Krax to add 2 wind to another target Goon. This may chain as long as it is able."
         }
       ],
-      "portrait_art": "krax.jpg"
+      "portrait_art": [
+        "krax.jpg"
+      ]
     },
     {
       "name": "Vex",
@@ -468,7 +486,9 @@
           "text": "Destroy target Basic Goon."
         }
       ],
-      "portrait_art": "vex.jpg"
+      "portrait_art": [
+        "vex.jpg"
+      ]
     },
     {
       "name": "Necrotech Revenant",
@@ -509,7 +529,9 @@
           "text": "Add 2 wind to target Goon ignoring Resist"
         }
       ],
-      "portrait_art": "krieg.jpg"
+      "portrait_art": [
+        "krieg.jpg"
+      ]
     },
     {
       "name": "Meatjacker",
@@ -539,7 +561,9 @@
           "text": "When deployed, Jacker must immediately use an ability of biological Goon used to pay deploy cost. Jacker is destroyed after effect resolves"
         }
       ],
-      "portrait_art": "meatjacker.png"
+      "portrait_art": [
+        "meatjacker.png"
+      ]
     },
     {
       "name": "Meat Vegetable",
@@ -571,7 +595,9 @@
       ],
       "notes": [],
       "flavor_text": "Carve us off a couple steaks and I\u2019ll grab the bottle of Zurion Noir I had them portal over last resupply. It should pair nicely.",
-      "portrait_art": "meatveg.jpg"
+      "portrait_art": [
+        "meatveg.jpg"
+      ]
     },
     {
       "name": "Restless Natives",
@@ -601,7 +627,9 @@
           "text": "Add 2 wind to target Basic Goon"
         }
       ],
-      "portrait_art": "natives.jpg"
+      "portrait_art": [
+        "natives.jpg"
+      ]
     },
     {
       "name": "Nives",
@@ -643,7 +671,9 @@
         }
       ],
       "notes": [],
-      "portrait_art": "nives.png"
+      "portrait_art": [
+        "nives.png"
+      ]
     },
     {
       "name": "Primordial Oozer",
@@ -684,7 +714,9 @@
           "text": "Add 1 wind to Enemy Goon who targets Oozer with ability after effect resolves."
         }
       ],
-      "portrait_art": "oozer.png"
+      "portrait_art": [
+        "oozer.png"
+      ]
     },
     {
       "name": "Psychoactive Toad",
@@ -725,7 +757,9 @@
           "text": "Destroy Psychoactive Toad to remove all wind from Squad Leader and draw a card."
         }
       ],
-      "portrait_art": "toad.jpg"
+      "portrait_art": [
+        "toad.jpg"
+      ]
     },
     {
       "name": "Local Singularity",
@@ -766,7 +800,9 @@
           "text": "Player's Goons cannot be targeted by unfriendly abilities while Singularity is in play. Singularity must be destroyed first."
         }
       ],
-      "portrait_art": "singularity.png"
+      "portrait_art": [
+        "singularity.png"
+      ]
     },
     {
       "name": "Technomancer",
@@ -819,7 +855,9 @@
         }
       ],
       "notes": [],
-      "portrait_art": "technomancer.jpg"
+      "portrait_art": [
+        "technomancer.jpg"
+      ]
     },
     {
       "name": "Shadow Shaman",
@@ -861,7 +899,9 @@
         }
       ],
       "notes": [],
-      "portrait_art": "shaman.jpg"
+      "portrait_art": [
+        "shaman.jpg"
+      ]
     },
     {
       "name": "Voidwing",
@@ -902,7 +942,9 @@
           "text": "Move any card from deck to hand; reshuffle deck."
         }
       ],
-      "portrait_art": "voidling.png"
+      "portrait_art": [
+        "voidling.png"
+      ]
     }
   ]
 }

@@ -72,7 +72,9 @@
           "text": "Add 2 wind to target Goon."
         }
       ],
-      "portrait_art": "meatwarrior.jpg"
+      "portrait_art": [
+        "meatwarrior.jpg"
+      ]
     },
     {
       "name": "Kuru Cannibal",
@@ -124,7 +126,9 @@
           "text": "When Cannibal adds wind to a Bioliogical Goon, Cannibal's owner may add 1 wind to an enemy Goon."
         }
       ],
-      "portrait_art": "cannibal.jpg"
+      "portrait_art": [
+        "cannibal.jpg"
+      ]
     },
     {
       "name": "Meat Beater",
@@ -154,7 +158,9 @@
           "text": "Destroy target Basic Goon."
         }
       ],
-      "portrait_art": "meatbeater.jpg"
+      "portrait_art": [
+        "meatbeater.jpg"
+      ]
     },
     {
       "name": "Beast Rider",
@@ -177,9 +183,10 @@
       "resist": true,
       "no_unwind": false,
       "deploy_requirements": [],
-      "abilities": [
-      ],
-      "portrait_art": "beastrider.jpg"
+      "abilities": [],
+      "portrait_art": [
+        "beastrider.jpg"
+      ]
     },
     {
       "name": "Meaty Mounties",
@@ -215,7 +222,9 @@
           "text": "Apply ability effect allied Goon was targeted with to this Goon instead. Add 1 wind to the enemy Goon that applied the effect."
         }
       ],
-      "portrait_art": "armored_cav.jpg"
+      "portrait_art": [
+        "armored_cav.jpg"
+      ]
     },
     {
       "name": "Jackholed Yokal",
@@ -245,7 +254,9 @@
           "text": "Destroy to add "
         }
       ],
-      "portrait_art": "dumbspearvolcano.jpg"
+      "portrait_art": [
+        "dumbspearvolcano.jpg"
+      ]
     },
     {
       "name": "Mouth Breather",
@@ -263,7 +274,9 @@
       "no_unwind": false,
       "deploy_requirements": [],
       "abilities": [],
-      "portrait_art": "dumbcrossedeyesaxe.jpg"
+      "portrait_art": [
+        "dumbcrossedeyesaxe.jpg"
+      ]
     },
     {
       "name": "Joustman",
@@ -291,29 +304,31 @@
       "deploy_requirements": [],
       "abilities": [
         {
-        "name": "LURE AND SKEWER",
+          "name": "LURE AND SKEWER",
           "cost": {
             "wind": 1,
             "gear": 0,
             "meat": 0
           },
-        "passive": false,
-        "must_use": false,
-        "text": "Add 2 wind to target Goon."
-      },
-      {
-        "name": "IMPALE AND BAIL",
-        "cost": {
-          "wind": 0,
-          "gear": 0,
-          "meat": 0
+          "passive": false,
+          "must_use": false,
+          "text": "Add 2 wind to target Goon."
         },
-        "passive": true,
-        "must_use": false,
-        "text": "When Goon destroys an opponent's Goon, opponent's Goons may not target Goon until the end of your next turn."
-      }
+        {
+          "name": "IMPALE AND BAIL",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "When Goon destroys an opponent's Goon, opponent's Goons may not target Goon until the end of your next turn."
+        }
       ],
-      "portrait_art": "joustman.jpg"
+      "portrait_art": [
+        "joustman.jpg"
+      ]
     },
     {
       "name": "Back Slider",
@@ -374,7 +389,9 @@
           "text": "Add 1 wind to X target Goons."
         }
       ],
-      "portrait_art": "slither3.jpg"
+      "portrait_art": [
+        "slither3.jpg"
+      ]
     },
     {
       "name": "Gahree",
@@ -418,7 +435,9 @@
           "text": "Add 1 wind to target Goon."
         }
       ],
-      "portrait_art": "gary.jpg"
+      "portrait_art": [
+        "gary.jpg"
+      ]
     },
     {
       "name": "Grunt Master",
@@ -470,7 +489,9 @@
           "text": "While Goon is in play, allied Goon attacks ignore resist on enemy Goons."
         }
       ],
-      "portrait_art": "warrior.jpg"
+      "portrait_art": [
+        "warrior.jpg"
+      ]
     },
     {
       "name": "Flesh Monger",
@@ -544,7 +565,9 @@
           "text": "While Goon is in play, opponent may not use Meat Warrior Biological resources from the Dead Pool"
         }
       ],
-      "portrait_art": "leatherface_alt.png"
+      "portrait_art": [
+        "leatherface_alt.png"
+      ]
     },
     {
       "name": "Grunk Beast",
@@ -596,7 +619,9 @@
           "text": "Does not protect Squad Leader from being targeted by abilities. Unable to contribute wind to deploy cost of allied Goons."
         }
       ],
-      "portrait_art": "grunkbeast.jpg"
+      "portrait_art": [
+        "grunkbeast.jpg"
+      ]
     },
     {
       "name": "Hole Grunk",
@@ -626,7 +651,9 @@
           "text": "After effect enemy ability effect resolves on one of your Goons, add 1 wind to that enemy Goon."
         }
       ],
-      "portrait_art": "holegrunk.jpg"
+      "portrait_art": [
+        "holegrunk.jpg"
+      ]
     },
     {
       "name": "Doomsayer",
@@ -678,8 +705,10 @@
           "text": "Add 1 wind to all of opponent's Basic Goons"
         }
       ],
-      "flavor_text": "You will not die in your sleep! — you will wake to your death!",
-      "portrait_art": "doomsayer.jpg"
+      "flavor_text": "You will not die in your sleep! \u2014 you will wake to your death!",
+      "portrait_art": [
+        "doomsayer.jpg"
+      ]
     },
     {
       "name": "Master Baitman",
@@ -709,7 +738,9 @@
           "text": "All enemy Goons able to target and add wind to an enemy Goon with an ability must target Master Baitman on their turn if able. Even if spending the wind to do so would destroy them"
         }
       ],
-      "portrait_art": "masterbaiteralt.jpg"
+      "portrait_art": [
+        "masterbaiteralt.jpg"
+      ]
     },
     {
       "name": "Neolithic Luddite",
@@ -766,7 +797,9 @@
           "text": "Add 1 wind to enemy Mechanical Goon who added wind to an allied Goon this turn."
         }
       ],
-      "portrait_art": "luddite.jpg"
+      "portrait_art": [
+        "luddite.jpg"
+      ]
     },
     {
       "name": "War Master",
@@ -808,7 +841,9 @@
         }
       ],
       "flavor_text": "He's the reason we have a Human Resources department.",
-      "portrait_art": "warlord_alt.png"
+      "portrait_art": [
+        "warlord_alt.png"
+      ]
     },
     {
       "id": "grunter",
@@ -850,7 +885,9 @@
           "text": "Destroy this Goon to prevent an ability effect from resolving on an allied Goon."
         }
       ],
-      "portrait_art": "grunter.jpg",
+      "portrait_art": [
+        "grunter.jpg"
+      ],
       "flavor_text": ""
     },
     {
@@ -893,7 +930,9 @@
           "text": "Remove X[Bio] wind from X[Wind] allied Goons"
         }
       ],
-      "portrait_art": "pitmaster.jpg",
+      "portrait_art": [
+        "pitmaster.jpg"
+      ],
       "flavor_text": ""
     },
     {
@@ -952,7 +991,9 @@
           "text": "Add 1 wind to opponents Biological Goons. Opponents Biological Goons may not use abilities until the end of your next turn. This includes passive abilities."
         }
       ],
-      "portrait_art": "woodtosser_alt.jpg",
+      "portrait_art": [
+        "woodtosser_alt.jpg"
+      ],
       "flavor_text": ""
     },
     {
@@ -965,7 +1006,7 @@
         "anatomy": [
           "Large wild animal big enough for a humanoid to ride on its back."
         ],
-         "armor": [
+        "armor": [
           "thick hide"
         ],
         "weapon": "large tusks protruding from mouth",
@@ -1018,7 +1059,7 @@
           },
           "passive": true,
           "must_use": false,
-          "text": "All of your basic Goons have ability: Pay 0 wind to take unmounted Fauna as a mount until Goon or Fauna are destroyed. While mounted, Fauna's rider may pass an effect from an enemy Goon ability targeting the rider to Fauna."
+          "text": "As a passive ability your Goons may take an unmounted Fauna as a mount. While mounted, Fauna's rider may pass an effect from an enemy Goon ability targeting the rider to Fauna."
         },
         {
           "name": "ROGUE",
@@ -1032,7 +1073,9 @@
           "text": "Does not protect Squad Leader from being targeted by abilities. Unable to contribute wind to deploy cost of allied Goons."
         }
       ],
-      "portrait_art": "mega.jpg",
+      "portrait_art": [
+        "mega.jpg"
+      ],
       "flavor_text": ""
     }
   ]

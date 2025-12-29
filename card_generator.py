@@ -844,7 +844,7 @@ def normalize_goon_data(goon, faction, fix=False):
         goon.setdefault('no_unwind', False)
         goon.setdefault('deploy_requirements', [])
         goon.setdefault('abilities', [])
-        goon.setdefault('portrait_art', "")
+        goon.setdefault('portrait_art', [])
         
         for ability in goon.get('abilities', []):
             ability.setdefault('name', 'Unnamed Ability')
@@ -881,6 +881,16 @@ def normalize_goon_data(goon, faction, fix=False):
         cost['gear'] = parse_cost_value(cost.get('gear', 0))
         ability['cost'] = cost
 
+
+    # Normalize portrait art entries into a list of non-empty strings
+    portrait_art = goon.get('portrait_art', [])
+    if isinstance(portrait_art, str):
+        portrait_art = [portrait_art] if portrait_art.strip() else []
+    elif isinstance(portrait_art, list):
+        portrait_art = [p for p in portrait_art if isinstance(p, str) and p.strip()]
+    else:
+        portrait_art = []
+    goon['portrait_art'] = portrait_art
 
     # --- Normalize deploy_cost ---
     deploy_cost = goon.get('deploy_cost', {})
@@ -932,6 +942,12 @@ def validate_goon_schema(goon):
         for cost_type in ['wind', 'meat', 'gear']:
             if cost_type not in deploy_cost:
                 errors.append(f"'deploy_cost' is missing '{cost_type}' key.")
+
+    portrait_art = goon.get("portrait_art")
+    if not isinstance(portrait_art, list):
+        errors.append("portrait_art must be a list of filenames.")
+    elif not all(isinstance(p, str) for p in portrait_art):
+        errors.append("portrait_art must only contain strings.")
 
     abilities = goon.get("abilities", [])
     if not isinstance(abilities, list):
@@ -1013,7 +1029,7 @@ You are a creative game designer for a card game called 'Goon Squad Galaxy'. You
 2.  Create a single, unique goon that fits perfectly within this faction.
 3.  The output MUST be a single, valid JSON object representing the new goon. Do not include any explanatory text or markdown formatting around the JSON.
 4.  The JSON object must conform to the structure of existing goons in the deck, including fields like "name", "rank", "deploy_cost", "abilities", etc.
-5.  Give it a unique `portrait_art` filename ending in `.jpg`.
+5.  Provide at least one `portrait_art` filename (array of strings) ending in `.jpg`.
 """
 
     # 3. Call the AI to generate the goon JSON
@@ -1103,6 +1119,17 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
     icon_stack_x = data.get("icon_stack_x_offset", COST_POS_X)
     card_name_stroke_width = data.get("card_name_stroke_width", 0)
     card_name_stroke_color = data.get("card_name_stroke_color", "black")
+
+    def resolve_art_path(art_name):
+        """Return a usable path for the requested art and whether it is missing."""
+        path = os.path.join(art_dir, art_name)
+        if os.path.exists(path):
+            return path, False
+        if art_name.lower().endswith('.png'):
+            fallback_path = os.path.join(art_dir, os.path.splitext(art_name)[0] + '.jpg')
+            if os.path.exists(fallback_path):
+                return fallback_path, False
+        return path, True
     icon_stack_y_offset = data.get("icon_stack_y_offset", 0)
     
     def draw_wrapped_text(draw_context, text, start_pos, font, fill, indent=0, width=TEXT_WIDTH_CHARS):
@@ -1123,16 +1150,18 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
     if create_grid and use_duplicates:
         print("   [+] '-dup' flag is active. Generating list based on 'duplicates' count.")
         for goon in data['goons']:
-            # Default to 1 if 'duplicates' is missing or invalid
             num_copies = goon.get('duplicates', 1)
             if not isinstance(num_copies, int) or num_copies < 0:
                 num_copies = 1
-            goons_to_render.extend([goon] * num_copies)
+            for dup_index in range(num_copies):
+                goons_to_render.append((goon, dup_index))
     else:
         # Default behavior: render one of each unique goon
-        goons_to_render = data['goons']
+        goons_to_render = [(goon, 0) for goon in data['goons']]
 
-    for i, card_data in enumerate(goons_to_render):
+    prepared_art_cache = {}
+
+    for i, (card_data, dup_index) in enumerate(goons_to_render):
         card = normalize_goon_data(card_data.copy(), faction, fix=fix) # Use a copy to avoid mutation issues
         name = card.get('name', 'Unnamed Goon') # Use .get for safety
 
@@ -1146,49 +1175,58 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
 
         # Add a suffix for duplicate card filenames to avoid overwriting
         filename_suffix = ""
-        if create_grid and use_duplicates:
-            # Find which copy this is
-            count = goons_to_render[:i+1].count(card_data)
-            if count > 1:
-                filename_suffix = f"_{count}"
+        if create_grid and use_duplicates and dup_index > 0:
+            filename_suffix = f"_{dup_index + 1}"
 
         print(f"   [+] Processing: {name}{filename_suffix}")
 
         canvas = Image.new("RGBA", (750, 1050), (0, 0, 0, 255))
         
         # 1. Art
-        art_filename = card.get('portrait_art')
+        portrait_list = card.get('portrait_art', [])
+        art_records = prepared_art_cache.get(name)
+        if art_records is None:
+            art_records = []
+            for portrait_name in portrait_list:
+                resolved_path, missing = resolve_art_path(portrait_name)
+                art_records.append({"name": portrait_name, "path": resolved_path, "missing": missing})
+
+            # If -auto is set, generate any missing files in the portrait art array.
+            if auto_generate_art and art_records:
+                art_prompt = None
+                for rec in art_records:
+                    if not rec["missing"]:
+                        continue
+                    if art_prompt is None:
+                        art_prompt = generate_art_prompt(card, ai_prompt_data, art_style_prompt)
+                    if art_prompt:
+                        success = generate_and_save_art(art_prompt, rec["path"], style_image=style_image)
+                        if success and auto_extra_variations > 0:
+                            root, ext = os.path.splitext(rec["path"])
+                            for i in range(1, auto_extra_variations + 1):
+                                alt_path = f"{root}_{i}{ext}"
+                                generate_and_save_art(art_prompt, alt_path, style_image=style_image)
+                        rec["missing"] = not success
+                    else:
+                        rec["missing"] = True
+
+            prepared_art_cache[name] = art_records
+        else:
+            portrait_list = [rec["name"] for rec in art_records]
+
+        selected_art_name = None
+        if portrait_list:
+            if create_grid and use_duplicates:
+                selected_art_name = portrait_list[dup_index % len(portrait_list)]
+            else:
+                selected_art_name = portrait_list[0]
+
         art_file = None
-        if art_filename:
-            art_file = os.path.join(art_dir, art_filename)
-
-            # If the primary art file doesn't exist, try swapping the extension for backward compatibility.
-            if not os.path.exists(art_file):
-                if art_filename.lower().endswith('.png'):
-                    fallback_filename = os.path.splitext(art_filename)[0] + '.jpg'
-                    fallback_path = os.path.join(art_dir, fallback_filename)
-                    if os.path.exists(fallback_path):
-                        art_file = fallback_path
-            
-            art_missing = not (art_file and os.path.exists(art_file))
-            should_generate_art = auto_generate_art and art_file and art_missing
-
-            # If art is missing or regeneration is requested, create new art.
-            if should_generate_art:
-                art_prompt = generate_art_prompt(card, ai_prompt_data, art_style_prompt)
-                if art_prompt:
-                    # First generate the primary portrait
-                    success = generate_and_save_art(art_prompt, art_file, style_image=style_image)
-                    # Generate additional variations if requested (base name + _1, _2, etc.)
-                    if success and auto_extra_variations > 0:
-                        root, ext = os.path.splitext(art_file)
-                        for i in range(1, auto_extra_variations + 1):
-                            alt_path = f"{root}_{i}{ext}"
-                            generate_and_save_art(art_prompt, alt_path, style_image=style_image)
-                    if not success:
-                        art_file = None # Fallback to placeholder if generation fails
-                else:
-                    art_file = None
+        if selected_art_name:
+            for rec in art_records:
+                if rec["name"] == selected_art_name:
+                    art_file = rec["path"]
+                    break
 
         art_crop = None
         if art_file and os.path.exists(art_file):
@@ -1221,7 +1259,8 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
                 print(f"     [!] Error processing art for {name}: {e}")
                 art_crop = create_placeholder_art()
         else:
-            print(f"     [!] Art for {name} not found ('{art_file}'). Using placeholder.")
+            missing_label = selected_art_name or art_file or "None"
+            print(f"     [!] Art for {name} not found ('{missing_label}'). Using placeholder.")
             art_crop = create_placeholder_art()
 
         canvas.paste(art_crop, (130, 100))

@@ -6,7 +6,7 @@
     "Impact.ttf",
     "Arial-Black.ttf"
   ],
-  "card_name_font_size": 78,
+  "card_name_font_size": 52,
   "cost_font_family": [
     "Marinfordaf.ttf",
     "Helvetica.ttc",
@@ -48,564 +48,667 @@
   "card_name_stroke_width": 4,
   "card_name_stroke_color": "#000000",
   "icon_stack_y_offset": 50,
-    "goons": [
-      {
-        "name": "NecroBot",
-        "rank": "BG",
-        "duplicates": 1,
-        "faction": "NECRO",
-        "deploy_cost": {
-          "wind": 1,
-          "gear": 1,
-          "meat": 1
-        },
-        "biological": false,
-        "mechanical": true,
-        "resist": false,
-        "no_unwind": false,
-        "deploy_requirements": [],
-        "abilities": [
-          {
-            "name": "SLAUGHTER ON",
-            "cost": {
-              "wind": 1,
-              "gear": 0,
-              "meat": 0
-            },
-            "passive": false,
-            "must_use": false,
-            "text": "Add 1 wind to target enemy Goon."
+  "goons": [
+    {
+      "name": "Skulltech",
+      "rank": "BG",
+      "duplicates": 1,
+      "faction": "NECRO",
+      "deploy_cost": {
+        "wind": 1,
+        "gear": 1,
+        "meat": 1
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "SLAUGHTER ON",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
           },
-          {
-            "name": "DEATH MODE",
-            "cost": {
-              "wind": 0,
-              "gear": 0,
-              "meat": 0
-            },
-            "passive": true,
-            "must_use": false,
-            "text": "While Necrobot is in play, add an additional 1 wind to enemy Goon when one of your Goons targets it with an ability."
-          }
-        ],
-        "portrait_art": "skulltech.png"
-      },
-      {
-        "name": "Revenator",
-        "rank": "SPEC",
-        "duplicates": 1,
-        "faction": "NECRO",
-        "deploy_cost": {
-          "wind": 1,
-          "gear": 2,
-          "meat": 0
+          "passive": false,
+          "must_use": false,
+          "text": "Add 1 wind to target enemy Goon."
         },
-        "biological": false,
-        "mechanical": true,
-        "resist": false,
-        "no_unwind": false,
-        "deploy_requirements": [],
-        "abilities": [
-          {
-            "name": "ECTO-GASM",
-            "cost": {
-              "wind": 1,
-              "gear": 0,
-              "meat": 0
-            },
-            "passive": false,
-            "must_use": false,
-            "text": "Remove 1 wind from target friendly Goon (Rotate counter-clockwise)."
+        {
+          "name": "DEATH MODE",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
           },
-          {
-            "name": "SPIRIT WRENCH",
-            "cost": {
-              "wind": 0,
-              "gear": 0,
-              "meat": 0
-            },
-            "passive": true,
-            "must_use": false,
-            "text": "Friendly Mechanical units deployed adjacent to Revenator enter play with -1 Wind cost."
-          }
-        ],
-        "portrait_art": "revenator.jpg"
+          "passive": true,
+          "must_use": false,
+          "text": "While Necrobot is in play, add an additional 1 wind to enemy Goon when one of your Goons targets it with an ability."
+        }
+      ],
+      "portrait_art": [
+        "skulltech.jpg"
+      ]
+    },
+    {
+      "name": "Revenator",
+      "rank": "SPEC",
+      "duplicates": 1,
+      "faction": "NECRO",
+      "deploy_cost": {
+        "wind": 1,
+        "gear": 2,
+        "meat": 0
       },
-      {
-        "name": "Gravedigger",
-        "rank": "BG",
-        "duplicates": 3,
-        "faction": "NECRO",
-        "deploy_cost": {
-          "wind": 1,
-          "gear": 2,
-          "meat": 1
-        },
-        "biological": false,
-        "mechanical": true,
-        "resist": false,
-        "no_unwind": false,
-        "deploy_requirements": [],
-        "abilities": [
-          {
-            "name": "BURY",
-            "cost": {
-              "wind": 1,
-              "gear": 0,
-              "meat": 0
-            },
-            "passive": false,
-            "must_use": false,
-            "text": "Add 2 wind to target enemy Goon."
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "ECTO-GASM",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
           },
-          {
-            "name": "TREAD GRIND",
-            "cost": {
-              "wind": 2,
-              "gear": 0,
-              "meat": 0
-            },
-            "passive": false,
-            "must_use": false,
-            "text": "Add 3 wind to target enemy. If this kills them, Gravedigger unwinds 1."
-          }
-        ],
-        "portrait_art": "gravedigger.jpg"
-      },
-      {
-        "name": "Dreadroid",
-        "rank": "ELITE",
-        "duplicates": 1,
-        "faction": "NECRO",
-        "deploy_cost": {
-          "wind": 2,
-          "gear": 2,
-          "meat": 0
+          "passive": false,
+          "must_use": false,
+          "text": "Remove 1 wind from target friendly Goon (Rotate counter-clockwise)."
         },
-        "biological": false,
-        "mechanical": true,
-        "resist": true,
-        "no_unwind": false,
-        "deploy_requirements": [],
-        "abilities": [
-          {
-            "name": "PRECISION SHOT",
-            "cost": {
-              "wind": 1,
-              "gear": 0,
-              "meat": 0
-            },
-            "passive": false,
-            "must_use": false,
-            "text": "Add 2 wind to target enemy. Ignores Resist."
+        {
+          "name": "SPIRIT WRENCH",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
           },
-          {
-            "name": "CAPE FLUTTER",
-            "cost": {
-              "wind": 0,
-              "gear": 0,
-              "meat": 0
-            },
-            "passive": true,
-            "must_use": false,
-            "text": "The first time Dreadroid would take wind damage each turn, reduce that amount by 1."
-          }
-        ],
-        "portrait_art": "dreadroid.jpg"
+          "passive": true,
+          "must_use": false,
+          "text": "Friendly Mechanical units deployed adjacent to Revenator enter play with -1 Wind cost."
+        }
+      ],
+      "portrait_art": [
+        "revenator.jpg"
+      ]
+    },
+    {
+      "name": "Gravedigger",
+      "rank": "BG",
+      "duplicates": 3,
+      "faction": "NECRO",
+      "deploy_cost": {
+        "wind": 1,
+        "gear": 2,
+        "meat": 1
       },
-      {
-        "name": "Blood Howler",
-        "rank": "HVY",
-        "duplicates": 1,
-        "faction": "NECRO",
-        "deploy_cost": {
-          "wind": 2,
-          "gear": 3,
-          "meat": 1
-        },
-        "biological": true,
-        "mechanical": true,
-        "resist": false,
-        "no_unwind": true,
-        "deploy_requirements": [
-        ],
-        "abilities": [
-          {
-            "name": "QUAD-FIRE",
-            "cost": {
-              "wind": 2,
-              "gear": 0,
-              "meat": 0
-            },
-            "passive": false,
-            "must_use": false,
-            "text": "Add 1 wind to up to 4 different enemy targets."
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "BURY",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
           },
-          {
-            "name": "BLOOD SCENT",
-            "cost": {
-              "wind": 0,
-              "gear": 0,
-              "meat": 0
-            },
-            "passive": true,
-            "must_use": false,
-            "text": "While active, all friendly attacks against damaged enemies add +1 extra wind."
-          }
-        ],
-        "portrait_art": "bloodhowler.jpg"
-      },
-      {
-        "name": "Doom Drone",
-        "rank": "HVY",
-        "duplicates": 2,
-        "faction": "NECRO",
-        "deploy_cost": {
-          "wind": 2,
-          "gear": 3,
-          "meat": 0
+          "passive": false,
+          "must_use": false,
+          "text": "Add 2 wind to target enemy Goon."
         },
-        "biological": false,
-        "mechanical": true,
-        "resist": true,
-        "no_unwind": false,
-        "deploy_requirements": [],
-        "abilities": [
-          {
-            "name": "BOMBARDMENT",
-            "cost": {
-              "wind": 3,
-              "gear": 0,
-              "meat": 0
-            },
-            "passive": false,
-            "must_use": false,
-            "text": "Add 4 wind to target enemy. Add 1 wind to adjacent enemies."
-          }
-        ],
-        "portrait_art": "doomdrone.png"
-      },
-      {
-        "name": "Skeletron",
-        "rank": "BG",
-        "duplicates": 2,
-        "faction": "NECRO",
-        "deploy_cost": {
-          "wind": 1,
-          "gear": 2,
-          "meat": 1
-        },
-        "biological": false,
-        "mechanical": true,
-        "resist": false,
-        "no_unwind": false,
-        "deploy_requirements": [],
-        "abilities": [
-          {
-            "name": "LOCK ON",
-            "cost": {
-              "wind": 1,
-              "gear": 0,
-              "meat": 0
-            },
-            "passive": false,
-            "must_use": false,
-            "text": "Mark a target. The next ability used on this target costs 0 wind."
+        {
+          "name": "TREAD GRIND",
+          "cost": {
+            "wind": 2,
+            "gear": 0,
+            "meat": 0
           },
-          {
-            "name": "RAPID FIRE",
-            "cost": {
-              "wind": 1,
-              "gear": 0,
-              "meat": 0
-            },
-            "passive": false,
-            "must_use": false,
-            "text": "Add 2 wind to target enemy."
-          }
-        ],
-        "portrait_art": "skeletron.png"
+          "passive": false,
+          "must_use": false,
+          "text": "Add 3 wind to target enemy. If this kills them, Gravedigger unwinds 1."
+        }
+      ],
+      "portrait_art": [
+        "gravedigger.jpg"
+      ]
+    },
+    {
+      "name": "Dreadroid",
+      "rank": "ELITE",
+      "duplicates": 1,
+      "faction": "NECRO",
+      "deploy_cost": {
+        "wind": 2,
+        "gear": 2,
+        "meat": 0
       },
-      {
-        "name": "Apocalyptor",
-        "rank": "BOSS",
-        "duplicates": 0,
-        "faction": "NECRO",
-        "deploy_cost": {
-          "wind": 4,
-          "gear": 5,
-          "meat": 2
-        },
-        "biological": false,
-        "mechanical": true,
-        "resist": true,
-        "no_unwind": true,
-        "deploy_requirements": [
-        ],
-        "abilities": [
-          {
-            "name": "SCORCHED EARTH",
-            "cost": {
-              "wind": 3,
-              "gear": 0,
-              "meat": 0
-            },
-            "passive": false,
-            "must_use": false,
-            "text": "Add 2 wind to target enemy. If target dies, apply 2 wind to all other enemies."
+      "biological": false,
+      "mechanical": true,
+      "resist": true,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "PRECISION SHOT",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
           },
-          {
-            "name": "DOOM ENGINE",
-            "cost": {
-              "wind": 0,
-              "gear": 0,
-              "meat": 0
-            },
-            "passive": true,
-            "must_use": true,
-            "text": "At the start of your turn, Apocalyptor automatically unwinds 1 step."
-          }
-        ],
-        "portrait_art": "apocalyptor.png"
-      },
-      {
-        "name": "Revenaut",
-        "rank": "BG",
-        "duplicates": 2,
-        "faction": "NECRO",
-        "deploy_cost": {
-          "wind": 1,
-          "gear": 2,
-          "meat": 1
+          "passive": false,
+          "must_use": false,
+          "text": "Add 2 wind to target enemy. Ignores Resist."
         },
-        "biological": false,
-        "mechanical": true,
-        "resist": false,
-        "no_unwind": false,
-        "deploy_requirements": [],
-        "abilities": [
-          {
-            "name": "SUPPRESS",
-            "cost": {
-              "wind": 1,
-              "gear": 0,
-              "meat": 0
-            },
-            "passive": false,
-            "must_use": false,
-            "text": "Add 1 wind to target enemy and disable their Passive abilities until next turn."
-          }
-        ],
-        "portrait_art": "revenaut.png"
-      },
-      {
-        "name": "Rapture Slouch",
-        "rank": "SG",
-        "duplicates": 1,
-        "faction": "NECRO",
-        "deploy_cost": {
-          "wind": 2,
-          "gear": 0,
-          "meat": 0
-        },
-        "biological": true,
-        "mechanical": true,
-        "resist": false,
-        "no_unwind": false,
-        "deploy_requirements": [],
-        "abilities": [
-          {
-            "name": "GUN RUN",
-            "cost": {
-              "wind": 2,
-              "gear": 0,
-              "meat": 0
-            },
-            "passive": false,
-            "must_use": false,
-            "text": "Add 3 wind to target enemy. Raptureslouch may move to an adjacent zone after firing."
+        {
+          "name": "CAPE FLUTTER",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
           },
-          {
-            "name": "HIGH GROUND",
-            "cost": {
-              "wind": 0,
-              "gear": 0,
-              "meat": 0
-            },
-            "passive": true,
-            "must_use": false,
-            "text": "Raptureslouch ignores range penalties."
-          }
-        ],
-        "portrait_art": "raptureslouch.png"
+          "passive": true,
+          "must_use": false,
+          "text": "The first time Dreadroid would take wind damage each turn, reduce that amount by 1."
+        }
+      ],
+      "portrait_art": [
+        "dreadroid.jpg"
+      ]
+    },
+    {
+      "name": "Blood Howler",
+      "rank": "HVY",
+      "duplicates": 1,
+      "faction": "NECRO",
+      "deploy_cost": {
+        "wind": 2,
+        "gear": 3,
+        "meat": 1
       },
-      {
-        "name": "Ghoulgine",
-        "rank": "BG",
-        "duplicates": 4,
-        "faction": "NECRO",
-        "deploy_cost": {
-          "wind": 1,
-          "gear": 1,
-          "meat": 0
+      "biological": true,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": true,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "QUAD-FIRE",
+          "cost": {
+            "wind": 2,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 1 wind to up to 4 different enemy targets."
         },
-        "biological": false,
-        "mechanical": true,
-        "resist": false,
-        "no_unwind": false,
-        "deploy_requirements": [],
-        "abilities": [
-          {
-            "name": "OVERCLOCK",
-            "cost": {
-              "wind": 0,
-              "gear": 0,
-              "meat": 0
-            },
-            "passive": false,
-            "must_use": false,
-            "text": "Add 2 wind to self to add 4 wind to target enemy."
-          }
-        ],
-        "portrait_art": "Ghoulgine.png"
+        {
+          "name": "BLOOD SCENT",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "While active, all friendly attacks against damaged enemies add +1 extra wind."
+        }
+      ],
+      "portrait_art": [
+        "bloodhowler.jpg"
+      ]
+    },
+    {
+      "name": "Doom Drone",
+      "rank": "HVY",
+      "duplicates": 2,
+      "faction": "NECRO",
+      "deploy_cost": {
+        "wind": 2,
+        "gear": 3,
+        "meat": 0
       },
-      {
-        "name": "Deaden Djinn",
-        "rank": "BG",
-        "duplicates": 4,
-        "faction": "NECRO",
-        "deploy_cost": {
-          "wind": 1,
-          "gear": 0,
-          "meat": 0
-        },
-        "biological": false,
-        "mechanical": true,
-        "resist": false,
-        "no_unwind": false,
-        "deploy_requirements": [],
-        "abilities": [],
-        "portrait_art": "deadendjinn.png"
+      "biological": false,
+      "mechanical": true,
+      "resist": true,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "BOMBARDMENT",
+          "cost": {
+            "wind": 3,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 4 wind to target enemy. Add 1 wind to adjacent enemies."
+        }
+      ],
+      "portrait_art": [
+        "doomdrone.png"
+      ]
+    },
+    {
+      "name": "Skeletron",
+      "rank": "BG",
+      "duplicates": 2,
+      "faction": "NECRO",
+      "deploy_cost": {
+        "wind": 1,
+        "gear": 2,
+        "meat": 1
       },
-      {
-        "name": "test_1",
-        "rank": "BG",
-        "duplicates": 4,
-        "faction": "NECRO",
-        "deploy_cost": {
-          "wind": 1,
-          "gear": 0,
-          "meat": 0
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "LOCK ON",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Mark a target. The next ability used on this target costs 0 wind."
         },
-        "biological": false,
-        "mechanical": true,
-        "resist": false,
-        "no_unwind": false,
-        "deploy_requirements": [],
-        "abilities": [],
-        "portrait_art": "test_1.png"
+        {
+          "name": "RAPID FIRE",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 2 wind to target enemy."
+        }
+      ],
+      "portrait_art": [
+        "skeletron.png"
+      ]
+    },
+    {
+      "name": "Apocalyption",
+      "rank": "BOSS",
+      "duplicates": 0,
+      "faction": "NECRO",
+      "deploy_cost": {
+        "wind": 4,
+        "gear": 5,
+        "meat": 2
       },
-      {
-        "name": "test_2",
-        "rank": "BG",
-        "duplicates": 4,
-        "faction": "NECRO",
-        "deploy_cost": {
-          "wind": 1,
-          "gear": 0,
-          "meat": 0
+      "biological": false,
+      "mechanical": true,
+      "resist": true,
+      "no_unwind": true,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "SCORCHED EARTH",
+          "cost": {
+            "wind": 3,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 2 wind to target enemy. If target dies, apply 2 wind to all other enemies."
         },
-        "biological": false,
-        "mechanical": true,
-        "resist": false,
-        "no_unwind": false,
-        "deploy_requirements": [],
-        "abilities": [],
-        "portrait_art": "test_2.png"
+        {
+          "name": "DOOM ENGINE",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": true,
+          "text": "At the start of your turn, Apocalyptor automatically unwinds 1 step."
+        }
+      ],
+      "portrait_art": [
+        "apocalyptor.png"
+      ]
+    },
+    {
+      "name": "Revenaut",
+      "rank": "BG",
+      "duplicates": 2,
+      "faction": "NECRO",
+      "deploy_cost": {
+        "wind": 1,
+        "gear": 2,
+        "meat": 0
       },
-      {
-        "name": "Ghost in the Machine",
-        "rank": "BG",
-        "duplicates": 4,
-        "faction": "NECRO",
-        "deploy_cost": {
-          "wind": 1,
-          "gear": 0,
-          "meat": 0
-        },
-        "biological": false,
-        "mechanical": true,
-        "resist": false,
-        "no_unwind": false,
-        "deploy_requirements": [],
-        "abilities": [],
-        "portrait_art": "test_3.png"
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "SUPPRESS",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 1 wind to target enemy and disable their Passive abilities until next turn."
+        }
+      ],
+      "portrait_art": [
+        "revenaut.png"
+      ]
+    },
+    {
+      "name": "Rapture Slouch",
+      "rank": "SG",
+      "duplicates": 1,
+      "faction": "NECRO",
+      "deploy_cost": {
+        "wind": 2,
+        "gear": 0,
+        "meat": 0
       },
-      {
-        "name": "test_4",
-        "rank": "BG",
-        "duplicates": 4,
-        "faction": "NECRO",
-        "deploy_cost": {
-          "wind": 1,
-          "gear": 0,
-          "meat": 0
+      "biological": true,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "PEST LANCE",
+          "cost": {
+            "wind": 2,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 3 wind to target enemy. Rapture Slouch may move to an adjacent zone after firing."
         },
-        "biological": false,
-        "mechanical": true,
-        "resist": false,
-        "no_unwind": false,
-        "deploy_requirements": [],
-        "abilities": [],
-        "portrait_art": "test_4.png"
+        {
+          "name": "FAMINE",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "Raptureslouch ignores range penalties."
+        }
+      ],
+      "portrait_art": [
+        "raptureslouch.png"
+      ]
+    },
+    {
+      "name": "Chronoshade",
+      "rank": "BG",
+      "duplicates": 4,
+      "faction": "NECRO",
+      "deploy_cost": {
+        "wind": 1,
+        "gear": 1,
+        "meat": 0
       },
-      {
-        "name": "Necromancer",
-        "rank": "BG",
-        "duplicates": 4,
-        "faction": "NECRO",
-        "deploy_cost": {
-          "wind": 1,
-          "gear": 0,
-          "meat": 0
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "OVERCLOCK",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 2 wind to self to add 4 wind to target enemy."
         },
-        "biological": false,
-        "mechanical": true,
-        "resist": false,
-        "no_unwind": false,
-        "deploy_requirements": [],
-        "abilities": [
-          {
-            "name": "ANIMATE DEAD",
-            "cost": {
-              "wind": 1,
-              "gear": 0,
-              "meat": 0
-            },
-            "passive": false,
-            "must_use": false,
-            "text": "Take control of Biological Goon from Dead Pool. Treat it as if it were just deployed."
-          }
-        ],
-        "portrait_art": "necromancer.png"
+        {
+          "name": "TIME BOMB",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 2 wind to self to add 4 wind to target enemy."
+        }
+      ],
+      "portrait_art": [
+        "chronos.png"
+      ]
+    },
+    {
+      "name": "Deaden Djinn",
+      "rank": "BG",
+      "duplicates": 4,
+      "faction": "NECRO",
+      "deploy_cost": {
+        "wind": 1,
+        "gear": 0,
+        "meat": 0
       },
-      {
-        "name": "test_6",
-        "rank": "BG",
-        "duplicates": 4,
-        "faction": "NECRO",
-        "deploy_cost": {
-          "wind": 1,
-          "gear": 0,
-          "meat": 0
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [],
+      "portrait_art": [
+        "deadendjinn.png"
+      ]
+    },
+    {
+      "name": "Exumer",
+      "rank": "BG",
+      "duplicates": 4,
+      "faction": "NECRO",
+      "deploy_cost": {
+        "wind": 1,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [],
+      "portrait_art": [
+        "exumer.png"
+      ]
+    },
+    {
+      "name": "Twitch Doctor",
+      "rank": "BG",
+      "duplicates": 4,
+      "faction": "NECRO",
+      "deploy_cost": {
+        "wind": 1,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "TIME BOMB",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 2 wind to self to add 4 wind to target enemy."
+        }
+      ],
+      "portrait_art": [
+        "witchdoctor.png","witchdoctor2.png"
+      ]
+    },
+    {
+      "name": "Ghost in the Machine",
+      "rank": "BG",
+      "duplicates": 4,
+      "faction": "NECRO",
+      "deploy_cost": {
+        "wind": 3,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": true,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "POSSESS",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Take control of any Mechanical Goon in play. When targeted with an ability Ghost may pass the effect to the controlled Goon instead. Ghost may only POSSESS one Goon at a time and if Ghost leaves play, possessed Goon returns to its owners control."
         },
-        "biological": false,
-        "mechanical": true,
-        "resist": false,
-        "no_unwind": false,
-        "deploy_requirements": [],
-        "abilities": [],
-        "portrait_art": "test_6.png"
-      }
-    ]
+        {
+          "name": "CHANNEL",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "Ghost may contribute wind to its controlled Goon's ability activation costs."
+        }
+      ],
+      "portrait_art": [
+        "machineghost.png"
+      ]
+    },
+    {
+      "name": "Squad Zombie",
+      "rank": "BG",
+      "duplicates": 4,
+      "faction": "NECRO",
+      "deploy_cost": {
+        "wind": 1,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "SPRAY AND PREY",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 1 wind to target Goon."
+        },
+        {
+          "name": "SPRAY AND PREY",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 1 wind to target Goon."
+        }
+      ],
+      "portrait_art": [
+        "squadzombie.jpg"
+      ]
+    },
+    {
+      "name": "Robomancer",
+      "rank": "BG",
+      "duplicates": 4,
+      "faction": "NECRO",
+      "deploy_cost": {
+        "wind": 1,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "ANIMATE DEAD",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Take control of Biological Goon from Dead Pool. Treat it as if it were just deployed."
+        }
+      ],
+      "portrait_art": [
+        "necromancer.jpg"
+      ]
+    },
+    {
+      "name": "Faminion",
+      "rank": "BG",
+      "duplicates": 4,
+      "faction": "NECRO",
+      "deploy_cost": {
+        "wind": 1,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [],
+      "portrait_art": [
+        "test_6.png"
+      ]
+    }
+  ]
 }
