@@ -217,7 +217,7 @@ def get_assets(faction):
     assets['frame'] = create_transparent_frame(faction)
 
     # --- 1. LEFT SIDE ICONS ---
-    icon_base_dir = "card_icons"
+    icon_base_dir = "icons"
     faction_icon_dir = os.path.join(icon_base_dir, faction)
     def get_main_icon(filename):
         try:
@@ -885,7 +885,11 @@ def normalize_goon_data(goon, faction, fix=False):
     # Normalize portrait art entries into a list of non-empty strings
     portrait_art = goon.get('portrait_art', [])
     if isinstance(portrait_art, str):
-        portrait_art = [portrait_art] if portrait_art.strip() else []
+        # Allow comma-separated strings to be expanded into a list for robustness.
+        if "," in portrait_art:
+            portrait_art = [p.strip() for p in portrait_art.split(",") if p.strip()]
+        else:
+            portrait_art = [portrait_art] if portrait_art.strip() else []
     elif isinstance(portrait_art, list):
         portrait_art = [p for p in portrait_art if isinstance(p, str) and p.strip()]
     else:

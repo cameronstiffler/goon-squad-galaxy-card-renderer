@@ -21,8 +21,10 @@ __pycache__/
 art/
 finished_cards/
 backgrounds/
-card_icons/
-icons/
 elements/
 backup/
 vertex.json
+
+# Keep required icon sheets checked in
+!icons/
+!icons/**

@@ -136,7 +136,24 @@
       ]
     },
     {
-      "name": "Gravedigger",
+      "name": "Kill Dozer",
+      "description": {
+        "goon_class": "mechanical labor unit",
+        "anatomy": "mechanical construction vehicle hybrid resembling a scorpion body configuration with excavator arm and tank treads",
+        "attire": "bulky and rugged construction equipment aesthetic. digging claw attached at rear and is positioned above the main chassis facing forward like a scorpians tail. hydraulics and pistons integrated into points of articulation and reinforced armor plating with a weathered industrial look",
+        "accessories": [
+          "2 forward industrial robotic arms with oversized manipulator claws","low profile, yellow construction warning beacon light mounted on its back"
+        ],
+        "skin": "distressed matte yellow with occasional patches of warhing stripes",
+        "weapon": "nothing",
+        "setting": "near a vast ditch piled with mechanical and biological debris in an apocalyptic landscape",
+        "mouth": "industrial hydraulic maul with articulated jaw",
+        "teeth": "sharp edged square wave pattern cut into mouth area to simulate teeth",
+        "head_wear": "attached to the front side of body and resembling a bulky skull",
+        "eyes": "no eyes, just an empty surface",
+        "pose": "idling next to the ditch with warning beacon light flashing",
+        "boots": "heavy industrial tank treads"
+      },
       "rank": "BG",
       "duplicates": 3,
       "faction": "NECRO",
@@ -175,7 +192,7 @@
         }
       ],
       "portrait_art": [
-        "gravedigger.jpg"
+        "dozer.jpg"
       ]
     },
     {
@@ -458,14 +475,14 @@
       ]
     },
     {
-      "name": "Chronoshade",
-      "rank": "BG",
+      "name": "Chronos",
+      "rank": "T",
       "duplicates": 4,
       "faction": "NECRO",
       "deploy_cost": {
-        "wind": 1,
+        "wind": 4,
         "gear": 1,
-        "meat": 0
+        "meat": 1
       },
       "biological": false,
       "mechanical": true,
@@ -482,23 +499,13 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Add 2 wind to self to add 4 wind to target enemy."
-        },
-        {
-          "name": "TIME BOMB",
-          "cost": {
-            "wind": 1,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Add 2 wind to self to add 4 wind to target enemy."
+          "text": "Take another turn after this one."
         }
       ],
       "portrait_art": [
-        "chronos.png"
-      ]
+        "chronos.png","chronos_1.png"
+      ],
+      "flavor_text": "Time is a great teacher, but unfortunately, it kills all its pupils."
     },
     {
       "name": "Deaden Djinn",
@@ -569,7 +576,7 @@
         }
       ],
       "portrait_art": [
-        "witchdoctor.png","witchdoctor2.png"
+        "witchdr.jpg"
       ]
     },
     {
