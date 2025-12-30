@@ -100,27 +100,27 @@ VERTEX_ART_MODEL = os.getenv("VERTEX_ART_MODEL", "gemini-3-pro-image-preview")
 # Deck-specific locations for JSON inputs, art, and outputs
 DECK_CONFIG = {
     "pcu": {
-        "json": os.path.join("deck_data", "pcu", "pcu_deck_strict.json"),
+        "json": os.path.join("deck_data", "pcu", "pcu_deck.json"),
         "art": os.path.join("art", "pcu"),
         "output": os.path.join(OUTPUT_DIR, "pcu"),
     },
     "narc": {
-        "json": os.path.join("deck_data", "narc", "narc_deck_strict.json"),
+        "json": os.path.join("deck_data", "narc", "narc_deck.json"),
         "art": os.path.join("art", "narc"),
         "output": os.path.join(OUTPUT_DIR, "narc"),
     },
     "meat": {
-        "json": os.path.join("deck_data", "meat", "meat_deck_strict.json"),
+        "json": os.path.join("deck_data", "meat", "meat_deck.json"),
         "art": os.path.join("art", "meat"),
         "output": os.path.join(OUTPUT_DIR, "meat"),
     },
     "omni": {
-        "json": os.path.join("deck_data", "omni", "omni_deck_strict.json"),
+        "json": os.path.join("deck_data", "omni", "omni_deck.json"),
         "art": os.path.join("art", "omni"),
         "output": os.path.join(OUTPUT_DIR, "omni"),
     },
     "necro": {
-        "json": os.path.join("deck_data", "necro", "necro_deck_strict.json"),
+        "json": os.path.join("deck_data", "necro", "necro_deck.json"),
         "art": os.path.join("art", "necro"),
         "output": os.path.join(OUTPUT_DIR, "necro"),
     },
