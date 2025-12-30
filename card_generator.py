@@ -209,9 +209,6 @@ def create_circle_icon(size, color="#F5F5DC"):
 
 def get_assets(faction):
     print("--- STEP 1: PROCESSING ASSETS ---")
-    if not os.path.exists(SOURCE_ICONS) or not os.path.exists(SOURCE_ABILITY_ICONS):
-        print(f"[!] Critical Error: Missing icon files.")
-        sys.exit()
 
     assets = {}
     assets['frame'] = create_transparent_frame(faction)
@@ -253,12 +250,29 @@ def get_assets(faction):
     assets['rank_t'] = get_main_icon('rank_t.png') if os.path.exists(os.path.join(faction_icon_dir, 'rank_t.png')) else None
 
     # --- 2. ABILITY ICONS ---
-    abil_sheet = Image.open(SOURCE_ABILITY_ICONS).convert("RGBA")
-    aw, ah = abil_sheet.size
-    a_row_h = ah / 3
-    icon_w = aw / 6 # The sheet has 6 columns
-    
+    abil_sheet = None
+    aw = ah = a_row_h = icon_w = None
+    ability_sheet_missing = False
+
+    def ensure_sheet_loaded():
+        nonlocal abil_sheet, aw, ah, a_row_h, icon_w, ability_sheet_missing
+        if ability_sheet_missing:
+            return False
+        if abil_sheet is None:
+            try:
+                abil_sheet = Image.open(SOURCE_ABILITY_ICONS).convert("RGBA")
+                aw, ah = abil_sheet.size
+                a_row_h = ah / 3
+                icon_w = aw / 6 # The sheet has 6 columns
+            except FileNotFoundError:
+                ability_sheet_missing = True
+                print(f"   [!] WARNING: Missing ability icon sheet '{SOURCE_ABILITY_ICONS}'. Using placeholders for any missing ability icons.")
+                return False
+        return True
+
     def get_abil_icon(row, col_index):
+        if not ensure_sheet_loaded():
+            return create_placeholder_art((30, 30), "ABIL")
         top = row * a_row_h
         bottom = top + a_row_h
         left = col_index * icon_w
@@ -269,15 +283,20 @@ def get_assets(faction):
             icon = icon.crop(bbox)
         return icon
 
-    # Resize icons after cropping to maintain aspect ratio unless specified otherwise
-    assets['abil_meat'] = get_abil_icon(2, 2).resize((30, 30), Image.Resampling.LANCZOS)
-    assets['abil_gear'] = get_abil_icon(2, 3).resize((30, 30), Image.Resampling.LANCZOS)
-    
-    # Special resize for passive icon
-    passive_icon = get_abil_icon(2, 4)
-    assets['abil_passive'] = passive_icon.resize((30, 15), Image.Resampling.LANCZOS)
+    def load_icon_or_sheet(filename, size, fallback_row_col):
+        path = os.path.join("icons", "common", filename)
+        if os.path.exists(path):
+            try:
+                return Image.open(path).convert("RGBA").resize(size, Image.Resampling.LANCZOS)
+            except Exception as e:
+                print(f"   [!] WARNING: Failed to load '{path}': {e}")
+        row, col = fallback_row_col
+        return get_abil_icon(row, col).resize(size, Image.Resampling.LANCZOS)
 
-    assets['abil_star'] = get_abil_icon(2, 5).resize((30, 30), Image.Resampling.LANCZOS)
+    assets['abil_meat'] = load_icon_or_sheet("ability_meat.png", (30, 30), (2, 2))
+    assets['abil_gear'] = load_icon_or_sheet("ability_gear.png", (30, 30), (2, 3))
+    assets['abil_passive'] = load_icon_or_sheet("ability_passive.png", (30, 15), (2, 4))
+    assets['abil_star'] = load_icon_or_sheet("ability_star.png", (30, 30), (2, 5))
 
     print("   [+] Assets loaded.")
     return assets
@@ -1079,7 +1098,7 @@ You are a creative game designer for a card game called 'Goon Squad Galaxy'. You
         print(f"[!] ERROR: Failed to update the deck file '{deck_json_path}'. Error: {e}")
         sys.exit()
 
-def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=False, auto_extra_variations=0, create_grid=False, use_duplicates=False, fix=False):
+def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=False, auto_extra_variations=0, create_grid=False, use_duplicates=False, fix=False, all_portraits=False):
     print("\n--- STEP 2: GENERATING CARDS ---")
     try:
         with open(json_file, 'r') as f:
@@ -1139,33 +1158,127 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
     def draw_wrapped_text(draw_context, text, start_pos, font, fill, indent=0, width=TEXT_WIDTH_CHARS):
         """Helper to draw wrapped text with an optional icon and return the new y-position."""
         x, y = start_pos
-        lines = textwrap.wrap(text, width=width)
-        line_height = font.getbbox("A")[3] + 5 # Get font height and add a small margin
-        for i, line in enumerate(lines):
-            line_indent = indent if i == 0 else 0
-            draw_context.text((x + line_indent, y), line, font=font, fill=fill)
-            y += line_height
+        # Support manual line breaks via \n sequences in the JSON.
+        for paragraph in text.split("\n"):
+            lines = textwrap.wrap(paragraph, width=width) or [""]
+            line_height = font.getbbox("A")[3] + 5 # Get font height and add a small margin
+            for i, line in enumerate(lines):
+                line_indent = indent if i == 0 else 0
+                draw_context.text((x + line_indent, y), line, font=font, fill=fill)
+                y += line_height
         return y + 20
+
+    def draw_text_with_tokens(draw_context, text, start_pos, font, fill, indent=0, max_width=600, token_icons=None, circle_colors=None, number_font=None, number_fill=None):
+        """Draw text supporting inline tokens like [m], [g], [8], [0w], [1m], [xg]."""
+        if token_icons is None:
+            token_icons = {}
+        if circle_colors is None:
+            circle_colors = {}
+        if number_font is None:
+            number_font = font
+        if number_fill is None:
+            number_fill = fill
+
+        x_start, y = start_pos
+        line_x = x_start + indent
+        base_line_height = font.getbbox("A")[3] - font.getbbox("A")[1]
+        max_line_height = base_line_height
+
+        def text_width(s):
+            bbox = font.getbbox(s)
+            return bbox[2] - bbox[0]
+
+        tokens = re.split(r'(\[[^\]]+\])', text)
+
+        def segment_items(segment):
+            parts = re.split(r'(\s+)', segment)
+            return [p for p in parts if p]
+
+        elements = []
+        for tok in tokens:
+            if not tok:
+                continue
+            if tok.startswith("[") and tok.endswith("]"):
+                inner = tok[1:-1]
+                lower = inner.lower()
+                if lower in token_icons:
+                    elements.append(("icon", token_icons[lower]))
+                    continue
+                m = re.match(r'([0-9x]+)([wmg])$', lower)
+                if m:
+                    val, kind = m.groups()
+                    color = circle_colors.get(kind, "#808080")
+                    icon = create_circle_icon(30, color=color)
+                    img = Image.new("RGBA", icon.size, (0, 0, 0, 0))
+                    img.paste(icon, (0, 0), icon)
+                    draw_tmp = ImageDraw.Draw(img)
+                    draw_tmp.text((icon.size[0]/2, icon.size[1]/2 - 2), val.upper(), font=number_font, fill=number_fill, anchor="mm")
+                    elements.append(("icon", img))
+                    continue
+                elements.extend(segment_items(tok))
+            else:
+                elements.extend(segment_items(tok))
+
+        def flush_line(y_pos, line_height):
+            return y_pos + line_height + 5
+
+        for elem in elements:
+            if isinstance(elem, tuple) and elem[0] == "icon":
+                img = elem[1]
+                w, h = img.size
+                if line_x + w > x_start + max_width and line_x > x_start:
+                    y = flush_line(y, max_line_height)
+                    line_x = x_start
+                    max_line_height = base_line_height
+                canvas.paste(img, (int(line_x), int(y + (max_line_height - h) / 2)), img)
+                line_x += w + 2
+                max_line_height = max(max_line_height, h)
+            else:
+                s = elem
+                w = text_width(s)
+                if line_x + w > x_start + max_width and line_x > x_start:
+                    y = flush_line(y, max_line_height)
+                    line_x = x_start
+                    max_line_height = base_line_height
+                draw_context.text((line_x, y), s, font=font, fill=fill)
+                line_x += w
+        y = flush_line(y, max_line_height)
+        return y + 15
 
     generated_card_files = []
     
     # --- Prepare the list of cards to be rendered ---
     goons_to_render = []
-    if create_grid and use_duplicates:
+    def get_duplicate_count(goon):
+        num_copies = goon.get('duplicates', 1)
+        if not isinstance(num_copies, int) or num_copies < 1:
+            return 1
+        return num_copies
+
+    if all_portraits:
+        print("   [+] '-all-portraits' flag is active. Rendering one card per portrait_art entry.")
+        for goon in data['goons']:
+            portrait_list = goon.get('portrait_art', [])
+            if not isinstance(portrait_list, list):
+                portrait_list = []
+            portrait_count = len(portrait_list) if portrait_list else 1
+            dup_count = get_duplicate_count(goon) if create_grid and use_duplicates else 1
+            for p_idx in range(portrait_count):
+                for dup_index in range(dup_count):
+                    goons_to_render.append((goon, dup_index, p_idx))
+    elif create_grid and use_duplicates:
         print("   [+] '-dup' flag is active. Generating list based on 'duplicates' count.")
         for goon in data['goons']:
-            num_copies = goon.get('duplicates', 1)
-            if not isinstance(num_copies, int) or num_copies < 0:
-                num_copies = 1
+            num_copies = get_duplicate_count(goon)
             for dup_index in range(num_copies):
-                goons_to_render.append((goon, dup_index))
+                goons_to_render.append((goon, dup_index, 0))
     else:
         # Default behavior: render one of each unique goon
-        goons_to_render = [(goon, 0) for goon in data['goons']]
+        goons_to_render = [(goon, 0, 0) for goon in data['goons']]
 
     prepared_art_cache = {}
 
-    for i, (card_data, dup_index) in enumerate(goons_to_render):
+    for i, (card_data, dup_index, portrait_index) in enumerate(goons_to_render):
         card = normalize_goon_data(card_data.copy(), faction, fix=fix) # Use a copy to avoid mutation issues
         name = card.get('name', 'Unnamed Goon') # Use .get for safety
 
@@ -1179,8 +1292,10 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
 
         # Add a suffix for duplicate card filenames to avoid overwriting
         filename_suffix = ""
+        if all_portraits and portrait_index is not None and len(card.get('portrait_art', [])) > 1:
+            filename_suffix += f"_p{portrait_index + 1}"
         if create_grid and use_duplicates and dup_index > 0:
-            filename_suffix = f"_{dup_index + 1}"
+            filename_suffix += f"_{dup_index + 1}"
 
         print(f"   [+] Processing: {name}{filename_suffix}")
 
@@ -1220,7 +1335,9 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
 
         selected_art_name = None
         if portrait_list:
-            if create_grid and use_duplicates:
+            if portrait_index is not None and portrait_index < len(portrait_list):
+                selected_art_name = portrait_list[portrait_index]
+            elif create_grid and use_duplicates:
                 selected_art_name = portrait_list[dup_index % len(portrait_list)]
             else:
                 selected_art_name = portrait_list[0]
@@ -1415,7 +1532,29 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
 
             
             full_text = f"{ability['name'].upper()}: {ability['text']}"
-            text_y = draw_wrapped_text(draw, full_text, (TEXT_BOX_START_X, text_y), font_body, color_body, indent=indent)
+            token_icons = {
+                "m": assets.get('abil_meat'),
+                "g": assets.get('abil_gear'),
+                "8": assets.get('abil_passive'),
+            }
+            circle_colors = {
+                "w": "#F5F5DC",
+                "m": "#8B0000",
+                "g": "#808080",
+            }
+            text_y = draw_text_with_tokens(
+                draw,
+                full_text,
+                (TEXT_BOX_START_X, text_y),
+                font_body,
+                color_body,
+                indent=indent,
+                max_width=600,
+                token_icons=token_icons,
+                circle_colors=circle_colors,
+                number_font=font_abil_num_bold,
+                number_fill=color_abil_cost
+            )
 
         # --- 7. DEPLOY REQUIREMENTS ---
         if 'deploy_requirements' in card:
@@ -1464,6 +1603,7 @@ if __name__ == "__main__":
     parser.add_argument('-art', type=int, metavar='N', help="Generate N standalone art portraits using the selected faction's goon_traits/art_style; ignores deck rendering.")
     parser.add_argument('-grid', action='store_true', help="Generate a single grid image of all cards in the deck.")
     parser.add_argument('-dup', action='store_true', help="When using -grid, render multiple copies based on the 'duplicates' value.")
+    parser.add_argument('-all-portraits', action='store_true', help="Render one card per portrait_art entry for each goon.")
     parser.add_argument('-goon', nargs='?', const='__generate__', default=None, help="Generate a new goon definition. Optionally provide a name.")
     parser.add_argument('-fix', action='store_true', help="Automatically fix missing fields in the JSON data.")
     args = parser.parse_args()
@@ -1505,15 +1645,16 @@ if __name__ == "__main__":
         generate_new_goon(faction=faction_name, deck_json_path=json_to_process, goon_name=goon_name)
     elif render_deck:
         generate_cards(
-            json_file=json_to_process, 
-            art_dir=art_directory, 
-            output_dir=output_directory, 
+            json_file=json_to_process,
+            art_dir=art_directory,
+            output_dir=output_directory,
             faction=faction_name,
             auto_generate_art=auto_requested,
             auto_extra_variations=auto_extra_variations,
             create_grid=args.grid,
             use_duplicates=args.dup,
-            fix=args.fix
+            fix=args.fix,
+            all_portraits=args.all_portraits
         )
     else:
         print("[!] Deck rendering skipped. Pass '-deck' or '-auto' to render the selected deck.")

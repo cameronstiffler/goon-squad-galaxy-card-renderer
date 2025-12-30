@@ -2,11 +2,12 @@
   "id": "necrobots",
   "faction": "NECRO",
   "card_name_font_family": [
+    "Helvetica-Neue.ttf",
     "DODGE.ttf",
     "Impact.ttf",
     "Arial-Black.ttf"
   ],
-  "card_name_font_size": 52,
+  "card_name_font_size": 57,
   "cost_font_family": [
     "Marinfordaf.ttf",
     "Helvetica.ttc",
@@ -32,9 +33,9 @@
     "Avenir-Heavy.ttf"
   ],
   "ability_num_bold_font_size": 30,
-  "card_name_font_color": "#72d05f",
+  "card_name_font_color": "#74d25f",
   "deploy_cost_font_color": "white",
-  "body_font_color": "#72d05f",
+  "body_font_color": "#7d885e",
   "ability_cost_font_color": "black",
   "flavor_text_font_family": [
     "OpenSans-Italic.ttf",
@@ -44,9 +45,9 @@
   "flavor_text_font_size": 24,
   "card_name_letter_spacing": 0,
   "icon_stack_x_offset": 25,
-  "card_name_y_offset": 0,
+  "card_name_y_offset": 6,
   "card_name_stroke_width": 4,
-  "card_name_stroke_color": "#000000",
+  "card_name_stroke_color": "#003904",
   "icon_stack_y_offset": 50,
   "goons": [
     {
@@ -92,49 +93,7 @@
         "skulltech.jpg"
       ]
     },
-    {
-      "name": "Revenator",
-      "rank": "SPEC",
-      "duplicates": 1,
-      "faction": "NECRO",
-      "deploy_cost": {
-        "wind": 1,
-        "gear": 2,
-        "meat": 0
-      },
-      "biological": false,
-      "mechanical": true,
-      "resist": false,
-      "no_unwind": false,
-      "deploy_requirements": [],
-      "abilities": [
-        {
-          "name": "ECTO-GASM",
-          "cost": {
-            "wind": 1,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Remove 1 wind from target friendly Goon (Rotate counter-clockwise)."
-        },
-        {
-          "name": "SPIRIT WRENCH",
-          "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": true,
-          "must_use": false,
-          "text": "Friendly Mechanical units deployed adjacent to Revenator enter play with -1 Wind cost."
-        }
-      ],
-      "portrait_art": [
-        "revenator.jpg"
-      ]
-    },
+  
     {
       "name": "Kill Dozer",
       "description": {
@@ -159,36 +118,36 @@
       "faction": "NECRO",
       "deploy_cost": {
         "wind": 1,
-        "gear": 2,
-        "meat": 1
+        "gear": 0,
+        "meat": 0
       },
       "biological": false,
       "mechanical": true,
       "resist": false,
-      "no_unwind": false,
+      "no_unwind": true,
       "deploy_requirements": [],
       "abilities": [
         {
-          "name": "BURY",
+          "name": "BEEP BEEP BEEP",
           "cost": {
-            "wind": 1,
+            "wind": 0,
             "gear": 0,
             "meat": 0
           },
-          "passive": false,
+          "passive": true,
           "must_use": false,
-          "text": "Add 2 wind to target enemy Goon."
+          "text": "When a Goon enters the dead pool, remove all wind from this Goon."
         },
         {
-          "name": "TREAD GRIND",
+          "name": "COMING THROUGH",
           "cost": {
-            "wind": 2,
+            "wind": "X",
             "gear": 0,
             "meat": 0
           },
           "passive": false,
           "must_use": false,
-          "text": "Add 3 wind to target enemy. If this kills them, Gravedigger unwinds 1."
+          "text": "Targeted player must distribute X wind among their Goons as they choose."
         }
       ],
       "portrait_art": [
@@ -202,7 +161,7 @@
       "faction": "NECRO",
       "deploy_cost": {
         "wind": 2,
-        "gear": 2,
+        "gear": 0,
         "meat": 0
       },
       "biological": false,
@@ -212,26 +171,26 @@
       "deploy_requirements": [],
       "abilities": [
         {
-          "name": "PRECISION SHOT",
+          "name": "MONEY SHOT",
           "cost": {
-            "wind": 1,
+            "wind": "X",
             "gear": 0,
             "meat": 0
           },
           "passive": false,
           "must_use": false,
-          "text": "Add 2 wind to target enemy. Ignores Resist."
+          "text": "Add X wind to target Goon and place this Goon back in your hand. It moves to your hand instead of dead pool if wind cost of this ability would destroy it"
         },
         {
-          "name": "CAPE FLUTTER",
+          "name": "SHADOW WALK",
           "cost": {
-            "wind": 0,
+            "wind": 1,
             "gear": 0,
             "meat": 0
           },
           "passive": true,
           "must_use": false,
-          "text": "The first time Dreadroid would take wind damage each turn, reduce that amount by 1."
+          "text": "Shadow walk lasts until the beginning of your next turn. Dreadroid may not be targeted by Basic Goon ability while shadow walking."
         }
       ],
       "portrait_art": [
@@ -245,8 +204,8 @@
       "faction": "NECRO",
       "deploy_cost": {
         "wind": 2,
-        "gear": 3,
-        "meat": 1
+        "gear": 0,
+        "meat": 0
       },
       "biological": true,
       "mechanical": true,
@@ -255,26 +214,15 @@
       "deploy_requirements": [],
       "abilities": [
         {
-          "name": "QUAD-FIRE",
+          "name": "BALLISTIC BARRAGE",
           "cost": {
-            "wind": 2,
+            "wind": "X",
             "gear": 0,
             "meat": 0
           },
           "passive": false,
           "must_use": false,
-          "text": "Add 1 wind to up to 4 different enemy targets."
-        },
-        {
-          "name": "BLOOD SCENT",
-          "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": true,
-          "must_use": false,
-          "text": "While active, all friendly attacks against damaged enemies add +1 extra wind."
+          "text": "Distribute X wind among target Goons."
         }
       ],
       "portrait_art": [
@@ -283,12 +231,12 @@
     },
     {
       "name": "Doom Drone",
-      "rank": "HVY",
+      "rank": "BG",
       "duplicates": 2,
       "faction": "NECRO",
       "deploy_cost": {
-        "wind": 2,
-        "gear": 3,
+        "wind": 0,
+        "gear": 1,
         "meat": 0
       },
       "biological": false,
@@ -298,15 +246,15 @@
       "deploy_requirements": [],
       "abilities": [
         {
-          "name": "BOMBARDMENT",
+          "name": "INCINERATE",
           "cost": {
-            "wind": 3,
+            "wind": "X",
             "gear": 0,
             "meat": 0
           },
           "passive": false,
           "must_use": false,
-          "text": "Add 4 wind to target enemy. Add 1 wind to adjacent enemies."
+          "text": "Target player must distribute X wind among their Goons as they choose."
         }
       ],
       "portrait_art": [
@@ -319,9 +267,9 @@
       "duplicates": 2,
       "faction": "NECRO",
       "deploy_cost": {
-        "wind": 1,
-        "gear": 2,
-        "meat": 1
+        "wind": 3,
+        "gear": 0,
+        "meat": 0
       },
       "biological": false,
       "mechanical": true,
@@ -338,18 +286,18 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Mark a target. The next ability used on this target costs 0 wind."
+          "text": "Add 1 wind to target Goon at the beginning of your turn until it is destroyed or Skeletron leaves play. "
         },
         {
-          "name": "RAPID FIRE",
+          "name": "BALLISTIC BARRAGE",
           "cost": {
-            "wind": 1,
+            "wind": "X",
             "gear": 0,
             "meat": 0
           },
           "passive": false,
           "must_use": false,
-          "text": "Add 2 wind to target enemy."
+          "text": "Distribute X wind among target Goons."
         }
       ],
       "portrait_art": [
@@ -358,13 +306,13 @@
     },
     {
       "name": "Apocalyption",
-      "rank": "BOSS",
+      "rank": "BG",
       "duplicates": 0,
       "faction": "NECRO",
       "deploy_cost": {
-        "wind": 4,
-        "gear": 5,
-        "meat": 2
+        "wind": 0,
+        "gear": 0,
+        "meat": 0
       },
       "biological": false,
       "mechanical": true,
@@ -450,24 +398,46 @@
         {
           "name": "PEST LANCE",
           "cost": {
-            "wind": 2,
+            "wind": 1,
             "gear": 0,
             "meat": 0
           },
           "passive": false,
           "must_use": false,
-          "text": "Add 3 wind to target enemy. Rapture Slouch may move to an adjacent zone after firing."
+          "text": "Add 1 wind to target Goon for every Goon in the dead pool."
         },
         {
-          "name": "FAMINE",
+          "name": "BEGRUDGE",
           "cost": {
             "wind": 0,
             "gear": 0,
             "meat": 0
           },
-          "passive": true,
+          "passive": false,
           "must_use": false,
-          "text": "Raptureslouch ignores range penalties."
+          "text": "Add X wind to target Goon. X starts at 0. Each subsequent time the same Goon is targeted with BEGRUDGE X increases by 1."
+        },
+        {
+          "name": "RESILIENT",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 1 wind to target Goon for every number of wind on this Goon after it pays RESILIENT cost."
+        },
+        {
+          "name": "BALLISTIC BARRAGE",
+          "cost": {
+            "wind": "X",
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Distribute X wind among target Goons."
         }
       ],
       "portrait_art": [
@@ -475,7 +445,7 @@
       ]
     },
     {
-      "name": "Chronos",
+      "name": "Morkron",
       "rank": "T",
       "duplicates": 4,
       "faction": "NECRO",
@@ -485,9 +455,9 @@
         "meat": 1
       },
       "biological": false,
-      "mechanical": true,
+      "mechanical": false,
       "resist": false,
-      "no_unwind": false,
+      "no_unwind": true,
       "deploy_requirements": [],
       "abilities": [
         {
@@ -503,12 +473,29 @@
         }
       ],
       "portrait_art": [
-        "chronos.png","chronos_1.png"
+        "chronos.png"
       ],
       "flavor_text": "Time is a great teacher, but unfortunately, it kills all its pupils."
     },
     {
-      "name": "Deaden Djinn",
+      "name": "End Jinn",
+      "description": {
+        "goon_class": "Robot and Organic Hybrid he is a blue magic using djinn",
+        "anatomy": "A faceless head on a wide chested robotic torso with 4 powerful robotic arms and no humanoid elements below his ribcage, floating above the ground with a single energy thruster mounted up inside the bottom of his ribcage and emiting a blue cone(thick at top and tapering downward) of energy downward. The head is a fusion of skull and robotic elements with glowing eyes and mouth",
+        "armor": "he has black armor plating and hyrdaulic components on articulation points. From the seams of his black metal hull blue light is being emited His overall appearance is both intimidating and skeletal, embodying the fusion of technology, darkness and magic.",
+        "accessories": [
+        ],
+        "skin": "black metal plates with blue light being emitted from joints and seams",
+        "weapon": "4 oversized scimitars. One for each of his 4 hands.",
+        "setting": "desert stone fortress partially in ruins with stormy skies overhead",
+        "mouth": "no mouth",
+        "teeth": "no teeth",
+        "head_wear": "none",
+        "time_of_day": "gloomy twilight witih thunderstorm and lightning in the background",
+        "eyes": "no eyes, just an empty surface",
+        "pose": "holding his scimitars holding all of his scimitars at different angles in a state of readiness but not attacking, floating slightly hoveringside the fortress walls",
+        "boots": "he is only a head torso and 4 arms. a single long blue cone of magical energy emits from the bottom of his torso to keep him aloft the wide part of the energy cone is at the top and the cone points downward tapering to a point. when he moves a long trail of blue energy follows him"
+      },
       "rank": "BG",
       "duplicates": 4,
       "faction": "NECRO",
@@ -524,7 +511,7 @@
       "deploy_requirements": [],
       "abilities": [],
       "portrait_art": [
-        "deadendjinn.png"
+        "djinn_0.jpg","djinn_1.jpg","djinn_2.jpg","djinn_3.jpg"
       ]
     },
     {
@@ -564,7 +551,18 @@
       "deploy_requirements": [],
       "abilities": [
         {
-          "name": "TIME BOMB",
+          "name": "PATIENT ZERO",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 1
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Create a Zombie from Bio resource used to pay for this ability. Zombie has only BITE and EAT FACE abilities\nBITE: Add 1 wind to target Biological Goon. If BITE effect is successfully added, gain control of bitten Goon at the start of your next turn. Bitten Goon loses its existing abilities but gains BITE and EAT FACE and is considered a zombie until it leaves play.\nEAT FACE: Pay 1 wind to Add 1 wind to target Goon."
+        },
+        {
+          "name": "FIX",
           "cost": {
             "wind": 1,
             "gear": 0,
@@ -572,7 +570,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Add 2 wind to self to add 4 wind to target enemy."
+          "text": "remove all wind from target Goon."
         }
       ],
       "portrait_art": [
@@ -580,7 +578,7 @@
       ]
     },
     {
-      "name": "Ghost in the Machine",
+      "name": "Ghost in Machine",
       "rank": "BG",
       "duplicates": 4,
       "faction": "NECRO",
@@ -592,13 +590,13 @@
       "biological": false,
       "mechanical": false,
       "resist": false,
-      "no_unwind": true,
+      "no_unwind": false,
       "deploy_requirements": [],
       "abilities": [
         {
           "name": "POSSESS",
           "cost": {
-            "wind": 0,
+            "wind": 1,
             "gear": 0,
             "meat": 0
           },
@@ -615,14 +613,72 @@
           },
           "passive": true,
           "must_use": false,
-          "text": "Ghost may contribute wind to its controlled Goon's ability activation costs."
+          "text": "Ghost may contribute wind to possessed Goon's ability activation costs."
         }
       ],
       "portrait_art": [
-        "machineghost.png"
+        "ghostinmachine0.png","ghostinmachine1.png"
       ]
     },
     {
+      "name": "Zombie",
+      "description": {
+        "goon_class": "zombie",
+        "anatomy": "undead humanoid with decaying flesh and exposed mechanical components",
+        "attire": "tattered remnants of military uniform fused with rusted mechanical parts and armor plating",
+        "accessories": [
+          "None"
+        ],
+        "skin": "rotted and completely decomposed exposing bare bone and mechanical elements",
+        "weapon": "nothing",
+        "mouth": "ready to bite with decayed lips pulled back",
+        "teeth": "jagged and broken with bits of rusted metal fused in",
+        "head_wear": "partially exposed skull with missing patches of flesh",
+        "eyes": "empty eye sockets",
+        "pose": "shambling off balance as it lunges forward",
+        "boots": "tattered boots barely hanging on to decayed feet"
+      },
+      "rank": "BG",
+      "duplicates": 4,
+      "faction": "NECRO",
+      "deploy_cost": {
+        "wind": 1,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": true,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "BITE",
+          "cost": {
+            "wind": 2,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 1 wind to target Biological Goon. If BITE effect is successfully added, gain control of bitten Goon at the start of your next turn. Bitten Goon loses its existing abilities but gains BITE and EAT FACE and is considered a zombie until it leaves play."
+        },
+        {
+          "name": "EAT FACE",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 1 wind to target Goon for every Zombie you control."
+        }
+      ],
+      "portrait_art": [
+        "zombie_01.jpg","zombie_02.jpg","zombie_03.jpg","zombie_04.jpg"
+      ]
+    },{
       "name": "Squad Zombie",
       "rank": "BG",
       "duplicates": 4,
@@ -632,14 +688,14 @@
         "gear": 0,
         "meat": 0
       },
-      "biological": false,
-      "mechanical": true,
+      "biological": true,
+      "mechanical": false,
       "resist": false,
       "no_unwind": false,
       "deploy_requirements": [],
       "abilities": [
         {
-          "name": "SPRAY AND PREY",
+          "name": "",
           "cost": {
             "wind": 1,
             "gear": 0,
@@ -647,22 +703,11 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Add 1 wind to target Goon."
-        },
-        {
-          "name": "SPRAY AND PREY",
-          "cost": {
-            "wind": 1,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Add 1 wind to target Goon."
+          "text": "Add 1 wind to target Goon for every Zombie you control."
         }
       ],
       "portrait_art": [
-        "squadzombie.jpg"
+        "squadzombie_0.jpg"
       ]
     },
     {
@@ -671,8 +716,8 @@
       "duplicates": 4,
       "faction": "NECRO",
       "deploy_cost": {
-        "wind": 1,
-        "gear": 0,
+        "wind": 2,
+        "gear": 1,
         "meat": 0
       },
       "biological": false,
@@ -682,15 +727,26 @@
       "deploy_requirements": [],
       "abilities": [
         {
-          "name": "ANIMATE DEAD",
+          "name": "PUPPET CORPSE",
           "cost": {
-            "wind": 1,
+            "wind": 0,
             "gear": 0,
             "meat": 0
           },
           "passive": false,
           "must_use": false,
-          "text": "Take control of Biological Goon from Dead Pool. Treat it as if it were just deployed."
+          "text": "Take control of target Goon from Dead Pool. The Goon may use its abilities and contribute to deploy costs immediately. Return Goon to dead pool at the end of your turn."
+        },
+        {
+          "name": "HELL IS FULL",
+          "cost": {
+            "wind": 2,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "All Goons in the Dead Pool are returned to their owner's hand."
         }
       ],
       "portrait_art": [
@@ -698,23 +754,46 @@
       ]
     },
     {
-      "name": "Faminion",
+      "name": "SWARM",
       "rank": "BG",
       "duplicates": 4,
       "faction": "NECRO",
       "deploy_cost": {
-        "wind": 1,
+        "wind": 0,
         "gear": 0,
         "meat": 0
       },
-      "biological": false,
+      "biological": true,
       "mechanical": true,
       "resist": false,
-      "no_unwind": false,
+      "no_unwind": true,
       "deploy_requirements": [],
-      "abilities": [],
+      "abilities": [
+        {
+          "name": "INFEST",
+          "cost": {
+            "wind": "X",
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": true,
+          "text": "Targeted player must distribute X wind among their Goons as they choose."
+        },
+        {
+          "name": "INVULNERABLE",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "May not be targeted by abilities"
+        }
+      ],
       "portrait_art": [
-        "test_6.png"
+        "swarm.jpg"
       ]
     }
   ]
