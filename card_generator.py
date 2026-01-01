@@ -1271,7 +1271,7 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
         for goon in data['goons']:
             num_copies = get_duplicate_count(goon)
             for dup_index in range(num_copies):
-                goons_to_render.append((goon, dup_index, 0))
+                goons_to_render.append((goon, dup_index, None))  # None so art selection can round-robin
     else:
         # Default behavior: render one of each unique goon
         goons_to_render = [(goon, 0, 0) for goon in data['goons']]
