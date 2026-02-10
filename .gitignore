@@ -16,6 +16,7 @@ __pycache__/
 *.psd
 *.ai
 *.zip
+**/grid.jpg
 
 # Large asset directories (art stays local)
 art/

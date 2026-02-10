@@ -48,7 +48,46 @@
   "card_name_stroke_width": 4,
   "card_name_stroke_color": "#561603",
   "icon_stack_y_offset": 50,
+  "ability_text_x_offset": -25,
+  "ability_text_y_offset": -10,
+  "ability_text_max_width": 650,
+  "ability_text_line_spacing": 10,
+  "ability_text_block_spacing": 25,
+  "ability_cost_text_gap": 6,
   "goons": [
+    {
+      "name": "Lokar Simmons",
+      "rank": "SL",
+      "duplicates": 1,
+      "faction": "NARC",
+      "deploy_cost": {
+        "wind": 0,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": true,
+      "mechanical": false,
+      "resist": true,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "RESOURCEFUL",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Draw a card"
+        }
+      ],
+      "flavor_text": "Submission is the love child of demoralization and existential dread.",
+      "portrait_art": [
+        "lokar.jpg"
+      ]
+    },
     {
       "name": "Compliance Auditon",
       "rank": "BG",
@@ -190,38 +229,6 @@
       ]
     },
     {
-      "name": "Detainment Probe",
-      "rank": "BG",
-      "duplicates": 0,
-      "faction": "NARC",
-      "deploy_cost": {
-        "wind": 1,
-        "gear": 0,
-        "meat": 0
-      },
-      "biological": false,
-      "mechanical": true,
-      "resist": false,
-      "no_unwind": false,
-      "deploy_requirements": [],
-      "abilities": [
-        {
-          "name": "SHACKLE BEAM",
-          "cost": {
-            "wind": 2,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Target Goon may not unwind, act or contribute wind to deploy next turn."
-        }
-      ],
-      "portrait_art": [
-        "detainprobe.png"
-      ]
-    },
-    {
       "name": "Marine Marauder",
       "rank": "BG",
       "duplicates": 3,
@@ -348,39 +355,6 @@
       ],
       "portrait_art": [
         "killjoy.jpg"
-      ]
-    },
-    {
-      "name": "Lokar Simmons",
-      "rank": "SL",
-      "duplicates": 1,
-      "faction": "NARC",
-      "deploy_cost": {
-        "wind": 0,
-        "gear": 0,
-        "meat": 0
-      },
-      "biological": true,
-      "mechanical": false,
-      "resist": true,
-      "no_unwind": false,
-      "deploy_requirements": [],
-      "abilities": [
-        {
-          "name": "RESOURCEFUL",
-          "cost": {
-            "wind": 1,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Draw a card"
-        }
-      ],
-      "flavor_text": "Submission is the love child of demoralization and existential dread.",
-      "portrait_art": [
-        "lokar.jpg"
       ]
     },
     {
@@ -561,7 +535,7 @@
       "duplicates": 2,
       "faction": "NARC",
       "deploy_cost": {
-        "wind": 2,
+        "wind": 3,
         "gear": 1,
         "meat": 0
       },
@@ -574,13 +548,13 @@
         {
           "name": "SCATTER LOAD",
           "cost": {
-            "wind": 1,
-            "gear": 1,
+            "wind": "X",
+            "gear": 0,
             "meat": 0
           },
           "passive": false,
           "must_use": false,
-          "text": "Distribute 3 wind among target Goons."
+          "text": "Target player must distribute [xw] x 2 among their Goons."
         },
         {
           "name": "GOON BUSTER",
@@ -831,13 +805,13 @@
       ],
       "flavor_text": "",
       "portrait_art": [
-        "target.jpg"
+        "target.png"
       ]
     },
     {
       "name": "Orbital Transport",
       "rank": "BG",
-      "duplicates": 4,
+      "duplicates": 2,
       "faction": "NARC",
       "deploy_cost": {
         "wind": 0,
@@ -865,6 +839,83 @@
       "flavor_text": "",
       "portrait_art": [
         "shuttle.jpg"
+      ]
+    },
+    {
+      "name": "CQB Drop Droid",
+      "rank": "BG",
+      "duplicates": 4,
+      "faction": "NARC",
+      "deploy_cost": {
+        "wind": 2,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "CLEAR AND SECURE",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add [2w] to target Goon."
+        }
+      ],
+      "flavor_text": "",
+      "portrait_art": [
+        "yellowrobot.jpg"
+      ]
+    },
+    {
+      "name": "DISPERSION DALEK",
+      "rank": "BG",
+      "duplicates": 2,
+      "faction": "NARC",
+      "deploy_cost": {
+        "wind": 2,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "PASSIFY",
+          "cost": {
+            "wind": 2,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add [2w] to target Goon."
+        },
+        {
+          "name": "DEMORALIZE",
+          "cost": {
+            "wind": 3,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add [1w] to all enemy Basic Goons."
+        }
+      ],
+      "flavor_text": "",
+      "portrait_art": [
+        "yellowlightrobot.jpg"
       ]
     }
   ]

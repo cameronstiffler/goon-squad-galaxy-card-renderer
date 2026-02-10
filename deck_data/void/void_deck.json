@@ -1,0 +1,123 @@
+{
+  "id": "basicvoid",
+  "faction": "VOID",
+  "goons": [
+    {
+      "name": "Eye",
+      "rank": "BG",
+      "duplicates": 1,
+      "faction": "VOID",
+      "deploy_cost": {
+        "wind": 0,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [],
+      "notes": [],
+      "portrait_art": [
+        "eye.png"
+      ]
+    },
+    {
+      "name": "Maw",
+      "rank": "BG",
+      "duplicates": 1,
+      "faction": "VOID",
+      "deploy_cost": {
+        "wind": 0,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [],
+      "notes": [],
+      "portrait_art": [
+        "maw.png"
+      ]
+    },
+    {
+      "name": "Tentacle",
+      "rank": "BG",
+      "duplicates": 1,
+      "faction": "VOID",
+      "deploy_cost": {
+        "wind": 0,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [],
+      "notes": [],
+      "portrait_art": [
+        "tentacle.jpg"
+      ]
+    },
+    {
+      "name": "Voidwing",
+      "rank": "BG",
+      "duplicates": 1,
+      "faction": "VOID",
+      "deploy_cost": {
+        "wind": 0,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [],
+      "notes": [],
+      "portrait_art": [
+        "voidwing.jpg"
+      ]
+    },
+    {
+      "name": "Void Freak",
+      "rank": "BG",
+      "duplicates": 4,
+      "faction": "VOID",
+      "deploy_cost": {
+        "wind": 1,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": true,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": true,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "BLOODLUST",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": true,
+          "text": "Add 1 wind to target Goon. Must use this ability if able"
+        }
+      ],
+      "notes": [],
+      "portrait_art": [
+        "freak.jpg"
+      ]
+    }
+  ]
+}

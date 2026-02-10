@@ -26,10 +26,10 @@
     "Staatliches-Regular",
     "Avenir-Heavy.ttf"
   ],
-  "ability_num_bold_font_size": 28,
-  "card_name_font_color": "#f6d4d5",
-  "deploy_cost_font_color": "white",
-  "body_font_color": "#f6d4d5",
+  "ability_num_bold_font_size": 26,
+  "card_name_font_color": "#f3d29e",
+  "deploy_cost_font_color": "#f3d29e",
+  "body_font_color": "#f3d29e",
   "ability_cost_font_color": "black",
   "flavor_text_font_family": [
     "OpenSans-Italic.ttf",
@@ -38,11 +38,17 @@
   ],
   "flavor_text_font_size": 24,
   "card_name_letter_spacing": 0,
-  "icon_stack_x_offset": 25,
+  "icon_stack_x_offset": 22,
   "card_name_y_offset": -14,
   "card_name_stroke_width": 5,
-  "card_name_stroke_color": "#400f11",
-  "icon_stack_y_offset": 50,
+  "card_name_stroke_color": "#080808",
+  "icon_stack_y_offset": -18,
+  "ability_text_x_offset": -25,
+  "ability_text_y_offset": -10,
+  "ability_text_max_width": 650,
+  "ability_text_line_spacing": 10,
+  "ability_text_block_spacing": 25,
+  "ability_cost_text_gap": 6,
   "goons": [
     {
       "name": "Meat Warrior",
@@ -112,7 +118,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Destroy allied BiologicalGoon to add 3 wind to target Goon."
+          "text": "Destroy allied Biological Goon to add 3 wind to target Goon."
         },
         {
           "name": "BLOOD DRUNK",
@@ -189,7 +195,7 @@
       ]
     },
     {
-      "name": "Meaty Mounties",
+      "name": "Hump Mountie",
       "rank": "BG",
       "duplicates": 4,
       "faction": "MEAT",
@@ -251,7 +257,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Destroy to add "
+          "text": "Destroy to contribute up to 3 wind to the deploy cost of an allied Goon."
         }
       ],
       "portrait_art": [
@@ -440,7 +446,7 @@
       ]
     },
     {
-      "name": "Grunt Master",
+      "name": "Meat Master",
       "rank": "SG",
       "duplicates": 3,
       "faction": "MEAT",
@@ -594,7 +600,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "Opponent must distribute X*X wind among their Goons."
+          "text": "Any of your Goons may contribute wind to [xw]. Opponent must distribute [xw]+[xm] wind among their Goons."
         },
         {
           "name": "INVULNERABLE",

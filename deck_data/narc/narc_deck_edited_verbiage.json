@@ -1,0 +1,922 @@
+{
+  "id": "basicnarc",
+  "faction": "NARC",
+  "card_name_font_family": [
+    "Leaderson.ttf",
+    "Impact.ttf",
+    "Arial-Black.ttf"
+  ],
+  "card_name_font_size": 85,
+  "cost_font_family": [
+    "Marinfordaf.ttf",
+    "Helvetica.ttc",
+    "Arial.ttf"
+  ],
+  "cost_font_size": 55,
+  "body_font_family": [
+    "Futura.ttc",
+    "Futura.ttf",
+    "Avenir.ttc",
+    "GillSans.ttc",
+    "Georgia"
+  ],
+  "body_font_size": 26,
+  "ability_num_font_family": [
+    "Staatliches-Regular.ttf",
+    "Futura.ttf",
+    "Avenir.ttc"
+  ],
+  "ability_num_font_size": 25,
+  "ability_num_bold_font_family": [
+    "Staatliches-Regular",
+    "Avenir-Heavy.ttf"
+  ],
+  "ability_num_bold_font_size": 30,
+  "card_name_font_color": "#fbc151",
+  "deploy_cost_font_color": "white",
+  "body_font_color": "#F5F5DC",
+  "ability_cost_font_color": "black",
+  "flavor_text_font_family": [
+    "OpenSans-Italic.ttf",
+    "Helvetica-Oblique.ttf",
+    "Arial-Italic.ttf"
+  ],
+  "flavor_text_font_size": 24,
+  "card_name_letter_spacing": 0,
+  "icon_stack_x_offset": 25,
+  "card_name_y_offset": 0,
+  "card_name_stroke_width": 4,
+  "card_name_stroke_color": "#561603",
+  "icon_stack_y_offset": 50,
+  "ability_text_x_offset": -25,
+  "ability_text_y_offset": -10,
+  "ability_text_max_width": 650,
+  "ability_text_line_spacing": 10,
+  "ability_text_block_spacing": 25,
+  "ability_cost_text_gap": 6,
+  "goons": [
+    {
+      "name": "Lokar Simmons",
+      "rank": "SL",
+      "duplicates": 1,
+      "faction": "NARC",
+      "deploy_cost": {
+        "wind": 0,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": true,
+      "mechanical": false,
+      "resist": true,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "RESOURCEFUL",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Draw 1 card."
+        }
+      ],
+      "flavor_text": "Submission is the love child of demoralization and existential dread.",
+      "portrait_art": [
+        "lokar.jpg"
+      ]
+    },
+    {
+      "name": "Compliance Auditon",
+      "rank": "BG",
+      "duplicates": 1,
+      "faction": "NARC",
+      "deploy_cost": {
+        "wind": 1,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "LITIGIOUS GRIDLOCK",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Target Goon does not unwind during its next Unwind Phase."
+        },
+        {
+          "name": "LEGAL LOOPHOLE",
+          "cost": {
+            "wind": 3,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Draw 1 card. Your opponent Burns 1 card from their hand."
+        }
+      ],
+      "portrait_art": [
+        "auditon.jpg"
+      ]
+    },
+    {
+      "name": "Bruut Enforcer",
+      "rank": "SG",
+      "duplicates": 1,
+      "faction": "NARC",
+      "deploy_cost": {
+        "wind": 2,
+        "gear": 1,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": true,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "SLUG",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 2 wind to target Goon. Ignore Resist."
+        },
+        {
+          "name": "RED WET SPOT",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Destroy target Basic Goon."
+        }
+      ],
+      "portrait_art": [
+        "bruut.png"
+      ]
+    },
+    {
+      "name": "Buzzkill",
+      "rank": "SG",
+      "duplicates": 3,
+      "faction": "NARC",
+      "deploy_cost": {
+        "wind": 3,
+        "gear": 1,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": true,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "PEW PEW",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 2 wind to target Goon."
+        },
+        {
+          "name": "NEUTRALIZE",
+          "cost": {
+            "wind": 2,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Destroy target Basic Goon."
+        },
+        {
+          "name": "PLEASING BEHAVIOR",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "When Buzzkill destroys an enemy Goon, remove all wind from your Squad Leader."
+        }
+      ],
+      "portrait_art": [
+        "buzzkill.jpg"
+      ]
+    },
+    {
+      "name": "Marine Marauder",
+      "rank": "BG",
+      "duplicates": 3,
+      "faction": "NARC",
+      "deploy_cost": {
+        "wind": 1,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": true,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "PRECISION STRIKE",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 1 wind to target Goon."
+        },
+        {
+          "name": "ORDINANCE ARRAY",
+          "cost": {
+            "wind": 3,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Distribute 3 wind among target Goons."
+        }
+      ],
+      "portrait_art": [
+        "marauder.jpg"
+      ]
+    },
+    {
+      "name": "K-9.0",
+      "rank": "BG",
+      "duplicates": 4,
+      "faction": "NARC",
+      "deploy_cost": {
+        "wind": 1,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": true,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "PATROL",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "When an allied Goon is targeted by an enemy ability, destroy K-9.0 to prevent that ability from resolving."
+        }
+      ],
+      "portrait_art": [
+        "k9.png"
+      ]
+    },
+    {
+      "name": "killjoy",
+      "rank": "SG",
+      "duplicates": 4,
+      "faction": "NARC",
+      "deploy_cost": {
+        "wind": 3,
+        "gear": 1,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": true,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "PUNISH",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 2 wind to target Goon."
+        },
+        {
+          "name": "EXCESSIVE FORCE",
+          "cost": {
+            "wind": 2,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Destroy target Basic Goon."
+        },
+        {
+          "name": "PLEASING BEHAVIOR",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "When Killjoy destroys an enemy Goon, remove all wind from your Squad Leader."
+        }
+      ],
+      "portrait_art": [
+        "killjoy.jpg"
+      ]
+    },
+    {
+      "name": "Lurker",
+      "rank": "BG",
+      "duplicates": 4,
+      "faction": "NARC",
+      "deploy_cost": {
+        "wind": 2,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": true,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "SEEK TARGET",
+          "cost": {
+            "wind": 2,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Destroy Lurker to add 2 wind to target Goon."
+        },
+        {
+          "name": "REACTIVE MUNITIONS",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "Destroy the Goon that destroys Lurker."
+        }
+      ],
+      "portrait_art": [
+        "lurker.png"
+      ]
+    },
+    {
+      "name": "MediFux-1NDS",
+      "rank": "BG",
+      "duplicates": 4,
+      "faction": "NARC",
+      "deploy_cost": {
+        "wind": 1,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "DORSAL CAVITY RINSE",
+          "cost": {
+            "wind": 2,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Remove all wind from target allied Goon."
+        }
+      ],
+      "portrait_art": [
+        "medi.png"
+      ]
+    },
+    {
+      "name": "Taze Mistrex",
+      "rank": "BG",
+      "duplicates": 4,
+      "faction": "NARC",
+      "deploy_cost": {
+        "wind": 2,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "JOY OF INSPIRATION",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Remove all wind from target Basic Goon."
+        },
+        {
+          "name": "ARC LASH",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 2 wind to target Goon."
+        }
+      ],
+      "portrait_art": [
+        "mistrex.png"
+      ]
+    },
+    {
+      "name": "Narcstar",
+      "rank": "T",
+      "duplicates": 4,
+      "faction": "NARC",
+      "deploy_cost": {
+        "wind": 5,
+        "gear": 2,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": true,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "ORBITAL SMITE",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Destroy target Goon."
+        },
+        {
+          "name": "INVULNERABLE",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "This Goon may not be targeted by abilities."
+        },
+        {
+          "name": "ROGUE",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "This Goon does not protect your Squad Leader from being targeted by abilities."
+        }
+      ],
+      "portrait_art": [
+        "narcstar.jpg"
+      ]
+    },
+    {
+      "name": "Nob Lobber",
+      "rank": "BG",
+      "duplicates": 2,
+      "faction": "NARC",
+      "deploy_cost": {
+        "wind": 3,
+        "gear": 1,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "SCATTER LOAD",
+          "cost": {
+            "wind": "X",
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Target player distributes wind equal to [xw] x 2 among their Goons."
+        },
+        {
+          "name": "GOON BUSTER",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 2 wind to target Goon."
+        }
+      ],
+      "portrait_art": [
+        "lobber.png"
+      ]
+    },
+    {
+      "name": "Protein Processor",
+      "rank": "BG",
+      "duplicates": 4,
+      "faction": "NARC",
+      "deploy_cost": {
+        "wind": 0,
+        "gear": 1,
+        "meat": 0
+      },
+      "biological": true,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "BOOST",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 1
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Remove all wind from target Goon."
+        }
+      ],
+      "portrait_art": [
+        "sasdroid.png"
+      ]
+    },
+    {
+      "name": "Sentry Gun",
+      "rank": "BG",
+      "duplicates": 4,
+      "faction": "NARC",
+      "deploy_cost": {
+        "wind": 1,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": true,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "DEFEND",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "When an enemy Goon targets one of your Goons, you may add 1 wind to that enemy Goon before its ability resolves."
+        }
+      ],
+      "portrait_art": [
+        "sentry.jpg"
+      ]
+    },
+    {
+      "name": "Fwd Patrol Gun",
+      "rank": "BG",
+      "duplicates": 0,
+      "faction": "NARC",
+      "deploy_cost": {
+        "wind": 2,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "AUTOBURST",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 1 wind to target Basic Goon."
+        },
+        {
+          "name": "FOCUS FIRE",
+          "cost": {
+            "wind": 2,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 2 wind to target Goon."
+        },
+        {
+          "name": "MAG DUMP",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "Destroy this Goon to destroy target Basic Goon."
+        }
+      ],
+      "portrait_art": [
+        "patrolgun.png"
+      ]
+    },
+    {
+      "name": "Shield Pylon",
+      "rank": "BG",
+      "duplicates": 4,
+      "faction": "NARC",
+      "deploy_cost": {
+        "wind": 1,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": true,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "FORTIFICATION NETWORK",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "While 2 or more Shield Pylons are in play, your Goons may not be targeted by your opponent’s Goons."
+        }
+      ],
+      "portrait_art": [
+        "pylon.jpg"
+      ]
+    },
+    {
+      "name": "Hover Shield",
+      "rank": "BG",
+      "duplicates": 4,
+      "faction": "NARC",
+      "deploy_cost": {
+        "wind": 0,
+        "gear": 1,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": true,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "COVER",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "When deployed, choose an allied Goon to COVER. The covered Goon may not be the target of enemy Goon abilities while Hover Shield is in play. Hover Shield may not choose a new Goon to COVER while its original target is in play."
+        }
+      ],
+      "portrait_art": [
+        "hover.jpg"
+      ]
+    },
+    {
+      "name": "Impact Simulant",
+      "rank": "BG",
+      "duplicates": 4,
+      "faction": "NARC",
+      "deploy_cost": {
+        "wind": 0,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [],
+      "flavor_text": "Don’t worry. We’ll collect what’s left of you in the salvage sweep. Just don’t take a hit in the processor.",
+      "portrait_art": [
+        "simulant.jpg"
+      ]
+    },
+    {
+      "name": "Target Marker",
+      "rank": "BG",
+      "duplicates": 4,
+      "faction": "NARC",
+      "deploy_cost": {
+        "wind": 1,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "MARK TARGET",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Choose an enemy Goon to MARK. Until end of turn, allied Goons pay 1 less wind to target the marked Goon with abilities."
+        }
+      ],
+      "flavor_text": "",
+      "portrait_art": [
+        "target.png"
+      ]
+    },
+    {
+      "name": "Orbital Transport",
+      "rank": "BG",
+      "duplicates": 2,
+      "faction": "NARC",
+      "deploy_cost": {
+        "wind": 0,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": true,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "HOT EXTRACTION",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "Destroy a Goon to return target allied Goon to your hand. This effect resolves before any other ability effects resolve."
+        }
+      ],
+      "flavor_text": "",
+      "portrait_art": [
+        "shuttle.jpg"
+      ]
+    },
+    {
+      "name": "CQB Drop Droid",
+      "rank": "BG",
+      "duplicates": 4,
+      "faction": "NARC",
+      "deploy_cost": {
+        "wind": 2,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "CLEAR AND SECURE",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 2 wind to target Goon."
+        }
+      ],
+      "flavor_text": "",
+      "portrait_art": [
+        "yellowrobot.jpg"
+      ]
+    },
+    {
+      "name": "DISPERSION DALEK",
+      "rank": "BG",
+      "duplicates": 2,
+      "faction": "NARC",
+      "deploy_cost": {
+        "wind": 2,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "PASSIFY",
+          "cost": {
+            "wind": 2,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 2 wind to target Goon."
+        },
+        {
+          "name": "DEMORALIZE",
+          "cost": {
+            "wind": 3,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 1 wind to all enemy Basic Goons."
+        }
+      ],
+      "flavor_text": "",
+      "portrait_art": [
+        "yellowlightrobot.jpg"
+      ]
+    }
+  ]
+}

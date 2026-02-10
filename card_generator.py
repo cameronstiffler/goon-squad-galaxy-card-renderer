@@ -97,34 +97,35 @@ GEMINI_ART_MODEL = os.getenv("GEMINI_ART_MODEL", "imagen-3.0-generate-001")
 VERTEX_JSON_MODEL = os.getenv("VERTEX_JSON_MODEL", "gemini-1.5-pro")
 VERTEX_ART_MODEL = os.getenv("VERTEX_ART_MODEL", "gemini-3-pro-image-preview")
 
-# Deck-specific locations for JSON inputs, art, and outputs
-DECK_CONFIG = {
-    "pcu": {
-        "json": os.path.join("deck_data", "pcu", "pcu_deck.json"),
-        "art": os.path.join("art", "pcu"),
-        "output": os.path.join(OUTPUT_DIR, "pcu"),
-    },
-    "narc": {
-        "json": os.path.join("deck_data", "narc", "narc_deck.json"),
-        "art": os.path.join("art", "narc"),
-        "output": os.path.join(OUTPUT_DIR, "narc"),
-    },
-    "meat": {
-        "json": os.path.join("deck_data", "meat", "meat_deck.json"),
-        "art": os.path.join("art", "meat"),
-        "output": os.path.join(OUTPUT_DIR, "meat"),
-    },
-    "omni": {
-        "json": os.path.join("deck_data", "omni", "omni_deck.json"),
-        "art": os.path.join("art", "omni"),
-        "output": os.path.join(OUTPUT_DIR, "omni"),
-    },
-    "necro": {
-        "json": os.path.join("deck_data", "necro", "necro_deck.json"),
-        "art": os.path.join("art", "necro"),
-        "output": os.path.join(OUTPUT_DIR, "necro"),
-    },
-}
+def build_deck_config(deck_root="deck_data", art_root="art", output_root=OUTPUT_DIR):
+    """Discover deck folders and build the JSON/art/output paths dynamically."""
+    decks = {}
+    if not os.path.isdir(deck_root):
+        return decks
+    for entry in os.listdir(deck_root):
+        if entry.startswith("."):
+            continue
+        faction_dir = os.path.join(deck_root, entry)
+        if not os.path.isdir(faction_dir):
+            continue
+        json_path = os.path.join(faction_dir, f"{entry}_deck.json")
+        if not os.path.isfile(json_path):
+            for fname in os.listdir(faction_dir):
+                if fname.endswith("_deck.json"):
+                    json_path = os.path.join(faction_dir, fname)
+                    break
+        if not os.path.isfile(json_path):
+            continue
+        key = entry.lower()
+        decks[key] = {
+            "json": json_path,
+            "art": os.path.join(art_root, entry),
+            "output": os.path.join(output_root, entry),
+        }
+    return decks
+
+# Deck-specific locations for JSON inputs, art, and outputs (discovered at runtime)
+DECK_CONFIG = build_deck_config()
 
 # --- GOOGLE GENAI HELPERS (Vertex/public Gemini via unified client) ---
 _VERTEX_CLIENT = None
@@ -1154,6 +1155,14 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
                 return fallback_path, False
         return path, True
     icon_stack_y_offset = data.get("icon_stack_y_offset", 0)
+    ability_text_x_offset = data.get("ability_text_x_offset", 0)
+    ability_text_y_offset = data.get("ability_text_y_offset", 0)
+    ability_text_max_width = data.get("ability_text_max_width", 600)
+    ability_text_line_spacing = data.get("ability_text_line_spacing", 5)
+    ability_text_block_spacing = data.get("ability_text_block_spacing", 15)
+    ability_cost_text_gap = data.get("ability_cost_text_gap", 3)
+    text_box_start_x = TEXT_BOX_START_X + ability_text_x_offset
+    text_box_start_y = TEXT_BOX_START_Y + ability_text_y_offset
     
     def draw_wrapped_text(draw_context, text, start_pos, font, fill, indent=0, width=TEXT_WIDTH_CHARS):
         """Helper to draw wrapped text with an optional icon and return the new y-position."""
@@ -1180,9 +1189,12 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
             number_fill = fill
 
         x_start, y = start_pos
-        line_x = x_start + indent
+        line_start_x = x_start + indent
+        line_x = line_start_x
         base_line_height = font.getbbox("A")[3] - font.getbbox("A")[1]
         max_line_height = base_line_height
+        icon_text_gap = 5
+        prev_was_space = False
 
         def text_width(s):
             bbox = font.getbbox(s)
@@ -1212,7 +1224,7 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
                     img = Image.new("RGBA", icon.size, (0, 0, 0, 0))
                     img.paste(icon, (0, 0), icon)
                     draw_tmp = ImageDraw.Draw(img)
-                    draw_tmp.text((icon.size[0]/2, icon.size[1]/2 - 2), val.upper(), font=number_font, fill=number_fill, anchor="mm")
+                    draw_tmp.text((icon.size[0]/2, icon.size[1]/2), val.upper(), font=number_font, fill=number_fill, anchor="mm")
                     elements.append(("icon", img))
                     continue
                 elements.extend(segment_items(tok))
@@ -1220,30 +1232,41 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
                 elements.extend(segment_items(tok))
 
         def flush_line(y_pos, line_height):
-            return y_pos + line_height + 5
+            return y_pos + line_height + ability_text_line_spacing
 
         for elem in elements:
             if isinstance(elem, tuple) and elem[0] == "icon":
                 img = elem[1]
                 w, h = img.size
-                if line_x + w > x_start + max_width and line_x > x_start:
+                new_line_height = max(max_line_height, h)
+                pre_gap = 0
+                if line_x > line_start_x and not prev_was_space:
+                    pre_gap = icon_text_gap
+                if line_x + pre_gap + w > x_start + max_width and line_x > x_start:
                     y = flush_line(y, max_line_height)
-                    line_x = x_start
+                    line_start_x = x_start + indent
+                    line_x = line_start_x
                     max_line_height = base_line_height
-                canvas.paste(img, (int(line_x), int(y + (max_line_height - h) / 2)), img)
-                line_x += w + 2
-                max_line_height = max(max_line_height, h)
+                    new_line_height = max_line_height
+                    pre_gap = 0
+                y_offset = (new_line_height - h) / 2
+                canvas.paste(img, (int(line_x + pre_gap), int(y + y_offset)), img)
+                line_x += pre_gap + w + icon_text_gap
+                max_line_height = new_line_height
+                prev_was_space = False
             else:
                 s = elem
                 w = text_width(s)
                 if line_x + w > x_start + max_width and line_x > x_start:
                     y = flush_line(y, max_line_height)
-                    line_x = x_start
+                    line_start_x = x_start
+                    line_x = line_start_x
                     max_line_height = base_line_height
                 draw_context.text((line_x, y), s, font=font, fill=fill)
                 line_x += w
+                prev_was_space = s.isspace()
         y = flush_line(y, max_line_height)
-        return y + 15
+        return y + ability_text_block_spacing
 
     generated_card_files = []
     
@@ -1468,7 +1491,7 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
             current_y += ICON_SPACING
 
         # --- 6. ABILITIES ---
-        text_y = TEXT_BOX_START_Y
+        text_y = text_box_start_y
         
         for ability in card['abilities']:
             icon_to_draw = None
@@ -1480,7 +1503,7 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
                 font_height = font_body.getbbox("Test")[3] - font_body.getbbox("Test")[1]
                 icon_height = icon_to_draw.height
                 y_offset = (font_height - icon_height) // 2
-                canvas.paste(icon_to_draw, (TEXT_BOX_START_X, text_y + y_offset + 5), icon_to_draw)
+                canvas.paste(icon_to_draw, (text_box_start_x, text_y + y_offset + 5), icon_to_draw)
                 indent = 40
             else:
                 cost = ability.get('cost', {})
@@ -1507,11 +1530,14 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
                 if gear_cost_present:
                     cost_parts.append(("gear", gear_val))
 
-                x_cursor = TEXT_BOX_START_X
+                x_cursor = text_box_start_x
                 indent = 0
+                text_line_height = font_body.getbbox("Ag")[3] - font_body.getbbox("Ag")[1]
+                line_y_center = text_y + text_line_height / 2
+                plus_height = draw.textbbox((0, 0), "+", font=font_body)[3]
                 for idx, (kind, label) in enumerate(cost_parts):
                     if idx > 0:
-                        draw.text((x_cursor, text_y), "+", font=font_body, fill=color_body)
+                        draw.text((x_cursor, line_y_center - plus_height / 2), "+", font=font_body, fill=color_body)
                         x_cursor += 20
 
                     if kind == "wind":
@@ -1521,13 +1547,12 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
                     else:
                         icon_to_draw = create_circle_icon(30, "#808080") # Grey
 
-                    canvas.paste(icon_to_draw, (x_cursor, text_y + 2), icon_to_draw)
-                    bbox = draw.textbbox((0, 0), label, font=font_abil_num_bold)
-                    w_num, h_num = bbox[2] - bbox[0], bbox[3] - bbox[1]
-                    draw.text((x_cursor + 15 - w_num/2, text_y + 12 - h_num/2 - 2), label, font=font_abil_num_bold, fill=color_abil_cost)
+                    icon_y = int(line_y_center - icon_to_draw.height / 2)
+                    canvas.paste(icon_to_draw, (x_cursor, icon_y), icon_to_draw)
+                    draw.text((x_cursor + icon_to_draw.width / 2, line_y_center), label, font=font_abil_num_bold, fill=color_abil_cost, anchor="mm")
                     x_cursor += 35
 
-                indent = x_cursor - TEXT_BOX_START_X
+                indent = x_cursor - text_box_start_x + ability_cost_text_gap
 
 
             
@@ -1545,11 +1570,11 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
             text_y = draw_text_with_tokens(
                 draw,
                 full_text,
-                (TEXT_BOX_START_X, text_y),
+                (text_box_start_x, text_y),
                 font_body,
                 color_body,
                 indent=indent,
-                max_width=600,
+                max_width=ability_text_max_width,
                 token_icons=token_icons,
                 circle_colors=circle_colors,
                 number_font=font_abil_num_bold,
@@ -1565,14 +1590,14 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
                     font_height = font_body.getbbox("Test")[3] - font_body.getbbox("Test")[1]
                     icon_height = icon_to_draw.height
                     y_offset = (font_height - icon_height) // 2
-                    canvas.paste(icon_to_draw, (TEXT_BOX_START_X, text_y + y_offset), icon_to_draw)
+                    canvas.paste(icon_to_draw, (text_box_start_x, text_y + y_offset), icon_to_draw)
                     req_text = f"{req['card_name']} must be in play to deploy."
-                    text_y = draw_wrapped_text(draw, req_text, (TEXT_BOX_START_X, text_y), font_body, color_body, indent=40)
+                    text_y = draw_wrapped_text(draw, req_text, (text_box_start_x, text_y), font_body, color_body, indent=40)
         
         # --- 8. FLAVOR TEXT ---
         if card.get("flavor_text"):
             flavor_text = f'"{card["flavor_text"]}"'
-            text_y = draw_wrapped_text(draw, flavor_text, (TEXT_BOX_START_X, text_y), font_flavor, color_body, indent=0, width=int(TEXT_WIDTH_CHARS * 1.4))
+            text_y = draw_wrapped_text(draw, flavor_text, (text_box_start_x, text_y), font_flavor, color_body, indent=0, width=int(TEXT_WIDTH_CHARS * 1.4))
 
         filename = f"{output_dir}/{name.replace(' ', '_')}{filename_suffix}.png"
         canvas.save(filename)
@@ -1592,12 +1617,7 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate Goon Squad Galaxy card images from JSON data.")
-    group = parser.add_mutually_exclusive_group(required=True)
-    group.add_argument('-pcu', action='store_true', help="Process the PCU deck.")
-    group.add_argument('-meat', action='store_true', help="Process the MEAT deck.")
-    group.add_argument('-narc', action='store_true', help="Process the NARC deck.")
-    group.add_argument('-omni', action='store_true', help="Process the OMNI deck.")
-    group.add_argument('-necro', action='store_true', help="Process the NECRO deck.")
+    parser.add_argument('-faction', help="Process a specific faction (e.g., pcu). You can also pass -<faction> as a shorthand.")
     parser.add_argument('-auto', nargs='?', const=0, type=int, help="Automatically generate missing portrait art. Optionally provide a number to generate that many additional variations (_1, _2, ...).")
     parser.add_argument('-deck', action='store_true', help="Render all cards in the selected deck.")
     parser.add_argument('-art', type=int, metavar='N', help="Generate N standalone art portraits using the selected faction's goon_traits/art_style; ignores deck rendering.")
@@ -1606,20 +1626,50 @@ if __name__ == "__main__":
     parser.add_argument('-all-portraits', action='store_true', help="Render one card per portrait_art entry for each goon.")
     parser.add_argument('-goon', nargs='?', const='__generate__', default=None, help="Generate a new goon definition. Optionally provide a name.")
     parser.add_argument('-fix', action='store_true', help="Automatically fix missing fields in the JSON data.")
-    args = parser.parse_args()
+    args, unknown = parser.parse_known_args()
 
-    if args.pcu:
-        deck_key = "pcu"
-    elif args.narc:
-        deck_key = "narc"
-    elif args.meat:
-        deck_key = "meat"
-    elif args.omni:
-        deck_key = "omni"
-    elif args.necro:
-        deck_key = "necro"
-    else:
-        raise ValueError("No deck selected; argparse should enforce one deck flag.")
+    deck_key = args.faction.lower() if args.faction else None
+    deck_flag_token = None
+    deck_json_override = None
+    override_token = None
+
+    idx = 0
+    while idx < len(unknown):
+        token = unknown[idx]
+        if token.startswith("-") and not token.startswith("--") and len(token) > 1:
+            candidate = token[1:].lower()
+            if candidate in DECK_CONFIG:
+                if deck_flag_token and deck_key != candidate:
+                    parser.error(f"Multiple factions specified via flags: {deck_key}, {candidate}")
+                deck_flag_token = token
+                if deck_key and deck_key != candidate:
+                    parser.error(f"Conflicting factions: -faction {deck_key} and {deck_flag_token}")
+                deck_key = candidate
+                if idx + 1 < len(unknown):
+                    next_token = unknown[idx + 1]
+                    if not next_token.startswith("-"):
+                        deck_json_override = next_token
+                        override_token = next_token
+                        idx += 1
+        idx += 1
+
+    filtered_unknown = []
+    for token in unknown:
+        if token == deck_flag_token or token == override_token:
+            continue
+        if token.startswith("-") and not token.startswith("--") and len(token) > 1:
+            candidate = token[1:].lower()
+            if candidate in DECK_CONFIG:
+                continue
+        filtered_unknown.append(token)
+    if filtered_unknown:
+        parser.error(f"Unrecognized arguments: {' '.join(filtered_unknown)}")
+
+    available_factions = ", ".join(sorted(DECK_CONFIG.keys())) or "none"
+    if not deck_key:
+        parser.error(f"No faction selected. Pass -faction <name> or -<name>. Available factions: {available_factions}")
+    if deck_key not in DECK_CONFIG:
+        parser.error(f"Unknown faction '{deck_key}'. Available factions: {available_factions}")
 
     art_only_count = args.art
     if art_only_count is not None:
@@ -1632,6 +1682,17 @@ if __name__ == "__main__":
 
     deck_paths = DECK_CONFIG[deck_key]
     json_to_process = deck_paths["json"]
+    if deck_json_override:
+        if os.path.basename(deck_json_override) != deck_json_override or "/" in deck_json_override or "\\" in deck_json_override:
+            parser.error("Deck JSON override must be a filename only (no paths).")
+        if deck_json_override.endswith(os.path.sep) or (os.path.altsep and deck_json_override.endswith(os.path.altsep)):
+            parser.error("Deck JSON override must be a filename only (no paths).")
+        if not deck_json_override.lower().endswith(".json"):
+            parser.error("Deck JSON override must be a .json filename.")
+        override_path = os.path.join("deck_data", deck_key, deck_json_override)
+        if not os.path.isfile(override_path):
+            parser.error(f"Deck JSON override not found: {override_path}")
+        json_to_process = override_path
     art_directory = deck_paths["art"]
     output_directory = deck_paths["output"]
     faction_name = deck_key

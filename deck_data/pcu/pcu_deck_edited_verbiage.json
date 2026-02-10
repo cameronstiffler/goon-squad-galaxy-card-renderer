@@ -1,0 +1,947 @@
+{
+  "id": "basicpcu",
+  "faction": "PCU",
+  "card_name_font_family": "Georgia",
+  "card_name_font_size": 75,
+  "cost_font_family": [
+    "Chalkduster.ttf",
+    "Chalkduster.ttc"
+  ],
+  "cost_font_size": 72,
+  "body_font_family": [
+    "Futura.ttc",
+    "Futura.ttf",
+    "Avenir.ttc",
+    "GillSans.ttc",
+    "Georgia"
+  ],
+  "body_font_size": 26,
+  "ability_num_font_family": [
+    "Impact.ttf",
+    "Futura.ttf",
+    "Avenir.ttc"
+  ],
+  "ability_num_font_size": 28,
+  "ability_num_bold_font_family": [
+    "Staatliches-Regular",
+    "Avenir-Heavy.ttf"
+  ],
+  "ability_num_bold_font_size": 30,
+  "card_name_font_color": "#c8baa6",
+  "deploy_cost_font_color": "white",
+  "body_font_color": "#F5F5DC",
+  "ability_cost_font_color": "black",
+  "flavor_text_font_family": [
+    "OpenSans-Italic.ttf",
+    "Helvetica-Oblique.ttf",
+    "Arial-Italic.ttf"
+  ],
+  "flavor_text_font_size": 24,
+  "card_name_letter_spacing": 0,
+  "icon_stack_x_offset": 20,
+  "card_name_y_offset": 0,
+  "card_name_stroke_width": 0,
+  "card_name_stroke_color": "black",
+  "icon_stack_y_offset": 50,
+  "ability_text_x_offset": -25,
+  "ability_text_y_offset": 5,
+  "ability_text_max_width": 650,
+  "ability_text_line_spacing": 10,
+  "ability_text_block_spacing": 25,
+  "ability_cost_text_gap": 3,
+  "goons": [
+    {
+      "name": "Mutt",
+      "rank": "BG",
+      "duplicates": 3,
+      "faction": "PCU",
+      "deploy_cost": {
+        "wind": 1,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "CHOMP",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 1 wind to target Goon."
+        },
+        {
+          "name": "MAN'S BEST FIEND",
+          "cost": {
+            "wind": "X",
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "Some or all wind applied to an allied Goon as damage from an enemy Goon ability may be applied to Mutt instead. Add X wind to the enemy Goon that caused the damage."
+        }
+      ],
+      "notes": [],
+      "portrait_art": [
+        "mutt.jpg"
+      ]
+    },
+    {
+      "name": "Nether Probe",
+      "rank": "BG",
+      "duplicates": 3,
+      "faction": "PCU",
+      "deploy_cost": {
+        "wind": 1,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": true,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "INVASIVE PROCEDURE",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 1 wind to target Goon. If wind is added successfully, destroy this Goon. While that Goon is in play, add 1 wind to it at the beginning of your turn."
+        }
+      ],
+      "notes": [],
+      "flavor_text": "Once it goes in there, I don\u2019t think it\u2019s coming back out\u2026",
+      "portrait_art": [
+        "holeprobe.jpg"
+      ]
+    },
+    {
+      "name": "Utility Droid",
+      "rank": "BG",
+      "duplicates": 2,
+      "faction": "PCU",
+      "deploy_cost": {
+        "wind": 0,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "RESTORE",
+          "cost": {
+            "wind": "X",
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Remove X wind from target allied Goon."
+        },
+        {
+          "name": "HOT FIX",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "Destroy Utility Droid to remove all wind from target Goon before any other effects resolve."
+        }
+      ],
+      "notes": [],
+      "portrait_art": [
+        "util.png"
+      ]
+    },
+    {
+      "name": "Void Freak",
+      "rank": "BG",
+      "duplicates": 4,
+      "faction": "PCU",
+      "deploy_cost": {
+        "wind": 1,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": true,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": true,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "BLOODLUST",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": true,
+          "text": "Add 1 wind to target Goon. Must use this ability if able."
+        }
+      ],
+      "notes": [],
+      "portrait_art": [
+        "freak.jpg"
+      ]
+    },
+    {
+      "name": "Well Wraith",
+      "rank": "BG",
+      "duplicates": 1,
+      "faction": "PCU",
+      "deploy_cost": {
+        "wind": 4,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "PHANTASMAL STRIKE",
+          "cost": {
+            "wind": "X",
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add X wind to target Goon. If that Goon is destroyed, remove all wind from Overseer. Overseer is out of play until the beginning of your next turn."
+        },
+        {
+          "name": "BEHEAD",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Destroy target Basic Goon. Remove all wind from Squad Leader. This Goon is out of play until the beginning of your next turn."
+        }
+      ],
+      "notes": [],
+      "portrait_art": [
+        "overseer.jpg"
+      ]
+    },
+    {
+      "name": "Cheese Goblin",
+      "rank": "BG",
+      "duplicates": 1,
+      "faction": "PCU",
+      "deploy_cost": {
+        "wind": 1,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": true,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "AD NAUSEAM",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "Before an ability targeting Cheese Goblin resolves, add X wind to the Goon that targeted it."
+        }
+      ],
+      "portrait_art": [
+        "goblin.jpg"
+      ]
+    },
+    {
+      "name": "Grim",
+      "rank": "SL",
+      "duplicates": 1,
+      "faction": "PCU",
+      "deploy_cost": {
+        "wind": 0,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": true,
+      "mechanical": false,
+      "resist": true,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "BLINK",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Target allied Goon is removed from play until the beginning of your next turn. It returns with 0 wind."
+        },
+        {
+          "name": "GLITCH",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "Burn 1 card from your hand to remove any Goon from play before any other effects resolve. That Goon is out of play until the start of its owner's next turn and returns with the same wind it had when removed. This may be used once per turn."
+        }
+      ],
+      "flavor_text": "I seek only to find amusement in your annihilation.",
+      "portrait_art": [
+        "grim.jpg"
+      ]
+    },
+    {
+      "name": "Helvis",
+      "rank": "T",
+      "duplicates": 4,
+      "faction": "PCU",
+      "deploy_cost": {
+        "wind": 5,
+        "gear": 0,
+        "meat": 2
+      },
+      "biological": false,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": true,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "SEISMIC STOMP",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 2 wind to all enemy Goons. Protection for Squad Leader still applies."
+        },
+        {
+          "name": "INVULNERABLE",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "This Goon may not be targeted by abilities."
+        },
+        {
+          "name": "ROGUE",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "This Goon does not protect your Squad Leader from being targeted."
+        }
+      ],
+      "portrait_art": [
+        "helvis.png"
+      ]
+    },
+    {
+      "name": "Blood Howler",
+      "rank": "BG",
+      "duplicates": 4,
+      "faction": "PCU",
+      "deploy_cost": {
+        "wind": 2,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": true,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "BALLISTIC BARRAGE",
+          "cost": {
+            "wind": "X",
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Distribute X wind among target Goons."
+        }
+      ],
+      "portrait_art": [
+        "howler.png"
+      ]
+    },
+    {
+      "name": "Krax",
+      "rank": "SG",
+      "duplicates": 4,
+      "faction": "PCU",
+      "deploy_cost": {
+        "wind": 3,
+        "gear": 1,
+        "meat": 0
+      },
+      "biological": true,
+      "mechanical": false,
+      "resist": true,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "BASH IN SKULL",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 2 wind to target Goon."
+        },
+        {
+          "name": "CHAIN REACTION",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "If BASH IN SKULL destroys a Goon, add 1 wind to Krax to add 2 wind to another target Goon. This may chain as long as it is able."
+        }
+      ],
+      "portrait_art": [
+        "krax.jpg"
+      ]
+    },
+    {
+      "name": "Vex",
+      "rank": "SG",
+      "duplicates": 4,
+      "faction": "PCU",
+      "deploy_cost": {
+        "wind": 3,
+        "gear": 1,
+        "meat": 0
+      },
+      "biological": true,
+      "mechanical": false,
+      "resist": true,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "PLINK",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 1 wind to target Goon."
+        },
+        {
+          "name": "SNIPE",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Destroy target Basic Goon."
+        },
+        {
+          "name": "DOME",
+          "cost": {
+            "wind": "X",
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "At the beginning of your next turn, add X wind to target Goon. Ignore Resist."
+        },
+        {
+          "name": "NOPE",
+          "cost": {
+            "wind": 0,
+            "gear": 1,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "Burn a mechanical resource and remove Vex from play until the beginning of your next turn. Any effect targeting Vex does not resolve. Vex returns with the same wind as when removed."
+        }
+      ],
+      "portrait_art": [
+        "vex.jpg"
+      ]
+    },
+    {
+      "name": "Meatjacker",
+      "rank": "BG",
+      "duplicates": 1,
+      "faction": "PCU",
+      "deploy_cost": {
+        "wind": 0,
+        "gear": 0,
+        "meat": 1
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": true,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "JACK",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "On deploy, the target biological Goon used to pay this deploy cost enters play under your control with 0 wind. The resurrected Goon may use its abilities and contribute to deploy costs immediately. Burn that Goon at end of turn and return Meatjacker to your hand."
+        }
+      ],
+      "portrait_art": [
+        "meatjacker.png"
+      ]
+    },
+    {
+      "name": "Meat Vegetable",
+      "rank": "BG",
+      "duplicates": 4,
+      "faction": "PCU",
+      "deploy_cost": {
+        "wind": 0,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": true,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "SACRIFICE",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Destroy this Goon to contribute up to 3 wind for a Goon's deploy cost."
+        }
+      ],
+      "notes": [],
+      "flavor_text": "Carve us off a couple steaks and I\u2019ll grab the bottle of Zurion Noir I had them portal over last resupply. It should pair nicely.",
+      "portrait_art": [
+        "meatveg.jpg"
+      ]
+    },
+    {
+      "name": "Restless Natives",
+      "rank": "BG",
+      "duplicates": 4,
+      "faction": "PCU",
+      "deploy_cost": {
+        "wind": 1,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": true,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": true,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "MOB",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 2 wind to target Basic Goon."
+        }
+      ],
+      "portrait_art": [
+        "natives.jpg"
+      ]
+    },
+    {
+      "name": "Nives",
+      "rank": "BG",
+      "duplicates": 2,
+      "faction": "PCU",
+      "deploy_cost": {
+        "wind": 1,
+        "gear": 1,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": true,
+      "resist": true,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "SMILODON SABERS",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 2 wind to target Goon."
+        },
+        {
+          "name": "FAMILIAR ASSIST",
+          "cost": {
+            "wind": "X",
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "Contribute X wind to pay for an allied Goon ability."
+        },
+        {
+          "name": "MOUNT",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "As a passive ability, a Squad Goon may take this Goon as a mount. While mounted, the rider may pass an effect from an enemy Goon ability targeting the rider to this Goon."
+        }
+      ],
+      "notes": [],
+      "portrait_art": [
+        "nives.png"
+      ]
+    },
+    {
+      "name": "Primordial Oozer",
+      "rank": "BG",
+      "duplicates": 4,
+      "faction": "PCU",
+      "deploy_cost": {
+        "wind": 1,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": true,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "DISCHARGE",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 1 wind to target Basic Goon."
+        },
+        {
+          "name": "GOOP",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "After an ability targeting Primordial Oozer resolves, add 1 wind to the enemy Goon that targeted it."
+        }
+      ],
+      "portrait_art": [
+        "oozer.png"
+      ]
+    },
+    {
+      "name": "Psychoactive Toad",
+      "rank": "BG",
+      "duplicates": 2,
+      "faction": "PCU",
+      "deploy_cost": {
+        "wind": 0,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": true,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": true,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "DOSE",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 1 wind to target Goon. If wind is successfully added to a Biological Goon, target Goon is out of play until beginning of your next turn."
+        },
+        {
+          "name": "POOF",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Destroy Psychoactive Toad to remove all wind from your Squad Leader and draw 1 card."
+        }
+      ],
+      "portrait_art": [
+        "toad.jpg"
+      ]
+    },
+    {
+      "name": "Local Singularity",
+      "rank": "BG",
+      "duplicates": 4,
+      "faction": "PCU",
+      "deploy_cost": {
+        "wind": 1,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": false,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": true,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "ENTROPY",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": true,
+          "text": "No effect. Must use this ability if able."
+        },
+        {
+          "name": "GRAVITATIONAL PULL",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "Your Goons cannot be targeted by enemy abilities while Local Singularity is in play. Local Singularity must be destroyed first."
+        }
+      ],
+      "portrait_art": [
+        "singularity.png"
+      ]
+    },
+    {
+      "name": "Technomancer",
+      "rank": "BG",
+      "duplicates": 2,
+      "faction": "PCU",
+      "deploy_cost": {
+        "wind": 1,
+        "gear": 1,
+        "meat": 1
+      },
+      "biological": true,
+      "mechanical": true,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "CHANNEL",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add X wind to target Goon. X is the number of Goons in the Dead Pool."
+        },
+        {
+          "name": "RESURRECT",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Take control of a Goon from the Dead Pool. The resurrected Goon enters play with 0 wind and may act this turn. Burn the resurrected Goon at end of turn."
+        },
+        {
+          "name": "PSYCHIC HACK",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Take control of an opponent's Mechanical Basic Goon until end of turn."
+        }
+      ],
+      "notes": [],
+      "portrait_art": [
+        "technomancer.jpg"
+      ]
+    },
+    {
+      "name": "Shadow Shaman",
+      "rank": "BG",
+      "duplicates": 2,
+      "faction": "PCU",
+      "deploy_cost": {
+        "wind": 2,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": true,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": false,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "DARK MATTER DELUGE",
+          "cost": {
+            "wind": "X",
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Target player distributes X wind among their Goons as they choose. Any of your Goons may contribute to pay X wind."
+        },
+        {
+          "name": "SHADOW LANCE",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 1 wind to target Goon. If wind is successfully added to target Goon, target Goon is out of play until the beginning of your next turn."
+        }
+      ],
+      "notes": [],
+      "portrait_art": [
+        "shaman.jpg"
+      ]
+    },
+    {
+      "name": "Voidwing",
+      "rank": "BG",
+      "duplicates": 2,
+      "faction": "PCU",
+      "deploy_cost": {
+        "wind": 1,
+        "gear": 0,
+        "meat": 0
+      },
+      "biological": true,
+      "mechanical": false,
+      "resist": false,
+      "no_unwind": true,
+      "deploy_requirements": [],
+      "abilities": [
+        {
+          "name": "ADVANCE WARNING",
+          "cost": {
+            "wind": 0,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": true,
+          "must_use": false,
+          "text": "Destroy this Goon to remove a Goon from play before any other effects resolve. That Goon is out of play until the beginning of its owner's next turn and returns with the same wind it had when removed."
+        },
+        {
+          "name": "RALLY RINGER",
+          "cost": {
+            "wind": 4,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Search your deck for a card, put it into your hand, then shuffle your deck."
+        }
+      ],
+      "portrait_art": [
+        "voidling.png"
+      ]
+    }
+  ]
+}
