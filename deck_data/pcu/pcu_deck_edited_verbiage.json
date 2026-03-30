@@ -45,12 +45,12 @@
   "icon_stack_y_offset": 50,
   "ability_text_x_offset": -25,
   "ability_text_y_offset": 5,
-  "ability_text_max_width": 650,
+  "ability_text_max_width": 650,                                                                                        
   "ability_text_line_spacing": 10,
   "ability_text_block_spacing": 25,
   "ability_cost_text_gap": 3,
   "goons": [
-    {
+    {                                                                                                  
       "name": "Mutt",
       "rank": "BG",
       "duplicates": 3,
@@ -78,9 +78,9 @@
           "text": "Add 1 wind to target Goon."
         },
         {
-          "name": "MAN'S BEST FIEND",
+          "name": "PROTECT",
           "cost": {
-            "wind": "X",
+            "wind": 0,
             "gear": 0,
             "meat": 0
           },
@@ -317,7 +317,7 @@
           },
           "passive": true,
           "must_use": false,
-          "text": "Burn 1 card from your hand to remove any Goon from play before any other effects resolve. That Goon is out of play until the start of its owner's next turn and returns with the same wind it had when removed. This may be used once per turn."
+          "text": "TODO - Change - Burn 1 card from your hand to remove any Goon from play before any other effects resolve. That Goon is out of play until the start of its owner's next turn and returns with the same wind it had when removed. This may be used once per turn."
         }
       ],
       "flavor_text": "I seek only to find amusement in your annihilation.",
@@ -501,7 +501,7 @@
           },
           "passive": false,
           "must_use": false,
-          "text": "At the beginning of your next turn, add X wind to target Goon. Ignore Resist."
+          "text": "At the beginning of your next turn, add X wind to target Goon. Ignore Resist. Vex must be in play at the beginning of your next turn to resolve this effect."
         },
         {
           "name": "NOPE",

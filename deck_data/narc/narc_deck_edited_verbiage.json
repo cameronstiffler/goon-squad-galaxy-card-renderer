@@ -858,7 +858,18 @@
       "deploy_requirements": [],
       "abilities": [
         {
-          "name": "CLEAR AND SECURE",
+          "name": "DOUBLE TAP",
+          "cost": {
+            "wind": 1,
+            "gear": 0,
+            "meat": 0
+          },
+          "passive": false,
+          "must_use": false,
+          "text": "Add 2 wind to target Goon."
+        },
+        {
+          "name": "DOUBLE TAP",
           "cost": {
             "wind": 1,
             "gear": 0,
