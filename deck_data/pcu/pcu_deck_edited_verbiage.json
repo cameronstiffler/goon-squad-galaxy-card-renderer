@@ -382,7 +382,7 @@
       "abilities": [
         {
           "name": "SACRIFICE",
-          "text": "Destroy this Goon to contribute up to 3 wind for a Goon's deploy cost."
+          "text": "Destroy this Goon to contribute 3 wind for a Goon's deploy cost. "
         }
       ],
       "biological": true,
@@ -399,7 +399,7 @@
       "abilities": [
         {
           "name": "MOB",
-          "text": "Add 2 wind to target Basic Goon.",
+          "text": "Move an enemy Goon out of play.",
           "cost": {
             "wind": 1
           }
@@ -511,7 +511,7 @@
       "abilities": [
         {
           "name": "ENTROPY",
-          "text": "No effect. Must use this ability if able.",
+          "text": "Maintain effect. Must use this ability if able.",
           "cost": {
             "wind": 1
           },
@@ -520,6 +520,11 @@
         {
           "name": "GRAVITATIONAL PULL",
           "text": "Your Goons cannot be targeted by enemy abilities while Local Singularity is in play. Local Singularity must be destroyed first.",
+          "passive": true
+        },
+        {
+          "name": "IMPLODE",
+          "text": "If an enemy Goon destroys this Goon, add 1 wind to all unprotected Goons.",
           "passive": true
         }
       ],

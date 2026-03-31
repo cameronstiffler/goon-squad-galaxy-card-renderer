@@ -144,7 +144,7 @@
       "abilities": [
         {
           "name": "PEW PEW",
-          "text": "Add 2 wind to target Goon.",
+          "text": "Add 2 wind to target Goon. If this ability destroys enemy Goon, set this Goon\u2019s wind to 0.",
           "cost": {
             "wind": 1
           }
@@ -157,9 +157,11 @@
           }
         },
         {
-          "name": "PLEASING BEHAVIOR",
-          "text": "When Buzzkill destroys an enemy Goon, remove all wind from your Squad Leader.",
-          "passive": true
+          "name": "DOME",
+          "text": "At the beginning of your next turn, add X wind to target Goon. Ignore Resist. This Goon must be in play at the beginning of your next turn to resolve this effect. If this ability destroys enemy Goon, set this Goon\u2019s wind to 0.",
+          "cost": {
+            "wind": "X"
+          }
         }
       ],
       "deploy_cost": {
@@ -175,7 +177,7 @@
     {
       "name": "Marine Marauder",
       "rank": "BG",
-      "count": 3,
+      "count": 0,
       "faction": "NARC",
       "abilities": [
         {
@@ -226,12 +228,12 @@
     {
       "name": "killjoy",
       "rank": "SG",
-      "count": 4,
+      "count": 3,
       "faction": "NARC",
       "abilities": [
         {
-          "name": "PUNISH",
-          "text": "Add 2 wind to target Goon.",
+          "name": "STEP TO",
+          "text": "Add 2 wind to target Goon. If this ability destroys enemy Goon, set this Goon\u2019s wind to 0.",
           "cost": {
             "wind": 1
           }
@@ -244,8 +246,8 @@
           }
         },
         {
-          "name": "PLEASING BEHAVIOR",
-          "text": "When Killjoy destroys an enemy Goon, remove all wind from your Squad Leader.",
+          "name": "PUNISH",
+          "text": "Add 2 wind to enemy Goon who targeted this Goon this turn. If this ability destroys enemy Goon, set this Goon\u2019s wind to 0.",
           "passive": true
         }
       ],
@@ -374,12 +376,12 @@
     {
       "name": "Nob Lobber",
       "rank": "BG",
-      "count": 2,
+      "count": 3,
       "faction": "NARC",
       "abilities": [
         {
           "name": "SCATTER LOAD",
-          "text": "Target player distributes wind equal to [xw] x 2 among their Goons.",
+          "text": "Target player distributes X wind among their Goons at the beginning of your next turn. Allied Goons may contribute to X",
           "cost": {
             "wind": "X"
           }
@@ -393,7 +395,7 @@
         }
       ],
       "deploy_cost": {
-        "wind": 3,
+        "wind": 2,
         "gear": 1
       },
       "mechanical": true,
@@ -404,12 +406,12 @@
     {
       "name": "Protein Processor",
       "rank": "BG",
-      "count": 4,
+      "count": 2,
       "faction": "NARC",
       "abilities": [
         {
           "name": "BOOST",
-          "text": "Remove all wind from target Goon.",
+          "text": "At the end of your turn, remove all wind from your Goons.",
           "cost": {
             "meat": 1
           }
@@ -418,8 +420,9 @@
       "deploy_cost": {
         "gear": 1
       },
-      "biological": true,
+      "biological": false,
       "mechanical": true,
+      "no_unwind": true,
       "portrait_art": [
         "sasdroid.png"
       ]
@@ -466,7 +469,7 @@
           }
         },
         {
-          "name": "MAG DUMP",
+          "name": "PROBE LINE",
           "text": "Destroy this Goon to destroy target Basic Goon.",
           "passive": true
         }
@@ -526,10 +529,15 @@
       "rank": "BG",
       "count": 4,
       "faction": "NARC",
-      "abilities": [],
       "mechanical": true,
       "portrait_art": [
         "simulant.jpg"
+      ],
+      "abilities": [
+        {
+          "name": "SACRIFICE",
+          "text": "Destroy this Goon to contribute 2 or 3 wind for a Goon's deploy cost."
+        }
       ],
       "flavor_text": "Don\u2019t worry. We\u2019ll collect what\u2019s left of you in the salvage sweep. Just don\u2019t take a hit in the processor."
     },
@@ -629,6 +637,34 @@
       "mechanical": true,
       "portrait_art": [
         "yellowlightrobot.jpg"
+      ]
+    },
+    {
+      "name": "Sniper Drone",
+      "rank": "BG",
+      "count": 1,
+      "faction": "NARC",
+      "abilities": [
+        {
+          "name": "SNIPE",
+          "text": "Add 1 wind to target Goon. Ignores Resist.",
+          "cost": {
+            "wind": 1
+          }
+        },
+        {
+          "name": "FINISH",
+          "text": "Add 1 wind to target Goon who an allied Goon successfully added wind to this turn. This Goon is out of play until the end of the current turn.",
+          "passive": true
+        }
+      ],
+      "deploy_cost": {
+        "wind": 2,
+        "gear": 1
+      },
+      "mechanical": true,
+      "portrait_art": [
+        "sniper.jpg"
       ]
     }
   ]
