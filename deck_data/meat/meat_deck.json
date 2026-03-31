@@ -53,31 +53,21 @@
     {
       "name": "Meat Warrior",
       "rank": "BG",
-      "duplicates": 4,
+      "count": 4,
       "faction": "MEAT",
-      "deploy_cost": {
-        "wind": 0,
-        "gear": 0,
-        "meat": 1
-      },
-      "biological": true,
-      "mechanical": false,
-      "resist": false,
-      "no_unwind": false,
-      "deploy_requirements": [],
       "abilities": [
         {
           "name": "KA-BONK",
+          "text": "Add 2 wind to target Goon.",
           "cost": {
-            "wind": 1,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Add 2 wind to target Goon."
+            "wind": 1
+          }
         }
       ],
+      "deploy_cost": {
+        "meat": 1
+      },
+      "biological": true,
       "portrait_art": [
         "meatwarrior.jpg"
       ]
@@ -85,53 +75,34 @@
     {
       "name": "Kuru Cannibal",
       "rank": "BG",
-      "duplicates": 3,
+      "count": 3,
       "faction": "MEAT",
-      "deploy_cost": {
-        "wind": 2,
-        "gear": 0,
-        "meat": 1
-      },
-      "biological": true,
-      "mechanical": false,
-      "resist": false,
-      "no_unwind": false,
-      "deploy_requirements": [],
       "abilities": [
         {
           "name": "BLOOD THIRSTY",
+          "text": "Add 2 wind to target Biological Goon.",
           "cost": {
-            "wind": 1,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Add 2 wind to target Biological Goon."
+            "wind": 1
+          }
         },
         {
           "name": "CANNIBAL CORE",
+          "text": "Destroy allied Biological Goon to add 3 wind to target Goon.",
           "cost": {
-            "wind": 1,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Destroy allied Biological Goon to add 3 wind to target Goon."
+            "wind": 1
+          }
         },
         {
           "name": "BLOOD DRUNK",
-          "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": true,
-          "must_use": false,
-          "text": "When Cannibal adds wind to a Bioliogical Goon, Cannibal's owner may add 1 wind to an enemy Goon."
+          "text": "When Cannibal adds wind to a Bioliogical Goon, Cannibal's owner may add 1 wind to an enemy Goon.",
+          "passive": true
         }
       ],
+      "deploy_cost": {
+        "wind": 2,
+        "meat": 1
+      },
+      "biological": true,
       "portrait_art": [
         "cannibal.jpg"
       ]
@@ -139,95 +110,67 @@
     {
       "name": "Meat Beater",
       "rank": "BG",
-      "duplicates": 4,
+      "count": 4,
       "faction": "MEAT",
-      "deploy_cost": {
-        "wind": 1,
-        "gear": 0,
-        "meat": 0
-      },
-      "biological": true,
-      "mechanical": false,
-      "resist": false,
-      "no_unwind": true,
-      "deploy_requirements": [],
       "abilities": [
         {
           "name": "BEAT TO DEATH",
+          "text": "Destroy target Basic Goon.",
           "cost": {
-            "wind": 4,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Destroy target Basic Goon."
+            "wind": 4
+          }
         }
       ],
+      "deploy_cost": {
+        "wind": 1
+      },
+      "biological": true,
+      "no_unwind": true,
       "portrait_art": [
         "meatbeater.jpg"
       ]
     },
     {
-      "name": "Beast Rider",
-      "rank": "BG",
-      "duplicates": 0,
-      "faction": "MEAT",
       "description": {
         "accessories": [
           "a large lethargic creature with riding saddle strapped to its back"
         ],
         "pose": "riding the creature trying to make it move faster"
       },
-      "deploy_cost": {
-        "wind": 0,
-        "gear": 0,
-        "meat": 0
-      },
-      "biological": true,
-      "mechanical": false,
-      "resist": true,
-      "no_unwind": false,
-      "deploy_requirements": [],
+      "name": "Beast Rider",
+      "rank": "BG",
+      "count": 0,
+      "faction": "MEAT",
       "abilities": [],
+      "biological": true,
+      "resist": true,
       "portrait_art": [
         "beastrider.jpg"
       ]
     },
     {
-      "name": "Hump Mountie",
-      "rank": "BG",
-      "duplicates": 4,
-      "faction": "MEAT",
       "description": {
         "accessories": [
           "a large turtle with riding saddle strapped to its back and a large shield for blocking attacks"
         ],
         "pose": "carrying a large shield while riding the turtle"
       },
-      "deploy_cost": {
-        "wind": 1,
-        "gear": 0,
-        "meat": 0
-      },
-      "biological": true,
-      "mechanical": false,
-      "resist": true,
-      "no_unwind": false,
-      "deploy_requirements": [],
+      "name": "Hump Mountie",
+      "rank": "BG",
+      "count": 4,
+      "faction": "MEAT",
       "abilities": [
         {
           "name": "YOU WANT TO FIGHT - YOU FIGHT ME",
-          "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": true,
-          "must_use": false,
-          "text": "Apply ability effect allied Goon was targeted with to this Goon instead. Add 1 wind to the enemy Goon that applied the effect."
+          "text": "Apply ability effect allied Goon was targeted with to this Goon instead. Add 1 wind to the enemy Goon that applied the effect.",
+          "passive": true
         }
       ],
+      "deploy_cost": {
+        "wind": 1
+      },
+      "biological": true,
+      "resist": true,
       "portrait_art": [
         "armored_cav.jpg"
       ]
@@ -235,31 +178,19 @@
     {
       "name": "Jackholed Yokal",
       "rank": "BG",
-      "duplicates": 4,
+      "count": 4,
       "faction": "MEAT",
-      "deploy_cost": {
-        "wind": 1,
-        "gear": 0,
-        "meat": 0
-      },
-      "biological": true,
-      "mechanical": false,
-      "resist": false,
-      "no_unwind": true,
-      "deploy_requirements": [],
       "abilities": [
         {
           "name": "GOOD FOR SOMETHING",
-          "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
           "text": "Destroy to contribute up to 3 wind to the deploy cost of an allied Goon."
         }
       ],
+      "deploy_cost": {
+        "wind": 1
+      },
+      "biological": true,
+      "no_unwind": true,
       "portrait_art": [
         "dumbspearvolcano.jpg"
       ]
@@ -267,25 +198,15 @@
     {
       "name": "Mouth Breather",
       "rank": "BG",
-      "duplicates": 4,
+      "count": 4,
       "faction": "MEAT",
-      "deploy_cost": {
-        "wind": 0,
-        "gear": 0,
-        "meat": 0
-      },
-      "biological": true,
-      "mechanical": false,
-      "resist": false,
-      "no_unwind": false,
-      "deploy_requirements": [],
       "abilities": [],
+      "biological": true,
       "portrait_art": [
         "dumbcrossedeyesaxe.jpg"
       ]
     },
     {
-      "name": "Joustman",
       "description": {
         "attire": "leather gauntlets",
         "accessories": [
@@ -295,49 +216,34 @@
         "setting": "field of tall grass with trees and boulders in the background",
         "pose": "Riding on the back of a running large flightless bird with lance pointed forward"
       },
+      "name": "Joustman",
       "rank": "BG",
-      "duplicates": 3,
+      "count": 3,
       "faction": "MEAT",
-      "deploy_cost": {
-        "wind": 1,
-        "gear": 0,
-        "meat": 1
-      },
-      "biological": true,
-      "mechanical": false,
-      "resist": false,
-      "no_unwind": false,
-      "deploy_requirements": [],
       "abilities": [
         {
           "name": "LURE AND SKEWER",
+          "text": "Add 2 wind to target Goon.",
           "cost": {
-            "wind": 1,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Add 2 wind to target Goon."
+            "wind": 1
+          }
         },
         {
           "name": "IMPALE AND BAIL",
-          "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": true,
-          "must_use": false,
-          "text": "When Goon destroys an opponent's Goon, opponent's Goons may not target Goon until the end of your next turn."
+          "text": "When Goon destroys an opponent's Goon, opponent's Goons may not target Goon until the end of your next turn.",
+          "passive": true
         }
       ],
+      "deploy_cost": {
+        "wind": 1,
+        "meat": 1
+      },
+      "biological": true,
       "portrait_art": [
         "joustman.jpg"
       ]
     },
     {
-      "name": "Back Slider",
       "description": {
         "attire": "leather gauntlets",
         "accessories": [
@@ -347,60 +253,43 @@
         "setting": "rocky terrain with sparse vegetation",
         "pose": "Riding on the back of a giant snake behind the snakes head."
       },
+      "name": "Back Slider",
       "rank": "BG",
-      "duplicates": 4,
+      "count": 4,
       "faction": "MEAT",
-      "deploy_cost": {
-        "wind": 2,
-        "gear": 0,
-        "meat": 0
-      },
-      "biological": true,
-      "mechanical": false,
-      "resist": false,
-      "no_unwind": false,
-      "deploy_requirements": [],
       "abilities": [
         {
           "name": "AIMED SHOT",
+          "text": "Target Basic Goon is destroyed at the beginning of your next turn.",
           "cost": {
-            "wind": 1,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Target Basic Goon is destroyed at the beginning of your next turn."
+            "wind": 1
+          }
         },
         {
           "name": "SERPENT'S STRIKE",
+          "text": "Add X+X wind to target Goon. Ignores resist.",
           "cost": {
             "wind": "X",
-            "gear": 0,
             "meat": "X"
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Add X+X wind to target Goon. Ignores resist."
+          }
         },
         {
           "name": "VOLLEY",
+          "text": "Add 1 wind to X target Goons.",
           "cost": {
-            "wind": "X",
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Add 1 wind to X target Goons."
+            "wind": "X"
+          }
         }
       ],
+      "deploy_cost": {
+        "wind": 2
+      },
+      "biological": true,
       "portrait_art": [
         "slither3.jpg"
       ]
     },
     {
-      "name": "Gahree",
       "description": {
         "attire": "leather board shorts only",
         "accessories": [
@@ -415,32 +304,23 @@
         "pose": "looking unhinged giving the surfer 'hang loose' hand sign",
         "boots": "bare feet"
       },
+      "name": "Gahree",
       "rank": "BG",
-      "duplicates": 2,
+      "count": 2,
       "faction": "MEAT",
-      "deploy_cost": {
-        "wind": 1,
-        "gear": 0,
-        "meat": 0
-      },
-      "biological": true,
-      "mechanical": false,
-      "resist": false,
-      "no_unwind": false,
-      "deploy_requirements": [],
       "abilities": [
         {
           "name": "BONK",
+          "text": "Add 1 wind to target Goon.",
           "cost": {
-            "wind": 1,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Add 1 wind to target Goon."
+            "wind": 1
+          }
         }
       ],
+      "deploy_cost": {
+        "wind": 1
+      },
+      "biological": true,
       "portrait_art": [
         "gary.jpg"
       ]
@@ -448,59 +328,40 @@
     {
       "name": "Meat Master",
       "rank": "SG",
-      "duplicates": 3,
+      "count": 3,
       "faction": "MEAT",
-      "deploy_cost": {
-        "wind": 3,
-        "gear": 0,
-        "meat": 1
-      },
-      "biological": true,
-      "mechanical": false,
-      "resist": true,
-      "no_unwind": false,
-      "deploy_requirements": [],
       "abilities": [
         {
           "name": "KA-BONK",
+          "text": "Add 2 wind to target Goon.",
           "cost": {
-            "wind": 1,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Add 2 wind to target Goon."
+            "wind": 1
+          }
         },
         {
           "name": "ASSASSINATION ORDER",
+          "text": "Choose an ability of target allied Goon to also include this effect: Add X wind to target enemy Goon. This effect lasts until the of turn",
           "cost": {
-            "wind": "X",
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Choose an ability of target allied Goon to also include this effect: Add X wind to target enemy Goon. This effect lasts until the of turn"
+            "wind": "X"
+          }
         },
         {
           "name": "ADVANCED TACTICS",
-          "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": true,
-          "must_use": false,
-          "text": "While Goon is in play, allied Goon attacks ignore resist on enemy Goons."
+          "text": "While Goon is in play, allied Goon attacks ignore resist on enemy Goons.",
+          "passive": true
         }
       ],
+      "deploy_cost": {
+        "wind": 3,
+        "meat": 1
+      },
+      "biological": true,
+      "resist": true,
       "portrait_art": [
         "warrior.jpg"
       ]
     },
     {
-      "name": "Flesh Monger",
       "description": {
         "attire": "leather mask only",
         "weapon": "has a large hook in place of an amputated hand",
@@ -512,65 +373,42 @@
         "eyes": "obscured by the leather mask",
         "time_of_day": "nighttime"
       },
+      "name": "Flesh Monger",
       "rank": "BG",
-      "duplicates": 2,
+      "count": 2,
       "faction": "MEAT",
-      "deploy_cost": {
-        "wind": 2,
-        "gear": 0,
-        "meat": 0
-      },
-      "biological": true,
-      "mechanical": false,
-      "resist": false,
-      "no_unwind": false,
-      "deploy_requirements": [],
       "abilities": [
         {
           "name": "KA-BONK",
+          "text": "Add 2 wind to target Goon.",
           "cost": {
-            "wind": 1,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Add 2 wind to target Goon."
+            "wind": 1
+          }
         },
         {
           "name": "CULL THE HERD",
+          "text": "Destroy target Basic Biological Goon.",
           "cost": {
-            "wind": 2,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Destroy target Basic Biological Goon."
+            "wind": 2
+          }
         },
         {
           "name": "POSTHUMOUS TRYST",
+          "text": "Add 1 wind to all of opponent's Basic Goons",
           "cost": {
-            "wind": 0,
-            "gear": 0,
             "meat": 1
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Add 1 wind to all of opponent's Basic Goons"
+          }
         },
         {
           "name": "CORPSE HOARD",
-          "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": true,
-          "must_use": false,
-          "text": "While Goon is in play, opponent may not use Meat Warrior Biological resources from the Dead Pool"
+          "text": "While Goon is in play, opponent may not use Meat Warrior Biological resources from the Dead Pool",
+          "passive": true
         }
       ],
+      "deploy_cost": {
+        "wind": 2
+      },
+      "biological": true,
       "portrait_art": [
         "leatherface_alt.png"
       ]
@@ -578,53 +416,33 @@
     {
       "name": "Grunk Beast",
       "rank": "T",
-      "duplicates": 4,
+      "count": 4,
       "faction": "MEAT",
-      "deploy_cost": {
-        "wind": 5,
-        "gear": 0,
-        "meat": 2
-      },
-      "biological": false,
-      "mechanical": false,
-      "resist": false,
-      "no_unwind": true,
-      "deploy_requirements": [],
       "abilities": [
         {
           "name": "RAMPAGE",
+          "text": "Any of your Goons may contribute wind to [xw]. Opponent must distribute [xw]+[xm] wind among their Goons.",
           "cost": {
             "wind": "X",
-            "gear": 0,
             "meat": "X"
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Any of your Goons may contribute wind to [xw]. Opponent must distribute [xw]+[xm] wind among their Goons."
+          }
         },
         {
           "name": "INVULNERABLE",
-          "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": true,
-          "must_use": false,
-          "text": "May not be targeted by abilities"
+          "text": "May not be targeted by abilities",
+          "passive": true
         },
         {
           "name": "ROGUE",
-          "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": true,
-          "must_use": false,
-          "text": "Does not protect Squad Leader from being targeted by abilities. Unable to contribute wind to deploy cost of allied Goons."
+          "text": "Does not protect Squad Leader from being targeted by abilities. Unable to contribute wind to deploy cost of allied Goons.",
+          "passive": true
         }
       ],
+      "deploy_cost": {
+        "wind": 5,
+        "meat": 2
+      },
+      "no_unwind": true,
       "portrait_art": [
         "grunkbeast.jpg"
       ]
@@ -632,31 +450,20 @@
     {
       "name": "Hole Grunk",
       "rank": "BG",
-      "duplicates": 3,
+      "count": 3,
       "faction": "MEAT",
-      "deploy_cost": {
-        "wind": 1,
-        "gear": 0,
-        "meat": 0
-      },
-      "biological": true,
-      "mechanical": false,
-      "resist": false,
-      "no_unwind": true,
-      "deploy_requirements": [],
       "abilities": [
         {
           "name": "BUSHWHACK",
-          "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": true,
-          "must_use": false,
-          "text": "After effect enemy ability effect resolves on one of your Goons, add 1 wind to that enemy Goon."
+          "text": "After effect enemy ability effect resolves on one of your Goons, add 1 wind to that enemy Goon.",
+          "passive": true
         }
       ],
+      "deploy_cost": {
+        "wind": 1
+      },
+      "biological": true,
+      "no_unwind": true,
       "portrait_art": [
         "holegrunk.jpg"
       ]
@@ -664,145 +471,96 @@
     {
       "name": "Doomsayer",
       "rank": "SG",
-      "duplicates": 3,
+      "count": 3,
       "faction": "MEAT",
-      "deploy_cost": {
-        "wind": 3,
-        "gear": 0,
-        "meat": 1
-      },
-      "biological": true,
-      "mechanical": false,
-      "resist": true,
-      "no_unwind": false,
-      "deploy_requirements": [],
       "abilities": [
         {
           "name": "GIVE UP THE GHOST",
+          "text": "Destroy target allied Goon to destroy target enemy Basic Goon.",
           "cost": {
-            "wind": 1,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Destroy target allied Goon to destroy target enemy Basic Goon."
+            "wind": 1
+          }
         },
         {
           "name": "FOOLS ERRAND",
-          "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": true,
-          "must_use": false,
-          "text": "Destroy allied Goon to prevent an ability effect from resolving on Doomsayer."
+          "text": "Destroy allied Goon to prevent an ability effect from resolving on Doomsayer.",
+          "passive": true
         },
         {
           "name": "SOW DISSENT",
+          "text": "Add 1 wind to all of opponent's Basic Goons",
           "cost": {
-            "wind": 2,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Add 1 wind to all of opponent's Basic Goons"
+            "wind": 2
+          }
         }
       ],
-      "flavor_text": "You will not die in your sleep! \u2014 you will wake to your death!",
+      "deploy_cost": {
+        "wind": 3,
+        "meat": 1
+      },
+      "biological": true,
+      "resist": true,
       "portrait_art": [
         "doomsayer.jpg"
-      ]
+      ],
+      "flavor_text": "You will not die in your sleep! \u2014 you will wake to your death!"
     },
     {
       "name": "Master Baitman",
       "rank": "BG",
-      "duplicates": 2,
+      "count": 2,
       "faction": "MEAT",
-      "deploy_cost": {
-        "wind": 0,
-        "gear": 0,
-        "meat": 1
-      },
-      "biological": true,
-      "mechanical": false,
-      "resist": false,
-      "no_unwind": true,
-      "deploy_requirements": [],
       "abilities": [
         {
           "name": "RAGE BAIT",
-          "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": true,
-          "must_use": false,
-          "text": "All enemy Goons able to target and add wind to an enemy Goon with an ability must target Master Baitman on their turn if able. Even if spending the wind to do so would destroy them"
+          "text": "All enemy Goons able to target and add wind to an enemy Goon with an ability must target Master Baitman on their turn if able. Even if spending the wind to do so would destroy them",
+          "passive": true
         }
       ],
+      "deploy_cost": {
+        "meat": 1
+      },
+      "biological": true,
+      "no_unwind": true,
       "portrait_art": [
         "masterbaiteralt.jpg"
       ]
     },
     {
-      "name": "Neolithic Luddite",
       "description": {
         "weapon": "oversized war hammer made from wood and a massive stone head",
         "setting": "war torn stone-age cratered battlefield under cloudy smokey sky with destroyed robots strewn about",
         "pose": "bashing a robot to pieces with a powerful downward swing hit with the oversized war hammer"
       },
+      "name": "Neolithic Luddite",
       "rank": "BG",
-      "duplicates": 2,
+      "count": 2,
       "faction": "MEAT",
-      "deploy_cost": {
-        "wind": 2,
-        "gear": 0,
-        "meat": 0
-      },
-      "biological": true,
-      "mechanical": false,
-      "resist": false,
-      "no_unwind": false,
-      "deploy_requirements": [],
       "abilities": [
         {
           "name": "BONK",
+          "text": "Add 1 wind to target Goon.",
           "cost": {
-            "wind": 1,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Add 1 wind to target Goon."
+            "wind": 1
+          }
         },
         {
           "name": "SMASH MACHINE",
+          "text": "Destroy target basic mechanical Goon.",
           "cost": {
-            "wind": 2,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Destroy target basic mechanical Goon."
+            "wind": 2
+          }
         },
         {
           "name": "REACTIONARY CORPSE",
-          "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": true,
-          "must_use": false,
-          "text": "Add 1 wind to enemy Mechanical Goon who added wind to an allied Goon this turn."
+          "text": "Add 1 wind to enemy Mechanical Goon who added wind to an allied Goon this turn.",
+          "passive": true
         }
       ],
+      "deploy_cost": {
+        "wind": 2
+      },
+      "biological": true,
       "portrait_art": [
         "luddite.jpg"
       ]
@@ -810,201 +568,132 @@
     {
       "name": "War Master",
       "rank": "SL",
-      "duplicates": 1,
+      "count": 1,
       "faction": "MEAT",
-      "deploy_cost": {
-        "wind": 0,
-        "gear": 0,
-        "meat": 0
-      },
-      "biological": true,
-      "mechanical": false,
-      "resist": true,
-      "no_unwind": false,
-      "deploy_requirements": [],
       "abilities": [
         {
           "name": "RETURN TO MEAT",
-          "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
           "text": "Destroy allied Goon to remove all wind from Warlord."
         },
         {
           "name": "FRESH MEAT",
-          "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": true,
-          "must_use": false,
-          "text": "When one of your Goons destroys an opponent's Goon, draw a card."
+          "text": "When one of your Goons destroys an opponent's Goon, draw a card.",
+          "passive": true
         }
       ],
-      "flavor_text": "He's the reason we have a Human Resources department.",
+      "biological": true,
+      "resist": true,
       "portrait_art": [
         "warlord_alt.png"
-      ]
+      ],
+      "flavor_text": "He's the reason we have a Human Resources department."
     },
     {
       "id": "grunter",
       "name": "Grunter",
       "rank": "BG",
+      "count": 4,
       "faction": "MEAT",
-      "deploy_cost": {
-        "wind": 1,
-        "gear": 0,
-        "meat": 0
-      },
-      "duplicates": 4,
-      "biological": true,
-      "mechanical": false,
-      "resist": false,
-      "no_unwind": false,
-      "deploy_requirements": [],
       "abilities": [
         {
           "name": "BONK",
+          "text": "Add 1 wind to target Goon",
           "cost": {
-            "wind": 1,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Add 1 wind to target Goon"
+            "wind": 1
+          }
         },
         {
           "name": "MEAT SHIELD",
-          "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": true,
-          "must_use": false,
-          "text": "Destroy this Goon to prevent an ability effect from resolving on an allied Goon."
+          "text": "Destroy this Goon to prevent an ability effect from resolving on an allied Goon.",
+          "passive": true
         }
       ],
+      "deploy_cost": {
+        "wind": 1
+      },
+      "biological": true,
       "portrait_art": [
         "grunter.jpg"
-      ],
-      "flavor_text": ""
+      ]
     },
     {
       "id": "pitmaster",
       "name": "Pit Master",
       "rank": "BG",
+      "count": 2,
       "faction": "MEAT",
-      "deploy_cost": {
-        "wind": 1,
-        "gear": 0,
-        "meat": 0
-      },
-      "duplicates": 2,
-      "biological": true,
-      "mechanical": false,
-      "resist": false,
-      "no_unwind": true,
-      "deploy_requirements": [],
       "abilities": [
         {
           "name": "CLEAVE",
+          "text": "Add 1 wind to target Goon",
           "cost": {
-            "wind": 1,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Add 1 wind to target Goon"
+            "wind": 1
+          }
         },
         {
           "name": "NOW IT'S A PARTY",
+          "text": "Remove X[Bio] wind from X[Wind] allied Goons",
           "cost": {
             "wind": "X",
-            "gear": 0,
             "meat": "X"
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Remove X[Bio] wind from X[Wind] allied Goons"
+          }
         }
       ],
+      "deploy_cost": {
+        "wind": 1
+      },
+      "biological": true,
+      "no_unwind": true,
       "portrait_art": [
         "pitmaster.jpg"
-      ],
-      "flavor_text": ""
+      ]
     },
     {
       "id": "woodtosser",
-      "name": "Tosser",
       "description": {
         "weapon": "his hands are empty",
         "setting": "an open clearing with a 20 foot tall catapult made of tree timbers and lashed together with rope as the focus of the scene. The catapult arm has swung up and launched wrecked robot it was loaded with into the air towards an unseen target offscreen",
         "pose": "He is further into the background than the catapult and much smaller than the catapult. He faces the direction the catapult is shotting and mans the catapult by pulling on a large rope attached to the catapult arm to swing it upward and launch the robot into the air. He is in the background so his size is diminished by the perspective"
       },
+      "name": "Tosser",
       "rank": "BG",
+      "count": 2,
       "faction": "MEAT",
-      "deploy_cost": {
-        "wind": 2,
-        "gear": 0,
-        "meat": 0
-      },
-      "duplicates": 2,
-      "biological": false,
-      "mechanical": true,
-      "resist": false,
-      "no_unwind": false,
-      "deploy_requirements": [],
       "abilities": [
         {
           "name": "HURL BOULDER",
+          "text": "Target player must Add 3 total wind to their Goons divided as they choose.",
           "cost": {
-            "wind": 2,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Target player must Add 3 total wind to their Goons divided as they choose."
+            "wind": 2
+          }
         },
         {
           "name": "YOU FORGOT SOMETHING",
+          "text": "Target player must Add 3 total wind to their Goons divided as they choose.",
           "cost": {
             "wind": 1,
-            "gear": 1,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Target player must Add 3 total wind to their Goons divided as they choose."
+            "gear": 1
+          }
         },
         {
           "name": "INFECTED CORPSE",
+          "text": "Add 1 wind to opponents Biological Goons. Opponents Biological Goons may not use abilities until the end of your next turn. This includes passive abilities.",
           "cost": {
             "wind": 1,
-            "gear": 0,
             "meat": 1
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "Add 1 wind to opponents Biological Goons. Opponents Biological Goons may not use abilities until the end of your next turn. This includes passive abilities."
+          }
         }
       ],
+      "deploy_cost": {
+        "wind": 2
+      },
+      "mechanical": true,
       "portrait_art": [
         "woodtosser_alt.jpg"
-      ],
-      "flavor_text": ""
+      ]
     },
     {
       "id": "megafauna",
-      "name": "Mega Fauna",
       "description": {
         "goon_class": [
           "wild mega fauna"
@@ -1031,58 +720,31 @@
         "head_wear": "natural part of anatomy",
         "eyes": "small and round"
       },
+      "name": "Mega Fauna",
       "rank": "BG",
+      "count": 4,
       "faction": "MEAT",
-      "deploy_cost": {
-        "wind": 0,
-        "gear": 0,
-        "meat": 0
-      },
-      "duplicates": 4,
-      "biological": true,
-      "mechanical": false,
-      "resist": false,
-      "no_unwind": true,
-      "deploy_requirements": [],
       "abilities": [
         {
           "name": "IT IS MEAT",
-          "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
           "text": "Destroy Goon to remove all wind from allied Basic Goon"
         },
         {
           "name": "Forrest Grunk",
-          "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": true,
-          "must_use": false,
-          "text": "As a passive ability your Goons may take an unmounted Fauna as a mount. While mounted, Fauna's rider may pass an effect from an enemy Goon ability targeting the rider to Fauna."
+          "text": "As a passive ability your Goons may take an unmounted Fauna as a mount. While mounted, Fauna's rider may pass an effect from an enemy Goon ability targeting the rider to Fauna.",
+          "passive": true
         },
         {
           "name": "ROGUE",
-          "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": true,
-          "must_use": false,
-          "text": "Does not protect Squad Leader from being targeted by abilities. Unable to contribute wind to deploy cost of allied Goons."
+          "text": "Does not protect Squad Leader from being targeted by abilities. Unable to contribute wind to deploy cost of allied Goons.",
+          "passive": true
         }
       ],
+      "biological": true,
+      "no_unwind": true,
       "portrait_art": [
         "mega.jpg"
-      ],
-      "flavor_text": ""
+      ]
     }
   ]
 }

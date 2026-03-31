@@ -60,64 +60,34 @@
     {
       "name": "The Mechanic",
       "rank": "BG",
-      "duplicates": 1,
+      "count": 1,
       "faction": "OMNI",
-      "deploy_cost": {
-        "wind": 0,
-        "gear": 0,
-        "meat": 0
-      },
-      "biological": false,
-      "mechanical": false,
-      "resist": false,
-      "no_unwind": true,
-      "deploy_requirements": [],
       "abilities": [
         {
           "name": "WRONG GUY - RIGHT WRENCH",
+          "text": "X may be any combination of Wind, Mechanical, or Biological resources to contribute to your Goons deploy or ability costs this turn.",
           "cost": {
-            "wind": "X",
-            "gear": 0,
-            "meat": 0
+            "wind": "X"
           },
-          "passive": true,
-          "must_use": false,
-          "text": "X may be any combination of Wind, Mechanical, or Biological resources to contribute to your Goons deploy or ability costs this turn."
+          "passive": true
         },
         {
           "name": "HERE YOU GO",
-          "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": true,
-          "must_use": false,
-          "text": "Burn this Goon to move any card from deck to hand; reshuffle deck."
+          "text": "Burn this Goon to move any card from deck to hand; reshuffle deck.",
+          "passive": true
         },
         {
           "name": "INVULNERABLE",
-          "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": true,
-          "must_use": false,
-          "text": "May not be the target of abilities"
+          "text": "May not be the target of abilities",
+          "passive": true
         },
         {
           "name": "ROGUE",
-          "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": true,
-          "must_use": false,
-          "text": "Does not protect Squad Leader from being targeted."
+          "text": "Does not protect Squad Leader from being targeted.",
+          "passive": true
         }
       ],
+      "no_unwind": true,
       "portrait_art": [
         "mechanic.jpg"
       ]
@@ -125,53 +95,26 @@
     {
       "name": "Cosmic Horror",
       "rank": "BG",
-      "duplicates": 1,
+      "count": 1,
       "faction": "OMNI",
-      "deploy_cost": {
-        "wind": 0,
-        "gear": 0,
-        "meat": 0
-      },
-      "biological": true,
-      "mechanical": false,
-      "resist": true,
-      "no_unwind": false,
-      "deploy_requirements": [],
       "abilities": [
         {
           "name": "DRIVE INSANE",
-          "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": true,
-          "must_use": false,
-          "text": "TBD"
+          "text": "TBD",
+          "passive": true
         },
         {
           "name": "HARRASS",
-          "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": true,
-          "must_use": false,
-          "text": "Player whos current turn it is may target another player with this Goon."
+          "text": "Player whos current turn it is may target another player with this Goon.",
+          "passive": true
         },
         {
           "name": "BRING THE HORROR",
-          "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
           "text": "Player with most cards in hand at the end of each turn must Burn a card from their hand or distribute [xw] among their Goons, where X is the number of cards in their hand."
         }
       ],
+      "biological": true,
+      "resist": true,
       "portrait_art": [
         "horror.png"
       ]
@@ -179,75 +122,44 @@
     {
       "name": "Couch Surfer",
       "rank": "BG",
-      "duplicates": 1,
+      "count": 1,
       "faction": "OMNI",
-      "deploy_cost": {
-        "wind": 0,
-        "gear": 0,
-        "meat": 0
-      },
-      "biological": true,
-      "mechanical": false,
-      "resist": false,
-      "no_unwind": true,
-      "deploy_requirements": [],
       "abilities": [
         {
           "name": "INVITE SELF IN",
-          "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": true,
-          "must_use": false,
-          "text": "Deploy this Goon into ranks of opponent players Goons instead of your own. If this Goon is destroyed while under a players control, instead of destroying it, remove all wind from it and controlling player must destroy one of their Goons in place of surfer"
+          "text": "Deploy this Goon into ranks of opponent players Goons instead of your own. If this Goon is destroyed while under a players control, instead of destroying it, remove all wind from it and controlling player must destroy one of their Goons in place of surfer",
+          "passive": true
         }
       ],
-      "flavor_text": "You gotta feel kinda bad for him. It's not like he has a homeworld to go back to.",
+      "biological": true,
+      "no_unwind": true,
       "portrait_art": [
         "surfer.png"
-      ]
+      ],
+      "flavor_text": "You gotta feel kinda bad for him. It's not like he has a homeworld to go back to."
     },
     {
       "name": "Outside Talent",
       "rank": "BG",
-      "duplicates": 1,
+      "count": 1,
       "faction": "OMNI",
-      "deploy_cost": {
-        "wind": 3,
-        "gear": 0,
-        "meat": 0
-      },
-      "biological": true,
-      "mechanical": false,
-      "resist": false,
-      "no_unwind": false,
-      "deploy_requirements": [],
       "abilities": [
         {
           "name": "PROFESSIONAL RESULTS",
+          "text": "During the turn Goon exits stealth node and returns to play, distribute X + X * S wind to players Goons as you like. S is number of continuous turns spent in stealth mode prior to exiting.",
           "cost": {
-            "wind": "X",
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
-          "text": "During the turn Goon exits stealth node and returns to play, distribute X + X * S wind to players Goons as you like. S is number of continuous turns spent in stealth mode prior to exiting."
+            "wind": "X"
+          }
         },
         {
           "name": "STEALTH MODE",
-          "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
           "text": "Remove this Goon from play until the beginning of your next turn. Goon may stay in stealth mode for additional turns instead of reentering play. Goon unwinds as normal while in stealth mode. Goon may stay in stealth mode indefinitely"
         }
       ],
+      "deploy_cost": {
+        "wind": 3
+      },
+      "biological": true,
       "portrait_art": [
         "assassin.png"
       ]
@@ -255,31 +167,17 @@
     {
       "name": "Air Lock Lizard",
       "rank": "BG",
-      "duplicates": 1,
+      "count": 1,
       "faction": "OMNI",
-      "deploy_cost": {
-        "wind": 3,
-        "gear": 0,
-        "meat": 0
-      },
-      "biological": false,
-      "mechanical": false,
-      "resist": false,
-      "no_unwind": false,
-      "deploy_requirements": [],
       "abilities": [
         {
           "name": "PICK UP",
-          "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
           "text": "Remove this Goon from play until the beginning of your next turn. Goon may stay in stealth mode for additional turns instead of reentering play. Goon unwinds as normal while in stealth mode. Goon may stay in stealth mode indefinitely"
         }
       ],
+      "deploy_cost": {
+        "wind": 3
+      },
       "portrait_art": [
         "lot_lizard.jpg"
       ]
@@ -287,31 +185,15 @@
     {
       "name": "Brain",
       "rank": "BG",
-      "duplicates": 1,
+      "count": 1,
       "faction": "OMNI",
-      "deploy_cost": {
-        "wind": 0,
-        "gear": 0,
-        "meat": 0
-      },
-      "biological": true,
-      "mechanical": false,
-      "resist": false,
-      "no_unwind": false,
-      "deploy_requirements": [],
       "abilities": [
         {
           "name": "THE RUN AROUND",
-          "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
           "text": "TBD"
         }
       ],
+      "biological": true,
       "portrait_art": [
         "brain.png"
       ]
@@ -319,42 +201,19 @@
     {
       "name": "Heavy Cannon",
       "rank": "BG",
-      "duplicates": 1,
+      "count": 1,
       "faction": "OMNI",
-      "deploy_cost": {
-        "wind": 0,
-        "gear": 0,
-        "meat": 0
-      },
-      "biological": false,
-      "mechanical": true,
-      "resist": false,
-      "no_unwind": false,
-      "deploy_requirements": [],
       "abilities": [
         {
           "name": "BOOM BOOM",
-          "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
           "text": "Add [xw] to target Goon."
         },
         {
           "name": "COUPLE WITH CHASSIS",
-          "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
           "text": "On deploy, mount this Goon to a target Goon Chassis. If Chassis is destroyed, destroy this Goon."
         }
       ],
+      "mechanical": true,
       "portrait_art": [
         "heavy_cannon.png"
       ]
@@ -362,42 +221,20 @@
     {
       "name": "Power Shield",
       "rank": "BG",
-      "duplicates": 1,
+      "count": 1,
       "faction": "OMNI",
-      "deploy_cost": {
-        "wind": 0,
-        "gear": 0,
-        "meat": 0
-      },
-      "biological": false,
-      "mechanical": true,
-      "resist": false,
-      "no_unwind": true,
-      "deploy_requirements": [],
       "abilities": [
         {
           "name": "ENERGY BARRIER",
-          "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
           "text": "Mounted chassis may not be targeted by hostile abilities."
         },
         {
           "name": "COUPLE WITH CHASSIS",
-          "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
           "text": "On deploy, mount this Goon to a target Goon Chassis. If Chassis is destroyed, destroy this Goon."
         }
       ],
+      "mechanical": true,
+      "no_unwind": true,
       "portrait_art": [
         "power_shield.png"
       ]
@@ -405,31 +242,16 @@
     {
       "name": "Track Chassis",
       "rank": "BG",
-      "duplicates": 1,
+      "count": 1,
       "faction": "OMNI",
-      "deploy_cost": {
-        "wind": 0,
-        "gear": 0,
-        "meat": 0
-      },
-      "biological": false,
-      "mechanical": true,
-      "resist": true,
-      "no_unwind": false,
-      "deploy_requirements": [],
       "abilities": [
         {
           "name": "UNSTOPPABLE",
-          "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": false,
-          "must_use": false,
           "text": "TBD"
         }
       ],
+      "mechanical": true,
+      "resist": true,
       "portrait_art": [
         "tracks.png"
       ]
@@ -437,31 +259,17 @@
     {
       "name": "Naga Chassis",
       "rank": "BG",
-      "duplicates": 1,
+      "count": 1,
       "faction": "OMNI",
-      "deploy_cost": {
-        "wind": 0,
-        "gear": 0,
-        "meat": 0
-      },
-      "biological": false,
-      "mechanical": true,
-      "resist": true,
-      "no_unwind": false,
-      "deploy_requirements": [],
       "abilities": [
         {
           "name": "SLITHER",
-          "cost": {
-            "wind": 0,
-            "gear": 0,
-            "meat": 0
-          },
-          "passive": true,
-          "must_use": false,
-          "text": "This Goon may redirect hostile abilities targeting itself to Goons mounted to it"
+          "text": "This Goon may redirect hostile abilities targeting itself to Goons mounted to it",
+          "passive": true
         }
       ],
+      "mechanical": true,
+      "resist": true,
       "portrait_art": [
         "tracks.png"
       ]
