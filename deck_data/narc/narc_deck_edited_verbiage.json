@@ -226,13 +226,13 @@
       ]
     },
     {
-      "name": "killjoy",
+      "name": "Killjoy",
       "rank": "SG",
       "count": 3,
       "faction": "NARC",
       "abilities": [
         {
-          "name": "STEP TO",
+          "name": "STEP TWO",
           "text": "Add 2 wind to target Goon. If this ability destroys enemy Goon, set this Goon\u2019s wind to 0.",
           "cost": {
             "wind": 1
@@ -242,12 +242,17 @@
           "name": "EXCESSIVE FORCE",
           "text": "Destroy target Basic Goon.",
           "cost": {
-            "wind": 2
+            "wind": 1
           }
         },
         {
           "name": "PUNISH",
           "text": "Add 2 wind to enemy Goon who targeted this Goon this turn. If this ability destroys enemy Goon, set this Goon\u2019s wind to 0.",
+          "passive": true
+        },
+        {
+          "name": "SPREAD THE JOY",
+          "text": "When this Goon takes wind as damage it may divide some or all of the damage amongst itself and other allied Goons.",
           "passive": true
         }
       ],
@@ -544,7 +549,7 @@
     {
       "name": "Target Marker",
       "rank": "BG",
-      "count": 4,
+      "count": 2,
       "faction": "NARC",
       "abilities": [
         {
@@ -571,7 +576,7 @@
       "abilities": [
         {
           "name": "HOT EXTRACTION",
-          "text": "Destroy a Goon to return target allied Goon to your hand. This effect resolves before any other ability effects resolve.",
+          "text": "Destroy one of your Goons to move this Goon and any of your other Goons to out of play state. This effect resolves before any other ability effects resolve. Simultaniously return out of play Goons to active state at the end of your next turn.",
           "passive": true
         }
       ],
@@ -595,8 +600,8 @@
           }
         },
         {
-          "name": "DOUBLE TAP",
-          "text": "Add 2 wind to target Goon.",
+          "name": "ONE FOR LUCK",
+          "text": "Add 1 wind to enemy Goon whose wind is 3 exactly",
           "cost": {
             "wind": 1
           }
@@ -617,6 +622,13 @@
       "faction": "NARC",
       "abilities": [
         {
+          "name": "DETAIN",
+          "text": "Target enemy Goon is removed from play until the beginning of your next turn.",
+          "cost": {
+            "wind": 1
+          }
+        },
+        {
           "name": "PASSIFY",
           "text": "Add 2 wind to target Goon.",
           "cost": {
@@ -624,7 +636,7 @@
           }
         },
         {
-          "name": "DEMORALIZE",
+          "name": "",
           "text": "Add 1 wind to all enemy Basic Goons.",
           "cost": {
             "wind": 3
@@ -642,20 +654,22 @@
     {
       "name": "Sniper Drone",
       "rank": "BG",
-      "count": 1,
+      "count": 3,
       "faction": "NARC",
       "abilities": [
         {
-          "name": "SNIPE",
+          "name": "QUICK SNIPE",
           "text": "Add 1 wind to target Goon. Ignores Resist.",
           "cost": {
             "wind": 1
           }
         },
         {
-          "name": "FINISH",
-          "text": "Add 1 wind to target Goon who an allied Goon successfully added wind to this turn. This Goon is out of play until the end of the current turn.",
-          "passive": true
+          "name": "CLOAKED SNIPE",
+          "text": "This Goon may not be targeted by enemy Goon abilities until the beginning of your next turn. At that time, add X wind to target enemy Goon. Ignore Resist.",
+          "cost": {
+            "wind": "X"
+          }
         }
       ],
       "deploy_cost": {
