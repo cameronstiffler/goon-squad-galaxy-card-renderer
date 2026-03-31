@@ -603,7 +603,7 @@
           "name": "ONE FOR LUCK",
           "text": "Add 1 wind to enemy Goon whose wind is 3 exactly",
           "cost": {
-            "wind": 1
+            "wind": 1  
           }
         }
       ],
@@ -623,23 +623,23 @@
       "abilities": [
         {
           "name": "DETAIN",
-          "text": "Target enemy Goon is removed from play until the beginning of your next turn.",
+          "text": "Target enemy basic Goon is removed from play until the beginning of your next turn.",
           "cost": {
             "wind": 1
           }
         },
         {
           "name": "PASSIFY",
-          "text": "Add 2 wind to target Goon.",
+          "text": "Add 2 wind to target basic Goon.",
           "cost": {
             "wind": 2
           }
         },
         {
-          "name": "",
-          "text": "Add 1 wind to all enemy Basic Goons.",
+          "name": "DISPERSE",
+          "text": "Add 1 wind to X enemy basic Goons.",
           "cost": {
-            "wind": 3
+            "wind": "X"
           }
         }
       ],
