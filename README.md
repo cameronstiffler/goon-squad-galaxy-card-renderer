@@ -3,7 +3,7 @@
 Run all commands from the repository root.
 
 ## Render decks
-- Rendering now requires the `-deck` flag. Example: `python3 card_generator.py -pcu -deck -grid` (add `-dup` to respect duplicates).
+- Rendering now requires the `-deck` flag. Example: `python3 card_generator.py -pcu -deck -grid` (add `-dup` to respect card `count` values).
 - Swap `-pcu` for `-narc` or `-meat` to target those decks. Use `-auto` to generate missing art; add `-fix` to backfill missing JSON fields.
 
 ## Switching AI providers

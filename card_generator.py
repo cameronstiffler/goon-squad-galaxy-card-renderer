@@ -851,61 +851,90 @@ def create_grid_image(card_files, output_folder):
     print(f"   [+] Layout: {rows} rows, {COLS} columns")
     print(f"   [+] Total cards included: {num_cards}")
 
+def parse_cost_value(val):
+    """Coerce cost values into ints when possible while preserving 'X'."""
+    if isinstance(val, str):
+        stripped = val.strip()
+        if stripped.upper() == "X":
+            return "X"
+        match = re.search(r"-?\\d+", stripped)
+        return int(match.group(0)) if match else 0
+    if isinstance(val, (int, float)):
+        return int(val)
+    return 0
+
+
+def normalize_cost_dict(cost):
+    """Normalize sparse cost payloads into a full wind/meat/gear dictionary."""
+    if isinstance(cost, (int, str)):
+        cost = {'wind': cost}
+    elif not isinstance(cost, dict):
+        cost = {}
+
+    normalized = {}
+    for key in ('wind', 'meat', 'gear'):
+        normalized[key] = parse_cost_value(cost.get(key, 0))
+    return normalized
+
+
+def compact_cost_dict(cost):
+    """Drop zero-valued cost fields so sparse JSON can omit defaults."""
+    compacted = {}
+    for key, value in normalize_cost_dict(cost).items():
+        if isinstance(value, str):
+            if value.strip().upper() == "X":
+                compacted[key] = "X"
+        elif value != 0:
+                compacted[key] = value
+    return compacted
+
+
+def resolve_goon_count(goon, default=1):
+    """Return the canonical card count, accepting legacy 'duplicates' as a fallback."""
+    raw_count = goon.get('count', goon.get('duplicates', default))
+    if isinstance(raw_count, str):
+        raw_count = parse_cost_value(raw_count)
+    if not isinstance(raw_count, int):
+        return default
+    return max(0, raw_count)
+
+
 def normalize_goon_data(goon, faction, fix=False):
-    """Ensures a goon's data is in a consistent, usable format."""
-    if fix:
-        goon.setdefault('name', 'Unnamed Goon')
-        goon.setdefault('rank', 'BG')
-        goon.setdefault('duplicates', 1)
-        goon.setdefault('faction', faction)
-        goon.setdefault('biological', False)
-        goon.setdefault('mechanical', False)
-        goon.setdefault('resist', False)
-        goon.setdefault('no_unwind', False)
-        goon.setdefault('deploy_requirements', [])
-        goon.setdefault('abilities', [])
-        goon.setdefault('portrait_art', [])
-        
-        for ability in goon.get('abilities', []):
-            ability.setdefault('name', 'Unnamed Ability')
-            ability.setdefault('cost', {'wind': 0, 'meat': 0, 'gear': 0})
-            ability.setdefault('passive', False)
-            ability.setdefault('must_use', False)
-            ability.setdefault('text', "")
+    """Ensure a goon's data is in a consistent runtime shape while accepting sparse JSON."""
+    goon.setdefault('name', 'Unnamed Goon')
+    goon.setdefault('rank', 'BG')
 
-    def parse_cost_value(val):
-        """Coerce cost values into ints when possible while preserving 'X'."""
-        if isinstance(val, str):
-            stripped = val.strip()
-            if stripped.upper() == "X":
-                return "X"
-            match = re.search(r"-?\\d+", stripped)
-            return int(match.group(0)) if match else 0
-        if isinstance(val, (int, float)):
-            return int(val)
-        return 0
+    goon['count'] = resolve_goon_count(goon, default=1)
+    goon.pop('duplicates', None)
 
-    # Normalize ability cost structures so rendering logic can rely on dict access
-    for ability in goon.get('abilities', []):
-        cost = ability.get('cost', {})
-        if isinstance(cost, int) or isinstance(cost, str):
-            cost = {'wind': cost, 'meat': 0, 'gear': 0}
-        elif not isinstance(cost, dict):
-            cost = {'wind': 0, 'meat': 0, 'gear': 0}
+    goon['faction'] = goon.get('faction') or faction.upper()
+    goon.setdefault('biological', False)
+    goon.setdefault('mechanical', False)
+    goon.setdefault('resist', False)
+    goon.setdefault('no_unwind', False)
 
-        cost.setdefault('wind', 0)
-        cost.setdefault('meat', 0)
-        cost.setdefault('gear', 0)
-        cost['wind'] = parse_cost_value(cost.get('wind', 0))
-        cost['meat'] = parse_cost_value(cost.get('meat', 0))
-        cost['gear'] = parse_cost_value(cost.get('gear', 0))
-        ability['cost'] = cost
+    deploy_requirements = goon.get('deploy_requirements', [])
+    goon['deploy_requirements'] = deploy_requirements if isinstance(deploy_requirements, list) else []
 
+    abilities = goon.get('abilities', [])
+    if not isinstance(abilities, list):
+        abilities = []
+    normalized_abilities = []
+    for ability in abilities:
+        if not isinstance(ability, dict):
+            ability = {'name': 'Unnamed Ability', 'text': str(ability)}
+        ability.setdefault('name', 'Unnamed Ability')
+        ability.setdefault('cost', {})
+        ability.setdefault('passive', False)
+        ability.setdefault('must_use', False)
+        ability.setdefault('text', "")
+        ability['cost'] = normalize_cost_dict(ability.get('cost', {}))
+        normalized_abilities.append(ability)
+    goon['abilities'] = normalized_abilities
 
-    # Normalize portrait art entries into a list of non-empty strings
+    # Normalize portrait art entries into a list of non-empty strings.
     portrait_art = goon.get('portrait_art', [])
     if isinstance(portrait_art, str):
-        # Allow comma-separated strings to be expanded into a list for robustness.
         if "," in portrait_art:
             portrait_art = [p.strip() for p in portrait_art.split(",") if p.strip()]
         else:
@@ -916,62 +945,136 @@ def normalize_goon_data(goon, faction, fix=False):
         portrait_art = []
     goon['portrait_art'] = portrait_art
 
-    # --- Normalize deploy_cost ---
-    deploy_cost = goon.get('deploy_cost', {})
-    if isinstance(deploy_cost, int) or isinstance(deploy_cost, str):
-        # If it's an int or string, assume it's a wind cost for legacy reasons.
-        deploy_cost = {'wind': deploy_cost, 'meat': 0, 'gear': 0}
-    
-    # Ensure all cost types are present.
-    deploy_cost.setdefault('wind', 0)
-    deploy_cost.setdefault('meat', 0)
-    deploy_cost.setdefault('gear', 0)
-    deploy_cost['wind'] = parse_cost_value(deploy_cost.get('wind', 0))
-    deploy_cost['meat'] = parse_cost_value(deploy_cost.get('meat', 0))
-    deploy_cost['gear'] = parse_cost_value(deploy_cost.get('gear', 0))
-    
-    goon['deploy_cost'] = deploy_cost
-    
+    goon['deploy_cost'] = normalize_cost_dict(goon.get('deploy_cost', {}))
+
+    flavor_text = goon.get("flavor_text")
+    if not isinstance(flavor_text, str):
+        goon.pop("flavor_text", None)
+    elif not flavor_text.strip():
+        goon.pop("flavor_text", None)
+    else:
+        goon["flavor_text"] = flavor_text.strip()
+
     return goon
 
 
+def compact_goon_data(goon):
+    """Remove default-valued fields so deck JSON can stay concise."""
+    known_goon_fields = {
+        'name', 'rank', 'count', 'duplicates', 'faction', 'deploy_cost',
+        'biological', 'mechanical', 'resist', 'no_unwind', 'deploy_requirements',
+        'portrait_art', 'flavor_text', 'abilities'
+    }
+    compacted = {key: value for key, value in goon.items() if key not in known_goon_fields}
+    compacted['name'] = goon.get('name', 'Unnamed Goon')
+    compacted['rank'] = goon.get('rank', 'BG')
+    compacted['count'] = resolve_goon_count(goon, default=1)
+    compacted['faction'] = goon.get('faction')
+    compacted['abilities'] = []
+
+    deploy_cost = compact_cost_dict(goon.get('deploy_cost', {}))
+    if deploy_cost:
+        compacted['deploy_cost'] = deploy_cost
+
+    for field in ('biological', 'mechanical', 'resist', 'no_unwind'):
+        if goon.get(field, False):
+            compacted[field] = True
+
+    deploy_requirements = goon.get('deploy_requirements', [])
+    if deploy_requirements:
+        compacted['deploy_requirements'] = deploy_requirements
+
+    portrait_art = goon.get('portrait_art', [])
+    if portrait_art:
+        compacted['portrait_art'] = portrait_art
+
+    flavor_text = goon.get('flavor_text')
+    if isinstance(flavor_text, str) and flavor_text.strip():
+        compacted['flavor_text'] = flavor_text.strip()
+
+    for ability in goon.get('abilities', []):
+        known_ability_fields = {'name', 'text', 'cost', 'passive', 'must_use'}
+        compacted_ability = {key: value for key, value in ability.items() if key not in known_ability_fields}
+        compacted_ability['name'] = ability.get('name', 'Unnamed Ability')
+        compacted_ability['text'] = ability.get('text', "")
+        cost = compact_cost_dict(ability.get('cost', {}))
+        if cost:
+            compacted_ability['cost'] = cost
+        if ability.get('passive', False):
+            compacted_ability['passive'] = True
+        if ability.get('must_use', False):
+            compacted_ability['must_use'] = True
+        compacted['abilities'].append(compacted_ability)
+
+    return compacted
+
+
 def validate_goon_schema(goon):
-    """Validate that a goon dictionary has the required shape."""
-    required_card_keys = [
-        "name",
-        "rank",
-        "duplicates",
-        "faction",
-        "deploy_cost",
-        "biological",
-        "mechanical",
-        "resist",
-        "no_unwind",
-        "deploy_requirements",
-        "abilities",
-        "portrait_art",
-    ]
-    required_ability_keys = ["name", "cost", "passive", "must_use", "text"]
-
+    """Validate a goon dictionary while allowing omitted default-valued fields."""
     errors = []
-    for key in required_card_keys:
-        if key not in goon:
-            errors.append(f"missing card field '{key}'")
 
-    # -- Validate deploy_cost structure --
-    deploy_cost = goon.get('deploy_cost', {})
-    if not isinstance(deploy_cost, dict):
-        errors.append("'deploy_cost' must be a dictionary.")
-    else:
-        for cost_type in ['wind', 'meat', 'gear']:
-            if cost_type not in deploy_cost:
-                errors.append(f"'deploy_cost' is missing '{cost_type}' key.")
+    if not isinstance(goon, dict):
+        return ["goon entry must be a dictionary."]
+
+    name = goon.get("name")
+    if name is not None and not isinstance(name, str):
+        errors.append("'name' must be a string.")
+
+    rank = goon.get("rank")
+    if rank is not None and not isinstance(rank, str):
+        errors.append("'rank' must be a string when present.")
+
+    count = goon.get("count")
+    duplicates = goon.get("duplicates")
+    if count is not None and not isinstance(count, (int, str)):
+        errors.append("'count' must be an integer when present.")
+    if duplicates is not None and not isinstance(duplicates, (int, str)):
+        errors.append("'duplicates' must be an integer when present.")
+    if count is not None:
+        parsed_count = parse_cost_value(count)
+        if not isinstance(parsed_count, int) or parsed_count < 0:
+            errors.append("'count' must be a non-negative integer.")
+    if duplicates is not None:
+        parsed_duplicates = parse_cost_value(duplicates)
+        if not isinstance(parsed_duplicates, int) or parsed_duplicates < 0:
+            errors.append("'duplicates' must be a non-negative integer.")
+    if count is not None and duplicates is not None:
+        if parse_cost_value(count) != parse_cost_value(duplicates):
+            errors.append("'count' and legacy 'duplicates' disagree.")
+
+    faction = goon.get("faction")
+    if faction is not None and not isinstance(faction, str):
+        errors.append("'faction' must be a string when present.")
+
+    for field in ("biological", "mechanical", "resist", "no_unwind"):
+        if field in goon and not isinstance(goon[field], bool):
+            errors.append(f"'{field}' must be a boolean when present.")
+
+    deploy_cost = goon.get('deploy_cost')
+    if deploy_cost is not None and not isinstance(deploy_cost, (dict, int, str)):
+        errors.append("'deploy_cost' must be a dictionary, integer, or string when present.")
+    elif isinstance(deploy_cost, dict):
+        extra_keys = sorted(set(deploy_cost.keys()) - {'wind', 'meat', 'gear'})
+        if extra_keys:
+            errors.append(f"'deploy_cost' contains unknown keys: {', '.join(extra_keys)}")
+
+    deploy_requirements = goon.get("deploy_requirements")
+    if deploy_requirements is not None and not isinstance(deploy_requirements, list):
+        errors.append("'deploy_requirements' must be a list when present.")
 
     portrait_art = goon.get("portrait_art")
-    if not isinstance(portrait_art, list):
-        errors.append("portrait_art must be a list of filenames.")
-    elif not all(isinstance(p, str) for p in portrait_art):
-        errors.append("portrait_art must only contain strings.")
+    if portrait_art is not None:
+        if isinstance(portrait_art, str):
+            pass
+        elif isinstance(portrait_art, list):
+            if not all(isinstance(p, str) for p in portrait_art):
+                errors.append("portrait_art must only contain strings.")
+        else:
+            errors.append("portrait_art must be a string or list of filenames when present.")
+
+    flavor_text = goon.get("flavor_text")
+    if flavor_text is not None and not isinstance(flavor_text, str):
+        errors.append("'flavor_text' must be a string when present.")
 
     abilities = goon.get("abilities", [])
     if not isinstance(abilities, list):
@@ -979,9 +1082,24 @@ def validate_goon_schema(goon):
         return errors
 
     for ability in abilities:
-        for key in required_ability_keys:
-            if key not in ability:
-                errors.append(f"ability '{ability.get('name', '?')}' missing field '{key}'")
+        if not isinstance(ability, dict):
+            errors.append("ability entries must be dictionaries.")
+            continue
+        if "name" in ability and not isinstance(ability["name"], str):
+            errors.append("ability 'name' must be a string when present.")
+        if "text" in ability and not isinstance(ability["text"], str):
+            errors.append(f"ability '{ability.get('name', '?')}' text must be a string when present.")
+        if "passive" in ability and not isinstance(ability["passive"], bool):
+            errors.append(f"ability '{ability.get('name', '?')}' passive must be a boolean when present.")
+        if "must_use" in ability and not isinstance(ability["must_use"], bool):
+            errors.append(f"ability '{ability.get('name', '?')}' must_use must be a boolean when present.")
+        cost = ability.get("cost")
+        if cost is not None and not isinstance(cost, (dict, int, str)):
+            errors.append(f"ability '{ability.get('name', '?')}' cost must be a dictionary, integer, or string when present.")
+        elif isinstance(cost, dict):
+            extra_keys = sorted(set(cost.keys()) - {'wind', 'meat', 'gear'})
+            if extra_keys:
+                errors.append(f"ability '{ability.get('name', '?')}' cost contains unknown keys: {', '.join(extra_keys)}")
 
     return errors
 
@@ -1053,7 +1171,9 @@ You are a creative game designer for a card game called 'Goon Squad Galaxy'. You
 2.  Create a single, unique goon that fits perfectly within this faction.
 3.  The output MUST be a single, valid JSON object representing the new goon. Do not include any explanatory text or markdown formatting around the JSON.
 4.  The JSON object must conform to the structure of existing goons in the deck, including fields like "name", "rank", "deploy_cost", "abilities", etc.
-5.  Provide at least one `portrait_art` filename (array of strings) ending in `.jpg`.
+5.  Use "count" as the canonical number of copies in the deck. Legacy "duplicates" may appear in older files, but new output should use "count".
+6.  Omit fields when they are at default values. For example: omit false booleans and omit zero-valued cost keys inside cost dictionaries.
+7.  Provide at least one `portrait_art` filename (array of strings) ending in `.jpg`.
 """
 
     # 3. Call the AI to generate the goon JSON
@@ -1089,7 +1209,7 @@ You are a creative game designer for a card game called 'Goon Squad Galaxy'. You
     try:
         with open(deck_json_path, 'r+') as f:
             deck_data = json.load(f)
-            deck_data['goons'].append(new_goon)
+            deck_data['goons'].append(compact_goon_data(new_goon))
             f.seek(0) # Rewind to the beginning of the file
             json.dump(deck_data, f, indent=2)
             f.truncate() # Remove any trailing data if the new file is shorter
@@ -1272,11 +1392,8 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
     
     # --- Prepare the list of cards to be rendered ---
     goons_to_render = []
-    def get_duplicate_count(goon):
-        num_copies = goon.get('duplicates', 1)
-        if not isinstance(num_copies, int) or num_copies < 1:
-            return 1
-        return num_copies
+    def get_card_count(goon):
+        return resolve_goon_count(goon, default=1)
 
     if all_portraits:
         print("   [+] '-all-portraits' flag is active. Rendering one card per portrait_art entry.")
@@ -1285,19 +1402,19 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
             if not isinstance(portrait_list, list):
                 portrait_list = []
             portrait_count = len(portrait_list) if portrait_list else 1
-            dup_count = get_duplicate_count(goon) if create_grid and use_duplicates else 1
+            dup_count = get_card_count(goon) if create_grid and use_duplicates else 1
             for p_idx in range(portrait_count):
                 for dup_index in range(dup_count):
                     goons_to_render.append((goon, dup_index, p_idx))
     elif create_grid and use_duplicates:
-        print("   [+] '-dup' flag is active. Generating list based on 'duplicates' count.")
+        print("   [+] '-dup' flag is active. Generating list based on each card's count.")
         for goon in data['goons']:
-            num_copies = get_duplicate_count(goon)
+            num_copies = get_card_count(goon)
             for dup_index in range(num_copies):
                 goons_to_render.append((goon, dup_index, None))  # None so art selection can round-robin
     else:
         # Default behavior: render one of each unique goon
-        goons_to_render = [(goon, 0, 0) for goon in data['goons']]
+        goons_to_render = [(goon, 0, 0) for goon in data['goons'] if get_card_count(goon) > 0]
 
     prepared_art_cache = {}
 
@@ -1305,8 +1422,8 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
         card = normalize_goon_data(card_data.copy(), faction, fix=fix) # Use a copy to avoid mutation issues
         name = card.get('name', 'Unnamed Goon') # Use .get for safety
 
-        # Validate the schema for each card before processing
-        schema_errors = validate_goon_schema(card)
+        # Validate the original sparse JSON shape before rendering.
+        schema_errors = validate_goon_schema(card_data)
         if schema_errors:
             print(f"   [!] ERROR: Card '{name}' failed schema validation. Skipping card.")
             for err in schema_errors:
@@ -1604,7 +1721,8 @@ def generate_cards(json_file, art_dir, output_dir, faction, auto_generate_art=Fa
         generated_card_files.append(filename)
     
     if fix:
-        # Write the fixed data back to the JSON file
+        # Rewrite using normalized data and prune default-valued fields for concise JSON.
+        data['goons'] = [compact_goon_data(normalize_goon_data(goon, faction, fix=True)) for goon in data.get('goons', [])]
         with open(json_file, 'w') as f:
             json.dump(data, f, indent=2)
         print(f"\n--- FIXED {json_file} ---")
@@ -1622,7 +1740,7 @@ if __name__ == "__main__":
     parser.add_argument('-deck', action='store_true', help="Render all cards in the selected deck.")
     parser.add_argument('-art', type=int, metavar='N', help="Generate N standalone art portraits using the selected faction's goon_traits/art_style; ignores deck rendering.")
     parser.add_argument('-grid', action='store_true', help="Generate a single grid image of all cards in the deck.")
-    parser.add_argument('-dup', action='store_true', help="When using -grid, render multiple copies based on the 'duplicates' value.")
+    parser.add_argument('-dup', action='store_true', help="When using -grid, render multiple copies based on each card's 'count' value.")
     parser.add_argument('-all-portraits', action='store_true', help="Render one card per portrait_art entry for each goon.")
     parser.add_argument('-goon', nargs='?', const='__generate__', default=None, help="Generate a new goon definition. Optionally provide a name.")
     parser.add_argument('-fix', action='store_true', help="Automatically fix missing fields in the JSON data.")

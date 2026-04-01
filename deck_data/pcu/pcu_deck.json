@@ -59,22 +59,19 @@
       "abilities": [
         {
           "name": "CHOMP",
-          "text": "Add 1 wind to target Goon",
+          "text": "Add 1 wind to target Goon.",
           "cost": {
-            "wind": 1
+            "wind": 2
           }
         },
         {
-          "name": "MANS BEST FIEND",
-          "text": "Some or all wind applied to allied Goon as damage from enemy Goon ability may be applied to Mutt instead. Add [xw] wind to enemy Goon who caused damage.",
-          "cost": {
-            "wind": "X"
-          },
+          "name": "PROTECT",
+          "text": "Wind applied to an allied Goon as damage from an enemy Goon ability is automatically applied to Mutt instead. Add 1 wind to the enemy Goon that caused the damage.",
           "passive": true
         }
       ],
       "deploy_cost": {
-        "wind": 1
+        "wind": 0
       },
       "mechanical": true,
       "portrait_art": [
@@ -90,7 +87,7 @@
       "abilities": [
         {
           "name": "INVASIVE PROCEDURE",
-          "text": "Add 1 wind to target Goon. If wind is added successfully, destroy this Goon but deal 1 wind to target Goon at the beginning of your turn every turn while it is in play.",
+          "text": "Add 1 wind to target Goon. If wind is added successfully, destroy this Goon. While that Goon is in play, add 1 wind to it at the beginning of your turn.",
           "cost": {
             "wind": 1
           }
@@ -104,7 +101,7 @@
       "portrait_art": [
         "holeprobe.jpg"
       ],
-      "flavor_text": "Once it goes in there I don\u2019t think its coming back out..."
+      "flavor_text": "Once it goes in there, I don\u2019t think it\u2019s coming back out\u2026"
     },
     {
       "notes": [],
@@ -115,14 +112,14 @@
       "abilities": [
         {
           "name": "RESTORE",
-          "text": "Remove X wind from target allied Goon",
+          "text": "Remove X wind from target allied Goon.",
           "cost": {
             "wind": "X"
           }
         },
         {
           "name": "HOT FIX",
-          "text": "Destroy Utility Droid to remove all wind from target Goon before any other effects resolve",
+          "text": "Destroy Utility Droid to remove all wind from target Goon before any other effects resolve.",
           "passive": true
         }
       ],
@@ -140,7 +137,7 @@
       "abilities": [
         {
           "name": "BLOODLUST",
-          "text": "Add 1 wind to target Goon. Must use this ability if able",
+          "text": "Add 1 wind to target Goon. Must use this ability if able.",
           "cost": {
             "wind": 1
           },
@@ -165,7 +162,7 @@
       "abilities": [
         {
           "name": "PHANTASMAL STRIKE",
-          "text": "Add X to target Goon. If target Goon is destroyed, remove all wind from Overseer and Overseer is out of play until the beginning of your next turn.",
+          "text": "Add X wind to target Goon. If that Goon is destroyed, remove all wind from Overseer. Overseer is out of play until the beginning of your next turn.",
           "cost": {
             "wind": "X"
           }
@@ -189,8 +186,8 @@
       "faction": "PCU",
       "abilities": [
         {
-          "name": "ADD NAUSEAM",
-          "text": "Add [xw] to Goon who targets Goblin with ability before ability effect resolves.",
+          "name": "AD NAUSEAM",
+          "text": "Before an ability targeting Cheese Goblin resolves, add X wind to the Goon that targeted it.",
           "passive": true
         }
       ],
@@ -209,16 +206,23 @@
       "faction": "PCU",
       "abilities": [
         {
+          "name": "KNOW",
+          "text": "Look at the next card in your deck and place it back on top.",
+          "passive": true
+        },
+        {
           "name": "BLINK",
-          "text": "Target allied Goon is removed from play until the beginning of your next turn. It returns with no wind.",
+          "text": "Target allied Goon is removed from play until the beginning of your next turn. It returns with 0 wind.",
           "cost": {
             "wind": 1
           }
         },
         {
-          "name": "GLITCH",
-          "text": "Burn a card from hand to remove any Goon from play before any other effects resolve. Goon is out of play until start of owners next turn and returns with the same wind it had when removed. This may be used once per turn.",
-          "passive": true
+          "name": "PORTAL",
+          "text": "Search your deck and move a card from deck to hand. Shuffle deck.",
+          "cost": {
+            "wind": 1
+          }
         }
       ],
       "biological": true,
@@ -226,7 +230,7 @@
       "portrait_art": [
         "grim.jpg"
       ],
-      "flavor_text": "I seek only to find amusement in your annihilation"
+      "flavor_text": "I seek only to find amusement in your annihilation."
     },
     {
       "name": "Helvis",
@@ -236,19 +240,19 @@
       "abilities": [
         {
           "name": "SEISMIC STOMP",
-          "text": "Add 2 wind to all enemy Goons. Protection for Squad Leader still applies",
+          "text": "Add 2 wind to all enemy Goons. Protection for Squad Leader still applies.",
           "cost": {
             "wind": 1
           }
         },
         {
           "name": "INVULNERABLE",
-          "text": "May not be targeted by abilities",
+          "text": "This Goon may not be targeted by abilities.",
           "passive": true
         },
         {
           "name": "ROGUE",
-          "text": "Does not protect Squad Leader from being targeted.",
+          "text": "This Goon does not protect your Squad Leader from being targeted.",
           "passive": true
         }
       ],
@@ -292,14 +296,14 @@
       "abilities": [
         {
           "name": "BASH IN SKULL",
-          "text": "Add 2 wind to target Goon",
+          "text": "Add 2 wind to target Goon.",
           "cost": {
             "wind": 1
           }
         },
         {
           "name": "CHAIN REACTION",
-          "text": "If BASH IN SKULL destroys a Goon, Add 1 wind to Krax to add 2 wind to another target Goon. This may chain as long as it is able.",
+          "text": "If BASH IN SKULL destroys a Goon, add 1 wind to Krax to add 2 wind to another target Goon. This may chain as long as it is able.",
           "passive": true
         }
       ],
@@ -321,25 +325,25 @@
       "abilities": [
         {
           "name": "PLINK",
-          "text": "Add 1 wind to target Goon"
+          "text": "Add 1 wind to target Goon."
         },
         {
           "name": "SNIPE",
-          "text": "Destroy Basic Goon",
+          "text": "Destroy target Basic Goon.",
           "cost": {
             "wind": 1
           }
         },
         {
           "name": "DOME",
-          "text": "Add X wind to target Goon at the beginning of your next turn. Ignores Resist",
+          "text": "At the beginning of your next turn, add X wind to target Goon. Ignore Resist. Vex must be in play at the beginning of your next turn to resolve this effect.",
           "cost": {
             "wind": "X"
           }
         },
         {
           "name": "NOPE",
-          "text": "Remove Vex from play until the beginning of your next turn. Any effect targeting Vex does not resolve. Vex returns with the same wind as when removed.",
+          "text": "Burn a mechanical resource and remove Vex from play until the beginning of your next turn. Any effects from all Goon types targeting Vex do not resolve. Vex returns with the same wind as when removed.",
           "cost": {
             "gear": 1
           },
@@ -364,7 +368,7 @@
       "abilities": [
         {
           "name": "JACK",
-          "text": "On deploy, target biological Goon used to pay deploy cost enters play under your control with no wind. The resurrected Goon may use its abilities and contribute to deploy costs immediately. Burn target Goon at end of turn and return meatjacker to your hand."
+          "text": "On deploy, the target biological Goon used to pay this deploy cost enters play under your control with 0 wind. The resurrected Goon may use its abilities and contribute to deploy costs immediately. Burn that Goon at end of turn and return Meatjacker to your hand."
         }
       ],
       "deploy_cost": {
@@ -385,7 +389,7 @@
       "abilities": [
         {
           "name": "SACRIFICE",
-          "text": "Destroy this Goon to contribute up to 3 wind for a Goon's deploy cost."
+          "text": "Destroy this Goon to contribute 3 wind for a Goon's deploy cost. "
         }
       ],
       "biological": true,
@@ -402,7 +406,7 @@
       "abilities": [
         {
           "name": "MOB",
-          "text": "Add 2 wind to target Basic Goon",
+          "text": "Move an enemy Goon out of play.",
           "cost": {
             "wind": 1
           }
@@ -426,14 +430,14 @@
       "abilities": [
         {
           "name": "SMILODON SABERS",
-          "text": "Add 2 wind to target Goon",
+          "text": "Add 2 wind to target Goon.",
           "cost": {
             "wind": 1
           }
         },
         {
           "name": "FAMILIAR ASSIST",
-          "text": "Contribute [xw] to pay for allied Goon ability.",
+          "text": "Contribute X wind to pay for an allied Goon ability.",
           "cost": {
             "wind": "X"
           },
@@ -441,7 +445,7 @@
         },
         {
           "name": "MOUNT",
-          "text": "As a passive ability a Squad Goon may take an this Goon as a mount. While mounted, rider Goon may pass an effect from an enemy Goon ability targeting the rider to this Goon.",
+          "text": "As a passive ability, a Squad Goon may take this Goon as a mount. While mounted, the rider may pass an effect from an enemy Goon ability targeting the rider to this Goon.",
           "passive": true
         }
       ],
@@ -463,14 +467,14 @@
       "abilities": [
         {
           "name": "DISCHARGE",
-          "text": "Add 1 wind to target Basic Goon",
+          "text": "Add 1 wind to target Basic Goon.",
           "cost": {
             "wind": 1
           }
         },
         {
           "name": "GOOP",
-          "text": "Add [1w] to Enemy Goon who targets Oozer with ability after effect resolves.",
+          "text": "After an ability targeting Primordial Oozer resolves, add 1 wind to the enemy Goon that targeted it.",
           "passive": true
         }
       ],
@@ -497,7 +501,7 @@
         },
         {
           "name": "POOF",
-          "text": "Destroy Psychoactive Toad to remove all wind from Squad Leader and draw a card."
+          "text": "Destroy Psychoactive Toad to remove all wind from your Squad Leader and draw 1 card."
         }
       ],
       "biological": true,
@@ -514,7 +518,7 @@
       "abilities": [
         {
           "name": "ENTROPY",
-          "text": "No effect. Must use this ability if able.",
+          "text": "Maintain effect. Must use this ability if able.",
           "cost": {
             "wind": 1
           },
@@ -522,7 +526,12 @@
         },
         {
           "name": "GRAVITATIONAL PULL",
-          "text": "Player's Goons cannot be targeted by unfriendly abilities while Singularity is in play. Singularity must be destroyed first.",
+          "text": "Your Goons cannot be targeted by enemy abilities while Local Singularity is in play. Local Singularity must be destroyed first.",
+          "passive": true
+        },
+        {
+          "name": "IMPLODE",
+          "text": "If an enemy Goon destroys this Goon, add 1 wind to all unprotected Goons.",
           "passive": true
         }
       ],
@@ -543,21 +552,21 @@
       "abilities": [
         {
           "name": "CHANNEL",
-          "text": "Add [xw] to target Goon. X is the number of Goons in the dead pool.",
+          "text": "Add X wind to target Goon. X is the number of Goons in the Dead Pool.",
           "cost": {
             "wind": 1
           }
         },
         {
           "name": "RESURRECT",
-          "text": "Take control of a Goon from Dead Pool. The ressurected Goon enters play with no wind and may act this turn. Burn ressurected Goon at end of turn",
+          "text": "Take control of a Goon from the Dead Pool. The resurrected Goon enters play with 0 wind and may act this turn. Burn the resurrected Goon at end of turn.",
           "cost": {
             "wind": 1
           }
         },
         {
           "name": "PSYCHIC HACK",
-          "text": "Take control of an opponent's Mechanical Basic Goon until end of turn",
+          "text": "Take control of an opponent's Mechanical Basic Goon until end of turn.",
           "cost": {
             "wind": 1
           }
@@ -583,7 +592,7 @@
       "abilities": [
         {
           "name": "DARK MATTER DELUGE",
-          "text": "Target player must distribute [xw] to their Goons as they choose. Any of your Goons may contribute to [xw].",
+          "text": "Target player distributes X wind among their Goons as they choose. Any of your Goons may contribute to pay X wind.",
           "cost": {
             "wind": "X"
           }
@@ -612,12 +621,12 @@
       "abilities": [
         {
           "name": "ADVANCE WARNING",
-          "text": "Destroy this Goon to remove a Goon from play before any effects resolve. Goon is out of play until the beginning of owner's next turn and returns with the same wind it had when removed.",
+          "text": "Destroy this Goon to remove a Goon from play before any other effects resolve. That Goon is out of play until the beginning of its owner's next turn and returns with the same wind it had when removed.",
           "passive": true
         },
         {
           "name": "RALLY RINGER",
-          "text": "Move any card from deck to hand; reshuffle deck.",
+          "text": "Search your deck for a card, put it into your hand, then shuffle your deck.",
           "cost": {
             "wind": 4
           }

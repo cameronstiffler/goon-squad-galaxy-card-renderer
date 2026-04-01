@@ -63,7 +63,7 @@
       "abilities": [
         {
           "name": "RESOURCEFUL",
-          "text": "Draw a card",
+          "text": "Draw 1 card.",
           "cost": {
             "wind": 1
           }
@@ -84,14 +84,14 @@
       "abilities": [
         {
           "name": "LITIGIOUS GRIDLOCK",
-          "text": "Target goon does not unwind in its next unwind phase.",
+          "text": "Target Goon does not unwind during its next Unwind Phase.",
           "cost": {
             "wind": 1
           }
         },
         {
           "name": "LEGAL LOOPHOLE",
-          "text": "Draw a card and force opponent to Burn a card from their hand.",
+          "text": "Draw 1 card. Your opponent Burns 1 card from their hand.",
           "cost": {
             "wind": 3
           }
@@ -113,7 +113,7 @@
       "abilities": [
         {
           "name": "SLUG",
-          "text": "Add 2 wind to target Goon. Ignores Resist.",
+          "text": "Add 2 wind to target Goon. Ignore Resist.",
           "cost": {
             "wind": 1
           }
@@ -144,7 +144,7 @@
       "abilities": [
         {
           "name": "PEW PEW",
-          "text": "Add 2 wind to target Goon.",
+          "text": "Add 2 wind to target Goon. If this ability destroys enemy Goon, set this Goon\u2019s wind to 0.",
           "cost": {
             "wind": 1
           }
@@ -157,9 +157,11 @@
           }
         },
         {
-          "name": "PLEASING BEHAVIOR",
-          "text": "When Buzzkill destoys an enemy Goon, remove all wind from Squad Leader",
-          "passive": true
+          "name": "DOME",
+          "text": "At the beginning of your next turn, add X wind to target Goon. Ignore Resist. This Goon must be in play at the beginning of your next turn to resolve this effect. If this ability destroys enemy Goon, set this Goon\u2019s wind to 0.",
+          "cost": {
+            "wind": "X"
+          }
         }
       ],
       "deploy_cost": {
@@ -175,7 +177,7 @@
     {
       "name": "Marine Marauder",
       "rank": "BG",
-      "count": 3,
+      "count": 0,
       "faction": "NARC",
       "abilities": [
         {
@@ -210,7 +212,7 @@
       "abilities": [
         {
           "name": "PATROL",
-          "text": "When allied Goon is targeted by an enemy ability, destroy k-9.0 to prevent that ability from resolving.",
+          "text": "When an allied Goon is targeted by an enemy ability, destroy K-9.0 to prevent that ability from resolving.",
           "passive": true
         }
       ],
@@ -224,28 +226,33 @@
       ]
     },
     {
-      "name": "killjoy",
+      "name": "Killjoy",
       "rank": "SG",
-      "count": 4,
+      "count": 3,
       "faction": "NARC",
       "abilities": [
         {
-          "name": "PUNISH",
-          "text": "Add 2 wind to target Goon.",
+          "name": "STEP TWO",
+          "text": "Add 2 wind to target Goon. If this ability destroys enemy Goon, set this Goon\u2019s wind to 0.",
           "cost": {
             "wind": 1
           }
         },
         {
           "name": "EXCESSIVE FORCE",
-          "text": "Destroy target Basic Goon",
+          "text": "Destroy target Basic Goon.",
           "cost": {
-            "wind": 2
+            "wind": 1
           }
         },
         {
-          "name": "PLEASING BEHAVIOR",
-          "text": "When Killjoy destoys an enemy Goon, remove all wind from Squad Leader",
+          "name": "PUNISH",
+          "text": "Add 2 wind to enemy Goon who targeted this Goon this turn. If this ability destroys enemy Goon, set this Goon\u2019s wind to 0.",
+          "passive": true
+        },
+        {
+          "name": "SPREAD THE JOY",
+          "text": "When this Goon takes wind as damage it may divide some or all of the damage amongst itself and other allied Goons.",
           "passive": true
         }
       ],
@@ -267,14 +274,14 @@
       "abilities": [
         {
           "name": "SEEK TARGET",
-          "text": "Destroy Lurker, add 2 wind to target Goon",
+          "text": "Destroy Lurker to add 2 wind to target Goon.",
           "cost": {
             "wind": 2
           }
         },
         {
           "name": "REACTIVE MUNITIONS",
-          "text": "Destroy Goon who destroys Lurker.",
+          "text": "Destroy the Goon that destroys Lurker.",
           "passive": true
         }
       ],
@@ -294,7 +301,7 @@
       "faction": "NARC",
       "abilities": [
         {
-          "name": "DORSAL CAVITY RINSE",
+          "name": "DORSAL CAVITY SCRUB",
           "text": "Remove all wind from target allied Goon.",
           "cost": {
             "wind": 2
@@ -346,19 +353,19 @@
       "abilities": [
         {
           "name": "ORBITAL SMITE",
-          "text": "Destroy target Goon. ",
+          "text": "Destroy target Goon.",
           "cost": {
             "wind": 1
           }
         },
         {
-          "name": "INVULNERABLE",
-          "text": "May not be targeted by abilities",
+          "name": "IMMUNE",
+          "text": "This Goon may not be targeted by abilities and in general is unaffected by the effects of other Goons.",
           "passive": true
         },
         {
           "name": "ROGUE",
-          "text": "Does not protect Squad Leader from being targeted by abilities",
+          "text": "This Goon does not protect your Squad Leader from being targeted by abilities.",
           "passive": true
         }
       ],
@@ -374,26 +381,19 @@
     {
       "name": "Nob Lobber",
       "rank": "BG",
-      "count": 2,
+      "count": 3,
       "faction": "NARC",
       "abilities": [
         {
           "name": "SCATTER LOAD",
-          "text": "Target player must distribute [xw] x 2 among their Goons.",
+          "text": "Target player distributes X wind among their Goons at the beginning of your next turn. Allied Goons may contribute to X",
           "cost": {
             "wind": "X"
-          }
-        },
-        {
-          "name": "GOON BUSTER",
-          "text": "Add 2 wind to target Goon.",
-          "cost": {
-            "wind": 1
           }
         }
       ],
       "deploy_cost": {
-        "wind": 3,
+        "wind": 2,
         "gear": 1
       },
       "mechanical": true,
@@ -404,12 +404,12 @@
     {
       "name": "Protein Processor",
       "rank": "BG",
-      "count": 4,
+      "count": 2,
       "faction": "NARC",
       "abilities": [
         {
           "name": "BOOST",
-          "text": "Remove all wind from target Goon.",
+          "text": "At the end of your turn, remove all wind from your Goons.",
           "cost": {
             "meat": 1
           }
@@ -418,8 +418,9 @@
       "deploy_cost": {
         "gear": 1
       },
-      "biological": true,
+      "biological": false,
       "mechanical": true,
+      "no_unwind": true,
       "portrait_art": [
         "sasdroid.png"
       ]
@@ -432,7 +433,7 @@
       "abilities": [
         {
           "name": "DEFEND",
-          "text": "When an enemy Goon targets one of your Goons, you may add 1 wind to enemy Goon before its ability effects resolve.",
+          "text": "When an enemy Goon targets one of your Goons, you may add 1 wind to that enemy Goon before its ability resolves.",
           "passive": true
         }
       ],
@@ -466,7 +467,7 @@
           }
         },
         {
-          "name": "MAG DUMP",
+          "name": "PROBE LINE",
           "text": "Destroy this Goon to destroy target Basic Goon.",
           "passive": true
         }
@@ -487,7 +488,7 @@
       "abilities": [
         {
           "name": "FORTIFICATION NETWORK",
-          "text": "While 2 or more Pylons are in play, Player's Goons may not be targeted by opponents Goons.",
+          "text": "While 2 or more Shield Pylons are in play, your Goons may not be targeted by your opponent\u2019s Goons.",
           "passive": true
         }
       ],
@@ -508,7 +509,7 @@
       "abilities": [
         {
           "name": "COVER",
-          "text": "Select allied Goon to target with COVER when deployed. Target Goon may not be target of enemy Goon abilities while Hover Shield is in play. Hover Shield may not select a new target to COVER while its original target is in play.",
+          "text": "When deployed, choose an allied Goon to COVER. The covered Goon may not be the target of enemy Goon abilities while Hover Shield is in play. Hover Shield may not choose a new Goon to COVER while its original target is in play.",
           "passive": true
         }
       ],
@@ -526,22 +527,27 @@
       "rank": "BG",
       "count": 4,
       "faction": "NARC",
-      "abilities": [],
       "mechanical": true,
       "portrait_art": [
         "simulant.jpg"
       ],
-      "flavor_text": "Don't worry. We'll collect whats left of you in the salvage sweep. Just don't take a hit in the processor."
+      "abilities": [
+        {
+          "name": "SACRIFICE",
+          "text": "Destroy this Goon to contribute 2 or 3 wind for a Goon's deploy cost."
+        }
+      ],
+      "flavor_text": "Don\u2019t worry. We\u2019ll collect what\u2019s left of you in the salvage sweep. Just don\u2019t take a hit in the processor."
     },
     {
       "name": "Target Marker",
       "rank": "BG",
-      "count": 4,
+      "count": 2,
       "faction": "NARC",
       "abilities": [
         {
           "name": "MARK TARGET",
-          "text": "Target enemy Goon with MARK TARGET. Until end of turn, allied Goons targeting marked Goon with an ability pay 1 less wind to do so.",
+          "text": "Choose an enemy Goon to MARK. Until end of turn, allied Goons pay 1 less wind to target the marked Goon with abilities.",
           "cost": {
             "wind": 1
           }
@@ -563,7 +569,7 @@
       "abilities": [
         {
           "name": "HOT EXTRACTION",
-          "text": "Destroy Goon to move target allied Goon back to your hand. This effect resolves before any other ability effect resolves.",
+          "text": "Destroy one of your Goons to move this Goon and any of your other Goons to out of play state. This effect resolves before any other ability effects resolve. Simultaniously return out of play Goons to active state at the end of your next turn.",
           "passive": true
         }
       ],
@@ -580,10 +586,17 @@
       "faction": "NARC",
       "abilities": [
         {
-          "name": "CLEAR AND SECURE",
-          "text": "Add [2w] to target Goon.",
+          "name": "DOUBLE TAP",
+          "text": "Add 2 wind to target Goon.",
           "cost": {
             "wind": 1
+          }
+        },
+        {
+          "name": "ONE FOR LUCK",
+          "text": "Add 1 wind to enemy Goon whose wind is 3 exactly",
+          "cost": {
+            "wind": 1  
           }
         }
       ],
@@ -602,17 +615,24 @@
       "faction": "NARC",
       "abilities": [
         {
+          "name": "DETAIN",
+          "text": "Target enemy basic Goon is removed from play until the beginning of your next turn.",
+          "cost": {
+            "wind": 1
+          }
+        },
+        {
           "name": "PASSIFY",
-          "text": "Add [2w] to target Goon.",
+          "text": "Add 2 wind to target basic Goon.",
           "cost": {
             "wind": 2
           }
         },
         {
-          "name": "DEMORALIZE",
-          "text": "Add [1w] to all enemy Basic Goons.",
+          "name": "DISPERSE",
+          "text": "Add 1 wind to X enemy basic Goons.",
           "cost": {
-            "wind": 3
+            "wind": "X"
           }
         }
       ],
@@ -622,6 +642,36 @@
       "mechanical": true,
       "portrait_art": [
         "yellowlightrobot.jpg"
+      ]
+    },
+    {
+      "name": "Sniper Drone",
+      "rank": "BG",
+      "count": 3,
+      "faction": "NARC",
+      "abilities": [
+        {
+          "name": "QUICK SNIPE",
+          "text": "Add 1 wind to target Goon. Ignores Resist.",
+          "cost": {
+            "wind": 1
+          }
+        },
+        {
+          "name": "CLOAKED SNIPE",
+          "text": "Move this Goon to out of play state until the beginning of your next turn. At that time, add X wind to target enemy Goon. Ignore Resist.",
+          "cost": {
+            "wind": "X"
+          }
+        }
+      ],
+      "deploy_cost": {
+        "wind": 2,
+        "gear": 1
+      },
+      "mechanical": true,
+      "portrait_art": [
+        "sniper.jpg"
       ]
     }
   ]
