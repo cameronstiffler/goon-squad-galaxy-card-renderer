@@ -85,7 +85,7 @@
         {
           "name": "LITIGIOUS GRIDLOCK",
           "text": "Target Goon does not unwind during its next Unwind Phase.",
-          "cost": {
+          "co                                                                                                                                                                               st": {
             "wind": 1
           }
         },
@@ -108,7 +108,7 @@
     {
       "name": "Bruut Enforcer",
       "rank": "SG",
-      "count": 1,
+      "count": 4                                                                                                                                              ,
       "faction": "NARC",
       "abilities": [
         {
@@ -217,7 +217,7 @@
         }
       ],
       "deploy_cost": {
-        "wind": 1
+        "wind": 0
       },
       "mechanical": true,
       "no_unwind": true,
@@ -319,7 +319,7 @@
     {
       "name": "Taze Mistrex",
       "rank": "BG",
-      "count": 4,
+      "count": 1,
       "faction": "NARC",
       "abilities": [
         {
@@ -381,7 +381,7 @@
     {
       "name": "Nob Lobber",
       "rank": "BG",
-      "count": 3,
+      "count": 4,
       "faction": "NARC",
       "abilities": [
         {
@@ -409,7 +409,7 @@
       "abilities": [
         {
           "name": "BOOST",
-          "text": "At the end of your turn, remove all wind from your Goons.",
+          "text": "At the end of your turn, remove all wind from your Goons who don't have the no unwind symbol.",
           "cost": {
             "meat": 1
           }
@@ -449,31 +449,24 @@
     {
       "name": "Fwd Patrol Gun",
       "rank": "BG",
-      "count": 0,
+      "count": 4,
       "faction": "NARC",
       "abilities": [
         {
-          "name": "AUTOBURST",
-          "text": "Add 1 wind to target Basic Goon.",
+          "name": "CONTACT",
+          "text": "Add 1 wind to target Goon.",
           "cost": {
             "wind": 1
           }
         },
         {
-          "name": "FOCUS FIRE",
-          "text": "Add 2 wind to target Goon.",
-          "cost": {
-            "wind": 2
-          }
-        },
-        {
-          "name": "PROBE LINE",
-          "text": "Destroy this Goon to destroy target Basic Goon.",
+          "name": "PROBE DEFENSES",
+          "text": "Destroy this Goon to destroy target Basic Goon before any effects resolve.",
           "passive": true
         }
       ],
       "deploy_cost": {
-        "wind": 2
+        "wind": 0
       },
       "mechanical": true,
       "portrait_art": [
@@ -483,7 +476,7 @@
     {
       "name": "Shield Pylon",
       "rank": "BG",
-      "count": 4,
+      "count": 0,
       "faction": "NARC",
       "abilities": [
         {
@@ -542,7 +535,7 @@
     {
       "name": "Target Marker",
       "rank": "BG",
-      "count": 2,
+      "count": 0,
       "faction": "NARC",
       "abilities": [
         {
@@ -564,7 +557,7 @@
     {
       "name": "Orbital Transport",
       "rank": "BG",
-      "count": 2,
+      "count": 0,
       "faction": "NARC",
       "abilities": [
         {
@@ -616,23 +609,23 @@
       "abilities": [
         {
           "name": "DETAIN",
-          "text": "Target enemy basic Goon is removed from play until the beginning of your next turn.",
+          "text": "Target enemy Basic Goon is removed from play until the beginning of your next turn.",
+          "cost": {
+            "wind": 0
+          }
+        },
+        {
+          "name": "DISPERSE",
+          "text": "Add 2 wind to target Goon.",
           "cost": {
             "wind": 1
           }
         },
         {
-          "name": "PASSIFY",
-          "text": "Add 2 wind to target basic Goon.",
+          "name": "CROWD CONTROL",
+          "text": "Add 1 wind to all basic enemy Goons.",
           "cost": {
             "wind": 2
-          }
-        },
-        {
-          "name": "DISPERSE",
-          "text": "Add 1 wind to X enemy basic Goons.",
-          "cost": {
-            "wind": "X"
           }
         }
       ],
@@ -651,15 +644,15 @@
       "faction": "NARC",
       "abilities": [
         {
-          "name": "QUICK SNIPE",
-          "text": "Add 1 wind to target Goon. Ignores Resist.",
+          "name": "DING",
+          "text": "Add 2 wind to target Goon. Ignores Resist.",
           "cost": {
             "wind": 1
           }
         },
         {
-          "name": "CLOAKED SNIPE",
-          "text": "Move this Goon to out of play state until the beginning of your next turn. At that time, add X wind to target enemy Goon. Ignore Resist.",
+          "name": "CLOAK AND DAGGER",
+          "text": "Move this Goon to out of play state until the beginning of your next turn. At that time, add X wind to target enemy Goon. Ignore Resist. If targeted enemy Goon is destroyed remove all wind from this Goon",
           "cost": {
             "wind": "X"
           }

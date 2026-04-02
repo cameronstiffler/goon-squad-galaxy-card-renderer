@@ -211,6 +211,11 @@
           "passive": true
         },
         {
+          "name": "CONCENTRATE",
+          "text": "When Helvis is in play, Grim may not use abilities or contribute to deploy costs. He unwinds regularly.",
+          "passive": true
+        },
+        {
           "name": "BLINK",
           "text": "Target allied Goon is removed from play until the beginning of your next turn. It returns with 0 wind.",
           "cost": {
@@ -246,8 +251,8 @@
           }
         },
         {
-          "name": "INVULNERABLE",
-          "text": "This Goon may not be targeted by abilities.",
+          "name": "IMMUNE",
+          "text": "This Goon may not be targeted by abilities and in general is unaffected by the effects of other Goons.",
           "passive": true
         },
         {
@@ -406,7 +411,7 @@
       "abilities": [
         {
           "name": "MOB",
-          "text": "Move an enemy Goon out of play.",
+          "text": "Target enemy Basic Goon is changed to an out of play state.",
           "cost": {
             "wind": 1
           }
@@ -494,7 +499,7 @@
       "abilities": [
         {
           "name": "DOSE",
-          "text": "Add 1 wind to target Goon. If wind is successfully added to a Biological Goon, target Goon is out of play until beginning of your next turn.",
+          "text": "Target Goon is out of play until beginning of your next turn.",
           "cost": {
             "wind": 1
           }
@@ -531,7 +536,7 @@
         },
         {
           "name": "IMPLODE",
-          "text": "If an enemy Goon destroys this Goon, add 1 wind to all unprotected Goons.",
+          "text": "If an enemy Goon destroys this Goon, add 1 wind to all Goons.",
           "passive": true
         }
       ],
@@ -554,7 +559,7 @@
           "name": "CHANNEL",
           "text": "Add X wind to target Goon. X is the number of Goons in the Dead Pool.",
           "cost": {
-            "wind": 1
+            "wind": "1d"
           }
         },
         {

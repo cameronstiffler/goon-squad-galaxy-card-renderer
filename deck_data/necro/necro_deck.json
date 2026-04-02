@@ -702,6 +702,46 @@
       ]
     },
     {
+      "notes": [],
+      "name": "PCU Technomancer",
+      "rank": "BG",
+      "count": 2,
+      "faction": "PCU",
+      "abilities": [
+        {
+          "name": "CHANNEL",
+          "text": "Add X wind to target Goon. X is the number of Goons in the Dead Pool.",
+          "cost": {
+            "wind": 1
+          }
+        },
+        {
+          "name": "RESURRECT",
+          "text": "Take control of a Goon from the Dead Pool. The resurrected Goon enters play with 0 wind and may act this turn. Burn the resurrected Goon at end of turn.",
+          "cost": {
+            "wind": 1
+          }
+        },
+        {
+          "name": "PSYCHIC HACK",
+          "text": "Take control of an opponent's Mechanical Basic Goon until end of turn.",
+          "cost": {
+            "wind": 2
+          }
+        }
+      ],
+      "deploy_cost": {
+        "wind": 1,
+        "meat": 1,
+        "gear": 1
+      },
+      "biological": true,
+      "mechanical": true,
+      "portrait_art": [
+        "technomancer.jpg"
+      ]
+    },
+    {
       "name": "Noctra Grindcor",
       "rank": "SL",
       "count": 1,
